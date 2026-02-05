@@ -1,0 +1,12 @@
+[build]
+builder = "nixpacks"
+
+[build.envs]
+NIXPACKS_NODE_VERSION = "20"
+
+[deploy]
+startCommand = "pnpm start -p ${PORT:-3000}"
+healthcheckPath = "/api/health"
+healthcheckTimeout = 300
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
