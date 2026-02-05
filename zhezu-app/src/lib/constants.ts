@@ -552,6 +552,8 @@ export const NAV_ITEMS = [
   { href: '/', key: 'home' },
   { href: '/admission', key: 'admission' },
   { href: '/academics', key: 'academics' },
+  { href: '/talent-pool', key: 'talentPool' },
+  { href: '/skill-map', key: 'skillMap' },
   { href: '/career', key: 'career' },
   { href: '/contact', key: 'contact' },
 ] as const;
