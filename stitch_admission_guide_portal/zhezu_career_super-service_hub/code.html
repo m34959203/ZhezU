@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zhezu Career Super-Service Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Noto+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#eebd2b",
+              "background-light": "#f8f7f6",
+              "background-dark": "#221d10",
+              "surface-dark": "#2d281a",
+              "surface-lighter": "#3a3422",
+              "text-secondary": "#c9bb92",
+            },
+            fontFamily: {
+              "display": ["Lexend", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            borderRadius: {
+              "DEFAULT": "0.375rem", 
+              "md": "0.375rem",
+              "lg": "0.5rem", 
+              "xl": "0.75rem", 
+              "2xl": "1rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom Scrollbar for sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221d10; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #483f23; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #eebd2b; 
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex">
+<!-- Sidebar -->
+<aside class="w-64 h-full flex-shrink-0 bg-[#1a160d] border-r border-[#3a3422] flex flex-col justify-between p-4 z-20">
+<div>
+<!-- Logo Area -->
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 border border-primary/20" data-alt="University Logo abstract geometric shape gold" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBdhrKU5AMYvP06Mwc89pkvoOZpQr9bEQGsmb2w3wplMqdZcYVTWJ9ROrlai2WoFm9Yt8R98Yv6A6vu5YYYnUkmaWsA5ZzB0ikDLL26vTVCJWhgYUY6ZJQXJaDkfp84YGUN6daJdYnyeriIxSNjgBTnMNTYW32tQkYn43sofuegHoRo_ZuAXfOZtewbalT_tkhfZmwwV_mdEAZ8AtOLRvxdmHbu6p1JlLn3mZBL028288KCu5L_cWaCVfz_p0eBJEj3HKseYhCp8w-Z");'></div>
+<h1 class="text-white text-lg font-bold leading-tight">Zhezu<br/><span class="text-primary font-normal text-sm">Career Hub</span></h1>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary/10 border border-primary/20 text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:text-white">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">work</span>
+<span class="text-sm font-medium">Opportunities</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span class="text-sm font-medium">My Applications</span>
+<span class="ml-auto bg-primary text-[#1a160d] text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+<span class="text-sm font-medium">Saved Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<span class="text-sm font-medium">Mentorship</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-sm font-medium">My Path</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Actions -->
+<div class="flex flex-col gap-2 border-t border-[#3a3422] pt-4">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-surface-dark text-text-secondary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="flex items-center gap-3 px-3 py-2 mt-2">
+<div class="w-8 h-8 rounded-full bg-cover bg-center border border-primary/30" data-alt="User avatar portrait of student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDEGAgWKS_Y8P4bh-WbRKZ8aug8roG14dGN2c0dxPfyiLchAkkzZK86lFqHTOyD5EwefoanrY_St9ifjG4UBG_iurD6dQzNTXvw4VCDhZaJFsATu66QicFsNtSVuqzJqyXoXYkV_8d34C3BD4uebw8NWg66EfQBd1lH2LKZ6u9WdcI26J1yST_g7Pz60iW3OyvejC9veePxoG2cM3UsR3KeQGeBzh_9mFcxVFHJl8GUMvgo1W54WU1e4p3rRcPg0v8ta6ZCF8qvYgY2");'></div>
+<div class="flex flex-col">
+<span class="text-xs text-text-secondary">Logged in as</span>
+<span class="text-sm font-medium text-white">Alisher K.</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Header -->
+<header class="h-20 flex-shrink-0 bg-background-dark/95 backdrop-blur-sm border-b border-[#3a3422] flex items-center justify-between px-8 z-10 sticky top-0">
+<!-- Search -->
+<div class="w-full max-w-xl">
+<label class="relative flex items-center w-full group">
+<span class="absolute left-4 text-text-secondary group-focus-within:text-primary transition-colors material-symbols-outlined">search</span>
+<input class="w-full bg-surface-dark border border-transparent focus:border-primary/50 text-white text-sm rounded-xl py-2.5 pl-12 pr-4 focus:ring-0 focus:outline-none placeholder:text-text-secondary/50 transition-all" placeholder="Search for jobs, skills, or mentors..." type="text"/>
+</label>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-text-secondary hover:text-white hover:bg-surface-lighter rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background-dark"></span>
+</button>
+<button class="bg-primary hover:bg-primary/90 text-background-dark text-sm font-bold px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+<span>Upload Resume</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-8 pb-24">
+<!-- AI Smart Matches Hero Section -->
+<section class="mb-10">
+<div class="flex items-end justify-between mb-4 px-1">
+<div>
+<h2 class="text-white text-2xl font-bold tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            AI Smart Matches
+                        </h2>
+<p class="text-text-secondary text-sm mt-1">Curated opportunities based on your skills and profile.</p>
+</div>
+<button class="text-primary text-sm font-medium hover:underline">View All Matches</button>
+</div>
+<!-- Matches Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Match Card 1 -->
+<div class="bg-surface-dark border border-[#3a3422] hover:border-primary/50 p-5 rounded-xl group transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-[#1a160d] text-xs font-bold px-3 py-1 rounded-bl-xl z-10">95% Match</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0" data-alt="Kazakhmys logo placeholder">
+<span class="text-lg font-bold text-white">K</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg leading-tight group-hover:text-primary transition-colors">Jr. Mining Engineer</h3>
+<p class="text-text-secondary text-sm">Kazakhmys Corporation</p>
+</div>
+</div>
+<div class="flex gap-2 mb-4 flex-wrap">
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">Full-time</span>
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">Zhezkazgan</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-1.5 mb-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 95%"></div>
+</div>
+<p class="text-xs text-text-secondary">Strong match for your Geological Engineering major.</p>
+</div>
+<!-- Match Card 2 -->
+<div class="bg-surface-dark border border-[#3a3422] hover:border-primary/50 p-5 rounded-xl group transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary/80 text-[#1a160d] text-xs font-bold px-3 py-1 rounded-bl-xl z-10">90% Match</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0" data-alt="Lab logo placeholder">
+<span class="material-symbols-outlined text-white">science</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg leading-tight group-hover:text-primary transition-colors">Metallurgy Intern</h3>
+<p class="text-text-secondary text-sm">Zhezu Lab</p>
+</div>
+</div>
+<div class="flex gap-2 mb-4 flex-wrap">
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">Internship</span>
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">On-site</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-1.5 mb-2 overflow-hidden">
+<div class="bg-primary/80 h-full rounded-full" style="width: 90%"></div>
+</div>
+<p class="text-xs text-text-secondary">Matches your recent lab research project.</p>
+</div>
+<!-- Match Card 3 -->
+<div class="bg-surface-dark border border-[#3a3422] hover:border-primary/50 p-5 rounded-xl group transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary/60 text-[#1a160d] text-xs font-bold px-3 py-1 rounded-bl-xl z-10">85% Match</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0" data-alt="Remote company logo placeholder">
+<span class="material-symbols-outlined text-white">public</span>
+</div>
+<div>
+<h3 class="text-white font-semibold text-lg leading-tight group-hover:text-primary transition-colors">Data Analyst</h3>
+<p class="text-text-secondary text-sm">Remote Tech</p>
+</div>
+</div>
+<div class="flex gap-2 mb-4 flex-wrap">
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">Remote</span>
+<span class="px-2 py-1 bg-[#3a3422] rounded text-[10px] text-text-secondary uppercase tracking-wider">Entry Level</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-1.5 mb-2 overflow-hidden">
+<div class="bg-primary/60 h-full rounded-full" style="width: 85%"></div>
+</div>
+<p class="text-xs text-text-secondary">Requires SQL skills you are currently learning.</p>
+</div>
+</div>
+</section>
+<!-- Main Triad Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- COLUMN 1: OPPORTUNITIES -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold text-white">Opportunities</h2>
+<button class="p-1 hover:bg-surface-lighter rounded text-text-secondary"><span class="material-symbols-outlined">tune</span></button>
+</div>
+<!-- Featured Listing -->
+<div class="bg-gradient-to-br from-surface-dark to-[#3a3422] border border-primary/40 p-5 rounded-xl relative shadow-lg shadow-black/20">
+<div class="absolute -top-3 left-4 bg-primary text-[#1a160d] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Featured Partner</div>
+<div class="flex justify-between items-start mb-2 mt-1">
+<div>
+<h3 class="text-white font-bold">Graduate Program 2024</h3>
+<p class="text-primary text-sm font-medium">Kazakhmys Corporation</p>
+</div>
+<div class="bg-white/10 p-1.5 rounded-md">
+<span class="material-symbols-outlined text-primary text-xl">star</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm mb-4 line-clamp-2">Join the leading copper producer in a rotational program designed for engineering graduates.</p>
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-2 rounded-lg text-sm transition-colors">Apply Now</button>
+</div>
+<!-- Regular Listings -->
+<div class="flex flex-col gap-3">
+<div class="bg-surface-dark p-4 rounded-xl border border-transparent hover:border-[#3a3422] transition-colors cursor-pointer flex gap-4 items-center">
+<div class="w-10 h-10 rounded bg-[#3a3422] flex items-center justify-center text-text-secondary flex-shrink-0" data-alt="Briefcase icon">
+<span class="material-symbols-outlined text-[20px]">work_outline</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-medium truncate">Geology Assistant</h4>
+<p class="text-text-secondary text-xs truncate">Satbayev Explorations • Satpayev</p>
+</div>
+<span class="text-text-secondary text-xs whitespace-nowrap">2d ago</span>
+</div>
+<div class="bg-surface-dark p-4 rounded-xl border border-transparent hover:border-[#3a3422] transition-colors cursor-pointer flex gap-4 items-center">
+<div class="w-10 h-10 rounded bg-[#3a3422] flex items-center justify-center text-text-secondary flex-shrink-0" data-alt="Flask icon">
+<span class="material-symbols-outlined text-[20px]">science</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-medium truncate">Lab Technician</h4>
+<p class="text-text-secondary text-xs truncate">Zhezu University Lab • Campus</p>
+</div>
+<span class="text-text-secondary text-xs whitespace-nowrap">4h ago</span>
+</div>
+<div class="bg-surface-dark p-4 rounded-xl border border-transparent hover:border-[#3a3422] transition-colors cursor-pointer flex gap-4 items-center">
+<div class="w-10 h-10 rounded bg-[#3a3422] flex items-center justify-center text-text-secondary flex-shrink-0" data-alt="Code icon">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-white font-medium truncate">IT Support Specialist</h4>
+<p class="text-text-secondary text-xs truncate">Zhezkazgan City Hall • Center</p>
+</div>
+<span class="text-text-secondary text-xs whitespace-nowrap">1w ago</span>
+</div>
+</div>
+</div>
+<!-- COLUMN 2: MY PATH -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold text-white">My Path</h2>
+</div>
+<!-- Timeline/Roadmap -->
+<div class="bg-surface-dark p-6 rounded-xl border border-[#3a3422]">
+<h3 class="text-sm font-semibold text-text-secondary uppercase mb-5 tracking-wider">Current Status</h3>
+<div class="relative pl-4 border-l-2 border-[#3a3422] space-y-8">
+<!-- Step 1 Done -->
+<div class="relative">
+<span class="absolute -left-[21px] top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-surface-dark">
+<span class="material-symbols-outlined text-[10px] text-black font-bold">check</span>
+</span>
+<h4 class="text-white text-sm font-medium leading-none">Profile Completed</h4>
+<p class="text-xs text-text-secondary mt-1">100% complete</p>
+</div>
+<!-- Step 2 Done -->
+<div class="relative">
+<span class="absolute -left-[21px] top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary ring-4 ring-surface-dark">
+<span class="material-symbols-outlined text-[10px] text-black font-bold">check</span>
+</span>
+<h4 class="text-white text-sm font-medium leading-none">Resume Approved</h4>
+<p class="text-xs text-text-secondary mt-1">Verified by Career Center</p>
+</div>
+<!-- Step 3 Active -->
+<div class="relative">
+<span class="absolute -left-[21px] top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-background-dark border-2 border-primary ring-4 ring-surface-dark"></span>
+<h4 class="text-primary text-sm font-bold leading-none">Internship Secured</h4>
+<p class="text-xs text-text-secondary mt-1">Pending offers (2)</p>
+</div>
+<!-- Step 4 Future -->
+<div class="relative">
+<span class="absolute -left-[21px] top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#3a3422] ring-4 ring-surface-dark"></span>
+<h4 class="text-text-secondary text-sm font-medium leading-none opacity-60">Graduation</h4>
+</div>
+</div>
+</div>
+<!-- Mentorship Card -->
+<div class="bg-surface-dark p-5 rounded-xl border border-[#3a3422] flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<h3 class="text-white font-bold">Mentorship Match</h3>
+<span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded">Recommended</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-cover bg-center border-2 border-primary/50" data-alt="Mentor portrait professional man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBRXdEuzDqtFNp-gU0nQ516f-Gekvl7aZpxEt-2AKanZJ0w01-oAXII8dsVAToSbczUnJG6tcdIX7PBZEV3P2Mps2SRNkbvPUUjkmzViok-VbrZGQHbNywx3B-DtikBdePSKDo_goeEBpGTVgtT9Uf1M1-259nk2LDc4uB5H81lB559q0JSQ9cAyhdlMXXYOh8ipsWlb-vtjpCYA3cRR_oeVDZwdJo4HXuYSVHvC5c4ANiSmAD2PWlDai33lCoQhUm_uUG4Ftuf7Fjn");'></div>
+<div>
+<h4 class="text-white font-medium">Dr. Aibek N.</h4>
+<p class="text-xs text-text-secondary">Senior Engineer at Kazakhmys</p>
+<p class="text-[10px] text-text-secondary mt-0.5">Specialty: Automation</p>
+</div>
+</div>
+<button class="w-full border border-[#3a3422] hover:bg-[#3a3422] hover:text-white text-text-secondary py-2 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">chat</span>
+                            Request Chat
+                        </button>
+</div>
+</div>
+<!-- COLUMN 3: DEVELOPMENT -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h2 class="text-xl font-bold text-white">Development</h2>
+</div>
+<!-- Skills Widget -->
+<div class="bg-surface-dark p-5 rounded-xl border border-[#3a3422]">
+<h3 class="text-white font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">bolt</span>
+                            Skill Gaps
+                        </h3>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white">Project Management</span>
+<span class="text-primary">Low</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-2">
+<div class="bg-primary/40 h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white">CAD Design</span>
+<span class="text-green-500">Excellent</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-2">
+<div class="bg-green-500 h-full rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-white">Data Analysis</span>
+<span class="text-yellow-500">Intermediate</span>
+</div>
+<div class="w-full bg-[#1a160d] rounded-full h-2">
+<div class="bg-yellow-500 h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<button class="mt-4 text-xs text-primary hover:underline flex items-center gap-1">
+                            View detailed analytics <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<!-- Resume Builder Tool -->
+<div class="bg-gradient-to-br from-surface-lighter to-surface-dark p-5 rounded-xl border border-[#3a3422] flex flex-col justify-between">
+<div class="flex items-start gap-3 mb-3">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<div>
+<h3 class="text-white font-bold text-sm">Resume Builder</h3>
+<p class="text-xs text-text-secondary mt-1">Last edited 2 days ago</p>
+</div>
+</div>
+<p class="text-xs text-text-secondary mb-4">Your "Engineering Intern" resume score is 78/100. Improve it now.</p>
+<button class="w-full bg-[#1a160d] hover:bg-black text-white py-2 rounded-lg text-sm transition-colors border border-white/5">
+                            Continue Editing
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button (Mobile/Tablet friendly, but nice on desktop too) -->
+<div class="absolute bottom-8 right-8">
+<button class="bg-primary hover:bg-primary/90 text-background-dark p-4 rounded-full shadow-lg shadow-primary/20 transition-transform hover:scale-105 flex items-center justify-center">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+</button>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zhezu Career Center - Career Growth Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eebd2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221d10",
+                        "surface-dark": "#2c2616", // A slightly lighter dark for cards
+                        "border-dark": "#483f23", // Reusing the border color from input
+                        "text-muted": "#c9bb92", // Reusing the muted text color
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark mode aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #221d10; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #483f23; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #675a32; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-border-dark bg-background-dark px-6 py-3 shrink-0 z-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined !text-[32px]">school</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Zhezu Career Center</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full group">
+<div class="text-text-muted flex border-none bg-surface-dark items-center justify-center pl-4 rounded-l-lg border-r-0 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-surface-dark focus:border-none h-full placeholder:text-text-muted px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search resources..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 hover:bg-surface-dark text-white transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 hover:bg-surface-dark text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-white">Alikhan S.</p>
+<p class="text-xs text-text-muted">Geology Major</p>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="Portrait of a student" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwVtl2rjAx2egjkoYCR244i43Y2NsB392AGR5hhHOzI2cpe_jbOaupHrNdg13-MYvLFZHgyZ9gENxFlj1rOcY_fIOePOY4vuNE9Jj-vjXfOm5SEu7VROTql9Q36oJuMvclZ3aZG9Tu9-ZYiPNWx0js7-qcpi8_P_kBGd2s7x_qbRziz8bgfUlqrLBB8q87ReMFkmLTX5nu9ODseJYItYTAN99yJUUSUW20bHQFo_POPPRkojT0Dj9jDWKFINKNHzNQq-rWq8se9JI6");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar -->
+<aside class="hidden lg:flex w-72 flex-col justify-between bg-background-dark border-r border-border-dark p-4 overflow-y-auto shrink-0">
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-1 px-3">
+<h1 class="text-white text-base font-medium leading-normal">Student Portal</h1>
+<p class="text-text-muted text-xs font-normal leading-normal">Academic Year 2024-2025</p>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 border-l-4 border-primary group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:text-primary transition-colors">dashboard</span>
+<p class="text-white text-sm font-medium leading-normal">Dashboard</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark group transition-colors" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">work</span>
+<p class="text-text-muted group-hover:text-white text-sm font-medium leading-normal transition-colors">Find Jobs</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark group transition-colors" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">event</span>
+<p class="text-text-muted group-hover:text-white text-sm font-medium leading-normal transition-colors">Events</p>
+</a>
+<div class="h-px bg-border-dark my-2 mx-3"></div>
+<p class="px-3 text-xs font-bold text-text-muted uppercase tracking-wider">Tools</p>
+<a class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-surface-dark group transition-colors" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">description</span>
+<p class="text-text-muted group-hover:text-white text-sm font-medium leading-normal transition-colors">My Applications</p>
+</div>
+<span class="bg-primary text-black text-[10px] font-bold px-1.5 py-0.5 rounded">3</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark group transition-colors" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">edit_document</span>
+<p class="text-text-muted group-hover:text-white text-sm font-medium leading-normal transition-colors">Resume Builder</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-dark group transition-colors" href="#">
+<span class="material-symbols-outlined text-text-muted group-hover:text-white transition-colors">military_tech</span>
+<p class="text-text-muted group-hover:text-white text-sm font-medium leading-normal transition-colors">Skill Assessment</p>
+</a>
+</nav>
+</div>
+<!-- Bottom Promo -->
+<div class="mt-auto p-4 rounded-xl bg-surface-dark border border-border-dark">
+<div class="flex items-start gap-3 mb-3">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<div>
+<h4 class="text-white text-sm font-bold">Career Tips</h4>
+<p class="text-text-muted text-xs">Update your LinkedIn profile for better visibility.</p>
+</div>
+</div>
+<button class="w-full text-xs font-bold text-black bg-primary py-2 rounded hover:bg-yellow-400 transition-colors">
+                    Read Guide
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-background-dark p-6 lg:p-10 scroll-smooth">
+<div class="max-w-6xl mx-auto flex flex-col gap-8 pb-10">
+<!-- Welcome Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">Your Career Growth, Alikhan</h1>
+<p class="text-text-muted text-base">Track your progress and explore market trends in Zhezkazgan.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 bg-surface-dark border border-border-dark text-white px-4 py-2 rounded-lg hover:bg-border-dark transition-colors text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+                            Upload CV
+                        </button>
+<button class="flex items-center gap-2 bg-primary text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors text-sm font-bold shadow-[0_0_15px_rgba(238,189,43,0.3)]">
+<span class="material-symbols-outlined text-[20px]">calendar_add_on</span>
+                            Book Counseling
+                        </button>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-dark rounded-xl p-5 border border-border-dark flex items-center gap-4 group hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">send</span>
+</div>
+<div>
+<p class="text-text-muted text-sm font-medium">Applications Sent</p>
+<p class="text-white text-2xl font-bold">5 Active</p>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl p-5 border border-border-dark flex items-center gap-4 group hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<p class="text-text-muted text-sm font-medium">Skill Score</p>
+<p class="text-white text-2xl font-bold">Intermediate</p>
+</div>
+</div>
+<div class="bg-surface-dark rounded-xl p-5 border border-border-dark flex items-center gap-4 group hover:border-primary/50 transition-colors">
+<div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div>
+<p class="text-text-muted text-sm font-medium">Resume Status</p>
+<div class="flex items-center gap-2">
+<p class="text-white text-2xl font-bold">80%</p>
+<span class="text-xs text-green-400 font-medium bg-green-900/30 px-2 py-0.5 rounded">Good</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-3 gap-6">
+<!-- Market Demand Chart (Takes up 2 columns) -->
+<div class="lg:col-span-2 bg-surface-dark rounded-xl border border-border-dark p-6 flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-white text-lg font-bold">Market Demand Trends 2024</h3>
+<p class="text-text-muted text-sm">Job openings by specialty in the region</p>
+</div>
+<div class="flex items-center gap-2 bg-background-dark rounded-lg p-1 border border-border-dark">
+<button class="px-3 py-1 text-xs font-bold bg-primary text-black rounded shadow-sm">Year</button>
+<button class="px-3 py-1 text-xs font-medium text-text-muted hover:text-white">Month</button>
+</div>
+</div>
+<!-- Chart Visualization -->
+<div class="flex-1 flex flex-col justify-end gap-2 relative min-h-[280px]">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none z-0">
+<div class="w-full h-px bg-border-dark/50 border-dashed border-t border-border-dark"></div>
+<div class="w-full h-px bg-border-dark/50 border-dashed border-t border-border-dark"></div>
+<div class="w-full h-px bg-border-dark/50 border-dashed border-t border-border-dark"></div>
+<div class="w-full h-px bg-border-dark/50 border-dashed border-t border-border-dark"></div>
+<div class="w-full h-px bg-border-dark"></div> <!-- Bottom axis -->
+</div>
+<!-- Bars Container -->
+<div class="flex justify-around items-end h-full z-10 px-2 pt-6">
+<!-- Bar 1 -->
+<div class="flex flex-col items-center gap-2 group w-1/6">
+<div class="relative w-full flex justify-center">
+<div class="w-8 md:w-12 bg-primary/20 hover:bg-primary border-t-2 border-primary rounded-t-sm transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(238,189,43,0.4)]" style="height: 120px;"></div>
+<div class="absolute -top-8 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">12%</div>
+</div>
+<span class="text-text-muted text-xs font-medium">Finance</span>
+</div>
+<!-- Bar 2 -->
+<div class="flex flex-col items-center gap-2 group w-1/6">
+<div class="relative w-full flex justify-center">
+<div class="w-8 md:w-12 bg-primary/20 hover:bg-primary border-t-2 border-primary rounded-t-sm transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(238,189,43,0.4)]" style="height: 160px;"></div>
+<div class="absolute -top-8 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">18%</div>
+</div>
+<span class="text-text-muted text-xs font-medium">Energy</span>
+</div>
+<!-- Bar 3 (Highest) -->
+<div class="flex flex-col items-center gap-2 group w-1/6">
+<div class="relative w-full flex justify-center">
+<div class="w-8 md:w-12 bg-primary hover:bg-primary border-t-2 border-primary rounded-t-sm transition-all duration-300 shadow-[0_0_10px_rgba(238,189,43,0.2)]" style="height: 240px;"></div>
+<div class="absolute -top-8 text-white font-bold text-sm opacity-100">35%</div>
+</div>
+<span class="text-white text-xs font-bold">Mining</span>
+</div>
+<!-- Bar 4 -->
+<div class="flex flex-col items-center gap-2 group w-1/6">
+<div class="relative w-full flex justify-center">
+<div class="w-8 md:w-12 bg-primary/40 hover:bg-primary border-t-2 border-primary rounded-t-sm transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(238,189,43,0.4)]" style="height: 200px;"></div>
+<div class="absolute -top-8 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">25%</div>
+</div>
+<span class="text-text-muted text-xs font-medium">Geology</span>
+</div>
+<!-- Bar 5 -->
+<div class="flex flex-col items-center gap-2 group w-1/6">
+<div class="relative w-full flex justify-center">
+<div class="w-8 md:w-12 bg-primary/20 hover:bg-primary border-t-2 border-primary rounded-t-sm transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(238,189,43,0.4)]" style="height: 90px;"></div>
+<div class="absolute -top-8 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity">10%</div>
+</div>
+<span class="text-text-muted text-xs font-medium">IT</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Widget: Skill Assessment -->
+<div class="bg-surface-dark rounded-xl border border-border-dark p-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-white text-lg font-bold">Skills Gap</h3>
+<button class="text-primary text-sm font-medium hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-4 mt-2">
+<!-- Skill Item -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="text-white font-medium">Data Analysis</span>
+<span class="text-primary font-bold">75%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="text-white font-medium">Project Management</span>
+<span class="text-primary font-bold">40%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<!-- Skill Item -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="text-white font-medium">Geological Surveying</span>
+<span class="text-primary font-bold">90%</span>
+</div>
+<div class="w-full bg-background-dark rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6">
+<div class="bg-primary/10 rounded-lg p-4 border border-primary/20">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<div>
+<h4 class="text-white text-sm font-bold mb-1">Recommendation</h4>
+<p class="text-text-muted text-xs leading-relaxed">Consider taking a "Project Management Fundamentals" course to boost your employability score.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Events Carousel Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-white text-xl font-bold">Upcoming Opportunities</h2>
+<div class="flex gap-2">
+<button class="size-8 rounded-full border border-border-dark flex items-center justify-center text-white hover:bg-border-dark transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+</button>
+<button class="size-8 rounded-full bg-primary flex items-center justify-center text-black hover:bg-yellow-400 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Event Card 1 -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-border-dark bg-surface-dark transition-all hover:border-primary/50">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Crowd of people at a corporate job fair" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7saCXY0V90IYvxKFexQYYJCE9jVMlgJcUdwLmMHE5VpZ3Rq_n0x0Ew21xvg-O5o-KaWfECzIT5dxpbqDkHr0lefSiiwI9-PPJU180l58HP7ArzoYIVmFl81tr3FMf_1Q6GMdgn1uZ18VU-i5GvVmFq2h7K3LwsSyh_e_JEcCtt9gXRaeGRuXqwoEXRCBbqBMYT7BAG5w4IAXjk_WT5y7WXhx_xxRcec8wdAzPGw1OIRQI74SIzaLsGw7z1mPYCaUQi6kJI5CD90tY");'>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-90"></div>
+<div class="absolute top-4 left-4 bg-primary text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    Oct 24
+                                </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<div class="mb-3">
+<span class="text-text-muted text-xs uppercase tracking-wide font-semibold">Career Fair</span>
+<h3 class="text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors mt-1">Annual Mining Job Fair</h3>
+<p class="text-text-muted text-sm mt-2 line-clamp-2">Connect with top employers in the mining industry including KazMinerals and Zhezkazgan Copper.</p>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-border-dark">
+<div class="flex items-center gap-2 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>10:00 AM</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">Register</button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-border-dark bg-surface-dark transition-all hover:border-primary/50">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Close up of writing on a notepad during a workshop" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTAmnNvWBQvu8W-4BBP3nKiYQ_RAPdKJA2swifyuNatrfh0LgRThRwFkqQevuXZdZDFCPE3HiXk1Fe7IqIRzxkaI8EHDlIt6i4H7hC1zzZwhuQLX7cWUGohnpGTkTjU_TH7GY3TIwIHgoXQeDTWdKWdh_hw8_alRdZ_usum4OQYl3sXmx-eu0PZK-WPPguEHG7-0O0UX8ijfkWGrkbHvAnULYUPPcwryXaclwCKm72f07W-eSRZOb0vU3wOVPHyhfelsLr9hcXgcDT");'>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-90"></div>
+<div class="absolute top-4 left-4 bg-background-dark/80 text-white border border-border-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    Nov 02
+                                </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<div class="mb-3">
+<span class="text-text-muted text-xs uppercase tracking-wide font-semibold">Workshop</span>
+<h3 class="text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors mt-1">CV Writing with Samsung</h3>
+<p class="text-text-muted text-sm mt-2 line-clamp-2">Learn how to craft a perfect resume from HR experts at Samsung Electronics.</p>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-border-dark">
+<div class="flex items-center gap-2 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+<span>Main Hall B</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">Register</button>
+</div>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="group relative flex flex-col overflow-hidden rounded-xl border border-border-dark bg-surface-dark transition-all hover:border-primary/50">
+<div class="h-40 w-full bg-cover bg-center relative" data-alt="Two people talking in an office setting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBj_7dI8WuQmzS14D-jcql-oskY9JaLyEkT-ZZESQWQ-oArJ7qW64PnnUAmNtX-nlmLYV12kr-xELTGVRkxdbqESolmYOr6ZW3svJ38Q5VPpqZy0iAH1vsEL5c8Ai35i0rOT-H36yX4HuJ01P1_mZsCDudwW2qKoK6GXe1ghQIjSJCCVbmu8zjYf6MyDL6MiumBbg2JZhGXt-4BAcaE1nwD3HyDyilhRgH-dSzJ7sTcHFi6vJHNyONqN2__iVzZwgsIQUJHnH6jgJt6");'>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark to-transparent opacity-90"></div>
+<div class="absolute top-4 left-4 bg-background-dark/80 text-white border border-border-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    Nov 10
+                                </div>
+</div>
+<div class="flex flex-1 flex-col p-5">
+<div class="mb-3">
+<span class="text-text-muted text-xs uppercase tracking-wide font-semibold">Seminar</span>
+<h3 class="text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors mt-1">Internship Prep Talk</h3>
+<p class="text-text-muted text-sm mt-2 line-clamp-2">Get ready for summer internships. Topics include interview skills and office etiquette.</p>
+</div>
+<div class="mt-auto pt-4 flex items-center justify-between border-t border-border-dark">
+<div class="flex items-center gap-2 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+<span>Online Zoom</span>
+</div>
+<button class="text-primary text-sm font-bold hover:underline">Register</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

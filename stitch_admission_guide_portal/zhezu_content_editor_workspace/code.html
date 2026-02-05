@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zhezu CMS - Content Editor</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eebd2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221d10",
+                        "surface-dark": "#2a2515",
+                        "border-dark": "#483f23",
+                        "input-bg": "#332d19",
+                        "input-border": "#675a32",
+                        "text-muted": "#c9bb92",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-dark bg-background-dark px-6 py-3 z-50 shrink-0">
+<div class="flex items-center gap-4 text-white">
+<a class="flex items-center gap-2 text-white hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-white">arrow_back</span>
+</a>
+<div class="h-6 w-px bg-border-dark mx-2"></div>
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined filled" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">Zhezu CMS</h2>
+<span class="text-border-dark text-lg font-light">/</span>
+<span class="text-text-muted text-sm font-medium">New Post</span>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex items-center gap-2 text-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px]">cloud_done</span>
+<span>Saved 2m ago</span>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-4 border border-border-dark bg-transparent text-white hover:bg-surface-dark transition-all text-sm font-bold">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span class="hidden sm:inline">Preview</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-surface-dark text-white hover:bg-input-bg border border-transparent hover:border-border-dark transition-all text-sm font-bold">
+<span class="truncate">Save Draft</span>
+</button>
+<button class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-10 px-6 bg-primary hover:bg-yellow-500 text-background-dark text-sm font-bold leading-normal tracking-[0.015em] shadow-lg shadow-yellow-900/20 transition-all">
+<span>Publish</span>
+</button>
+</div>
+<button class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-border-dark relative" data-alt="User profile avatar showing a smiling person" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPmceygXnakiwHh-RV_jnXSPgky-x6DhUSun5WU8nCPFltlNjuLHRFd-4VsuhiOYcl7dNUpVkg25-CZ-cv-flsK2PeI03XZLIyq-tdtn6SANugDbr_PhUyndBAhQIBbOGcdjVK8c6ta7heEiV-sLvvAHdshMCCxHwgtTaq5nOM0W-twnA9x0NkQfPo16QRuostwZdStVUCnNntAYf3pGPoob_lELUZTVIuR8E6Ts1nX-Y_BDv59_A4k59NCuQTGb8RHyTGsQxkAuNe");'>
+<span class="absolute bottom-0 right-0 size-2.5 bg-green-500 rounded-full border border-background-dark"></span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 h-full overflow-hidden">
+<!-- Main Content Editor (Scrollable) -->
+<main class="flex-1 overflow-y-auto custom-scrollbar relative">
+<div class="max-w-4xl mx-auto pb-20">
+<!-- Page Heading Section -->
+<div class="px-8 pt-10 pb-2">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-1 rounded bg-blue-900/30 text-blue-300 text-xs font-medium border border-blue-900/50">News</span>
+<span class="px-2 py-1 rounded bg-green-900/30 text-green-300 text-xs font-medium border border-green-900/50">Draft</span>
+</div>
+</div>
+</div>
+<!-- Title Input -->
+<div class="px-8 mb-4">
+<input class="w-full bg-transparent border-none text-4xl md:text-5xl font-bold text-white placeholder:text-gray-600 focus:ring-0 px-0 py-4" placeholder="Enter article title..." value="New Science Lab Opens at Baikonurov Campus"/>
+<p class="text-text-muted text-sm font-normal leading-normal">by <span class="text-primary">Admin Staff</span> • October 24, 2023</p>
+</div>
+<!-- Sticky Toolbar -->
+<div class="sticky top-0 z-40 px-8 py-4 bg-background-dark/95 backdrop-blur-sm border-b border-border-dark mb-6 mx-6 rounded-b-xl shadow-xl">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex gap-1 bg-surface-dark p-1 rounded-lg border border-border-dark">
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Bold">
+<span class="material-symbols-outlined text-[20px]">format_bold</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Italic">
+<span class="material-symbols-outlined text-[20px]">format_italic</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Underline">
+<span class="material-symbols-outlined text-[20px]">format_underlined</span>
+</button>
+<div class="w-px bg-border-dark my-1 mx-1"></div>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Heading 2">
+<span class="font-bold text-sm px-1">H2</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Heading 3">
+<span class="font-bold text-sm px-1">H3</span>
+</button>
+<div class="w-px bg-border-dark my-1 mx-1"></div>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Quote">
+<span class="material-symbols-outlined text-[20px]">format_quote</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Bullet List">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</button>
+<button class="p-2 text-text-muted hover:text-white hover:bg-input-bg rounded transition-colors" title="Link">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</button>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-2 text-primary hover:bg-primary/10 rounded-lg transition-colors border border-primary/20">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="text-sm font-medium">AI Assist</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 text-text-muted hover:bg-surface-dark rounded-lg transition-colors border border-border-dark">
+<span class="material-symbols-outlined text-[18px]">add_photo_alternate</span>
+<span class="text-sm font-medium">Add Media</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Editor Body -->
+<div class="px-8 min-h-[500px]">
+<div class="prose prose-invert prose-lg max-w-none">
+<p class="text-gray-300 leading-relaxed mb-6">
+                            Zhezkazgan University named after O.A. Baikonurov is proud to announce the opening of its state-of-the-art Science Laboratory. This new facility marks a significant milestone in our commitment to fostering innovation and practical research among students and faculty.
+                        </p>
+<!-- Embedded Image Block -->
+<div class="my-8 group relative rounded-xl overflow-hidden border border-border-dark bg-surface-dark">
+<div class="aspect-video w-full bg-cover bg-center" data-alt="Modern university science laboratory with clean white benches and blue lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByJw-mvA4Te6otPeqeWh9C3xiK5tP8OJtWfr_Tmn1KF3ecE5hf5GZIGllF3ri2hM66kFW9nBf_JMJIJM873NzrztU8bP7IFARb8QRkRb9w63yzegLXlywpLQToq5lIbGmlWiqkfpAmsXeijd-e6k6UrheqaOJssoyQivRLrVySKOP0sOB3Tbpg_nBRgLFQQ1RBKQG3OYrdPigC8nRMpjLJZwDh8Aymw0cMQ-RsMUL57krWziBh5CaRyO_VBq_B8OUzI8_wpoaqMFF6');"></div>
+<div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+<button class="bg-black/50 hover:bg-black/70 text-white p-2 rounded backdrop-blur-md">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="bg-red-500/80 hover:bg-red-600 text-white p-2 rounded backdrop-blur-md">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<div class="p-3 border-t border-border-dark">
+<input class="w-full bg-transparent border-none text-sm text-center text-text-muted focus:ring-0 placeholder:text-gray-600" placeholder="Type caption for image (optional)" type="text" value="The new Molecular Biology wing, equipped for advanced genomic research."/>
+</div>
+</div>
+<p class="text-gray-300 leading-relaxed mb-6">
+                            The laboratory is equipped with the latest technology in chemistry, physics, and biology, providing students with hands-on experience that bridges the gap between theoretical knowledge and real-world application. "This is a game-changer for our science department," said Dr. Alimov, Dean of Natural Sciences.
+                        </p>
+<p class="text-gray-300 leading-relaxed">
+                            Students will have access to the facility starting next semester.
+                        </p>
+</div>
+<!-- AI Suggestion Block -->
+<div class="mt-8 p-4 rounded-xl bg-gradient-to-r from-surface-dark to-transparent border border-primary/20 border-l-4 border-l-primary flex items-start gap-4">
+<div class="p-2 bg-primary/10 rounded-full text-primary shrink-0">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div class="flex-1">
+<h4 class="text-white font-medium mb-1">Writing Suggestion</h4>
+<p class="text-text-muted text-sm mb-3">Consider adding a quote from a student representative to balance the faculty perspective and increase engagement.</p>
+<div class="flex gap-2">
+<button class="text-xs font-bold text-primary hover:text-white transition-colors">Generate Quote Placeholder</button>
+<button class="text-xs font-bold text-gray-500 hover:text-white transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar (Settings) -->
+<aside class="w-80 border-l border-border-dark bg-surface-dark/50 overflow-y-auto hidden xl:block custom-scrollbar">
+<div class="p-5 flex flex-col gap-6">
+<!-- Publishing Panel -->
+<div class="flex flex-col gap-4">
+<h3 class="text-xs font-bold text-text-muted uppercase tracking-wider">Publishing</h3>
+<div class="bg-background-dark p-4 rounded-lg border border-border-dark shadow-sm">
+<div class="flex justify-between items-center mb-3">
+<span class="text-sm text-white">Status</span>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Draft</span>
+</div>
+<div class="flex justify-between items-center mb-3">
+<span class="text-sm text-white">Visibility</span>
+<span class="text-xs font-medium text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span> Public
+                            </span>
+</div>
+<div class="mt-4 pt-3 border-t border-border-dark">
+<label class="text-xs text-text-muted block mb-2">Schedule Publish</label>
+<div class="relative">
+<input class="w-full bg-input-bg border border-input-border rounded text-white text-sm px-3 py-2 focus:ring-1 focus:ring-primary focus:border-primary outline-none [&amp;::-webkit-calendar-picker-indicator]:invert" type="datetime-local"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Image -->
+<div class="flex flex-col gap-4">
+<h3 class="text-xs font-bold text-text-muted uppercase tracking-wider">Featured Image</h3>
+<div class="bg-background-dark rounded-lg border border-dashed border-input-border p-4 flex flex-col items-center justify-center text-center gap-2 hover:border-primary transition-colors cursor-pointer group">
+<div class="size-16 rounded overflow-hidden mb-1 relative">
+<img class="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition-opacity" data-alt="Small thumbnail of the science lab" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGN7CSL7LatZYb6_woIAzb-3fyYjRoRM5L9a5hl2EVeq3qnZMMy5d0OH9YKSA_JLVtpWSBk062uQW1l2t_f6Jtze10U3xvR7GUs8TEamoRrAsADu7XjhSdsXgbqWrxq5pn89hyi9_f9IEQFly46E6g0nrIBh6NOcSpgrvFJ8Y48px7tvW641C5aUOt9MAZb0mij-Hoi6T7tscJbXCoZX0mfiMh8NJokztsWUFaSbC_fO8DMhumIcUZAEJnRkxVhp1bEpgWyPPd3mxG"/>
+</div>
+<span class="text-xs text-primary font-medium group-hover:underline">Replace Image</span>
+</div>
+</div>
+<!-- Taxonomy -->
+<div class="flex flex-col gap-4">
+<h3 class="text-xs font-bold text-text-muted uppercase tracking-wider">Categories &amp; Tags</h3>
+<div class="flex flex-col gap-3">
+<label class="flex flex-col gap-1">
+<span class="text-xs text-text-muted">Primary Category</span>
+<select class="w-full bg-input-bg border border-input-border rounded text-white text-sm px-3 py-2 focus:ring-primary focus:border-primary">
+<option>News &amp; Announcements</option>
+<option>Student Life</option>
+<option>Research</option>
+<option>Events</option>
+</select>
+</label>
+<div class="flex flex-col gap-2">
+<span class="text-xs text-text-muted">Tags</span>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/20 text-primary text-xs border border-primary/30">
+                                    #CampusLife
+                                    <button class="hover:text-white"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/20 text-primary text-xs border border-primary/30">
+                                    #Science
+                                    <button class="hover:text-white"><span class="material-symbols-outlined text-[12px]">close</span></button>
+</span>
+<input class="bg-transparent border-none text-xs text-white placeholder:text-gray-600 focus:ring-0 p-1 w-20" placeholder="+ Add tag" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- SEO Settings -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-bold text-text-muted uppercase tracking-wider">SEO Settings</h3>
+<span class="text-xs font-bold text-green-400">Good (85/100)</span>
+</div>
+<div class="bg-background-dark p-4 rounded-lg border border-border-dark">
+<label class="block mb-3">
+<span class="text-xs text-text-muted block mb-1">Meta Title</span>
+<input class="w-full bg-input-bg border border-input-border rounded text-white text-sm px-3 py-2 focus:ring-primary focus:border-primary placeholder:text-gray-600" type="text" value="New Science Lab Opens - Zhezu News"/>
+<div class="w-full h-1 bg-gray-700 mt-1 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[70%]"></div>
+</div>
+</label>
+<label class="block">
+<span class="text-xs text-text-muted block mb-1">Meta Description</span>
+<textarea class="w-full bg-input-bg border border-input-border rounded text-white text-sm px-3 py-2 focus:ring-primary focus:border-primary placeholder:text-gray-600 resize-none" rows="3">Zhezkazgan University (Zhezu) unveils a new state-of-the-art science laboratory for students and faculty research.</textarea>
+</label>
+<button class="mt-3 w-full flex items-center justify-center gap-2 py-1.5 rounded border border-primary/30 text-primary text-xs font-medium hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                            Optimize with AI
+                        </button>
+</div>
+<!-- Search Preview Card -->
+<div class="bg-white p-3 rounded-lg opacity-90">
+<div class="flex items-center gap-2 mb-1">
+<div class="size-4 rounded-full bg-gray-200"></div>
+<span class="text-[10px] text-gray-600">zhezu.edu.kz &gt; news</span>
+</div>
+<div class="text-[#1a0dab] text-sm font-medium hover:underline cursor-pointer truncate">New Science Lab Opens - Zhezu News</div>
+<div class="text-gray-600 text-xs line-clamp-2">Zhezkazgan University (Zhezu) unveils a new state-of-the-art science laboratory for students and faculty research.</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Mobile Sidebar Toggle (Floating Action Button style for smaller screens) -->
+<button class="xl:hidden fixed bottom-6 right-6 size-14 rounded-full bg-surface-dark border border-border-dark text-white shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</body></html>

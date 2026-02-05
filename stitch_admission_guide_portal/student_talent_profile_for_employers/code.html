@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Talent Profile - Zhezu University</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Noto+Sans:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#eebd2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221d10",
+                        "surface-dark": "#2c2616",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for sidebar if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-[#111418] dark:text-white overflow-x-hidden selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e6e8eb] dark:border-b-[#483f23] px-10 py-3 bg-white dark:bg-[#221e11] sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111418] dark:text-white">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Zhezu University</h2>
+</div>
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Employers</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Faculties</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Research</a>
+<a class="text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-[#dce0e5] dark:border-none bg-[#f0f2f4] dark:bg-[#483f23]">
+<div class="text-[#637588] dark:text-[#c9bb92] flex items-center justify-center pl-4 rounded-l-lg">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent border-none text-base font-normal leading-normal placeholder:text-[#637588] dark:placeholder:text-[#c9bb92] px-2 focus:ring-0 text-[#111418] dark:text-white h-full" placeholder="Search talent..."/>
+</div>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#221e11] text-sm font-bold leading-normal tracking-[0.015em] hover:bg-yellow-500 transition-colors">
+<span class="truncate">Recruiter Login</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 justify-center py-5 px-4 md:px-8 lg:px-12 xl:px-40">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-4 py-2 mb-4">
+<a class="text-[#637588] dark:text-[#c9bb92] text-sm font-medium leading-normal hover:underline" href="#">Home</a>
+<span class="text-[#637588] dark:text-[#c9bb92] text-sm font-medium leading-normal">/</span>
+<a class="text-[#637588] dark:text-[#c9bb92] text-sm font-medium leading-normal hover:underline" href="#">Talent Pool</a>
+<span class="text-[#637588] dark:text-[#c9bb92] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Mining Engineering</span>
+<span class="text-[#637588] dark:text-[#c9bb92] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111418] dark:text-white text-sm font-medium leading-normal">Profile #8821</span>
+</div>
+<!-- Main Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Content (8 cols) -->
+<main class="lg:col-span-8 flex flex-col gap-6">
+<!-- Profile Header -->
+<div class="rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-6 shadow-sm">
+<div class="flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-cover bg-center border-4 border-white dark:border-[#483f23] shadow-lg" data-alt="Professional headshot of Aizhan Akhmetova" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUShPBCLbzB-8NH06PSGlkWi1g0vIMYjY1n9odlylnjr49onbv7Ndgr-BlyrNww1m4Ho523B0YLYu30jw9FIJffoece6EIpS-UZd8qBPZNbIWebAQhTIbDrgG1AtGntc1Akrb2aZ1tECL71SEFah-5sjT5_I3VNvWmQS9DCeYpv2v8Qi5tljB9IbJqy5BmyXokiiVqSI8ResMP4UrtG6d8jIkJvQ3qLKnBqAanI4pl6I6VFwsi-Fr9tk2ji08a5sqwQE0M4a0vC5Dq');">
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-[#221e11] rounded-full p-1.5 border-2 border-white dark:border-[#2c2616] shadow-sm" title="Verified Student">
+<span class="material-symbols-outlined text-[20px] block">verified</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-2">
+<div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 justify-center md:justify-start">
+<h1 class="text-3xl font-bold tracking-tight text-[#111418] dark:text-white">Aizhan Akhmetova</h1>
+<span class="inline-flex items-center gap-1 rounded-full bg-primary/20 border border-primary/30 px-3 py-1 text-xs font-bold text-yellow-700 dark:text-primary uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px] filled">star</span>
+                                        Top Talent
+                                    </span>
+</div>
+<p class="text-[#637588] dark:text-[#c9bb92] text-lg font-medium">B.Sc. Mining Engineering, 4th Year</p>
+<div class="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-start text-sm text-[#637588] dark:text-[#a09575] mt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">school</span>
+                                        Zhezkazgan University
+                                    </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                                        Zhezkazgan, Kazakhstan
+                                    </div>
+<div class="flex items-center gap-1.5 text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                                        Available for Internship
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Stats Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-[#e6e8eb] dark:border-[#483f23]">
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-[#f8f9fa] dark:bg-[#221e11]/50 border border-transparent dark:border-[#483f23]">
+<span class="text-2xl font-bold text-[#111418] dark:text-white">3.8<span class="text-base font-normal text-gray-500">/4.0</span></span>
+<span class="text-xs font-medium uppercase tracking-wider text-[#637588] dark:text-[#c9bb92]">Cum. GPA</span>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-[#f8f9fa] dark:bg-[#221e11]/50 border border-transparent dark:border-[#483f23]">
+<span class="text-2xl font-bold text-[#111418] dark:text-white">Top 5%</span>
+<span class="text-xs font-medium uppercase tracking-wider text-[#637588] dark:text-[#c9bb92]">Class Rank</span>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-[#f8f9fa] dark:bg-[#221e11]/50 border border-transparent dark:border-[#483f23]">
+<span class="text-2xl font-bold text-[#111418] dark:text-white">C1</span>
+<span class="text-xs font-medium uppercase tracking-wider text-[#637588] dark:text-[#c9bb92]">English Level</span>
+</div>
+<div class="flex flex-col gap-1 p-3 rounded-lg bg-[#f8f9fa] dark:bg-[#221e11]/50 border border-transparent dark:border-[#483f23]">
+<span class="text-2xl font-bold text-[#111418] dark:text-white">2</span>
+<span class="text-xs font-medium uppercase tracking-wider text-[#637588] dark:text-[#c9bb92]">Internships</span>
+</div>
+</div>
+</div>
+<!-- AI Summary -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#1a202c] to-[#2d3748] dark:from-[#2c2616] dark:to-[#221e11] border border-primary/20 shadow-md">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-4">
+<div class="p-1.5 rounded-md bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+</div>
+<h3 class="text-lg font-bold text-white">Professional Summary <span class="text-xs font-normal text-gray-400 ml-1">(AI Generated)</span></h3>
+</div>
+<p class="text-gray-200 dark:text-[#e0dcd0] text-base leading-relaxed">
+                                Aizhan demonstrates exceptional aptitude in <strong class="text-primary font-medium">geological data analysis</strong> and <strong class="text-primary font-medium">Python scripting</strong>, with a proven track record in leadership during the 2023 Kazakhmys internship. Her capstone research indicates strong potential for roles in <strong class="text-white">Process Optimization</strong> and <strong class="text-white">Mining Automation</strong>.
+                            </p>
+</div>
+</div>
+<!-- Skills & Competencies (Radar Chart Simulation + Lists) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Skills List -->
+<div class="rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-6 h-full">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                                Core Competencies
+                            </h3>
+<div class="space-y-5">
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium text-[#111418] dark:text-[#e0dcd0]">Geological Modelling (Micromine)</span>
+<span class="text-sm font-bold text-primary">Expert</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-[#221e11] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium text-[#111418] dark:text-[#e0dcd0]">Data Analysis (Python/Pandas)</span>
+<span class="text-sm font-bold text-primary">Advanced</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-[#221e11] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium text-[#111418] dark:text-[#e0dcd0]">Project Management</span>
+<span class="text-sm font-bold text-primary">Intermediate</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-[#221e11] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="text-sm font-medium text-[#111418] dark:text-[#e0dcd0]">Industrial Safety</span>
+<span class="text-sm font-bold text-primary">Certified</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-[#221e11] rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Radar Chart Graphic (SVG) -->
+<div class="rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-6 flex flex-col items-center justify-center">
+<h3 class="text-lg font-bold text-[#111418] dark:text-white mb-2 self-start flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">radar</span>
+                                Skill Profile
+                            </h3>
+<div class="relative w-64 h-64 mt-2">
+<svg class="w-full h-full drop-shadow-lg" viewbox="0 0 100 100">
+<!-- Background Grid -->
+<polygon class="opacity-30 dark:opacity-50" fill="none" points="50,10 90,30 90,70 50,90 10,70 10,30" stroke="#483f23" stroke-width="0.5"></polygon>
+<polygon class="opacity-30 dark:opacity-50" fill="none" points="50,25 75,37.5 75,62.5 50,75 25,62.5 25,37.5" stroke="#483f23" stroke-width="0.5"></polygon>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="50" y1="50" y2="10"></line>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="90" y1="50" y2="30"></line>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="90" y1="50" y2="70"></line>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="50" y1="50" y2="90"></line>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="10" y1="50" y2="70"></line>
+<line class="opacity-30 dark:opacity-50" stroke="#483f23" stroke-width="0.5" x1="50" x2="10" y1="50" y2="30"></line>
+<!-- Data Shape -->
+<polygon fill="rgba(238, 189, 43, 0.2)" points="50,15 85,35 70,65 50,80 30,65 20,40" stroke="#eebd2b" stroke-width="2"></polygon>
+<!-- Points -->
+<circle cx="50" cy="15" fill="#eebd2b" r="1.5"></circle>
+<circle cx="85" cy="35" fill="#eebd2b" r="1.5"></circle>
+<circle cx="70" cy="65" fill="#eebd2b" r="1.5"></circle>
+<circle cx="50" cy="80" fill="#eebd2b" r="1.5"></circle>
+<circle cx="30" cy="65" fill="#eebd2b" r="1.5"></circle>
+<circle cx="20" cy="40" fill="#eebd2b" r="1.5"></circle>
+</svg>
+<!-- Labels -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Technical</div>
+<div class="absolute top-[25%] right-0 translate-x-2 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Soft Skills</div>
+<div class="absolute bottom-[25%] right-0 translate-x-2 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Language</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Leadership</div>
+<div class="absolute bottom-[25%] left-0 -translate-x-3 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Safety</div>
+<div class="absolute top-[25%] left-0 -translate-x-3 text-[10px] uppercase font-bold text-[#637588] dark:text-[#c9bb92]">Tools</div>
+</div>
+</div>
+</div>
+<!-- Verified Achievements Grid -->
+<div>
+<h2 class="text-xl font-bold text-[#111418] dark:text-white mb-4">Verified Achievements</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Achievement 1 -->
+<div class="flex flex-col gap-3 rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-4 hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<div class="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined text-[24px]">trophy</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" title="Verified by University">verified</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight">Best Capstone Project 2023</h4>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92] mt-1">Awarded by Zhezu Engineering Dept.</p>
+</div>
+</div>
+<!-- Achievement 2 -->
+<div class="flex flex-col gap-3 rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-4 hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<div class="size-10 rounded-lg bg-orange-50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined text-[24px]">safety_check</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" title="Verified by Partner">verified</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight">Industrial Safety Cert.</h4>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92] mt-1">Partner: Kazakhmys Corporation</p>
+</div>
+</div>
+<!-- Achievement 3 -->
+<div class="flex flex-col gap-3 rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark p-4 hover:border-primary/50 transition-colors cursor-default">
+<div class="flex justify-between items-start">
+<div class="size-10 rounded-lg bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined text-[24px]">code</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary" title="Verified by University">verified</span>
+</div>
+<div>
+<h4 class="text-base font-bold text-[#111418] dark:text-white leading-tight">Python for Data Science</h4>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92] mt-1">Advanced Course (Grade A)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Projects -->
+<div class="pb-10">
+<h2 class="text-xl font-bold text-[#111418] dark:text-white mb-4">Portfolio &amp; Research</h2>
+<div class="rounded-xl border border-[#dce0e5] dark:border-[#483f23] bg-white dark:bg-surface-dark overflow-hidden">
+<div class="flex flex-col sm:flex-row border-b border-[#e6e8eb] dark:border-[#483f23] last:border-0 group">
+<div class="sm:w-48 h-32 sm:h-auto bg-cover bg-center" data-alt="Open pit mine aerial view pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5Rk1Z87TVUHNqEjWhSjZd9vvNQBOyLnCIQlNkv2wKjgzgEEejU3P7jo50IyG_4XIbrTPlogRMpEZK9GpxpIL5eeh4OcxNNv9dMjVF57SVY_DzKw4wuN8CVyLIg5-7y6Ng4gCyiKSsSQVqkcC7M7DHjAr_Xf0JsNrSJekCJjCE7EnoG-rLzbRR8HnzsYMC3h3uR-xseCNWHlGoAOISMdM0I3PErq7QQNb-R_wil1bWhd86xAi3bRuf8PMmSKLTjgKueaY-Rnea4E5f');"></div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">Optimization of Ore Extraction using ML</h4>
+<span class="text-xs font-bold bg-[#f0f2f4] dark:bg-[#221e11] px-2 py-1 rounded text-[#637588] dark:text-[#c9bb92]">2023</span>
+</div>
+<p class="text-sm text-[#637588] dark:text-[#c9bb92] line-clamp-2">
+                                            Developed a predictive model using Python and Random Forest algorithms to optimize drilling patterns, resulting in a theoretical 4% cost reduction in blasting operations.
+                                        </p>
+</div>
+<div class="flex gap-4 mt-4">
+<a class="text-sm font-bold text-primary hover:text-white flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+                                            Read Paper
+                                        </a>
+<a class="text-sm font-bold text-[#637588] dark:text-[#a09575] hover:text-white flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">link</span>
+                                            View Data
+                                        </a>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row group">
+<div class="sm:w-48 h-32 sm:h-auto bg-cover bg-center" data-alt="Technical blueprint schematic" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ_qKDODOqxajlDzPt6rSbxptzlkbaD1sub5Rw87bizjTHndoM58G4pUF5P6uonjbQRE7vOwWCdUJiJLJ3pkWzSZs8uRT_Cwx03C3DIpAv7WYAlrZK2CpGzLRdAAFJjLp5IBMZX-DjiEudUEY9LMqlNZgtAvvwt5U6vQq-TGLXhhb6XUpJQuPYxaSUR7VLd-fGnZUQRTDmeKoFSSr2EwEl6U5qhDHCbeHHt5QqtJti86g1En7cCcWMcQll6w8vxt8jD1TNs4zj0O57');"></div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h4 class="text-lg font-bold text-[#111418] dark:text-white group-hover:text-primary transition-colors">Ventilation System Redesign for Deep Mines</h4>
+<span class="text-xs font-bold bg-[#f0f2f4] dark:bg-[#221e11] px-2 py-1 rounded text-[#637588] dark:text-[#c9bb92]">2022</span>
+</div>
+<p class="text-sm text-[#637588] dark:text-[#c9bb92] line-clamp-2">
+                                            A collaborative project designing a more energy-efficient ventilation network for Zhezkazgan Complex underground levels 45 and 55.
+                                        </p>
+</div>
+<div class="flex gap-4 mt-4">
+<a class="text-sm font-bold text-primary hover:text-white flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[18px]">slideshow</span>
+                                            View Presentation
+                                        </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Column: Sidebar (4 cols) -->
+<aside class="lg:col-span-4 sticky top-24 space-y-6">
+<!-- Recruiter Actions Card -->
+<div class="rounded-xl bg-white dark:bg-[#2c2616] border border-[#dce0e5] dark:border-[#483f23] shadow-lg overflow-hidden">
+<div class="bg-primary/10 dark:bg-primary/5 p-4 border-b border-[#e6e8eb] dark:border-[#483f23] flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary flex items-center justify-center text-[#221e11]">
+<span class="material-symbols-outlined text-[20px]">business_center</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-[#111418] dark:text-white">Recruiter Actions</h3>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92]">Official University Portal</p>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-3">
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-bold text-[#221e11] hover:bg-yellow-500 transition-all shadow-md transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">calendar_add_on</span>
+                                Schedule Interview
+                            </button>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg bg-[#221e11] dark:bg-[#483f23] border border-transparent dark:border-[#675a32] py-3 text-sm font-bold text-white hover:bg-gray-800 dark:hover:bg-[#5c502d] transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                                Download Full CV
+                            </button>
+<button class="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary/50 py-3 text-sm font-bold text-[#111418] dark:text-primary hover:bg-primary/10 transition-all group">
+<span class="material-symbols-outlined text-[20px] group-hover:animate-bounce">send</span>
+                                Send Offer / Inquiry
+                            </button>
+<div class="mt-4 pt-4 border-t border-[#e6e8eb] dark:border-[#483f23]">
+<p class="text-xs text-[#637588] dark:text-[#a09575] text-center leading-relaxed">
+<span class="material-symbols-outlined text-[14px] align-text-bottom mr-1">lock</span>
+                                    Contact details are hidden until interview request is accepted by the student.
+                                </p>
+</div>
+</div>
+</div>
+<!-- Recommended Candidates (Upsell) -->
+<div class="rounded-xl bg-white dark:bg-surface-dark border border-[#dce0e5] dark:border-[#483f23] p-5 hidden xl:block">
+<h3 class="text-sm font-bold text-[#111418] dark:text-white mb-4">Similar Top Talent</h3>
+<div class="space-y-4">
+<!-- Rec 1 -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Candidate portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAntl3aw-EObdNJLrMaoIxQnnf-AjC2iYskl96CdUfOd9oqU2CGKP1CuFCuSiR6nh30ZiJu4w2veEw5T78EF8Q57tzdL_VhELtJYlg6_8tkjr1j_z9m7yd6wSq3_pPZVX7TZmle61B_h1jYAElyeWwo1ezH7xiBRRDwJbAZvn6001ZMQYt6lHju8wwYIKa_wl486wGDb9-_SNa83lmpT2jKnvNIPZzKz54Grn_iAvVttAD9REmRVf3teq4DNHn09q8vQktZP16CFXlN');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-[#111418] dark:text-white truncate">Olzhas K.</p>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92] truncate">Mining Eng. • GPA 3.9</p>
+</div>
+<button class="size-8 rounded-full border border-[#dce0e5] dark:border-[#483f23] flex items-center justify-center text-[#637588] dark:text-[#c9bb92] hover:bg-[#f0f2f4] dark:hover:bg-[#221e11]">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<!-- Rec 2 -->
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-cover bg-center" data-alt="Candidate portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5FJZRQyIZKUAMGWeZLAB1mg2UOvGB7MNz6Ot2meNZG_o_1maRIIEIt0hWYpqDRiod8m5LiewA4bDZcihxOOKONIn7AR9Bu9oL_wJGQFEuUzpiLm5DfUB54U56ymn0sRAPbOQC-d-qPExt5GO4Q4OWRl_VtWeGSt1JVUDu-53X-6GKbBkwJzpCsYVlAS2nPIqouCXypCCbh7V8sUtOP2C3zUyM9BWqBnp8XNhRlwIE34KbXRA1wzeR0lMjGSmh-DxgY8GOkphhuMVW');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold text-[#111418] dark:text-white truncate">Dana S.</p>
+<p class="text-xs text-[#637588] dark:text-[#c9bb92] truncate">Geology • GPA 3.7</p>
+</div>
+<button class="size-8 rounded-full border border-[#dce0e5] dark:border-[#483f23] flex items-center justify-center text-[#637588] dark:text-[#c9bb92] hover:bg-[#f0f2f4] dark:hover:bg-[#221e11]">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<a class="block mt-4 text-xs font-bold text-primary hover:underline text-center" href="#">View All Candidates</a>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</body></html>
