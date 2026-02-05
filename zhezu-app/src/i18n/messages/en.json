@@ -1,0 +1,244 @@
+{
+  "metadata": {
+    "title": "ZhezU — Zhezkazgan University",
+    "description": "Official portal of O.A. Baikonurov Zhezkazgan University"
+  },
+  "nav": {
+    "home": "Home",
+    "admission": "Admission",
+    "academics": "Programs",
+    "career": "Career",
+    "blog": "News",
+    "contact": "Contact",
+    "studentPortal": "Student Portal",
+    "search": "Search",
+    "menu": "Menu"
+  },
+  "actions": {
+    "apply": "Apply Now",
+    "learnMore": "Learn More",
+    "search": "Search...",
+    "filter": "Filter",
+    "viewAll": "View All",
+    "close": "Close",
+    "submit": "Submit",
+    "reset": "Reset",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "download": "Download",
+    "share": "Share",
+    "register": "Register"
+  },
+  "theme": {
+    "light": "Light Mode",
+    "dark": "Dark Mode",
+    "system": "System"
+  },
+  "home": {
+    "hero": {
+      "title": "Zhezkazgan University",
+      "subtitle": "named after O.A. Baikonurov",
+      "description": "Education that defines the future. Over 50 bachelor's and master's programs.",
+      "cta": "Start Application",
+      "virtualTour": "Virtual Tour"
+    },
+    "stats": {
+      "students": "students",
+      "programs": "programs",
+      "employment": "employment rate",
+      "years": "years of experience"
+    },
+    "features": {
+      "title": "Why ZhezU?",
+      "modernEducation": "Modern Education",
+      "modernEducationDesc": "Curricula designed to international standards and labor market requirements.",
+      "research": "Research Opportunities",
+      "researchDesc": "Opportunities to participate in research projects and publish studies from the first year.",
+      "career": "Career Support",
+      "careerDesc": "Career center with mentorship programs, internships, and direct employer connections."
+    },
+    "programs": {
+      "title": "Popular Programs",
+      "subtitle": "Discover our leading educational directions"
+    },
+    "news": {
+      "title": "Latest News",
+      "subtitle": "Stay updated with university events"
+    },
+    "cta": {
+      "title": "Ready to start your journey?",
+      "description": "Apply for admission right now and become part of the university community.",
+      "button": "Apply Now"
+    }
+  },
+  "admission": {
+    "title": "Admission",
+    "subtitle": "Everything you need to know about applying to Zhezkazgan University",
+    "requirements": {
+      "title": "Admission Requirements",
+      "documents": "Required Documents",
+      "deadlines": "Application Deadlines",
+      "exams": "Entrance Exams"
+    },
+    "steps": {
+      "title": "Admission Steps",
+      "step1": "Apply Online",
+      "step1Desc": "Fill out the application on our portal and upload required documents.",
+      "step2": "Take UNT / Entrance Exams",
+      "step2Desc": "Pass the Unified National Test or the university's internal exams.",
+      "step3": "Results and Enrollment",
+      "step3Desc": "Receive your results and enrollment order in your student portal.",
+      "step4": "Registration and Start",
+      "step4Desc": "Register for courses and begin your journey at ZhezU."
+    },
+    "programs": {
+      "title": "Study Programs",
+      "bachelor": "Bachelor's",
+      "master": "Master's",
+      "doctorate": "Doctorate"
+    },
+    "scholarships": {
+      "title": "Scholarships & Grants",
+      "description": "Learn about available government grants and university scholarship programs."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions"
+    },
+    "contact": {
+      "title": "Contact Admissions Office",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "schedule": "Working Hours"
+    }
+  },
+  "academics": {
+    "title": "Academic Programs",
+    "subtitle": "Find the program that's right for you",
+    "filters": {
+      "all": "All Programs",
+      "degree": "Degree Level",
+      "faculty": "Faculty",
+      "language": "Language of Instruction",
+      "duration": "Duration",
+      "clearAll": "Clear Filters"
+    },
+    "sort": {
+      "title": "Sort By",
+      "name": "Name",
+      "popularity": "Popularity",
+      "newest": "Newest First"
+    },
+    "card": {
+      "credits": "credits",
+      "years": "years",
+      "language": "Language",
+      "apply": "Apply",
+      "details": "Details"
+    },
+    "faculties": {
+      "engineering": "Engineering & Technology",
+      "business": "Business & Economics",
+      "it": "Information Technology",
+      "education": "Education",
+      "humanities": "Humanities",
+      "natural": "Natural Sciences",
+      "law": "Law",
+      "medicine": "Medicine"
+    },
+    "noResults": "No programs found. Try changing your filter parameters."
+  },
+  "career": {
+    "title": "Career Center",
+    "subtitle": "Your path to a successful career starts here",
+    "dashboard": {
+      "title": "Career Dashboard",
+      "applications": "My Applications",
+      "interviews": "Interviews",
+      "saved": "Saved"
+    },
+    "jobs": {
+      "title": "Jobs & Internships",
+      "subtitle": "Current opportunities from university partners",
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "internship": "Internship",
+      "remote": "Remote",
+      "applyNow": "Apply Now",
+      "savedJobs": "Saved Jobs",
+      "postedDate": "Posted"
+    },
+    "mentorship": {
+      "title": "Mentorship",
+      "subtitle": "Find a mentor among successful alumni and professionals",
+      "findMentor": "Find a Mentor",
+      "requestChat": "Message",
+      "experience": "Experience",
+      "expertise": "Expertise"
+    },
+    "skills": {
+      "title": "Skills & Development",
+      "progress": "Progress",
+      "recommended": "Recommended Courses"
+    },
+    "events": {
+      "title": "Career Events",
+      "upcoming": "Upcoming",
+      "register": "Register"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch — we're always happy to help",
+    "form": {
+      "name": "Your Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "success": "Message sent! We'll get back to you soon.",
+      "subjects": {
+        "general": "General Inquiry",
+        "admission": "Admission Question",
+        "academic": "Academic Question",
+        "technical": "Technical Support",
+        "other": "Other"
+      }
+    },
+    "info": {
+      "address": "6A Baikonurov St., Zhezkazgan, 100600",
+      "phone": "+7 (7102) 72-40-00",
+      "email": "info@zhezu.edu.kz",
+      "schedule": "Mon-Fri: 09:00 — 18:00",
+      "map": "Show on Map"
+    },
+    "departments": {
+      "title": "Departments",
+      "admissions": "Admissions Office",
+      "registrar": "Registrar's Office",
+      "finance": "Finance Department",
+      "it": "IT Support",
+      "international": "International Office"
+    }
+  },
+  "footer": {
+    "description": "O.A. Baikonurov Zhezkazgan University — modern education in the heart of Central Kazakhstan.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "contacts": "Contact",
+    "library": "Library",
+    "schedule": "Schedule",
+    "moodle": "Moodle",
+    "email": "Email",
+    "newsletter": {
+      "title": "Newsletter",
+      "placeholder": "Your email",
+      "subscribe": "Subscribe"
+    },
+    "copyright": "© 2026 Zhezkazgan University. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  }
+}

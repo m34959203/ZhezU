@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #1D56C9;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1544A0;
+  --color-gold: #E6B325;
+  --color-gold-light: #F5D060;
+  --color-gold-dark: #C99A1E;
+
+  --color-bg-light: #F8F9FB;
+  --color-bg-dark: #0A0E17;
+  --color-surface-light: #FFFFFF;
+  --color-surface-dark: #111827;
+  --color-surface-hover-light: #F1F5F9;
+  --color-surface-hover-dark: #1E293B;
+
+  --color-text-primary-light: #0F172A;
+  --color-text-primary-dark: #F1F5F9;
+  --color-text-secondary-light: #64748B;
+  --color-text-secondary-dark: #94A3B8;
+  --color-border-light: #E2E8F0;
+  --color-border-dark: #1E293B;
+
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  --font-display: 'Lexend', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border-light;
+  }
+
+  :root {
+    color-scheme: light;
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  .dark * {
+    @apply border-border-dark;
+  }
+
+  body {
+    @apply bg-bg-light text-text-primary-light font-body antialiased;
+    @apply dark:bg-bg-dark dark:text-text-primary-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary-dark;
+  }
+
+  .dark ::selection {
+    @apply bg-gold/20 text-gold-light;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-light rounded-full;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    @apply bg-border-dark;
+  }
+}
