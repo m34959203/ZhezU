@@ -63,7 +63,7 @@ export default function AcademicsPage() {
   const totalDepts = DEPARTMENTS.length;
 
   return (
-    <div className="min-h-screen bg-bg-dark relative overflow-hidden">
+    <div className="min-h-screen bg-bg-light dark:bg-bg-dark relative overflow-hidden">
       {/* ── Ambient background ── */}
       <div className="fixed inset-0 mesh-gradient pointer-events-none" />
       <div className="fixed top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[150px] pointer-events-none" />
@@ -72,7 +72,7 @@ export default function AcademicsPage() {
 
       {/* Grid pattern */}
       <div
-        className="fixed inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none opacity-50 dark:opacity-100"
         style={{
           backgroundImage:
             'linear-gradient(rgba(59,130,246,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.02) 1px, transparent 1px)',
@@ -85,8 +85,8 @@ export default function AcademicsPage() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 border border-primary/20 mb-8">
-              <GraduationCap size={14} className="text-primary-light" />
-              <span className="text-[11px] font-semibold text-primary-light uppercase tracking-widest">
+              <GraduationCap size={14} className="text-primary dark:text-primary-light" />
+              <span className="text-[11px] font-semibold text-primary dark:text-primary-light uppercase tracking-widest">
                 {t('badge')}
               </span>
             </div>
@@ -94,7 +94,7 @@ export default function AcademicsPage() {
             <h1 className="text-5xl md:text-7xl font-display font-bold text-gradient mb-5 leading-[1.1]">
               {t('title')}
             </h1>
-            <p className="text-lg text-text-secondary-dark max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark max-w-2xl mx-auto leading-relaxed">
               {t('subtitle')}
             </p>
           </div>
@@ -102,16 +102,16 @@ export default function AcademicsPage() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-14">
             <div className="premium-card p-4 text-center">
-              <div className="text-3xl font-bold text-white tabular-nums mb-1">{totalPrograms}</div>
-              <div className="text-xs text-text-secondary-dark font-medium">{t('statPrograms')}</div>
+              <div className="text-3xl font-bold text-text-primary-light dark:text-white tabular-nums mb-1">{totalPrograms}</div>
+              <div className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">{t('statPrograms')}</div>
             </div>
             <div className="premium-card p-4 text-center">
-              <div className="text-3xl font-bold text-white tabular-nums mb-1">{totalDepts}</div>
-              <div className="text-xs text-text-secondary-dark font-medium">{t('statDepts')}</div>
+              <div className="text-3xl font-bold text-text-primary-light dark:text-white tabular-nums mb-1">{totalDepts}</div>
+              <div className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">{t('statDepts')}</div>
             </div>
             <div className="premium-card p-4 text-center">
-              <div className="text-3xl font-bold text-white tabular-nums mb-1">4</div>
-              <div className="text-xs text-text-secondary-dark font-medium">{t('statYears')}</div>
+              <div className="text-3xl font-bold text-text-primary-light dark:text-white tabular-nums mb-1">4</div>
+              <div className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">{t('statYears')}</div>
             </div>
           </div>
 
@@ -121,14 +121,14 @@ export default function AcademicsPage() {
             <div className="relative group">
               <Search
                 size={18}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-dark pointer-events-none"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark pointer-events-none"
               />
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t('searchPlaceholder')}
-                className="w-full pl-12 pr-5 py-4 rounded-2xl bg-surface-dark/50 border border-border-dark/60 text-white placeholder:text-text-secondary-dark/60 focus:outline-none focus:border-primary/40 focus:bg-surface-dark/70 transition-all duration-300 text-sm"
+                className="w-full pl-12 pr-5 py-4 rounded-2xl bg-surface-light/80 dark:bg-surface-dark/50 border border-border-light dark:border-border-dark/60 text-text-primary-light dark:text-white placeholder:text-text-secondary-light/60 dark:placeholder:text-text-secondary-dark/60 focus:outline-none focus:border-primary/40 focus:bg-surface-light dark:focus:bg-surface-dark/70 transition-all duration-300 text-sm"
               />
             </div>
           </div>
@@ -160,10 +160,10 @@ export default function AcademicsPage() {
                       <Icon size={20} style={{ color: dept.color }} />
                     </div>
                     <div className="text-left">
-                      <h2 className="text-base md:text-lg font-display font-bold text-white group-hover/dept:text-primary-light transition-colors">
+                      <h2 className="text-base md:text-lg font-display font-bold text-text-primary-light dark:text-white group-hover/dept:text-primary dark:group-hover/dept:text-primary-light transition-colors">
                         {dept.name[locale]}
                       </h2>
-                      <span className="text-xs text-text-secondary-dark font-medium">
+                      <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">
                         МОП, КЭД · {deptPrograms.length}{' '}
                         {deptPrograms.length === 1
                           ? t('programSingular')
@@ -182,33 +182,33 @@ export default function AcademicsPage() {
                       {dept.shortName[locale]}
                     </span>
                     {isExpanded ? (
-                      <ChevronUp size={18} className="text-text-secondary-dark" />
+                      <ChevronUp size={18} className="text-text-secondary-light dark:text-text-secondary-dark" />
                     ) : (
-                      <ChevronDown size={18} className="text-text-secondary-dark" />
+                      <ChevronDown size={18} className="text-text-secondary-light dark:text-text-secondary-dark" />
                     )}
                   </div>
                 </button>
 
                 {/* Programs table */}
                 {isExpanded && deptPrograms.length > 0 && (
-                  <div className="border-t border-border-dark/30">
+                  <div className="border-t border-border-light dark:border-border-dark/30">
                     <div className="overflow-x-auto">
                       <table className="w-full">
                         <thead>
-                          <tr className="bg-surface-dark/30">
-                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-dark font-semibold px-5 md:px-6 py-3 w-[120px]">
+                          <tr className="bg-surface-hover-light dark:bg-surface-dark/30">
+                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold px-5 md:px-6 py-3 w-[120px]">
                               {t('tableCode')}
                             </th>
-                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-dark font-semibold px-3 py-3">
+                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold px-3 py-3">
                               {t('tableName')}
                             </th>
-                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-dark font-semibold px-3 py-3 hidden md:table-cell w-[100px]">
+                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold px-3 py-3 hidden md:table-cell w-[100px]">
                               {t('tableDuration')}
                             </th>
-                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-dark font-semibold px-3 py-3 hidden md:table-cell w-[100px]">
+                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold px-3 py-3 hidden md:table-cell w-[100px]">
                               {t('tableCredits')}
                             </th>
-                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-dark font-semibold px-3 py-3 hidden lg:table-cell w-[100px]">
+                            <th className="text-left text-[10px] uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark font-semibold px-3 py-3 hidden lg:table-cell w-[100px]">
                               {t('tableLang')}
                             </th>
                           </tr>
@@ -217,9 +217,9 @@ export default function AcademicsPage() {
                           {deptPrograms.map((program, idx) => (
                             <tr
                               key={program.id}
-                              className={`group/row hover:bg-surface-dark/40 transition-colors duration-200 ${
+                              className={`group/row hover:bg-surface-hover-light dark:hover:bg-surface-dark/40 transition-colors duration-200 ${
                                 idx !== deptPrograms.length - 1
-                                  ? 'border-b border-border-dark/20'
+                                  ? 'border-b border-border-light dark:border-border-dark/20'
                                   : ''
                               }`}
                             >
@@ -236,28 +236,28 @@ export default function AcademicsPage() {
                               </td>
                               <td className="px-3 py-4">
                                 <div>
-                                  <p className="text-sm font-semibold text-white group-hover/row:text-primary-light transition-colors">
+                                  <p className="text-sm font-semibold text-text-primary-light dark:text-white group-hover/row:text-primary dark:group-hover/row:text-primary-light transition-colors">
                                     {program.name[locale]}
                                   </p>
-                                  <p className="text-xs text-text-secondary-dark/70 mt-0.5 line-clamp-1 max-w-md">
+                                  <p className="text-xs text-text-secondary-light/70 dark:text-text-secondary-dark/70 mt-0.5 line-clamp-1 max-w-md">
                                     {program.description[locale]}
                                   </p>
                                 </div>
                               </td>
                               <td className="px-3 py-4 hidden md:table-cell">
-                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-dark">
+                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                                   <Clock size={12} />
                                   {program.duration} {t('years')}
                                 </span>
                               </td>
                               <td className="px-3 py-4 hidden md:table-cell">
-                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-dark">
+                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                                   <BookOpen size={12} />
                                   {program.credits}
                                 </span>
                               </td>
                               <td className="px-3 py-4 hidden lg:table-cell">
-                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-dark">
+                                <span className="flex items-center gap-1.5 text-xs text-text-secondary-light dark:text-text-secondary-dark">
                                   <Languages size={12} />
                                   {program.languages.join(', ').toUpperCase()}
                                 </span>
@@ -271,8 +271,8 @@ export default function AcademicsPage() {
                 )}
 
                 {isExpanded && deptPrograms.length === 0 && (
-                  <div className="border-t border-border-dark/30 px-6 py-8 text-center">
-                    <p className="text-sm text-text-secondary-dark">{t('noResults')}</p>
+                  <div className="border-t border-border-light dark:border-border-dark/30 px-6 py-8 text-center">
+                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('noResults')}</p>
                   </div>
                 )}
               </div>
@@ -283,8 +283,8 @@ export default function AcademicsPage() {
         {/* No results */}
         {search && filteredPrograms.length === 0 && (
           <div className="premium-card p-12 text-center mt-6">
-            <GraduationCap size={48} className="mx-auto text-text-secondary-dark/40 mb-4" />
-            <p className="text-text-secondary-dark">{t('noResults')}</p>
+            <GraduationCap size={48} className="mx-auto text-text-secondary-light/40 dark:text-text-secondary-dark/40 mb-4" />
+            <p className="text-text-secondary-light dark:text-text-secondary-dark">{t('noResults')}</p>
           </div>
         )}
 
@@ -295,16 +295,16 @@ export default function AcademicsPage() {
 
           <div className="relative">
             <div className="inline-flex items-center gap-2 mb-4">
-              <Sparkles size={16} className="text-gold" />
-              <span className="text-[10px] font-semibold text-gold uppercase tracking-widest">
+              <Sparkles size={16} className="text-gold-dark dark:text-gold" />
+              <span className="text-[10px] font-semibold text-gold-dark dark:text-gold uppercase tracking-widest">
                 ZhezU
               </span>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
+            <h3 className="text-2xl md:text-3xl font-display font-bold text-text-primary-light dark:text-white mb-3">
               {t('ctaTitle')}
             </h3>
-            <p className="text-sm text-text-secondary-dark mb-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-lg mx-auto leading-relaxed">
               {t('ctaDesc')}
             </p>
 
@@ -312,7 +312,7 @@ export default function AcademicsPage() {
               href="https://zhezu.edu.kz"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-premium inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold to-gold-light text-bg-dark font-bold text-sm tracking-wide"
+              className="btn-premium inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold to-gold-light text-white dark:text-bg-dark font-bold text-sm tracking-wide"
             >
               {t('ctaButton')}
               <Users size={16} />

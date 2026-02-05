@@ -136,6 +136,19 @@
   .premium-card {
     position: relative;
     border-radius: 1rem;
+    border: 1px solid rgba(232, 235, 243, 0.8);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(248, 250, 252, 0.8) 50%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .dark .premium-card {
     border: 1px solid rgba(26, 39, 68, 0.5);
     background: linear-gradient(
       145deg,
@@ -143,9 +156,7 @@
       rgba(16, 24, 40, 0.5) 50%,
       rgba(12, 18, 33, 0.8) 100%
     );
-    backdrop-filter: blur(16px) saturate(150%);
-    -webkit-backdrop-filter: blur(16px) saturate(150%);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
   }
   .premium-card::before {
     content: '';
@@ -155,10 +166,10 @@
     padding: 1px;
     background: linear-gradient(
       135deg,
-      rgba(59, 130, 246, 0.2) 0%,
+      rgba(29, 86, 201, 0.15) 0%,
       transparent 40%,
       transparent 60%,
-      rgba(230, 179, 37, 0.12) 100%
+      rgba(230, 179, 37, 0.08) 100%
     );
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -166,15 +177,38 @@
     -webkit-mask-composite: xor;
     pointer-events: none;
   }
+  .dark .premium-card::before {
+    background: linear-gradient(
+      135deg,
+      rgba(59, 130, 246, 0.2) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(230, 179, 37, 0.12) 100%
+    );
+  }
   .premium-card:hover {
+    border-color: rgba(29, 86, 201, 0.25);
+    box-shadow:
+      0 0 40px rgba(29, 86, 201, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transform: translateY(-3px);
+  }
+  .dark .premium-card:hover {
     border-color: rgba(59, 130, 246, 0.3);
     box-shadow:
       0 0 40px rgba(59, 130, 246, 0.07),
       0 8px 32px rgba(0, 0, 0, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    transform: translateY(-3px);
   }
   .premium-card-gold:hover {
+    border-color: rgba(230, 179, 37, 0.3);
+    box-shadow:
+      0 0 40px rgba(230, 179, 37, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  .dark .premium-card-gold:hover {
     border-color: rgba(230, 179, 37, 0.35);
     box-shadow:
       0 0 40px rgba(230, 179, 37, 0.08),
@@ -195,6 +229,12 @@
 
   /* ═══════ Gradients ═══════ */
   .text-gradient {
+    background: linear-gradient(135deg, #0F172A 0%, #334155 40%, #64748B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .dark .text-gradient {
     background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 40%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -202,6 +242,12 @@
   }
 
   .text-gradient-gold {
+    background: linear-gradient(135deg, #C99A1E 0%, #E6B325 50%, #C99A1E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .dark .text-gradient-gold {
     background: linear-gradient(135deg, #E6B325 0%, #F5D060 50%, #E6B325 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -210,6 +256,12 @@
 
   /* ═══════ Mesh Background ═══════ */
   .mesh-gradient {
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 40%, rgba(29, 86, 201, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(139, 92, 246, 0.04) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 60% 80%, rgba(230, 179, 37, 0.03) 0%, transparent 70%);
+  }
+  .dark .mesh-gradient {
     background:
       radial-gradient(ellipse 80% 50% at 20% 40%, rgba(29, 86, 201, 0.08) 0%, transparent 70%),
       radial-gradient(ellipse 60% 40% at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 70%),

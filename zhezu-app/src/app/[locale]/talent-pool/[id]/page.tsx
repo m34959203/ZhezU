@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import { STUDENTS } from '@/lib/talent-data';
-import { StudentProfileView } from './StudentProfileView';
+import { APPLICANTS } from '@/lib/talapker-data';
+import { ApplicantProfileView } from './ApplicantProfileView';
 
 export async function generateStaticParams() {
-  return STUDENTS.map((s) => ({ id: s.id }));
+  return APPLICANTS.map((a) => ({ id: a.id }));
 }
 
 export async function generateMetadata({
@@ -13,30 +13,30 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
-  const student = STUDENTS.find((s) => s.id === id);
-  const t = await getTranslations({ locale, namespace: 'talent' });
+  const applicant = APPLICANTS.find((a) => a.id === id);
+  const t = await getTranslations({ locale, namespace: 'talapker' });
 
-  if (!student) {
+  if (!applicant) {
     return { title: 'Not Found' };
   }
 
   return {
-    title: `${student.name} — ${t('title')}`,
-    description: student.summary[locale as 'kk' | 'ru' | 'en'],
+    title: `${applicant.name} — ${t('title')}`,
+    description: `${t('levelLabel')} ${applicant.level} · ${applicant.xp} XP`,
   };
 }
 
-export default async function StudentProfilePage({
+export default async function ApplicantProfilePage({
   params,
 }: {
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { id } = await params;
-  const student = STUDENTS.find((s) => s.id === id);
+  const applicant = APPLICANTS.find((a) => a.id === id);
 
-  if (!student) {
+  if (!applicant) {
     notFound();
   }
 
-  return <StudentProfileView student={student} />;
+  return <ApplicantProfileView applicant={applicant} />;
 }

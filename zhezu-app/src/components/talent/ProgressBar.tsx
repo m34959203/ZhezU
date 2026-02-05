@@ -19,12 +19,12 @@ export function ProgressBar({ label, percentage, color = '#3B82F6' }: ProgressBa
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-medium text-text-primary-dark">{label}</span>
-        <span className="text-xs font-bold text-text-secondary-dark tabular-nums">{percentage}%</span>
+        <span className="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">{label}</span>
+        <span className="text-xs font-bold text-text-secondary-light dark:text-text-secondary-dark tabular-nums">{percentage}%</span>
       </div>
-      <div className="relative h-2.5 rounded-full bg-surface-dark/80 overflow-hidden">
+      <div className="relative h-2.5 rounded-full bg-border-light dark:bg-surface-dark/80 overflow-hidden">
         {/* Track inner shadow */}
-        <div className="absolute inset-0 rounded-full" style={{ boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.3)' }} />
+        <div className="absolute inset-0 rounded-full" style={{ boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.15)' }} />
 
         {/* Fill bar */}
         <div
