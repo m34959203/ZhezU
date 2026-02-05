@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["nodejs_20"]
+nixPkgs = ["nodejs_22"]
 cmds = ["corepack enable && corepack prepare pnpm@latest --activate"]
 
 [phases.install]
