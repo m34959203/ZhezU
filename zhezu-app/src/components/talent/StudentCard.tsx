@@ -32,25 +32,25 @@ export function StudentCard({ student }: StudentCardProps) {
               />
             </div>
             <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-gold/8 border border-gold/15">
-              <Star size={11} className="text-gold fill-gold" />
-              <span className="text-xs font-bold text-gold tabular-nums">{student.gpa}</span>
+              <Star size={11} className="text-gold-dark dark:text-gold fill-gold-dark dark:fill-gold" />
+              <span className="text-xs font-bold text-gold-dark dark:text-gold tabular-nums">{student.gpa}</span>
             </div>
           </div>
 
           {/* Info */}
           <div className="flex-1 min-w-0">
-            <h3 className="font-display font-bold text-white text-[15px] leading-tight group-hover:text-gold transition-colors duration-300 truncate">
+            <h3 className="font-display font-bold text-text-primary-light dark:text-white text-[15px] leading-tight group-hover:text-gold-dark dark:group-hover:text-gold transition-colors duration-300 truncate">
               {student.name}
             </h3>
-            <p className="text-sm text-primary-light font-semibold mt-0.5">{student.major[locale]}</p>
+            <p className="text-sm text-primary dark:text-primary-light font-semibold mt-0.5">{student.major[locale]}</p>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2 text-xs text-text-secondary-dark">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2 text-xs text-text-secondary-light dark:text-text-secondary-dark">
               <span className="flex items-center gap-1">
                 <MapPin size={11} className="text-gold/70" />
                 {student.classRank}
               </span>
               <span className="flex items-center gap-1">
-                <Globe size={11} className="text-primary-light/70" />
+                <Globe size={11} className="text-primary/70 dark:text-primary-light/70" />
                 {student.englishLevel}
               </span>
               <span className="flex items-center gap-1">
@@ -64,7 +64,7 @@ export function StudentCard({ student }: StudentCardProps) {
               {student.tags.slice(0, 4).map((tag) => (
                 <span
                   key={tag}
-                  className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/8 text-primary-light/80 border border-primary/15 tracking-wide"
+                  className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-primary/8 text-primary dark:text-primary-light/80 border border-primary/15 tracking-wide"
                 >
                   {tag}
                 </span>
@@ -86,16 +86,16 @@ export function StudentCard({ student }: StudentCardProps) {
                 <span className="text-base font-bold text-success tabular-nums">{student.matchScore}%</span>
               </div>
             </div>
-            <span className="text-[9px] text-text-secondary-dark font-medium uppercase tracking-wider mt-1">{t('match')}</span>
+            <span className="text-[9px] text-text-secondary-light dark:text-text-secondary-dark font-medium uppercase tracking-wider mt-1">{t('match')}</span>
             <ChevronRight
               size={18}
-              className="text-text-secondary-dark/40 group-hover:text-gold group-hover:translate-x-0.5 transition-all duration-300 mt-1"
+              className="text-text-secondary-light/40 dark:text-text-secondary-dark/40 group-hover:text-gold-dark dark:group-hover:text-gold group-hover:translate-x-0.5 transition-all duration-300 mt-1"
             />
           </div>
         </div>
 
         {/* Radar preview */}
-        <div className="flex items-center justify-center mt-4 pt-4 border-t border-border-dark/30">
+        <div className="flex items-center justify-center mt-4 pt-4 border-t border-border-light dark:border-border-dark/30">
           <RadarChart skills={student.skills} size={140} />
         </div>
       </div>
