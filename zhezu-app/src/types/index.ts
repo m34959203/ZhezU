@@ -123,3 +123,56 @@ export interface SkillMapEdge {
   from: string;
   to: string;
 }
+
+// ==========================================
+// Talapker Gamification Types
+// ==========================================
+
+export interface TalapkerLevel {
+  level: number;
+  title: LocalizedString;
+  minXp: number;
+  maxXp: number;
+  color: string;
+  icon: string;
+}
+
+export interface TalapkerQuest {
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  category: 'documents' | 'tests' | 'explore' | 'social' | 'special';
+  xpReward: number;
+  icon: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+  required?: boolean; // Required for admission
+}
+
+export interface TalapkerBadge {
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  icon: string;
+  color: string;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+}
+
+export interface Applicant {
+  id: string;
+  name: string;
+  photo: string;
+  email: string;
+  phone?: string;
+  targetProgram: string; // references PROGRAMS id
+  targetDepartment: string; // references DEPARTMENTS id
+  level: number;
+  xp: number;
+  untScore?: number;
+  completedQuests: string[]; // Quest IDs
+  earnedBadges: string[]; // Badge IDs
+  registrationDate: string;
+  lastActive: string;
+  city: string;
+  school: string;
+  graduationYear: number;
+}
