@@ -12,6 +12,8 @@ const navItems = [
   { href: '/', key: 'home' },
   { href: '/admission', key: 'admission' },
   { href: '/academics', key: 'academics' },
+  { href: '/talent-pool', key: 'talentPool' },
+  { href: '/skill-map', key: 'skillMap' },
   { href: '/career', key: 'career' },
   { href: '/contact', key: 'contact' },
 ] as const;
@@ -35,27 +37,30 @@ export function Header() {
                 ZhezU
               </span>
               <span className="text-[10px] leading-tight text-text-secondary-light dark:text-text-secondary-dark hidden sm:block">
-                University
+                Talapker Guide
               </span>
             </div>
           </Link>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={item.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  pathname === item.href
-                    ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
-                    : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark'
-                }`}
-                aria-current={pathname === item.href ? 'page' : undefined}
-              >
-                {t(item.key)}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
+                      : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark'
+                  }`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {t(item.key)}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Right side */}
