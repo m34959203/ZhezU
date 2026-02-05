@@ -1,11 +1,8 @@
 [build]
-builder = "nixpacks"
-
-[build.envs]
-NIXPACKS_NODE_VERSION = "22"
+builder = "dockerfile"
+dockerfilePath = "Dockerfile"
 
 [deploy]
-startCommand = "cd zhezu-app && npx next start -p ${PORT:-3000}"
 healthcheckPath = "/api/health"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
