@@ -236,6 +236,7 @@
     "email": "Email",
     "newsletter": {
       "title": "Newsletter",
+      "desc": "Stay up to date with the latest news and events",
       "placeholder": "Your email",
       "subscribe": "Subscribe"
     },

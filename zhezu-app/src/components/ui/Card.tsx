@@ -1,9 +1,14 @@
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'react';
+import Image from 'next/image';
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   hover?: boolean;
   padding?: 'none' | 'sm' | 'md' | 'lg';
+  image?: string;
+  imageAlt?: string;
+  imageHeight?: string;
+  glow?: boolean;
 }
 
 const paddings = {
@@ -13,18 +18,31 @@ const paddings = {
   lg: 'p-8',
 };
 
-export function Card({ className, hover = false, padding = 'md', children, ...props }: CardProps) {
+export function Card({ className, hover = false, padding = 'md', image, imageAlt, imageHeight = 'h-48', glow = false, children, ...props }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark',
-        hover && 'transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 dark:hover:border-primary-light/30',
-        paddings[padding],
+        'group rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark overflow-hidden',
+        hover && 'transition-all duration-300 hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/30 dark:hover:border-primary-light/30',
+        glow && 'hover:shadow-[0_0_25px_rgba(230,179,37,0.15)]',
+        !image && paddings[padding],
         className
       )}
       {...props}
     >
-      {children}
+      {image && (
+        <div className={cn('relative w-full overflow-hidden', imageHeight)}>
+          <Image
+            src={image}
+            alt={imageAlt || ''}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+        </div>
+      )}
+      {image ? <div className={paddings[padding]}>{children}</div> : children}
     </div>
   );
 }

@@ -22,12 +22,12 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border-light dark:border-border-dark bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-border-light/50 dark:border-border-dark/50 glass">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+            <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-[0_0_15px_rgba(29,86,201,0.3)] transition-shadow duration-300">
               <GraduationCap size={20} className="text-white" />
             </div>
             <div className="flex flex-col">
@@ -46,9 +46,9 @@ export function Header() {
               <Link
                 key={item.key}
                 href={item.href}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   pathname === item.href
-                    ? 'text-primary dark:text-primary-light bg-primary/5 dark:bg-primary-light/5'
+                    ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
                     : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark'
                 }`}
                 aria-current={pathname === item.href ? 'page' : undefined}
