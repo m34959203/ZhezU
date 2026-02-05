@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useId, useState } from 'react';
+
 interface CircularProgressProps {
   value: number;
   size?: number;
@@ -10,56 +12,119 @@ interface CircularProgressProps {
 
 export function CircularProgress({
   value,
-  size = 140,
-  strokeWidth = 8,
+  size = 160,
+  strokeWidth = 10,
   label,
   sublabel,
 }: CircularProgressProps) {
+  const [displayed, setDisplayed] = useState(0);
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (value / 100) * circumference;
+  const offset = circumference - (displayed / 100) * circumference;
+  const uid = useId().replace(/:/g, '');
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDisplayed(value), 100);
+    return () => clearTimeout(timer);
+  }, [value]);
+
+  // Animated count display
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (displayed === 0) return;
+    let frame = 0;
+    const total = 40;
+    const step = () => {
+      frame++;
+      setCount(Math.round((frame / total) * displayed));
+      if (frame < total) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [displayed]);
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-3">
       <div className="relative" style={{ width: size, height: size }}>
+        {/* Outer ambient glow */}
+        <div
+          className="absolute inset-0 rounded-full opacity-20"
+          style={{
+            background: `radial-gradient(circle, rgba(34,197,94,0.3) 0%, transparent 70%)`,
+            filter: 'blur(15px)',
+          }}
+        />
+
         <svg width={size} height={size} className="-rotate-90">
-          {/* Background circle */}
+          <defs>
+            <linearGradient id={`${uid}-grad`} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#3B82F6" />
+              <stop offset="40%" stopColor="#22C55E" />
+              <stop offset="100%" stopColor="#E6B325" />
+            </linearGradient>
+            <filter id={`${uid}-arc-glow`}>
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Track */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="rgba(30, 42, 63, 0.8)"
+            stroke="rgba(26, 39, 68, 0.6)"
             strokeWidth={strokeWidth}
           />
-          {/* Progress arc */}
+
+          {/* Animated arc with glow */}
           <circle
             cx={size / 2}
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="url(#progressGradient)"
+            stroke={`url(#${uid}-grad)`}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
-            className="transition-all duration-1000 ease-out"
+            filter={`url(#${uid}-arc-glow)`}
+            style={{ transition: 'stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1)' }}
           />
-          <defs>
-            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#3B82F6" />
-              <stop offset="50%" stopColor="#22C55E" />
-              <stop offset="100%" stopColor="#E6B325" />
-            </linearGradient>
-          </defs>
+
+          {/* Tick marks */}
+          {Array.from({ length: 60 }).map((_, i) => {
+            const angle = (i / 60) * 2 * Math.PI - Math.PI / 2;
+            const x1 = size / 2 + (radius - strokeWidth / 2 - 2) * Math.cos(angle);
+            const y1 = size / 2 + (radius - strokeWidth / 2 - 2) * Math.sin(angle);
+            const x2 = size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.cos(angle);
+            const y2 = size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.sin(angle);
+            return (
+              <line
+                key={i}
+                x1={x1}
+                y1={y1}
+                x2={x2}
+                y2={y2}
+                stroke="rgba(123,142,181,0.12)"
+                strokeWidth={i % 5 === 0 ? 1 : 0.5}
+              />
+            );
+          })}
         </svg>
-        {/* Center text */}
+
+        {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-3xl font-bold text-white font-display">{value}%</span>
+          <span className="text-4xl font-bold text-white font-display tracking-tight">
+            {count}<span className="text-xl text-text-secondary-dark">%</span>
+          </span>
         </div>
       </div>
       {label && (
-        <span className="text-sm font-semibold text-white">{label}</span>
+        <span className="text-sm font-semibold text-white tracking-wide">{label}</span>
       )}
       {sublabel && (
         <span className="text-xs text-text-secondary-dark">{sublabel}</span>
