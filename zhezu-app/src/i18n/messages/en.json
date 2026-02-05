@@ -116,40 +116,25 @@
     }
   },
   "academics": {
-    "title": "Academic Programs",
-    "subtitle": "Find the program that's right for you",
-    "filters": {
-      "all": "All Programs",
-      "degree": "Degree Level",
-      "faculty": "Faculty",
-      "language": "Language of Instruction",
-      "duration": "Duration",
-      "clearAll": "Clear Filters"
-    },
-    "sort": {
-      "title": "Sort By",
-      "name": "Name",
-      "popularity": "Popularity",
-      "newest": "Newest First"
-    },
-    "card": {
-      "credits": "credits",
-      "years": "years",
-      "language": "Language",
-      "apply": "Apply",
-      "details": "Details"
-    },
-    "faculties": {
-      "engineering": "Engineering & Technology",
-      "business": "Business & Economics",
-      "it": "Information Technology",
-      "education": "Education",
-      "humanities": "Humanities",
-      "natural": "Natural Sciences",
-      "law": "Law",
-      "medicine": "Medicine"
-    },
-    "noResults": "No programs found. Try changing your filter parameters."
+    "title": "Bachelor's Programs",
+    "subtitle": "22 bachelor's degree programs across 5 departments at Zhezkazgan University",
+    "badge": "Bachelor's Degree",
+    "searchPlaceholder": "Search by name, code or description...",
+    "statPrograms": "Programs",
+    "statDepts": "Departments",
+    "statYears": "Years of Study",
+    "programSingular": "program",
+    "programPlural": "programs",
+    "tableCode": "Code",
+    "tableName": "Program Name",
+    "tableDuration": "Duration",
+    "tableCredits": "Credits",
+    "tableLang": "Language",
+    "years": "years",
+    "noResults": "No programs found. Try changing your search terms.",
+    "ctaTitle": "Start your journey at ZhezU",
+    "ctaDesc": "Apply for admission and become part of the university community",
+    "ctaButton": "Apply Now"
   },
   "career": {
     "title": "Career Center",
