@@ -14,15 +14,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    'bg-primary text-white hover:bg-primary-dark shadow-sm dark:bg-primary-light dark:hover:bg-primary',
+    'bg-primary text-white hover:bg-primary-dark shadow-sm hover:shadow-md dark:bg-primary-light dark:hover:bg-primary hover:-translate-y-0.5',
   secondary:
-    'bg-gold text-bg-dark hover:bg-gold-dark shadow-sm',
+    'bg-gold text-bg-dark hover:bg-gold-dark shadow-sm hover:shadow-[0_0_25px_rgba(230,179,37,0.25)] hover:-translate-y-0.5',
   outline:
-    'border-2 border-primary text-primary hover:bg-primary/10 dark:border-primary-light dark:text-primary-light dark:hover:bg-primary-light/10',
+    'border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-primary-light dark:text-primary-light dark:hover:bg-primary-light dark:hover:text-bg-dark hover:-translate-y-0.5',
   ghost:
-    'text-text-secondary-light hover:bg-surface-hover-light dark:text-text-secondary-dark dark:hover:bg-surface-hover-dark',
+    'text-text-secondary-light hover:bg-surface-hover-light hover:text-text-primary-light dark:text-text-secondary-dark dark:hover:bg-surface-hover-dark dark:hover:text-text-primary-dark',
   danger:
-    'bg-error text-white hover:bg-error/90 shadow-sm',
+    'bg-error text-white hover:bg-error/90 shadow-sm hover:-translate-y-0.5',
 };
 
 const sizes: Record<ButtonSize, string> = {
@@ -37,7 +37,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          'inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none cursor-pointer',
+          'inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 disabled:opacity-50 disabled:pointer-events-none cursor-pointer',
           variants[variant],
           sizes[size],
           className
