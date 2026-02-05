@@ -1,0 +1,12 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+cmds = ["npm i -g pnpm@latest"]
+
+[phases.install]
+cmds = ["cd zhezu-app && pnpm install --frozen-lockfile"]
+
+[phases.build]
+cmds = ["cd zhezu-app && pnpm build"]
+
+[start]
+cmd = "cd zhezu-app && pnpm start -p ${PORT:-3000}"
