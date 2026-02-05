@@ -208,9 +208,11 @@
       }
     },
     "info": {
-      "address": "6A Baikonurov St., Zhezkazgan, 100600",
-      "phone": "+7 (7102) 72-40-00",
-      "email": "info@zhezu.edu.kz",
+      "address": "1B Alashakhan Ave., Zhezkazgan, Ulytau Region",
+      "phone": "+7 (7102) 73-60-15",
+      "phoneAdmissions": "+7 (7102) 41-04-61",
+      "phoneMobile": "+7 777 218 93 25",
+      "email": "univer@zhezu.edu.kz",
       "schedule": "Mon-Fri: 09:00 — 18:00",
       "map": "Show on Map"
     },
