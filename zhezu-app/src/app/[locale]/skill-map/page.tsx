@@ -1,44 +1,29 @@
+'use client';
+
+import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Network, ArrowRight, GraduationCap, Pickaxe, Cpu, Scale, Sparkles } from 'lucide-react';
+import { Network, ArrowRight, BookOpen, Pickaxe, Scale, Zap, Cog, Sparkles } from 'lucide-react';
 import { SkillMap } from '@/components/talent/SkillMap';
-import { SKILL_MAP_NODES, SKILL_MAP_EDGES } from '@/lib/talent-data';
+import { SKILL_MAPS } from '@/lib/talent-data';
+import { DEPARTMENTS } from '@/lib/constants';
 import type { Locale } from '@/types';
 
-const majorCards = [
-  {
-    icon: Pickaxe,
-    nameKey: 'majorMining',
-    descKey: 'majorMiningDesc',
-    color: '#E6B325',
-    active: true,
-  },
-  {
-    icon: GraduationCap,
-    nameKey: 'majorMetallurgy',
-    descKey: 'majorMetallurgyDesc',
-    color: '#3B82F6',
-    active: false,
-  },
-  {
-    icon: Cpu,
-    nameKey: 'majorEnergy',
-    descKey: 'majorEnergyDesc',
-    color: '#22C55E',
-    active: false,
-  },
-  {
-    icon: Scale,
-    nameKey: 'majorLaw',
-    descKey: 'majorLawDesc',
-    color: '#8B5CF6',
-    active: false,
-  },
-];
+const DEPT_ICONS: Record<string, React.ComponentType<any>> = {
+  BookOpen,
+  Pickaxe,
+  Scale,
+  Zap,
+  Cog,
+};
 
 export default function SkillMapPage() {
   const t = useTranslations('skillMap');
   const locale = useLocale() as Locale;
+
+  const [activeDept, setActiveDept] = useState<string>(DEPARTMENTS[0].id);
+  const activeData = SKILL_MAPS[activeDept];
+  const activeDeptObj = DEPARTMENTS.find((d) => d.id === activeDept)!;
 
   return (
     <div className="min-h-screen bg-bg-dark relative overflow-hidden">
@@ -78,46 +63,62 @@ export default function SkillMapPage() {
             </p>
           </div>
 
-          {/* ── Major selection cards ── */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14 max-w-4xl mx-auto">
-            {majorCards.map((card) => (
-              <button
-                key={card.nameKey}
-                className={`group/card relative flex flex-col items-center gap-3 p-5 rounded-2xl border transition-all duration-400 cursor-pointer ${
-                  card.active
-                    ? 'border-gold/40 bg-gradient-to-b from-gold/12 to-gold/4 shadow-[0_0_30px_rgba(230,179,37,0.12)]'
-                    : 'border-border-dark/50 bg-surface-dark/30 hover:border-border-dark hover:bg-surface-dark/50'
-                }`}
-              >
-                {/* Active glow */}
-                {card.active && (
-                  <div className="absolute inset-0 rounded-2xl bg-gold/5 animate-pulse-glow pointer-events-none" />
-                )}
+          {/* ── Department selection cards ── */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-14 max-w-5xl mx-auto">
+            {DEPARTMENTS.map((dept) => {
+              const isActive = dept.id === activeDept;
+              const Icon = DEPT_ICONS[dept.icon] || BookOpen;
 
-                <div
-                  className={`relative w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                    card.active ? 'bg-gold/15' : 'bg-surface-dark/60 group-hover/card:bg-surface-dark/80'
+              return (
+                <button
+                  key={dept.id}
+                  onClick={() => setActiveDept(dept.id)}
+                  className={`group/card relative flex flex-col items-center gap-2.5 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'border-opacity-40 bg-gradient-to-b shadow-lg'
+                      : 'border-border-dark/50 bg-surface-dark/30 hover:border-border-dark hover:bg-surface-dark/50'
                   }`}
+                  style={
+                    isActive
+                      ? {
+                          borderColor: `${dept.color}66`,
+                          background: `linear-gradient(to bottom, ${dept.color}18, ${dept.color}08)`,
+                          boxShadow: `0 0 30px ${dept.color}18`,
+                        }
+                      : undefined
+                  }
                 >
-                  <card.icon
-                    size={22}
-                    style={{ color: card.active ? card.color : '#7B8EB5' }}
-                    className="transition-colors duration-300"
-                  />
-                </div>
+                  {/* Active glow */}
+                  {isActive && (
+                    <div
+                      className="absolute inset-0 rounded-2xl animate-pulse-glow pointer-events-none"
+                      style={{ backgroundColor: `${dept.color}08` }}
+                    />
+                  )}
 
-                <span
-                  className={`text-sm font-bold tracking-wide ${
-                    card.active ? 'text-white' : 'text-text-secondary-dark group-hover/card:text-white/80'
-                  } transition-colors duration-300`}
-                >
-                  {t(card.nameKey)}
-                </span>
-                <span className="text-[10px] text-text-secondary-dark/70 font-medium">
-                  {t(card.descKey)}
-                </span>
-              </button>
-            ))}
+                  <div
+                    className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      isActive ? '' : 'bg-surface-dark/60 group-hover/card:bg-surface-dark/80'
+                    }`}
+                    style={isActive ? { backgroundColor: `${dept.color}20` } : undefined}
+                  >
+                    <Icon
+                      size={20}
+                      style={{ color: isActive ? dept.color : '#7B8EB5' }}
+                      className="transition-colors duration-300"
+                    />
+                  </div>
+
+                  <span
+                    className={`text-xs font-bold tracking-wide text-center leading-tight ${
+                      isActive ? 'text-white' : 'text-text-secondary-dark group-hover/card:text-white/80'
+                    } transition-colors duration-300`}
+                  >
+                    {dept.shortName[locale]}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -128,8 +129,13 @@ export default function SkillMapPage() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             <h2 className="text-lg font-display font-bold text-white flex items-center gap-3">
-              <div className="w-1 h-6 rounded-full bg-gradient-to-b from-gold to-gold/30" />
-              {t('mapTitle')}
+              <div
+                className="w-1 h-6 rounded-full"
+                style={{
+                  background: `linear-gradient(to bottom, ${activeDeptObj.color}, ${activeDeptObj.color}30)`,
+                }}
+              />
+              {activeDeptObj.shortName[locale]} — {t('mapTitleSuffix')}
             </h2>
 
             {/* Legend */}
@@ -158,9 +164,18 @@ export default function SkillMapPage() {
           <div className="relative">
             {/* Subtle inner glow at center */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-40 h-40 rounded-full bg-gold/[0.04] blur-[60px]" />
+              <div
+                className="w-40 h-40 rounded-full blur-[60px]"
+                style={{ backgroundColor: `${activeDeptObj.color}08` }}
+              />
             </div>
-            <SkillMap nodes={SKILL_MAP_NODES} edges={SKILL_MAP_EDGES} />
+            {activeData && (
+              <SkillMap
+                key={activeDept}
+                nodes={activeData.nodes}
+                edges={activeData.edges}
+              />
+            )}
           </div>
         </div>
       </section>
