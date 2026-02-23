@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 import { Card } from '@/components/ui/Card';

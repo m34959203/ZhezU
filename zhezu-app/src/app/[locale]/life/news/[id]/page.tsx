@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { NEWS_ARTICLES } from '@/lib/news-data';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
-import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
+import { ArrowLeft, Calendar, User } from 'lucide-react';
 import type { Locale } from '@/types';
 
 export async function generateStaticParams() {
