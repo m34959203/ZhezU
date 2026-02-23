@@ -8,10 +8,6 @@ import type {
   LifecycleQuest,
   Achievement,
   StudentProfile,
-  Skill,
-  PortfolioItem,
-  Experience,
-  SkillRadarData,
 } from './student-lifecycle';
 
 // ════════════════════════════════════════════════════════════════════════════

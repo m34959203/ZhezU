@@ -81,7 +81,7 @@ export default function CareerPage() {
                     </p>
                   </div>
                   <Badge variant={job.type === 'internship' ? 'warning' : job.type === 'remote' ? 'info' : 'success'}>
-                    {t(`jobs.${job.type}` as any)}
+                    {t(`jobs.${job.type}` as Parameters<typeof t>[0])}
                   </Badge>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-text-secondary-light dark:text-text-secondary-dark mb-4">

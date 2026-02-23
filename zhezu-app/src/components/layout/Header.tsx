@@ -8,7 +8,6 @@ import {
   GraduationCap,
   Phone,
   Mail,
-  X,
   ChevronDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -248,10 +247,12 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* ---- close menu when route changes ---- */
-  useEffect(() => {
+  /* ---- close menu when route changes (state-during-render pattern) ---- */
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setActiveMenu(null);
-  }, [pathname]);
+  }
 
   /* ---- hover handlers with a small grace period ---- */
   const handleMenuEnter = useCallback((id: string) => {

@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Network, ArrowRight, BookOpen, Pickaxe, Scale, Zap, Cog, Sparkles } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { SkillMap } from '@/components/talent/SkillMap';
 import { SKILL_MAPS } from '@/lib/talent-data';
 import { DEPARTMENTS } from '@/lib/constants';
 import type { Locale } from '@/types';
 
-const DEPT_ICONS: Record<string, React.ComponentType<any>> = {
+const DEPT_ICONS: Record<string, LucideIcon> = {
   BookOpen,
   Pickaxe,
   Scale,

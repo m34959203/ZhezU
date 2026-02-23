@@ -18,9 +18,10 @@ import {
   Sparkles,
   Users,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { Locale } from '@/types';
 
-const DEPT_ICONS: Record<string, React.ComponentType<any>> = {
+const DEPT_ICONS: Record<string, LucideIcon> = {
   BookOpen,
   Pickaxe,
   Scale,
