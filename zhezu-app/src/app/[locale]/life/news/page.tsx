@@ -6,7 +6,6 @@ import { useParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import { NEWS_ARTICLES, NEWS_CATEGORIES } from '@/lib/news-data';
 import { Calendar, ArrowRight, User } from 'lucide-react';
 import type { Locale } from '@/types';
@@ -47,11 +46,10 @@ export default function NewsPage() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
-                  activeCategory === cat.id
+                className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeCategory === cat.id
                     ? 'bg-primary text-white'
                     : 'text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark'
-                }`}
+                  }`}
               >
                 {t(cat.labelKey.replace('news.', ''))}
               </button>

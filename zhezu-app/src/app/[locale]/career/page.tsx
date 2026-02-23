@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { Briefcase, Users, TrendingUp, Calendar, ArrowRight, Building2, MapPin, Clock, Star } from 'lucide-react';
+import { Briefcase, Users, TrendingUp, Calendar, ArrowRight, Building2, MapPin } from 'lucide-react';
 
 const JOBS = [
   { id: '1', title: 'Frontend Developer', company: 'KazMinerals', location: 'Жезказган', type: 'fullTime' as const, salary: '350 000 — 500 000 ₸' },

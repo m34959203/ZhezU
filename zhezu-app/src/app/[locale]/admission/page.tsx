@@ -1,7 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
 import { FileText, Calendar, ClipboardCheck, GraduationCap, ArrowRight, CheckCircle2, Phone, Mail, MapPin, Clock, Shield, Award } from 'lucide-react';
 
 export default function AdmissionPage() {

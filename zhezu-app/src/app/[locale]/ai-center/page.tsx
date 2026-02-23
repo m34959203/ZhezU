@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { useParams } from 'next/navigation';
+
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -25,8 +25,6 @@ import type { Locale } from '@/types';
 
 export default function AICenterPage() {
   const t = useTranslations('aiCenter');
-  const params = useParams();
-  const locale = (params.locale || 'ru') as Locale;
 
   const stats = [
     { value: '12+', label: t('stats.projects'), icon: Lightbulb, color: 'text-primary dark:text-primary-light' },
