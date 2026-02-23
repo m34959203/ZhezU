@@ -155,15 +155,15 @@ function MegaMenuPanel({
           >
             {item.columns.map((column) => (
               <div key={column.titleKey} className="min-w-[180px] flex-1">
-                <h3 className="font-display font-semibold text-sm text-primary dark:text-primary-light mb-3 uppercase tracking-wide">
+                <h3 className="font-display font-semibold text-sm text-primary dark:text-primary-light mb-4 uppercase tracking-wide">
                   {t(column.titleKey)}
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="block text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light hover:translate-x-0.5 transition-all duration-200"
+                        className="block py-1.5 px-1 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light hover:translate-x-0.5 transition-all duration-200"
                       >
                         {t(link.labelKey)}
                       </Link>
