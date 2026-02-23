@@ -185,6 +185,7 @@
       "subject": "Subject",
       "message": "Message",
       "submit": "Send Message",
+      "submitting": "Sending...",
       "success": "Message sent! We'll get back to you soon.",
       "subjects": {
         "general": "General Inquiry",
@@ -346,5 +347,325 @@
     "levelProgress": "Level Progress",
     "similarApplicants": "Similar Applicants",
     "viewAllApplicants": "View All Applicants"
+  },
+  "megaNav": {
+    "phone": "Phone",
+    "email": "Email",
+    "searchPlaceholder": "Search the website...",
+    "apply": "Apply",
+    "university": {
+      "title": "University",
+      "about": "About",
+      "aboutHistory": "University History",
+      "aboutMission": "Mission & Values",
+      "aboutCampus": "Campus & Facilities",
+      "leadership": "Leadership",
+      "leadershipRector": "Rector",
+      "leadershipAdmin": "Administration",
+      "leadershipSenate": "Academic Senate",
+      "accreditation": "Accreditation",
+      "accreditationNational": "National Accreditation",
+      "accreditationInternational": "International Accreditation",
+      "accreditationRankings": "Rankings",
+      "partners": "Partners",
+      "partnersCorporate": "Corporate Partners",
+      "partnersInternational": "International Partners",
+      "documents": "Documents",
+      "documentsCharter": "University Charter",
+      "documentsLicenses": "Licenses",
+      "documentsReports": "Reports"
+    },
+    "admission": {
+      "title": "Admission",
+      "programs": "Programs",
+      "programsBachelor": "Bachelor's",
+      "programsMaster": "Master's",
+      "programsDoctorate": "Doctorate",
+      "requirements": "Requirements",
+      "requirementsDocs": "Required Documents",
+      "requirementsExams": "Entrance Exams",
+      "requirementsDeadlines": "Deadlines",
+      "apply": "Apply",
+      "applyOnline": "Apply Online",
+      "applyStatus": "Application Status",
+      "applyConsultation": "Consultation",
+      "scholarships": "Scholarships",
+      "scholarshipsState": "Government Grants",
+      "scholarshipsUniversity": "University Scholarships",
+      "faq": "FAQ",
+      "faqGeneral": "Common Questions",
+      "faqContact": "Contact Admissions Office"
+    },
+    "education": {
+      "title": "Education",
+      "bachelor": "Bachelor's",
+      "bachelorPrograms": "Bachelor's Programs",
+      "bachelorCurriculum": "Curricula",
+      "master": "Master's",
+      "masterPrograms": "Master's Programs",
+      "masterResearch": "Research Programs",
+      "departments": "Departments",
+      "departmentsList": "All Departments",
+      "departmentsFaculty": "Faculty Members",
+      "schedule": "Schedule",
+      "scheduleClasses": "Class Schedule",
+      "scheduleExams": "Exam Schedule",
+      "scheduleCalendar": "Academic Calendar",
+      "library": "Library",
+      "libraryCatalog": "Library Catalog",
+      "libraryDigital": "Digital Library"
+    },
+    "research": {
+      "title": "Research",
+      "publications": "Publications",
+      "publicationsJournals": "Academic Journals",
+      "publicationsArticles": "Articles & Papers",
+      "conferences": "Conferences",
+      "conferencesUpcoming": "Upcoming Conferences",
+      "conferencesArchive": "Conference Archive",
+      "labs": "Laboratories",
+      "labsList": "Research Labs",
+      "labsEquipment": "Equipment",
+      "grants": "Grants",
+      "grantsCurrent": "Current Grants",
+      "grantsApply": "Apply for Grant",
+      "grantsResults": "Competition Results"
+    },
+    "aiCenter": {
+      "title": "AI Center",
+      "projects": "Projects",
+      "projectsCurrent": "Current Projects",
+      "projectsShowcase": "Project Showcase",
+      "agents": "Agents",
+      "agentsTalapker": "Talapker Guide",
+      "agentsAssistant": "AI Assistant",
+      "apps": "Applications",
+      "appsTalentPool": "Talent Pool",
+      "appsSkillMap": "Skill Map",
+      "tools": "Tools",
+      "toolsAI": "AI Tools",
+      "toolsAPI": "API Documentation",
+      "lab": "Laboratory",
+      "labResearch": "Research",
+      "labJoin": "Join Us"
+    },
+    "life": {
+      "title": "Campus Life",
+      "news": "News",
+      "newsLatest": "Latest News",
+      "newsAnnouncements": "Announcements",
+      "events": "Events",
+      "eventsUpcoming": "Upcoming Events",
+      "eventsCalendar": "Events Calendar",
+      "sports": "Sports",
+      "sportsTeams": "Sports Teams",
+      "sportsFacilities": "Sports Facilities",
+      "dormitories": "Dormitories",
+      "dormitoriesInfo": "Dormitory Information",
+      "dormitoriesApply": "Apply for Housing",
+      "organizations": "Organizations",
+      "organizationsClubs": "Clubs & Societies",
+      "organizationsStudentGov": "Student Government"
+    },
+    "audience": {
+      "applicants": "Applicants",
+      "students": "Students",
+      "faculty": "Faculty",
+      "employers": "Employers"
+    }
+  },
+  "university": {
+    "about": {
+      "pageTitle": "About — Zhezkazgan University",
+      "pageDescription": "About O.A. Baikonurov Zhezkazgan University — history, mission, departments",
+      "badge": "About Us",
+      "intro": "O.A. Baikonurov Zhezkazgan University is one of the leading higher education institutions in the Ulytau region. For over 65 years, we have been training highly qualified specialists for the mining industry, education, and economics.",
+      "stats": {
+        "students": "Students",
+        "programs": "Programs",
+        "faculty": "Faculty",
+        "employment": "Employment Rate",
+        "scientists": "Scientists",
+        "years": "Years of Experience"
+      },
+      "history": {
+        "title": "University History",
+        "p1": "Zhezkazgan University was founded in 1961 as a branch of Karaganda Polytechnic Institute to train engineers for the region's mining and metallurgical industries.",
+        "p2": "Over the decades, the institution has grown into a multidisciplinary university with 5 departments, 22 bachelor's programs and 3 master's programs, training world-class specialists.",
+        "timeline": {
+          "1961": "Founded as a branch of Karaganda Polytechnic Institute",
+          "1996": "Transformed into an independent university",
+          "2012": "Named after O.A. Baikonurov",
+          "2024": "AI Center launch and digital transformation",
+          "2026": "International accreditation and 65th anniversary"
+        }
+      },
+      "departments": {
+        "title": "Departments"
+      },
+      "mission": {
+        "title": "Mission",
+        "text": "Training highly qualified, competitive specialists capable of innovative activity and continuous professional development in the interests of the Ulytau region and the country."
+      },
+      "vision": {
+        "title": "Vision",
+        "text": "To become the leading university in Central Kazakhstan, a recognized center for mining education, scientific research and innovation, integrated into the international educational space."
+      }
+    },
+    "leadership": {
+      "pageTitle": "Leadership — Zhezkazgan University",
+      "pageDescription": "Leadership of Zhezkazgan University — rector, pro-rectors, administration",
+      "badge": "Leadership",
+      "title": "University Leadership",
+      "subtitle": "Meet the leadership of O.A. Baikonurov Zhezkazgan University",
+      "rector": {
+        "role": "President-Rector"
+      },
+      "proRectors": {
+        "title": "Pro-Rectors"
+      }
+    }
+  },
+  "programs": {
+    "degree": {
+      "bachelor": "Bachelor's",
+      "master": "Master's",
+      "doctorate": "Doctorate"
+    },
+    "backToCatalog": "All Programs",
+    "applyNow": "Apply Now",
+    "info": {
+      "duration": "Duration",
+      "years": "years",
+      "credits": "Credits",
+      "degree": "Degree",
+      "languages": "Languages"
+    },
+    "curriculum": {
+      "title": "Curriculum",
+      "year1": "Year 1 — General Education",
+      "year2": "Year 2 — Core Disciplines",
+      "year3": "Year 3 — Specialization",
+      "year4": "Year 4 — Diploma Project",
+      "generalEd": "General education courses",
+      "math": "Mathematics and computer science",
+      "physics": "Physics / Natural sciences",
+      "kazLang": "Kazakh/Russian language",
+      "coreSubjects": "Core professional disciplines",
+      "electives": "Elective courses",
+      "practicum": "Study practicum",
+      "specialization": "Specialization courses",
+      "research": "Research work",
+      "internship": "Industrial internship",
+      "thesis": "Diploma thesis / project",
+      "preDiploma": "Pre-diploma internship",
+      "finalExam": "Final assessment"
+    },
+    "department": {
+      "label": "Department"
+    },
+    "cta": {
+      "title": "Ready to start studying?",
+      "description": "Apply for admission and become part of our university community.",
+      "button": "Apply Now"
+    }
+  },
+  "news": {
+    "badge": "News",
+    "title": "University News",
+    "subtitle": "Stay updated with the latest events and achievements of Zhezkazgan University",
+    "noArticles": "No articles in this category yet.",
+    "backToNews": "All News",
+    "categories": {
+      "all": "All",
+      "university": "University",
+      "science": "Science",
+      "students": "Students",
+      "sport": "Sports",
+      "events": "Events"
+    }
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error occurred. Please try reloading the page.",
+    "retry": "Try again"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The requested page does not exist or has been moved.",
+    "backHome": "Go to Home"
+  },
+  "aiCenter": {
+    "title": "AI Center",
+    "subtitle": "Zhezkazgan University Artificial Intelligence Center — innovations, research and development",
+    "badge": "AI Center",
+    "stats": {
+      "projects": "Projects",
+      "students": "Students",
+      "partners": "Partners",
+      "publications": "Publications"
+    },
+    "projects": {
+      "title": "Our Projects",
+      "talapker": "Talapker Guide",
+      "talapkerDesc": "AI assistant for applicants — program selection, documents, deadlines",
+      "talentPool": "Talent Pool",
+      "talentPoolDesc": "Skills and talent matching platform for employers",
+      "smartCampus": "Smart Campus",
+      "smartCampusDesc": "IoT infrastructure management for the university campus",
+      "miningAI": "Mining AI",
+      "miningAIDesc": "AI solutions for the regional mining industry",
+      "active": "Active",
+      "inDev": "In Development"
+    },
+    "tools": {
+      "title": "AI Tools",
+      "chatbot": "AI Assistant",
+      "chatbotDesc": "Chatbot for students and applicants",
+      "skills": "Skills Analyzer",
+      "skillsDesc": "Competency assessment and development recommendations",
+      "docs": "Document Processor",
+      "docsDesc": "Automatic document processing and classification",
+      "recommender": "Recommendation Engine",
+      "recommenderDesc": "Personalized course and material recommendations"
+    },
+    "cta": {
+      "title": "Join Our Team",
+      "description": "We are looking for talented students and researchers to work on AI projects.",
+      "button": "Contact Us"
+    }
+  },
+  "research": {
+    "title": "Science & Research",
+    "subtitle": "Scientific activities and research at Zhezkazgan University",
+    "badge": "Science",
+    "stats": {
+      "publications": "Publications",
+      "grants": "Grants",
+      "conferences": "Conferences",
+      "labs": "Laboratories"
+    },
+    "areas": {
+      "title": "Research Areas",
+      "mining": "Mining & Geology",
+      "miningDesc": "Developing innovative methods for mineral extraction and processing",
+      "metallurgy": "Metallurgy & Materials Science",
+      "metallurgyDesc": "Research in new materials and metallurgical technologies",
+      "environment": "Environmental Science",
+      "environmentDesc": "Monitoring and restoration of mining region ecosystems",
+      "ai": "AI & Digital Technologies",
+      "aiDesc": "Artificial intelligence, machine learning and digital transformation"
+    },
+    "publications": {
+      "title": "Recent Publications"
+    },
+    "labs": {
+      "title": "Research Laboratories"
+    },
+    "cta": {
+      "title": "Interested in Research Collaboration?",
+      "description": "Contact us to discuss joint research projects.",
+      "button": "Contact Us"
+    }
   }
 }

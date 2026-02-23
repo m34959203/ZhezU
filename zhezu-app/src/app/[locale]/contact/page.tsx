@@ -2,25 +2,58 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import { UNIVERSITY } from '@/lib/constants';
-import { Send, Phone, Mail, MapPin, Clock, CheckCircle2, Building2 } from 'lucide-react';
+import { Send, Phone, Mail, MapPin, Clock, CheckCircle2 } from 'lucide-react';
+
+const SUBJECTS = ['general', 'admission', 'academic', 'technical', 'other'] as const;
+
+const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required').min(2, 'Name must be at least 2 characters'),
+  email: z.string().min(1, 'Email is required').email('Please enter a valid email address'),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^\+?[\d\s\-()]{7,}$/.test(val),
+      'Please enter a valid phone number'
+    ),
+  subject: z.enum(SUBJECTS, { message: 'Please select a subject' }),
+  message: z
+    .string()
+    .min(1, 'Message is required')
+    .min(10, 'Message must be at least 10 characters'),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactPage() {
   const t = useTranslations('contact');
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: 'general',
-    message: '',
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      subject: 'general',
+      message: '',
+    },
   });
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function onSubmit(_data: ContactFormData) {
+    // Simulate network request
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setSubmitted(true);
   }
 
@@ -54,28 +87,26 @@ export default function ContactPage() {
                     <h3 className="text-xl font-display font-bold mb-2">{t('form.success')}</h3>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Input
                         label={t('form.name')}
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        error={errors.name?.message}
+                        {...register('name')}
                       />
                       <Input
                         label={t('form.email')}
                         type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        error={errors.email?.message}
+                        {...register('email')}
                       />
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Input
                         label={t('form.phone')}
                         type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        error={errors.phone?.message}
+                        {...register('phone')}
                       />
                       <div className="flex flex-col gap-1.5">
                         <label htmlFor="subject" className="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">
@@ -83,16 +114,18 @@ export default function ContactPage() {
                         </label>
                         <select
                           id="subject"
-                          value={formData.subject}
-                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                          {...register('subject')}
                           className="w-full h-10 rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
                         >
-                          {(['general', 'admission', 'academic', 'technical', 'other'] as const).map((key) => (
+                          {SUBJECTS.map((key) => (
                             <option key={key} value={key}>
                               {t(`form.subjects.${key}`)}
                             </option>
                           ))}
                         </select>
+                        {errors.subject && (
+                          <p className="text-xs text-error mt-1">{errors.subject.message}</p>
+                        )}
                       </div>
                     </div>
                     <div className="flex flex-col gap-1.5">
@@ -102,14 +135,22 @@ export default function ContactPage() {
                       <textarea
                         id="message"
                         rows={5}
-                        required
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        {...register('message')}
                         className="w-full rounded-lg border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
                       />
+                      {errors.message && (
+                        <p className="text-xs text-error mt-1">{errors.message.message}</p>
+                      )}
                     </div>
-                    <Button type="submit" size="lg" icon={<Send size={16} />} iconPosition="right" className="w-full sm:w-auto">
-                      {t('form.submit')}
+                    <Button
+                      type="submit"
+                      size="lg"
+                      loading={isSubmitting}
+                      icon={<Send size={16} />}
+                      iconPosition="right"
+                      className="w-full sm:w-auto"
+                    >
+                      {isSubmitting ? t('form.submitting') : t('form.submit')}
                     </Button>
                   </form>
                 )}
