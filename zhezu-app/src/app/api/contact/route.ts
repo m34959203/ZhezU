@@ -12,10 +12,7 @@ const contactSchema = z.object({
   phone: z
     .string()
     .optional()
-    .refine(
-      (val) => !val || /^\+?[\d\s\-()]{7,}$/.test(val),
-      'Please enter a valid phone number',
-    ),
+    .refine((val) => !val || /^\+?[\d\s\-()]{7,}$/.test(val), 'Please enter a valid phone number'),
   subject: z.enum(SUBJECTS, { message: 'Please select a subject' }),
   message: z
     .string()
@@ -48,10 +45,7 @@ export async function POST(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
 
-    return NextResponse.json(
-      { success: true, message: 'Message received' },
-      { status: 200 },
-    );
+    return NextResponse.json({ success: true, message: 'Message received' }, { status: 200 });
   } catch {
     return NextResponse.json(
       { success: false, errors: { _form: ['Invalid request body'] } },

@@ -100,8 +100,10 @@ export function CircularProgress({
             const angle = (i / 60) * 2 * Math.PI - Math.PI / 2;
             const x1 = size / 2 + (radius - strokeWidth / 2 - 2) * Math.cos(angle);
             const y1 = size / 2 + (radius - strokeWidth / 2 - 2) * Math.sin(angle);
-            const x2 = size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.cos(angle);
-            const y2 = size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.sin(angle);
+            const x2 =
+              size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.cos(angle);
+            const y2 =
+              size / 2 + (radius - strokeWidth / 2 - (i % 5 === 0 ? 6 : 3)) * Math.sin(angle);
             return (
               <line
                 key={i}
@@ -118,17 +120,14 @@ export function CircularProgress({
 
         {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold text-white font-display tracking-tight">
-            {count}<span className="text-xl text-text-secondary-dark">%</span>
+          <span className="font-display text-4xl font-bold tracking-tight text-white">
+            {count}
+            <span className="text-text-secondary-dark text-xl">%</span>
           </span>
         </div>
       </div>
-      {label && (
-        <span className="text-sm font-semibold text-white tracking-wide">{label}</span>
-      )}
-      {sublabel && (
-        <span className="text-xs text-text-secondary-dark">{sublabel}</span>
-      )}
+      {label && <span className="text-sm font-semibold tracking-wide text-white">{label}</span>}
+      {sublabel && <span className="text-text-secondary-dark text-xs">{sublabel}</span>}
     </div>
   );
 }

@@ -39,12 +39,7 @@ function AccordionPanel({
   const panelId = `accordion-panel-${item.id}`;
 
   return (
-    <div
-      className={cn(
-        'border-b border-border-light dark:border-border-dark',
-        'last:border-b-0'
-      )}
-    >
+    <div className={cn('border-border-light dark:border-border-dark border-b', 'last:border-b-0')}>
       <h3>
         <button
           id={triggerId}
@@ -54,20 +49,20 @@ function AccordionPanel({
           aria-controls={panelId}
           onClick={onToggle}
           className={cn(
-            'flex w-full items-center justify-between py-4 px-1 text-left text-sm font-medium',
+            'flex w-full items-center justify-between px-1 py-4 text-left text-sm font-medium',
             'text-text-primary-light dark:text-text-primary-dark',
             'hover:text-primary dark:hover:text-primary-light',
             'transition-colors duration-200',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm',
-            'cursor-pointer'
+            'focus-visible:ring-primary/50 rounded-sm focus-visible:ring-2 focus-visible:outline-none',
+            'cursor-pointer',
           )}
         >
           <span className="pr-4">{item.trigger}</span>
           <ChevronDown
             className={cn(
-              'h-4 w-4 shrink-0 text-text-secondary-light dark:text-text-secondary-dark',
+              'text-text-secondary-light dark:text-text-secondary-dark h-4 w-4 shrink-0',
               'transition-transform duration-300 ease-in-out',
-              isOpen && 'rotate-180'
+              isOpen && 'rotate-180',
             )}
           />
         </button>
@@ -81,7 +76,10 @@ function AccordionPanel({
         }}
         className="overflow-hidden transition-[height] duration-300 ease-in-out"
       >
-        <div ref={contentRef} className="pb-4 px-1 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+        <div
+          ref={contentRef}
+          className="text-text-secondary-light dark:text-text-secondary-dark px-1 pb-4 text-sm"
+        >
           {item.content}
         </div>
       </div>
@@ -89,15 +87,8 @@ function AccordionPanel({
   );
 }
 
-export function Accordion({
-  items,
-  type = 'single',
-  defaultOpen = [],
-  className,
-}: AccordionProps) {
-  const [openItems, setOpenItems] = useState<Set<string>>(
-    () => new Set(defaultOpen)
-  );
+export function Accordion({ items, type = 'single', defaultOpen = [], className }: AccordionProps) {
+  const [openItems, setOpenItems] = useState<Set<string>>(() => new Set(defaultOpen));
 
   const handleToggle = useCallback(
     (id: string) => {
@@ -114,17 +105,17 @@ export function Accordion({
         return next;
       });
     },
-    [type]
+    [type],
   );
 
   return (
     <div
       className={cn(
-        'rounded-lg border border-border-light dark:border-border-dark',
+        'border-border-light dark:border-border-dark rounded-lg border',
         'bg-surface-light dark:bg-surface-dark',
-        'divide-y divide-border-light dark:divide-border-dark',
+        'divide-border-light dark:divide-border-dark divide-y',
         'px-4',
-        className
+        className,
       )}
     >
       {items.map((item) => (

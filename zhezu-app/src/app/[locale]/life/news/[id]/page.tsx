@@ -27,11 +27,7 @@ export async function generateMetadata({
   };
 }
 
-export default function NewsDetailPage({
-  params,
-}: {
-  params: { locale: string; id: string };
-}) {
+export default function NewsDetailPage({ params }: { params: { locale: string; id: string } }) {
   const article = NEWS_ARTICLES.find((a) => a.id === params.id);
   if (!article) notFound();
 
@@ -41,12 +37,12 @@ export default function NewsDetailPage({
   return (
     <div className="flex flex-col">
       {/* Hero Image */}
-      <section className="relative h-64 sm:h-80 lg:h-96 overflow-hidden">
+      <section className="relative h-64 overflow-hidden sm:h-80 lg:h-96">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${article.image})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-bg-dark/80 to-transparent" />
+        <div className="from-bg-dark/80 absolute inset-0 bg-gradient-to-t to-transparent" />
       </section>
 
       {/* Content */}
@@ -54,7 +50,7 @@ export default function NewsDetailPage({
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/life/news"
-            className="inline-flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light mb-6 transition-colors"
+            className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light mb-6 inline-flex items-center gap-2 text-sm transition-colors"
           >
             <ArrowLeft size={16} />
             {t('backToNews')}
@@ -62,11 +58,11 @@ export default function NewsDetailPage({
 
           <Badge className="mb-4">{t(`categories.${article.category}`)}</Badge>
 
-          <h1 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+          <h1 className="font-display mb-4 text-3xl font-bold sm:text-4xl">
             {article.title[locale]}
           </h1>
 
-          <div className="flex items-center gap-4 text-sm text-text-secondary-light dark:text-text-secondary-dark mb-8 pb-8 border-b border-border-light dark:border-border-dark">
+          <div className="text-text-secondary-light dark:text-text-secondary-dark border-border-light dark:border-border-dark mb-8 flex items-center gap-4 border-b pb-8 text-sm">
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
               {new Date(article.date).toLocaleDateString(
@@ -81,13 +77,13 @@ export default function NewsDetailPage({
           </div>
 
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-text-secondary-light dark:text-text-secondary-dark leading-relaxed text-lg">
+            <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed">
               {article.content[locale]}
             </p>
           </div>
 
           {/* Share */}
-          <div className="mt-12 pt-8 border-t border-border-light dark:border-border-dark">
+          <div className="border-border-light dark:border-border-dark mt-12 border-t pt-8">
             <div className="flex items-center justify-between">
               <Link href="/life/news">
                 <Button variant="outline" icon={<ArrowLeft size={16} />}>

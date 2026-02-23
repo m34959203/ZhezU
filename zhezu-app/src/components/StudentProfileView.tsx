@@ -30,7 +30,11 @@ import {
 } from 'lucide-react';
 import type { Locale } from '@/types';
 import type { StudentProfile, Achievement, LifecycleQuest } from '@/lib/student-lifecycle';
-import { LIFECYCLE_LEVELS, getLifecycleLevel, calculateProfileCompleteness } from '@/lib/student-lifecycle';
+import {
+  LIFECYCLE_LEVELS,
+  getLifecycleLevel,
+  calculateProfileCompleteness,
+} from '@/lib/student-lifecycle';
 import { ACHIEVEMENTS, ALL_QUESTS, ALL_PROFILES } from '@/lib/lifecycle-data';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 
@@ -84,10 +88,12 @@ function SkillRadarChart({ data, size = 200 }: RadarChartProps) {
       {gridLevels.map((level) => (
         <polygon
           key={level}
-          points={labels.map((l) => {
-            const p = getPoint(l.angle, level);
-            return `${p.x},${p.y}`;
-          }).join(' ')}
+          points={labels
+            .map((l) => {
+              const p = getPoint(l.angle, level);
+              return `${p.x},${p.y}`;
+            })
+            .join(' ')}
           fill="none"
           stroke="currentColor"
           strokeWidth="1"
@@ -137,7 +143,7 @@ function SkillRadarChart({ data, size = 200 }: RadarChartProps) {
             y={p.y}
             textAnchor="middle"
             dominantBaseline="middle"
-            className="text-[8px] fill-text-secondary-light dark:fill-text-secondary-dark font-semibold tracking-wide"
+            className="fill-text-secondary-light dark:fill-text-secondary-dark text-[8px] font-semibold tracking-wide"
           >
             {l.label}
           </text>
@@ -167,33 +173,40 @@ export function StudentProfileView({ profile }: Props) {
 
   // Get earned achievements
   const earnedAchievements = ACHIEVEMENTS.filter((a) =>
-    profile.gamification.earnedAchievements.includes(a.id)
+    profile.gamification.earnedAchievements.includes(a.id),
   );
 
   // Get similar profiles
   const similarProfiles = ALL_PROFILES.filter(
-    (p) => p.id !== profile.id && p.education.department === profile.education.department
+    (p) => p.id !== profile.id && p.education.department === profile.education.department,
   ).slice(0, 2);
 
-  const stageLabel = profile.stage === 'applicant' ? 'Талапкер' :
-    profile.stage === 'student' ? `${profile.year}-курс` : 'Түлек';
+  const stageLabel =
+    profile.stage === 'applicant'
+      ? 'Талапкер'
+      : profile.stage === 'student'
+        ? `${profile.year}-курс`
+        : 'Түлек';
 
   return (
-    <div className="min-h-screen bg-bg-light dark:bg-bg-dark">
+    <div className="bg-bg-light dark:bg-bg-dark min-h-screen">
       {/* Background */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-[20%] w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[150px]" />
-        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-gold/[0.02] blur-[120px]" />
+      <div className="pointer-events-none fixed inset-0">
+        <div className="bg-primary/[0.03] absolute top-0 left-[20%] h-[600px] w-[600px] rounded-full blur-[150px]" />
+        <div className="bg-gold/[0.02] absolute right-[10%] bottom-[20%] h-[400px] w-[400px] rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-20">
+      <div className="relative mx-auto max-w-7xl px-4 pt-8 pb-20 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark mb-8 flex-wrap">
-          <Link href="/" className="hover:text-primary dark:hover:text-white transition-colors">
+        <nav className="text-text-secondary-light dark:text-text-secondary-dark mb-8 flex flex-wrap items-center gap-2 text-sm">
+          <Link href="/" className="hover:text-primary transition-colors dark:hover:text-white">
             {tNav('home')}
           </Link>
           <ChevronRight size={14} className="opacity-40" />
-          <Link href="/talent-pool" className="hover:text-primary dark:hover:text-white transition-colors">
+          <Link
+            href="/talent-pool"
+            className="hover:text-primary transition-colors dark:hover:text-white"
+          >
             {t('title')}
           </Link>
           <ChevronRight size={14} className="opacity-40" />
@@ -203,41 +216,43 @@ export function StudentProfileView({ profile }: Props) {
               <ChevronRight size={14} className="opacity-40" />
             </>
           )}
-          <span className="text-gold-dark dark:text-gold font-medium">{t('profileId')} #{profile.id.slice(-4)}</span>
+          <span className="text-gold-dark dark:text-gold font-medium">
+            {t('profileId')} #{profile.id.slice(-4)}
+          </span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* ═══════ LEFT COLUMN ═══════ */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="space-y-6 lg:col-span-2">
             {/* Profile Header */}
             <div className="premium-card p-7">
-              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+              <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
                 {/* Photo */}
                 <div className="relative shrink-0">
-                  <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden ring-4 ring-gold/30 ring-offset-4 ring-offset-bg-light dark:ring-offset-[#0B1121]">
+                  <div className="ring-gold/30 ring-offset-bg-light h-28 w-28 overflow-hidden rounded-full ring-4 ring-offset-4 sm:h-32 sm:w-32 dark:ring-offset-[#0B1121]">
                     <Image
                       src={profile.photo}
                       alt={profile.name}
                       width={128}
                       height={128}
-                      className="object-cover w-full h-full"
+                      className="h-full w-full object-cover"
                     />
                   </div>
                   {profile.isTopTalent && (
-                    <div className="absolute -bottom-1 -right-1 w-9 h-9 rounded-full bg-gold flex items-center justify-center shadow-lg">
+                    <div className="bg-gold absolute -right-1 -bottom-1 flex h-9 w-9 items-center justify-center rounded-full shadow-lg">
                       <Star size={18} className="text-white" fill="white" />
                     </div>
                   )}
                 </div>
 
                 {/* Info */}
-                <div className="flex-1 min-w-0 text-center sm:text-left">
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mb-2">
-                    <h1 className="text-2xl sm:text-3xl font-display font-bold text-text-primary-light dark:text-white">
+                <div className="min-w-0 flex-1 text-center sm:text-left">
+                  <div className="mb-2 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+                    <h1 className="font-display text-text-primary-light text-2xl font-bold sm:text-3xl dark:text-white">
                       {profile.name}
                     </h1>
                     {profile.isTopTalent && (
-                      <span className="px-3 py-1 rounded-full bg-gold/15 border border-gold/30 text-gold-dark dark:text-gold text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                      <span className="bg-gold/15 border-gold/30 text-gold-dark dark:text-gold flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-bold tracking-wider uppercase">
                         <Star size={10} fill="currentColor" />
                         {t('topTalent')}
                       </span>
@@ -245,12 +260,12 @@ export function StudentProfileView({ profile }: Props) {
                   </div>
 
                   {program && (
-                    <p className="text-base text-text-secondary-light dark:text-text-secondary-dark mb-2">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mb-2 text-base">
                       {t('bsc')} {program.name[locale]}, {stageLabel}
                     </p>
                   )}
 
-                  <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-1 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                  <div className="text-text-secondary-light dark:text-text-secondary-dark flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm sm:justify-start">
                     <span className="flex items-center gap-1.5">
                       <GraduationCap size={14} className="opacity-60" />
                       {t('universityName')}
@@ -262,7 +277,7 @@ export function StudentProfileView({ profile }: Props) {
                   </div>
 
                   {profile.availability.forInternship && (
-                    <div className="mt-3 inline-flex items-center gap-1.5 text-success text-sm font-medium">
+                    <div className="text-success mt-3 inline-flex items-center gap-1.5 text-sm font-medium">
                       <CheckCircle2 size={14} />
                       {t('availableForInternship')}
                     </div>
@@ -271,37 +286,39 @@ export function StudentProfileView({ profile }: Props) {
               </div>
 
               {/* Stats Row */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-border-light dark:border-border-dark/30">
+              <div className="border-border-light dark:border-border-dark/30 mt-6 grid grid-cols-2 gap-4 border-t pt-6 sm:grid-cols-4">
                 <div className="text-center">
-                  <p className="text-2xl sm:text-3xl font-display font-bold text-text-primary-light dark:text-white">
+                  <p className="font-display text-text-primary-light text-2xl font-bold sm:text-3xl dark:text-white">
                     {profile.education.gpa?.toFixed(1) || '—'}
-                    <span className="text-sm text-text-secondary-light dark:text-text-secondary-dark font-normal">/4.0</span>
+                    <span className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-normal">
+                      /4.0
+                    </span>
                   </p>
-                  <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider font-medium mt-1">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[10px] font-medium tracking-wider uppercase">
                     {t('cumGpa')}
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl sm:text-3xl font-display font-bold text-text-primary-light dark:text-white">
+                  <p className="font-display text-text-primary-light text-2xl font-bold sm:text-3xl dark:text-white">
                     {profile.education.classRank || '—'}
                   </p>
-                  <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider font-medium mt-1">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[10px] font-medium tracking-wider uppercase">
                     {t('classRankLabel')}
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl sm:text-3xl font-display font-bold text-text-primary-light dark:text-white">
+                  <p className="font-display text-text-primary-light text-2xl font-bold sm:text-3xl dark:text-white">
                     {profile.languages.find((l) => l.language === 'english')?.level || '—'}
                   </p>
-                  <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider font-medium mt-1">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[10px] font-medium tracking-wider uppercase">
                     {t('englishLevelLabel')}
                   </p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl sm:text-3xl font-display font-bold text-text-primary-light dark:text-white">
+                  <p className="font-display text-text-primary-light text-2xl font-bold sm:text-3xl dark:text-white">
                     {profile.experiences.filter((e) => e.type === 'internship').length}
                   </p>
-                  <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider font-medium mt-1">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[10px] font-medium tracking-wider uppercase">
                     {t('internshipsLabel')}
                   </p>
                 </div>
@@ -311,15 +328,15 @@ export function StudentProfileView({ profile }: Props) {
             {/* Professional Summary */}
             {profile.professionalSummary && (
               <div className="premium-card p-7">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 rounded-xl bg-gold/10 flex items-center justify-center">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="bg-gold/10 flex h-9 w-9 items-center justify-center rounded-xl">
                     <Sparkles size={18} className="text-gold-dark dark:text-gold" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white">
+                    <h2 className="font-display text-text-primary-light text-lg font-bold dark:text-white">
                       {t('summary')}
                     </h2>
-                    <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark uppercase tracking-wider">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-[10px] tracking-wider uppercase">
                       ({t('aiGenerated')})
                     </p>
                   </div>
@@ -331,10 +348,10 @@ export function StudentProfileView({ profile }: Props) {
             )}
 
             {/* Core Competencies + Skill Radar */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {/* Core Competencies */}
               <div className="premium-card p-7">
-                <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white mb-5 flex items-center gap-3">
+                <h2 className="font-display text-text-primary-light mb-5 flex items-center gap-3 text-lg font-bold dark:text-white">
                   <Target size={18} className="text-primary dark:text-primary-light" />
                   {t('competencies')}
                 </h2>
@@ -352,15 +369,15 @@ export function StudentProfileView({ profile }: Props) {
 
                     return (
                       <div key={skill.id}>
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-sm text-text-primary-light dark:text-white font-medium">
+                        <div className="mb-1.5 flex items-center justify-between">
+                          <span className="text-text-primary-light text-sm font-medium dark:text-white">
                             {skill.name[locale]}
                           </span>
                           <span className="text-xs font-bold capitalize" style={{ color }}>
                             {skill.level}
                           </span>
                         </div>
-                        <div className="h-2 rounded-full bg-border-light dark:bg-surface-dark/80 overflow-hidden">
+                        <div className="bg-border-light dark:bg-surface-dark/80 h-2 overflow-hidden rounded-full">
                           <div
                             className="h-full rounded-full transition-all duration-700"
                             style={{ width: `${skill.percentage}%`, backgroundColor: color }}
@@ -374,7 +391,7 @@ export function StudentProfileView({ profile }: Props) {
 
               {/* Skill Radar */}
               <div className="premium-card p-7">
-                <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white mb-5 flex items-center gap-3">
+                <h2 className="font-display text-text-primary-light mb-5 flex items-center gap-3 text-lg font-bold dark:text-white">
                   <Target size={18} className="text-gold-dark dark:text-gold" />
                   {t('skillProfile')}
                 </h2>
@@ -385,30 +402,30 @@ export function StudentProfileView({ profile }: Props) {
             {/* Verified Achievements */}
             {earnedAchievements.length > 0 && (
               <div className="premium-card p-7">
-                <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white mb-5 flex items-center gap-3">
+                <h2 className="font-display text-text-primary-light mb-5 flex items-center gap-3 text-lg font-bold dark:text-white">
                   <Trophy size={18} className="text-gold-dark dark:text-gold" />
                   {t('achievements')}
                 </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {earnedAchievements.slice(0, 3).map((ach) => (
                     <div
                       key={ach.id}
-                      className="p-4 rounded-xl bg-surface-light dark:bg-surface-elevated-dark/30 border border-border-light dark:border-border-dark/25"
+                      className="bg-surface-light dark:bg-surface-elevated-dark/30 border-border-light dark:border-border-dark/25 rounded-xl border p-4"
                     >
                       <div className="flex items-start gap-3">
                         <div
-                          className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
+                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
                           style={{ backgroundColor: `${ach.color}15` }}
                         >
                           <Award size={22} style={{ color: ach.color }} />
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="font-bold text-text-primary-light dark:text-white text-sm">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-text-primary-light text-sm font-bold dark:text-white">
                             {ach.title[locale]}
                           </p>
                           {ach.verifiedBy && (
-                            <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                            <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[10px]">
                               {ach.verifiedBy}
                             </p>
                           )}
@@ -426,7 +443,7 @@ export function StudentProfileView({ profile }: Props) {
             {/* Portfolio & Research */}
             {profile.portfolio.length > 0 && (
               <div className="premium-card p-7">
-                <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white mb-5 flex items-center gap-3">
+                <h2 className="font-display text-text-primary-light mb-5 flex items-center gap-3 text-lg font-bold dark:text-white">
                   <BookOpen size={18} className="text-primary dark:text-primary-light" />
                   {t('portfolio')}
                 </h2>
@@ -435,10 +452,10 @@ export function StudentProfileView({ profile }: Props) {
                   {profile.portfolio.map((item) => (
                     <div
                       key={item.id}
-                      className="flex gap-4 p-4 rounded-xl bg-surface-light dark:bg-surface-elevated-dark/30 border border-border-light dark:border-border-dark/25"
+                      className="bg-surface-light dark:bg-surface-elevated-dark/30 border-border-light dark:border-border-dark/25 flex gap-4 rounded-xl border p-4"
                     >
                       {item.thumbnail && (
-                        <div className="w-32 h-24 rounded-lg overflow-hidden shrink-0 relative">
+                        <div className="relative h-24 w-32 shrink-0 overflow-hidden rounded-lg">
                           <Image
                             src={item.thumbnail}
                             alt={item.title[locale]}
@@ -447,16 +464,16 @@ export function StudentProfileView({ profile }: Props) {
                           />
                         </div>
                       )}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h3 className="font-bold text-text-primary-light dark:text-white text-sm">
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-1 flex items-center gap-2">
+                          <h3 className="text-text-primary-light text-sm font-bold dark:text-white">
                             {item.title[locale]}
                           </h3>
-                          <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                          <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
                             {item.year}
                           </span>
                         </div>
-                        <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark line-clamp-2 mb-3">
+                        <p className="text-text-secondary-light dark:text-text-secondary-dark mb-3 line-clamp-2 text-xs">
                           {item.description[locale]}
                         </p>
                         <div className="flex flex-wrap gap-2">
@@ -464,7 +481,7 @@ export function StudentProfileView({ profile }: Props) {
                             <a
                               key={i}
                               href={link.url}
-                              className="inline-flex items-center gap-1.5 text-xs font-medium text-primary dark:text-primary-light hover:underline"
+                              className="text-primary dark:text-primary-light inline-flex items-center gap-1.5 text-xs font-medium hover:underline"
                             >
                               {link.type === 'paper' && <FileText size={12} />}
                               {link.type === 'github' && <Code size={12} />}
@@ -485,36 +502,36 @@ export function StudentProfileView({ profile }: Props) {
           <div className="space-y-6">
             {/* Recruiter Actions */}
             <div className="premium-card premium-card-gold p-7">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center">
+              <div className="mb-5 flex items-center gap-3">
+                <div className="bg-gold/15 flex h-10 w-10 items-center justify-center rounded-xl">
                   <Briefcase size={20} className="text-gold-dark dark:text-gold" />
                 </div>
                 <div>
-                  <h2 className="text-base font-bold text-text-primary-light dark:text-white">
+                  <h2 className="text-text-primary-light text-base font-bold dark:text-white">
                     {t('recruiterActions')}
                   </h2>
-                  <p className="text-[10px] text-text-secondary-light dark:text-text-secondary-dark">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-[10px]">
                     {t('officialPortal')}
                   </p>
                 </div>
               </div>
 
               <div className="space-y-3">
-                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gold text-bg-dark font-bold text-sm hover:bg-gold-light transition-colors">
+                <button className="bg-gold text-bg-dark hover:bg-gold-light flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-colors">
                   <Calendar size={16} />
                   {t('scheduleInterview')}
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-surface-light dark:bg-surface-elevated-dark/50 border border-border-light dark:border-border-dark/30 text-text-primary-light dark:text-white font-medium text-sm hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark transition-colors">
+                <button className="bg-surface-light dark:bg-surface-elevated-dark/50 border-border-light dark:border-border-dark/30 text-text-primary-light hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition-colors dark:text-white">
                   <Download size={16} />
                   {t('downloadCV')}
                 </button>
-                <button className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-surface-light dark:bg-surface-elevated-dark/50 border border-border-light dark:border-border-dark/30 text-text-primary-light dark:text-white font-medium text-sm hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark transition-colors">
+                <button className="bg-surface-light dark:bg-surface-elevated-dark/50 border-border-light dark:border-border-dark/30 text-text-primary-light hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark flex w-full items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm font-medium transition-colors dark:text-white">
                   <Send size={16} />
                   {t('sendOffer')}
                 </button>
               </div>
 
-              <p className="text-[10px] text-text-secondary-light/60 dark:text-text-secondary-dark/60 text-center mt-4 flex items-center justify-center gap-1.5">
+              <p className="text-text-secondary-light/60 dark:text-text-secondary-dark/60 mt-4 flex items-center justify-center gap-1.5 text-center text-[10px]">
                 <Shield size={10} />
                 {t('privacyNote')}
               </p>
@@ -523,13 +540,13 @@ export function StudentProfileView({ profile }: Props) {
             {/* Match Analysis */}
             {profile.isTopTalent && (
               <div className="premium-card p-7">
-                <h2 className="text-base font-bold text-text-primary-light dark:text-white mb-4">
+                <h2 className="text-text-primary-light mb-4 text-base font-bold dark:text-white">
                   {t('matchAnalysis')}
                 </h2>
 
-                <div className="text-center mb-4">
-                  <div className="relative w-24 h-24 mx-auto">
-                    <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
+                <div className="mb-4 text-center">
+                  <div className="relative mx-auto h-24 w-24">
+                    <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
                       <circle
                         cx="50"
                         cy="50"
@@ -551,15 +568,15 @@ export function StudentProfileView({ profile }: Props) {
                       />
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl font-bold text-text-primary-light dark:text-white">
+                      <span className="text-text-primary-light text-2xl font-bold dark:text-white">
                         {completeness}%
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark mt-2">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 text-xs">
                     {t('matchLabel')}
                   </p>
-                  <p className="text-[10px] text-text-secondary-light/60 dark:text-text-secondary-dark/60">
+                  <p className="text-text-secondary-light/60 dark:text-text-secondary-dark/60 text-[10px]">
                     {t('matchSublabel')}
                   </p>
                 </div>
@@ -569,7 +586,7 @@ export function StudentProfileView({ profile }: Props) {
             {/* Similar Talent */}
             {similarProfiles.length > 0 && (
               <div className="premium-card p-7">
-                <h2 className="text-base font-bold text-text-primary-light dark:text-white mb-4">
+                <h2 className="text-text-primary-light mb-4 text-base font-bold dark:text-white">
                   {t('similarTalent')}
                 </h2>
 
@@ -578,28 +595,40 @@ export function StudentProfileView({ profile }: Props) {
                     <Link
                       key={p.id}
                       href={`/talent-pool/${p.id}`}
-                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark/30 transition-colors group"
+                      className="hover:bg-surface-hover-light dark:hover:bg-surface-elevated-dark/30 group flex items-center gap-3 rounded-xl p-3 transition-colors"
                     >
-                      <div className="w-10 h-10 rounded-full overflow-hidden relative">
-                        <Image src={p.photo} alt={p.name} fill className="object-cover" sizes="40px" />
+                      <div className="relative h-10 w-10 overflow-hidden rounded-full">
+                        <Image
+                          src={p.photo}
+                          alt={p.name}
+                          fill
+                          className="object-cover"
+                          sizes="40px"
+                        />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-text-primary-light dark:text-white truncate group-hover:text-gold-dark dark:group-hover:text-gold transition-colors">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-text-primary-light group-hover:text-gold-dark dark:group-hover:text-gold truncate text-sm font-medium transition-colors dark:text-white">
                           {p.name}
                         </p>
-                        <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
-                          {PROGRAMS.find((pr) => pr.code === p.education.program)?.name[locale]?.split(' ').slice(0, 2).join(' ')}
+                        <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                          {PROGRAMS.find((pr) => pr.code === p.education.program)
+                            ?.name[locale]?.split(' ')
+                            .slice(0, 2)
+                            .join(' ')}
                           {p.education.gpa && ` • GPA ${p.education.gpa.toFixed(1)}`}
                         </p>
                       </div>
-                      <ChevronRight size={14} className="text-text-secondary-light/30 dark:text-text-secondary-dark/30" />
+                      <ChevronRight
+                        size={14}
+                        className="text-text-secondary-light/30 dark:text-text-secondary-dark/30"
+                      />
                     </Link>
                   ))}
                 </div>
 
                 <Link
                   href="/talent-pool"
-                  className="mt-4 w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-border-light dark:border-border-dark/30 text-sm text-text-secondary-light dark:text-text-secondary-dark font-medium hover:text-primary dark:hover:text-white hover:border-primary/30 dark:hover:border-border-dark/60 transition-all"
+                  className="border-border-light dark:border-border-dark/30 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary hover:border-primary/30 dark:hover:border-border-dark/60 mt-4 flex w-full items-center justify-center gap-2 rounded-xl border py-3 text-sm font-medium transition-all dark:hover:text-white"
                 >
                   {t('viewAllCandidates')}
                   <ChevronRight size={14} />

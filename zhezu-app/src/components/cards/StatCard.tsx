@@ -9,20 +9,27 @@ interface StatCardProps {
   description?: string;
 }
 
-export function StatCard({ label, value, icon, color = '#1B3A5C', suffix, description }: StatCardProps) {
+export function StatCard({
+  label,
+  value,
+  icon,
+  color = '#1B3A5C',
+  suffix,
+  description,
+}: StatCardProps) {
   return (
     <div
       className={cn(
-        'group rounded-xl bg-surface-light dark:bg-surface-dark',
-        'border border-border-light dark:border-border-dark',
+        'group bg-surface-light dark:bg-surface-dark rounded-xl',
+        'border-border-light dark:border-border-dark border',
         'p-5 transition-all duration-300',
-        'hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/30 dark:hover:border-primary-light/30'
+        'hover:border-primary/30 dark:hover:border-primary-light/30 hover:-translate-y-1.5 hover:shadow-lg',
       )}
     >
       <div className="flex items-start gap-4">
         {/* Icon circle */}
         <div
-          className="shrink-0 flex items-center justify-center w-12 h-12 rounded-full transition-transform duration-300 group-hover:scale-110"
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110"
           style={{
             backgroundColor: `${color}15`,
             color: color,
@@ -32,27 +39,27 @@ export function StatCard({ label, value, icon, color = '#1B3A5C', suffix, descri
         </div>
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           {/* Value */}
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl font-bold font-display text-text-primary-light dark:text-white leading-none tabular-nums">
+            <span className="font-display text-text-primary-light text-3xl leading-none font-bold tabular-nums dark:text-white">
               {value}
             </span>
             {suffix && (
-              <span className="text-lg font-semibold text-text-secondary-light dark:text-text-secondary-dark">
+              <span className="text-text-secondary-light dark:text-text-secondary-dark text-lg font-semibold">
                 {suffix}
               </span>
             )}
           </div>
 
           {/* Label */}
-          <p className="mt-1.5 text-sm font-medium text-text-secondary-light dark:text-text-secondary-dark">
+          <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1.5 text-sm font-medium">
             {label}
           </p>
 
           {/* Optional description */}
           {description && (
-            <p className="mt-1 text-xs text-text-secondary-light/70 dark:text-text-secondary-dark/70">
+            <p className="text-text-secondary-light/70 dark:text-text-secondary-dark/70 mt-1 text-xs">
               {description}
             </p>
           )}

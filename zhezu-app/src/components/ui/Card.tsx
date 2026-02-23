@@ -18,15 +18,26 @@ const paddings = {
   lg: 'p-8',
 };
 
-export function Card({ className, hover = false, padding = 'md', image, imageAlt, imageHeight = 'h-48', glow = false, children, ...props }: CardProps) {
+export function Card({
+  className,
+  hover = false,
+  padding = 'md',
+  image,
+  imageAlt,
+  imageHeight = 'h-48',
+  glow = false,
+  children,
+  ...props
+}: CardProps) {
   return (
     <div
       className={cn(
-        'group rounded-xl bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark overflow-hidden',
-        hover && 'transition-all duration-300 hover:shadow-lg hover:-translate-y-1.5 hover:border-primary/30 dark:hover:border-primary-light/30',
+        'group bg-surface-light dark:bg-surface-dark border-border-light dark:border-border-dark overflow-hidden rounded-xl border',
+        hover &&
+          'hover:border-primary/30 dark:hover:border-primary-light/30 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg',
         glow && 'hover:shadow-[0_0_25px_rgba(230,179,37,0.15)]',
         !image && paddings[padding],
-        className
+        className,
       )}
       {...props}
     >
@@ -57,15 +68,22 @@ export function CardHeader({ className, children, ...props }: HTMLAttributes<HTM
 
 export function CardTitle({ className, children, ...props }: HTMLAttributes<HTMLHeadingElement>) {
   return (
-    <h3 className={cn('text-lg font-semibold font-display', className)} {...props}>
+    <h3 className={cn('font-display text-lg font-semibold', className)} {...props}>
       {children}
     </h3>
   );
 }
 
-export function CardDescription({ className, children, ...props }: HTMLAttributes<HTMLParagraphElement>) {
+export function CardDescription({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLParagraphElement>) {
   return (
-    <p className={cn('text-sm text-text-secondary-light dark:text-text-secondary-dark', className)} {...props}>
+    <p
+      className={cn('text-text-secondary-light dark:text-text-secondary-dark text-sm', className)}
+      {...props}
+    >
       {children}
     </p>
   );

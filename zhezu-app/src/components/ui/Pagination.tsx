@@ -19,7 +19,7 @@ type PageItem = number | typeof ELLIPSIS;
 function generatePageRange(
   currentPage: number,
   totalPages: number,
-  siblingCount: number
+  siblingCount: number,
 ): PageItem[] {
   // Total page numbers to show: first + last + current + 2*siblings + 2 ellipses
   const totalPageNumbers = siblingCount * 2 + 5;
@@ -45,7 +45,7 @@ function generatePageRange(
     const rightItemCount = 3 + 2 * siblingCount;
     const rightRange = Array.from(
       { length: rightItemCount },
-      (_, i) => totalPages - rightItemCount + 1 + i
+      (_, i) => totalPages - rightItemCount + 1 + i,
     );
     return [1, ELLIPSIS, ...rightRange];
   }
@@ -53,7 +53,7 @@ function generatePageRange(
   // Both ellipses
   const middleRange = Array.from(
     { length: rightSiblingIndex - leftSiblingIndex + 1 },
-    (_, i) => leftSiblingIndex + i
+    (_, i) => leftSiblingIndex + i,
   );
   return [1, ELLIPSIS, ...middleRange, ELLIPSIS, totalPages];
 }
@@ -67,7 +67,7 @@ export function Pagination({
 }: PaginationProps) {
   const pages = useMemo(
     () => generatePageRange(currentPage, totalPages, siblingCount),
-    [currentPage, totalPages, siblingCount]
+    [currentPage, totalPages, siblingCount],
   );
 
   const goToPrevious = useCallback(() => {
@@ -83,7 +83,7 @@ export function Pagination({
   const buttonBase = cn(
     'inline-flex items-center justify-center h-9 min-w-9 rounded-lg text-sm font-medium',
     'transition-colors duration-200',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50'
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
   );
 
   return (
@@ -98,8 +98,8 @@ export function Pagination({
           'px-2',
           'text-text-secondary-light dark:text-text-secondary-dark',
           'hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
-          'disabled:opacity-40 disabled:pointer-events-none',
-          'cursor-pointer'
+          'disabled:pointer-events-none disabled:opacity-40',
+          'cursor-pointer',
         )}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -112,7 +112,7 @@ export function Pagination({
               key={`ellipsis-${index}`}
               className={cn(
                 buttonBase,
-                'pointer-events-none text-text-secondary-light dark:text-text-secondary-dark'
+                'text-text-secondary-light dark:text-text-secondary-dark pointer-events-none',
               )}
               aria-hidden="true"
             >
@@ -134,12 +134,12 @@ export function Pagination({
               buttonBase,
               'cursor-pointer',
               isActive
-                ? 'bg-primary text-white dark:bg-primary-light dark:text-bg-dark'
+                ? 'bg-primary dark:bg-primary-light dark:text-bg-dark text-white'
                 : cn(
                     'text-text-secondary-light dark:text-text-secondary-dark',
                     'hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
-                    'hover:text-text-primary-light dark:hover:text-text-primary-dark'
-                  )
+                    'hover:text-text-primary-light dark:hover:text-text-primary-dark',
+                  ),
             )}
           >
             {page}
@@ -157,8 +157,8 @@ export function Pagination({
           'px-2',
           'text-text-secondary-light dark:text-text-secondary-dark',
           'hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
-          'disabled:opacity-40 disabled:pointer-events-none',
-          'cursor-pointer'
+          'disabled:pointer-events-none disabled:opacity-40',
+          'cursor-pointer',
         )}
       >
         <ChevronRight className="h-4 w-4" />

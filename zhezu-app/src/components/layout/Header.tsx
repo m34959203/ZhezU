@@ -3,25 +3,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import {
-  Search,
-  GraduationCap,
-  Phone,
-  Mail,
-  ChevronDown,
-} from 'lucide-react';
+import { Search, GraduationCap, Phone, Mail, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MobileMenu } from './MobileMenu';
 import { SearchOverlay } from '@/components/search/SearchOverlay';
 import { Button } from '@/components/ui/Button';
-import {
-  NAVIGATION_ITEMS,
-  AUDIENCE_LINKS,
-  UTILITY_CONTACTS,
-  SOCIAL_LINKS,
-} from '@/lib/navigation';
+import { NAVIGATION_ITEMS, AUDIENCE_LINKS, UTILITY_CONTACTS, SOCIAL_LINKS } from '@/lib/navigation';
 
 /* ------------------------------------------------------------------ */
 /*  Social Icon SVGs (inline to avoid extra dependencies)              */
@@ -63,21 +52,21 @@ function UtilityBar() {
   const t = useTranslations('megaNav');
 
   return (
-    <div className="bg-primary text-white text-xs">
+    <div className="bg-primary text-xs text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-9 items-center justify-between">
           {/* Left: phone + email */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden items-center gap-4 sm:flex">
             <a
               href={UTILITY_CONTACTS.phone.href}
-              className="flex items-center gap-1.5 hover:text-gold transition-colors"
+              className="hover:text-gold flex items-center gap-1.5 transition-colors"
             >
               <Phone size={12} />
               <span>{UTILITY_CONTACTS.phone.label}</span>
             </a>
             <a
               href={UTILITY_CONTACTS.email.href}
-              className="flex items-center gap-1.5 hover:text-gold transition-colors"
+              className="hover:text-gold flex items-center gap-1.5 transition-colors"
             >
               <Mail size={12} />
               <span>{UTILITY_CONTACTS.email.label}</span>
@@ -85,7 +74,7 @@ function UtilityBar() {
           </div>
 
           {/* Right: socials + language */}
-          <div className="flex items-center gap-3 ml-auto">
+          <div className="ml-auto flex items-center gap-3">
             {/* Social links */}
             <div className="flex items-center gap-2">
               {SOCIAL_LINKS.map((social) => {
@@ -99,23 +88,23 @@ function UtilityBar() {
                     aria-label={social.label}
                     className="hover:text-gold transition-colors"
                   >
-                    {IconComp && <IconComp className="w-3.5 h-3.5" />}
+                    {IconComp && <IconComp className="h-3.5 w-3.5" />}
                   </a>
                 );
               })}
             </div>
 
-            <span className="w-px h-4 bg-white/20" aria-hidden="true" />
+            <span className="h-4 w-px bg-white/20" aria-hidden="true" />
 
             {/* Search icon (utility) */}
             <button
-              className="hover:text-gold transition-colors cursor-pointer"
+              className="hover:text-gold cursor-pointer transition-colors"
               aria-label={t('searchPlaceholder')}
             >
               <Search size={14} />
             </button>
 
-            <span className="w-px h-4 bg-white/20" aria-hidden="true" />
+            <span className="h-4 w-px bg-white/20" aria-hidden="true" />
 
             {/* Language switcher in utility bar (compact) */}
             <LanguageSwitcher />
@@ -141,21 +130,19 @@ function MegaMenuPanel({
   return (
     <div
       className={cn(
-        'absolute left-0 right-0 top-full z-50 transition-all duration-300 ease-out',
+        'absolute top-full right-0 left-0 z-50 transition-all duration-300 ease-out',
         isOpen
-          ? 'opacity-100 translate-y-0 pointer-events-auto'
-          : 'opacity-0 -translate-y-2 pointer-events-none'
+          ? 'pointer-events-auto translate-y-0 opacity-100'
+          : 'pointer-events-none -translate-y-2 opacity-0',
       )}
     >
       {/* shadow/backdrop */}
-      <div className="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shadow-xl">
-        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8">
-          <div
-            className="flex flex-wrap gap-8"
-          >
+      <div className="bg-surface-light dark:bg-surface-dark border-border-light dark:border-border-dark border-b shadow-xl">
+        <div className="mx-auto max-w-screen-xl px-4 pt-12 pb-8 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap gap-8">
             {item.columns.map((column) => (
               <div key={column.titleKey} className="min-w-[180px] flex-1">
-                <h3 className="font-display font-semibold text-sm text-primary dark:text-primary-light mb-4 uppercase tracking-wide">
+                <h3 className="font-display text-primary dark:text-primary-light mb-4 text-sm font-semibold tracking-wide uppercase">
                   {t(column.titleKey)}
                 </h3>
                 <ul className="space-y-1">
@@ -163,7 +150,7 @@ function MegaMenuPanel({
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="block py-1.5 px-1 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light hover:translate-x-0.5 transition-all duration-200"
+                        className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light block px-1 py-1.5 text-sm transition-all duration-200 hover:translate-x-0.5"
                       >
                         {t(link.labelKey)}
                       </Link>
@@ -175,10 +162,10 @@ function MegaMenuPanel({
           </div>
 
           {/* Bottom CTA row inside panel */}
-          <div className="mt-8 pt-6 border-t border-border-light/50 dark:border-border-dark/50 flex items-center justify-between">
+          <div className="border-border-light/50 dark:border-border-dark/50 mt-8 flex items-center justify-between border-t pt-6">
             <Link
               href={item.href}
-              className="text-sm font-medium text-primary dark:text-primary-light hover:underline underline-offset-4"
+              className="text-primary dark:text-primary-light text-sm font-medium underline-offset-4 hover:underline"
             >
               {t(item.labelKey + '.title')} &rarr;
             </Link>
@@ -197,9 +184,9 @@ function AudienceBar() {
   const pathname = usePathname();
 
   return (
-    <div className="bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm border-b border-border-light/30 dark:border-border-dark/30">
+    <div className="bg-surface-light/80 dark:bg-surface-dark/80 border-border-light/30 dark:border-border-dark/30 border-b backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="hidden lg:flex items-center gap-6 h-9">
+        <div className="hidden h-9 items-center gap-6 lg:flex">
           {AUDIENCE_LINKS.map((link) => {
             const isActive = pathname.startsWith(link.href);
             return (
@@ -210,7 +197,7 @@ function AudienceBar() {
                   'text-xs font-medium transition-colors duration-200',
                   isActive
                     ? 'text-primary dark:text-primary-light'
-                    : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light'
+                    : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light',
                 )}
               >
                 {t(link.labelKey)}
@@ -285,40 +272,34 @@ export function Header() {
         {/* Layer 1: Utility Bar — hides on scroll */}
         <div
           className={cn(
-            'transition-all duration-300 overflow-hidden',
-            scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+            'overflow-hidden transition-all duration-300',
+            scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100',
           )}
         >
           <UtilityBar />
         </div>
 
         {/* Layer 2: Primary Navigation */}
-        <div className="bg-bg-light/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-border-light/50 dark:border-border-dark/50">
+        <div className="bg-bg-light/80 dark:bg-bg-dark/80 border-border-light/50 dark:border-border-dark/50 border-b backdrop-blur-xl">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               {/* Logo */}
-              <Link
-                href="/"
-                className="flex items-center gap-2.5 shrink-0 group"
-              >
-                <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-[0_0_15px_rgba(29,86,201,0.3)] transition-shadow duration-300">
+              <Link href="/" className="group flex shrink-0 items-center gap-2.5">
+                <div className="bg-primary flex h-9 w-9 items-center justify-center rounded-lg shadow-sm transition-shadow duration-300 group-hover:shadow-[0_0_15px_rgba(29,86,201,0.3)]">
                   <GraduationCap size={20} className="text-white" />
                 </div>
                 <div className="flex flex-col">
-                  <span className="font-display font-bold text-base leading-tight text-primary dark:text-primary-light">
+                  <span className="font-display text-primary dark:text-primary-light text-base leading-tight font-bold">
                     ZhezU
                   </span>
-                  <span className="text-[10px] leading-tight text-text-secondary-light dark:text-text-secondary-dark hidden sm:block">
+                  <span className="text-text-secondary-light dark:text-text-secondary-dark hidden text-[10px] leading-tight sm:block">
                     Жезказганский университет
                   </span>
                 </div>
               </Link>
 
               {/* Desktop mega-menu triggers */}
-              <nav
-                className="hidden lg:flex items-center gap-0.5"
-                aria-label="Main navigation"
-              >
+              <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main navigation">
                 {NAVIGATION_ITEMS.map((item) => {
                   const isActive = activeMenu === item.id;
                   return (
@@ -331,10 +312,10 @@ export function Header() {
                       <Link
                         href={item.href}
                         className={cn(
-                          'flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+                          'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                           isActive
                             ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
-                            : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark'
+                            : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
                         )}
                       >
                         {t(item.labelKey + '.title')}
@@ -342,7 +323,7 @@ export function Header() {
                           size={14}
                           className={cn(
                             'transition-transform duration-200',
-                            isActive && 'rotate-180'
+                            isActive && 'rotate-180',
                           )}
                         />
                       </Link>
@@ -355,14 +336,18 @@ export function Header() {
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setSearchOpen(true)}
-                  className="w-9 h-9 hidden md:flex items-center justify-center rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark transition-colors cursor-pointer"
+                  className="text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark hidden h-9 w-9 cursor-pointer items-center justify-center rounded-lg transition-colors md:flex"
                   aria-label={t('searchPlaceholder')}
                 >
                   <Search size={18} />
                 </button>
                 <ThemeToggle />
                 <Link href="/admission/apply">
-                  <Button size="sm" variant="secondary" className="hidden sm:inline-flex font-display">
+                  <Button
+                    size="sm"
+                    variant="secondary"
+                    className="font-display hidden sm:inline-flex"
+                  >
                     {t('apply')}
                   </Button>
                 </Link>
@@ -373,11 +358,7 @@ export function Header() {
 
           {/* Mega-menu dropdown panels (anchored to primary nav) */}
           {NAVIGATION_ITEMS.map((item) => (
-            <div
-              key={item.id}
-              onMouseEnter={handlePanelEnter}
-              onMouseLeave={handlePanelLeave}
-            >
+            <div key={item.id} onMouseEnter={handlePanelEnter} onMouseLeave={handlePanelLeave}>
               <MegaMenuPanel item={item} isOpen={activeMenu === item.id} />
             </div>
           ))}
@@ -386,8 +367,8 @@ export function Header() {
         {/* Layer 3: Audience Links */}
         <div
           className={cn(
-            'transition-all duration-300 overflow-hidden',
-            scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100'
+            'overflow-hidden transition-all duration-300',
+            scrolled ? 'max-h-0 opacity-0' : 'max-h-12 opacity-100',
           )}
         >
           <AudienceBar />
@@ -395,10 +376,7 @@ export function Header() {
       </header>
 
       {/* Search overlay (portal-like, rendered outside header flow) */}
-      <SearchOverlay
-        isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
-      />
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
 
       {/* Scrim behind mega-menu when open */}
       {activeMenu && (

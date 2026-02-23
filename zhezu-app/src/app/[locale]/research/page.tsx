@@ -29,17 +29,36 @@ export default function ResearchPage() {
   const locale = (params.locale || 'ru') as Locale;
 
   const stats = [
-    { value: '150+', label: 'Публикаций', icon: BookOpen, color: 'text-primary dark:text-primary-light', bg: 'bg-primary/10 dark:bg-primary-light/10' },
+    {
+      value: '150+',
+      label: 'Публикаций',
+      icon: BookOpen,
+      color: 'text-primary dark:text-primary-light',
+      bg: 'bg-primary/10 dark:bg-primary-light/10',
+    },
     { value: '12', label: 'Грантов', icon: Award, color: 'text-gold', bg: 'bg-gold/10' },
-    { value: '8', label: 'Конференций', icon: Calendar, color: 'text-success', bg: 'bg-success/10' },
-    { value: '5', label: 'Лабораторий', icon: FlaskConical, color: 'text-primary dark:text-primary-light', bg: 'bg-primary/10 dark:bg-primary-light/10' },
+    {
+      value: '8',
+      label: 'Конференций',
+      icon: Calendar,
+      color: 'text-success',
+      bg: 'bg-success/10',
+    },
+    {
+      value: '5',
+      label: 'Лабораторий',
+      icon: FlaskConical,
+      color: 'text-primary dark:text-primary-light',
+      bg: 'bg-primary/10 dark:bg-primary-light/10',
+    },
   ];
 
   const researchAreas = [
     {
       icon: Mountain,
       title: 'Горное дело и геология',
-      description: 'Исследования в области разработки месторождений, геомеханики, обогащения полезных ископаемых и экологии горного производства.',
+      description:
+        'Исследования в области разработки месторождений, геомеханики, обогащения полезных ископаемых и экологии горного производства.',
       projects: 5,
       researchers: 18,
       color: '#0d9488',
@@ -49,7 +68,8 @@ export default function ResearchPage() {
     {
       icon: Beaker,
       title: 'Металлургия и материалы',
-      description: 'Разработка новых сплавов и композитных материалов, оптимизация металлургических процессов, нанотехнологии.',
+      description:
+        'Разработка новых сплавов и композитных материалов, оптимизация металлургических процессов, нанотехнологии.',
       projects: 4,
       researchers: 12,
       color: '#2563eb',
@@ -59,7 +79,8 @@ export default function ResearchPage() {
     {
       icon: Leaf,
       title: 'Экология и природопользование',
-      description: 'Мониторинг окружающей среды, рекультивация земель, управление отходами и водными ресурсами региона.',
+      description:
+        'Мониторинг окружающей среды, рекультивация земель, управление отходами и водными ресурсами региона.',
       projects: 3,
       researchers: 10,
       color: '#16a34a',
@@ -69,7 +90,8 @@ export default function ResearchPage() {
     {
       icon: Cpu,
       title: 'AI и цифровые технологии',
-      description: 'Машинное обучение, компьютерное зрение, обработка данных, цифровизация промышленных процессов.',
+      description:
+        'Машинное обучение, компьютерное зрение, обработка данных, цифровизация промышленных процессов.',
       projects: 6,
       researchers: 15,
       color: '#9333ea',
@@ -94,7 +116,8 @@ export default function ResearchPage() {
       type: 'research' as const,
     },
     {
-      title: 'Экологический мониторинг промышленных зон Центрального Казахстана: методы и результаты',
+      title:
+        'Экологический мониторинг промышленных зон Центрального Казахстана: методы и результаты',
       authors: 'Бекмуратова Г.А., Омаров К.Н., Ибрагимова Л.Т.',
       journal: 'Central Asian Journal of Environmental Science',
       year: '2024',
@@ -148,16 +171,14 @@ export default function ResearchPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-gold/5" />
+      <section className="relative overflow-hidden py-20 lg:py-28">
+        <div className="from-primary/5 to-gold/5 absolute inset-0 bg-gradient-to-br via-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(29,86,201,0.08),transparent_60%)]" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <Badge className="mb-4">{t('badge')}</Badge>
-            <h1 className="text-4xl sm:text-5xl font-display font-bold mb-6">
-              {t('title')}
-            </h1>
-            <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+            <h1 className="font-display mb-6 text-4xl font-bold sm:text-5xl">{t('title')}</h1>
+            <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed">
               {t('subtitle')}
             </p>
           </div>
@@ -165,16 +186,18 @@ export default function ResearchPage() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 bg-surface-light dark:bg-surface-dark/50">
+      <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
             {stats.map((stat) => (
-              <div key={stat.label} className="text-center group">
-                <div className={`w-12 h-12 ${stat.bg} rounded-xl flex items-center justify-center mx-auto mb-3 transition-transform duration-300 group-hover:scale-110`}>
+              <div key={stat.label} className="group text-center">
+                <div
+                  className={`h-12 w-12 ${stat.bg} mx-auto mb-3 flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110`}
+                >
                   <stat.icon size={24} className={stat.color} />
                 </div>
-                <p className="text-2xl sm:text-3xl font-display font-bold">{stat.value}</p>
-                <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mt-1">
+                <p className="font-display text-2xl font-bold sm:text-3xl">{stat.value}</p>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
                   {stat.label}
                 </p>
               </div>
@@ -187,28 +210,28 @@ export default function ResearchPage() {
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-2">
+            <h2 className="font-display mb-2 text-3xl font-bold sm:text-4xl">
               Направления исследований
             </h2>
             <p className="text-text-secondary-light dark:text-text-secondary-dark">
               Основные научные направления университета
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {researchAreas.map((area) => (
               <Card key={area.title} hover glow padding="lg">
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${area.bgColor}`}
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${area.bgColor}`}
                 >
                   <area.icon size={24} className={area.textColor} />
                 </div>
-                <h3 className="text-lg font-display font-semibold mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
+                <h3 className="font-display group-hover:text-primary dark:group-hover:text-primary-light mb-2 text-lg font-semibold transition-colors">
                   {area.title}
                 </h3>
-                <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed mb-4">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 text-sm leading-relaxed">
                   {area.description}
                 </p>
-                <div className="flex items-center gap-4 text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                <div className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-4 text-xs">
                   <span className="flex items-center gap-1">
                     <FileText size={12} /> {area.projects} проектов
                   </span>
@@ -223,13 +246,11 @@ export default function ResearchPage() {
       </section>
 
       {/* Recent Publications */}
-      <section className="py-16 lg:py-24 bg-surface-light dark:bg-surface-dark/50">
+      <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
+          <div className="mb-8 flex items-end justify-between">
             <div>
-              <h2 className="text-3xl font-display font-bold mb-2">
-                Последние публикации
-              </h2>
+              <h2 className="font-display mb-2 text-3xl font-bold">Последние публикации</h2>
               <p className="text-text-secondary-light dark:text-text-secondary-dark">
                 Научные работы сотрудников университета
               </p>
@@ -240,25 +261,25 @@ export default function ResearchPage() {
               <Card key={pub.title} hover padding="lg">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
+                    <div className="mb-2 flex items-center gap-2">
                       <Badge variant={pub.type === 'research' ? 'default' : 'info'}>
                         {pub.type === 'research' ? 'Исследование' : 'Публикация'}
                       </Badge>
-                      <span className="text-xs text-text-secondary-light dark:text-text-secondary-dark">
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
                         {pub.year}
                       </span>
                     </div>
-                    <h3 className="font-display font-semibold mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
+                    <h3 className="font-display group-hover:text-primary dark:group-hover:text-primary-light mb-2 font-semibold transition-colors">
                       {pub.title}
                     </h3>
-                    <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-1">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mb-1 text-sm">
                       {pub.authors}
                     </p>
-                    <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
                       <BookOpen size={12} /> {pub.journal}
                     </p>
                   </div>
-                  <div className="shrink-0 hidden sm:block">
+                  <div className="hidden shrink-0 sm:block">
                     <Button variant="ghost" size="sm" icon={<ExternalLink size={14} />}>
                       Читать
                     </Button>
@@ -274,29 +295,30 @@ export default function ResearchPage() {
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-2">
-              Лаборатории
-            </h2>
+            <h2 className="font-display mb-2 text-3xl font-bold sm:text-4xl">Лаборатории</h2>
             <p className="text-text-secondary-light dark:text-text-secondary-dark">
               Научно-исследовательские лаборатории университета
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {labs.map((lab) => (
               <Card key={lab.title} hover glow padding="lg">
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${lab.bg}`}
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${lab.bg}`}
                 >
                   <lab.icon size={24} className={lab.color} />
                 </div>
-                <h3 className="text-lg font-display font-semibold mb-2 group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
+                <h3 className="font-display group-hover:text-primary dark:group-hover:text-primary-light mb-2 text-lg font-semibold transition-colors">
                   {lab.title}
                 </h3>
-                <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark leading-relaxed mb-3">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-3 text-sm leading-relaxed">
                   {lab.description}
                 </p>
                 <div className="flex items-center gap-2 text-xs">
-                  <Microscope size={12} className="text-text-secondary-light dark:text-text-secondary-dark" />
+                  <Microscope
+                    size={12}
+                    className="text-text-secondary-light dark:text-text-secondary-dark"
+                  />
                   <span className="text-text-secondary-light dark:text-text-secondary-dark">
                     Руководитель: {lab.head}
                   </span>
@@ -310,21 +332,27 @@ export default function ResearchPage() {
       {/* CTA */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-dark to-[#0f3380] p-8 sm:p-12 lg:p-16 text-white text-center">
+          <div className="from-primary via-primary-dark relative overflow-hidden rounded-2xl bg-gradient-to-br to-[#0f3380] p-8 text-center text-white sm:p-12 lg:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(230,179,37,0.2),transparent_60%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(59,130,246,0.15),transparent_50%)]" />
             <div className="relative">
-              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10">
                 <Microscope size={32} className="text-gold" />
               </div>
-              <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+              <h2 className="font-display mb-4 text-3xl font-bold sm:text-4xl">
                 Заинтересованы в исследованиях?
               </h2>
-              <p className="text-white/70 mb-8 max-w-xl mx-auto leading-relaxed">
-                Присоединяйтесь к нашим научным проектам. Мы открыты для сотрудничества с исследователями, студентами и индустриальными партнёрами.
+              <p className="mx-auto mb-8 max-w-xl leading-relaxed text-white/70">
+                Присоединяйтесь к нашим научным проектам. Мы открыты для сотрудничества с
+                исследователями, студентами и индустриальными партнёрами.
               </p>
               <Link href="/contact">
-                <Button variant="secondary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  icon={<ArrowRight size={18} />}
+                  iconPosition="right"
+                >
                   Связаться с нами
                 </Button>
               </Link>

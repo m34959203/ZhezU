@@ -26,9 +26,9 @@ export function Skeleton({
   return (
     <div
       className={cn(
-        'animate-pulse bg-surface-hover-light dark:bg-surface-hover-dark',
+        'bg-surface-hover-light dark:bg-surface-hover-dark animate-pulse',
         variantStyles[variant],
-        className
+        className,
       )}
       style={{
         width: typeof width === 'number' ? `${width}px` : width,

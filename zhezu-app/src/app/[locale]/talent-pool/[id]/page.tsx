@@ -23,12 +23,17 @@ export async function generateMetadata({
   const studentProfile = ALL_PROFILES.find((p) => p.id === id);
   if (studentProfile) {
     const t = await getTranslations({ locale, namespace: 'talent' });
-    const stageLabel = studentProfile.stage === 'applicant' ? 'Talapker' :
-      studentProfile.stage === 'student' ? `${studentProfile.year}-курс` : 'Graduate';
+    const stageLabel =
+      studentProfile.stage === 'applicant'
+        ? 'Talapker'
+        : studentProfile.stage === 'student'
+          ? `${studentProfile.year}-курс`
+          : 'Graduate';
 
     return {
       title: `${studentProfile.name} — ${stageLabel} | ZhezU`,
-      description: studentProfile.professionalSummary?.[locale as 'kk' | 'ru' | 'en'] ||
+      description:
+        studentProfile.professionalSummary?.[locale as 'kk' | 'ru' | 'en'] ||
         `${studentProfile.name} - ${t('title')}`,
     };
   }
@@ -58,7 +63,11 @@ export default async function ProfilePage({
   const studentProfile = ALL_PROFILES.find((p) => p.id === id);
   if (studentProfile) {
     // Use full StudentProfileView for students/graduates with portfolio
-    if (studentProfile.stage === 'student' || studentProfile.stage === 'graduate' || studentProfile.stage === 'alumni') {
+    if (
+      studentProfile.stage === 'student' ||
+      studentProfile.stage === 'graduate' ||
+      studentProfile.stage === 'alumni'
+    ) {
       return <StudentProfileView profile={studentProfile} />;
     }
     // Applicants in new system still use gamified view

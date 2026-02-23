@@ -60,24 +60,56 @@ export default function ProgramDetailPage({
 
   // Sample curriculum structure
   const curriculum = [
-    { year: 1, title: t('curriculum.year1'), subjects: [t('curriculum.generalEd'), t('curriculum.math'), t('curriculum.physics'), t('curriculum.kazLang')] },
-    { year: 2, title: t('curriculum.year2'), subjects: [t('curriculum.coreSubjects'), t('curriculum.electives'), t('curriculum.practicum')] },
-    { year: 3, title: t('curriculum.year3'), subjects: [t('curriculum.specialization'), t('curriculum.research'), t('curriculum.internship')] },
-    { year: 4, title: t('curriculum.year4'), subjects: [t('curriculum.thesis'), t('curriculum.preDiploma'), t('curriculum.finalExam')] },
+    {
+      year: 1,
+      title: t('curriculum.year1'),
+      subjects: [
+        t('curriculum.generalEd'),
+        t('curriculum.math'),
+        t('curriculum.physics'),
+        t('curriculum.kazLang'),
+      ],
+    },
+    {
+      year: 2,
+      title: t('curriculum.year2'),
+      subjects: [
+        t('curriculum.coreSubjects'),
+        t('curriculum.electives'),
+        t('curriculum.practicum'),
+      ],
+    },
+    {
+      year: 3,
+      title: t('curriculum.year3'),
+      subjects: [
+        t('curriculum.specialization'),
+        t('curriculum.research'),
+        t('curriculum.internship'),
+      ],
+    },
+    {
+      year: 4,
+      title: t('curriculum.year4'),
+      subjects: [t('curriculum.thesis'), t('curriculum.preDiploma'), t('curriculum.finalExam')],
+    },
   ];
 
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative py-16 lg:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-gold/5" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/academics" className="inline-flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light mb-6 transition-colors">
+      <section className="relative overflow-hidden py-16 lg:py-24">
+        <div className="from-primary/5 to-gold/5 absolute inset-0 bg-gradient-to-br via-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/academics"
+            className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light mb-6 inline-flex items-center gap-2 text-sm transition-colors"
+          >
             <ArrowLeft size={16} />
             {t('backToCatalog')}
           </Link>
 
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="mb-4 flex flex-wrap gap-2">
             <Badge variant="primary">{degreeLabel[program.degree]}</Badge>
             {department && (
               <Badge style={{ backgroundColor: `${department.color}15`, color: department.color }}>
@@ -87,16 +119,21 @@ export default function ProgramDetailPage({
             <Badge>{program.code}</Badge>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
+          <h1 className="font-display mb-4 text-3xl font-bold sm:text-4xl lg:text-5xl">
             {program.name[locale]}
           </h1>
-          <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark max-w-3xl mb-8">
+          <p className="text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-3xl text-lg">
             {program.description[locale]}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <Link href="/admission">
-              <Button variant="primary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+              <Button
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight size={18} />}
+                iconPosition="right"
+              >
                 {t('applyNow')}
               </Button>
             </Link>
@@ -105,50 +142,62 @@ export default function ProgramDetailPage({
       </section>
 
       {/* Key Info Cards */}
-      <section className="py-12 bg-surface-light dark:bg-surface-dark/50">
+      <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             <Card padding="md">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/10 dark:bg-primary-light/10 rounded-lg flex items-center justify-center">
+                <div className="bg-primary/10 dark:bg-primary-light/10 flex h-10 w-10 items-center justify-center rounded-lg">
                   <Clock size={20} className="text-primary dark:text-primary-light" />
                 </div>
                 <div>
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('info.duration')}</p>
-                  <p className="font-display font-bold">{program.duration} {t('info.years')}</p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t('info.duration')}
+                  </p>
+                  <p className="font-display font-bold">
+                    {program.duration} {t('info.years')}
+                  </p>
                 </div>
               </div>
             </Card>
             <Card padding="md">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gold/10 rounded-lg flex items-center justify-center">
+                <div className="bg-gold/10 flex h-10 w-10 items-center justify-center rounded-lg">
                   <BookOpen size={20} className="text-gold" />
                 </div>
                 <div>
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('info.credits')}</p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t('info.credits')}
+                  </p>
                   <p className="font-display font-bold">{program.credits} ECTS</p>
                 </div>
               </div>
             </Card>
             <Card padding="md">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-success/10 rounded-lg flex items-center justify-center">
+                <div className="bg-success/10 flex h-10 w-10 items-center justify-center rounded-lg">
                   <GraduationCap size={20} className="text-success" />
                 </div>
                 <div>
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('info.degree')}</p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t('info.degree')}
+                  </p>
                   <p className="font-display font-bold">{degreeLabel[program.degree]}</p>
                 </div>
               </div>
             </Card>
             <Card padding="md">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-primary/10 dark:bg-primary-light/10 rounded-lg flex items-center justify-center">
+                <div className="bg-primary/10 dark:bg-primary-light/10 flex h-10 w-10 items-center justify-center rounded-lg">
                   <Globe size={20} className="text-primary dark:text-primary-light" />
                 </div>
                 <div>
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('info.languages')}</p>
-                  <p className="font-display font-bold">{program.languages.join(', ').toUpperCase()}</p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t('info.languages')}
+                  </p>
+                  <p className="font-display font-bold">
+                    {program.languages.join(', ').toUpperCase()}
+                  </p>
                 </div>
               </div>
             </Card>
@@ -159,19 +208,24 @@ export default function ProgramDetailPage({
       {/* Curriculum */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-display font-bold mb-8">{t('curriculum.title')}</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <h2 className="font-display mb-8 text-3xl font-bold">{t('curriculum.title')}</h2>
+          <div className="grid gap-6 md:grid-cols-2">
             {curriculum.slice(0, program.duration).map((year) => (
               <Card key={year.year} padding="lg" hover>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-primary/10 dark:bg-primary-light/10 rounded-full flex items-center justify-center">
-                    <span className="font-display font-bold text-primary dark:text-primary-light">{year.year}</span>
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="bg-primary/10 dark:bg-primary-light/10 flex h-10 w-10 items-center justify-center rounded-full">
+                    <span className="font-display text-primary dark:text-primary-light font-bold">
+                      {year.year}
+                    </span>
                   </div>
-                  <h3 className="font-display font-semibold text-lg">{year.title}</h3>
+                  <h3 className="font-display text-lg font-semibold">{year.title}</h3>
                 </div>
                 <ul className="space-y-2">
                   {year.subjects.map((subject, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+                    <li
+                      key={i}
+                      className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-2 text-sm"
+                    >
                       <CheckCircle size={14} className="text-success shrink-0" />
                       {subject}
                     </li>
@@ -185,19 +239,21 @@ export default function ProgramDetailPage({
 
       {/* Department Info */}
       {department && (
-        <section className="py-16 lg:py-24 bg-surface-light dark:bg-surface-dark/50">
+        <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Card padding="lg">
-              <div className="flex items-center gap-4 mb-4">
+              <div className="mb-4 flex items-center gap-4">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl"
                   style={{ backgroundColor: `${department.color}15`, color: department.color }}
                 >
                   <Building2 size={24} />
                 </div>
                 <div>
-                  <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark">{t('department.label')}</p>
-                  <h3 className="font-display font-semibold text-lg">{department.name[locale]}</h3>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t('department.label')}
+                  </p>
+                  <h3 className="font-display text-lg font-semibold">{department.name[locale]}</h3>
                 </div>
               </div>
             </Card>
@@ -208,13 +264,18 @@ export default function ProgramDetailPage({
       {/* CTA */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary-dark to-[#0f3380] p-8 sm:p-12 text-white text-center">
+          <div className="from-primary via-primary-dark relative overflow-hidden rounded-2xl bg-gradient-to-br to-[#0f3380] p-8 text-center text-white sm:p-12">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(230,179,37,0.2),transparent_60%)]" />
             <div className="relative">
-              <h2 className="text-3xl font-display font-bold mb-4">{t('cta.title')}</h2>
-              <p className="text-white/70 mb-8 max-w-xl mx-auto">{t('cta.description')}</p>
+              <h2 className="font-display mb-4 text-3xl font-bold">{t('cta.title')}</h2>
+              <p className="mx-auto mb-8 max-w-xl text-white/70">{t('cta.description')}</p>
               <Link href="/admission">
-                <Button variant="secondary" size="lg" icon={<ArrowRight size={18} />} iconPosition="right">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  icon={<ArrowRight size={18} />}
+                  iconPosition="right"
+                >
                   {t('cta.button')}
                 </Button>
               </Link>
