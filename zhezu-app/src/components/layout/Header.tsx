@@ -149,15 +149,12 @@ function MegaMenuPanel({
     >
       {/* shadow/backdrop */}
       <div className="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shadow-xl">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8">
           <div
-            className={cn(
-              'grid gap-8',
-              item.columns.length <= 4 ? 'grid-cols-4' : 'grid-cols-5'
-            )}
+            className="flex flex-wrap gap-8"
           >
             {item.columns.map((column) => (
-              <div key={column.titleKey}>
+              <div key={column.titleKey} className="min-w-[180px] flex-1">
                 <h3 className="font-display font-semibold text-sm text-primary dark:text-primary-light mb-3 uppercase tracking-wide">
                   {t(column.titleKey)}
                 </h3>
