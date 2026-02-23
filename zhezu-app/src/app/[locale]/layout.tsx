@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { organizationJsonLd, generateHreflangLinks } from '@/lib/seo';
 import '../globals.css';
 
 export async function generateMetadata({
@@ -40,6 +41,9 @@ export default async function LocaleLayout({
 
   const messages = (await import(`@/i18n/messages/${locale}.json`)).default;
 
+  const orgJsonLd = organizationJsonLd();
+  const hreflangLinks = generateHreflangLinks('/');
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
@@ -48,6 +52,18 @@ export default async function LocaleLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
+        />
+        {hreflangLinks.map((link) => (
+          <link
+            key={link.hrefLang}
+            rel={link.rel}
+            hrefLang={link.hrefLang}
+            href={link.href}
+          />
+        ))}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
       <body className="min-h-screen flex flex-col">

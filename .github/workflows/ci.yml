@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: zhezu-app/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: zhezu-app
+      - run: pnpm lint
+        working-directory: zhezu-app
+      - run: pnpm prettier --check .
+        working-directory: zhezu-app
+
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: zhezu-app/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: zhezu-app
+      - run: pnpm tsc --noEmit
+        working-directory: zhezu-app
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: zhezu-app/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: zhezu-app
+      - run: pnpm test:ci
+        working-directory: zhezu-app
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [lint, typecheck, test]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: zhezu-app/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: zhezu-app
+      - run: pnpm build
+        working-directory: zhezu-app

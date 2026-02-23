@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'react';
 
-type BadgeVariant = 'default' | 'success' | 'warning' | 'error' | 'info';
+type BadgeVariant = 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
 
 interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: BadgeVariant;
@@ -9,6 +9,7 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const variants: Record<BadgeVariant, string> = {
   default: 'bg-primary/10 text-primary dark:bg-primary-light/10 dark:text-primary-light',
+  primary: 'bg-primary text-white',
   success: 'bg-success/10 text-success',
   warning: 'bg-warning/10 text-warning',
   error: 'bg-error/10 text-error',
