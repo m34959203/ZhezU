@@ -26,6 +26,7 @@ import {
   Mail,
   Award,
 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { Applicant, Locale } from '@/types';
 import {
   APPLICANTS,
@@ -38,7 +39,7 @@ import {
 } from '@/lib/talapker-data';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 
-const CATEGORY_ICONS: Record<string, React.ComponentType<any>> = {
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
   documents: FileCheck,
   tests: ClipboardList,
   explore: BookOpen,

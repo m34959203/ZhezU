@@ -8,13 +8,13 @@ import {
   GraduationCap,
   Phone,
   Mail,
-  X,
   ChevronDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { MobileMenu } from './MobileMenu';
+import { SearchOverlay } from '@/components/search/SearchOverlay';
 import { Button } from '@/components/ui/Button';
 import {
   NAVIGATION_ITEMS,
@@ -223,68 +223,6 @@ function AudienceBar() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Search Overlay                                                     */
-/* ------------------------------------------------------------------ */
-function SearchOverlay({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  const t = useTranslations('megaNav');
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isOpen]);
-
-  useEffect(() => {
-    function handleEsc(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
-    }
-    if (isOpen) {
-      document.addEventListener('keydown', handleEsc);
-    }
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 z-[60] flex items-start justify-center pt-32">
-      <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      <div className="relative w-full max-w-2xl mx-4 bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-300">
-        <div className="flex items-center gap-3 px-5 py-4">
-          <Search
-            size={20}
-            className="text-text-secondary-light dark:text-text-secondary-dark shrink-0"
-          />
-          <input
-            ref={inputRef}
-            type="search"
-            placeholder={t('searchPlaceholder')}
-            className="flex-1 bg-transparent text-lg text-text-primary-light dark:text-text-primary-dark placeholder:text-text-secondary-light/60 dark:placeholder:text-text-secondary-dark/60 outline-none"
-          />
-          <button
-            onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark transition-colors cursor-pointer"
-            aria-label="Close search"
-          >
-            <X size={18} className="text-text-secondary-light dark:text-text-secondary-dark" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ================================================================== */
 /*  MAIN HEADER                                                        */
 /* ================================================================== */
@@ -306,10 +244,12 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* ---- close menu when route changes ---- */
-  useEffect(() => {
+  /* ---- close menu when route changes (state-during-render pattern) ---- */
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setActiveMenu(null);
-  }, [pathname]);
+  }
 
   /* ---- hover handlers with a small grace period ---- */
   const handleMenuEnter = useCallback((id: string) => {

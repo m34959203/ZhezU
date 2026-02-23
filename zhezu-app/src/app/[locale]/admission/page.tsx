@@ -88,7 +88,7 @@ export default function AdmissionPage() {
                     <prog.icon size={28} className={prog.color} />
                   </div>
                   <h3 className="text-xl font-display font-bold mb-2">
-                    {t(`programs.${prog.key}` as any)}
+                    {t(`programs.${prog.key}` as Parameters<typeof t>[0])}
                   </h3>
                   <p className="text-3xl font-display font-bold text-primary dark:text-primary-light mb-1">
                     {prog.count}

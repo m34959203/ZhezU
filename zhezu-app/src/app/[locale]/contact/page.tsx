@@ -36,6 +36,8 @@ export default function ContactPage() {
   const t = useTranslations('contact');
   const [submitted, setSubmitted] = useState(false);
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -51,10 +53,26 @@ export default function ContactPage() {
     },
   });
 
-  async function onSubmit(_data: ContactFormData) {
-    // Simulate network request
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSubmitted(true);
+  async function onSubmit(data: ContactFormData) {
+    setSubmitError(null);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        setSubmitError(result.errors?._form?.[0] ?? 'Something went wrong. Please try again.');
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError('Network error. Please check your connection and try again.');
+    }
   }
 
   return (
@@ -142,6 +160,9 @@ export default function ContactPage() {
                         <p className="text-xs text-error mt-1">{errors.message.message}</p>
                       )}
                     </div>
+                    {submitError && (
+                      <p className="text-sm text-error" role="alert">{submitError}</p>
+                    )}
                     <Button
                       type="submit"
                       size="lg"
