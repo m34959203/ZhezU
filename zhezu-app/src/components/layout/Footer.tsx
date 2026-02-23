@@ -68,24 +68,22 @@ export function Footer() {
   return (
     <footer className="bg-bg-dark text-white">
       {/* ── Section 1: Newsletter ────────────────────────────────── */}
-      <div className="bg-gradient-to-br from-primary to-primary-dark">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
-          <div className="relative overflow-hidden rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 p-8 sm:p-10">
+      <div className="from-primary to-primary-dark bg-gradient-to-br">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sm:p-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(230,179,37,0.15),transparent_60%)]" />
-            <div className="relative flex flex-col sm:flex-row items-center gap-6">
+            <div className="relative flex flex-col items-center gap-6 sm:flex-row">
               <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-xl font-display font-bold text-white mb-1">
+                <h3 className="font-display mb-1 text-xl font-bold text-white">
                   {t('newsletter.title')}
                 </h3>
-                <p className="text-white/60 text-sm">
-                  {t('newsletter.desc')}
-                </p>
+                <p className="text-sm text-white/60">{t('newsletter.desc')}</p>
               </div>
-              <div className="flex w-full sm:w-auto gap-2">
+              <div className="flex w-full gap-2 sm:w-auto">
                 <input
                   type="email"
                   placeholder="email@example.com"
-                  className="flex-1 sm:w-64 h-10 px-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold/50"
+                  className="focus:ring-gold/50 h-10 flex-1 rounded-lg border border-white/20 bg-white/10 px-4 text-sm text-white placeholder-white/40 focus:ring-2 focus:outline-none sm:w-64"
                 />
                 <Button variant="secondary" size="md" icon={<Send size={16} />}>
                   {t('newsletter.subscribe')}
@@ -97,23 +95,18 @@ export function Footer() {
       </div>
 
       {/* ── Section 2: Main 4-Column Grid ────────────────────────── */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
-
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Column 1: University Info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-[0_0_15px_rgba(29,86,201,0.4)] transition-shadow duration-300">
+            <Link href="/" className="group mb-4 flex items-center gap-2.5">
+              <div className="bg-primary flex h-9 w-9 items-center justify-center rounded-lg shadow-sm transition-shadow duration-300 group-hover:shadow-[0_0_15px_rgba(29,86,201,0.4)]">
                 <GraduationCap size={20} className="text-white" />
               </div>
-              <span className="font-display font-bold text-lg text-white">
-                ZhezU
-              </span>
+              <span className="font-display text-lg font-bold text-white">ZhezU</span>
             </Link>
 
-            <p className="text-sm text-white/60 leading-relaxed mb-6">
-              {t('description')}
-            </p>
+            <p className="mb-6 text-sm leading-relaxed text-white/60">{t('description')}</p>
 
             {/* Social links */}
             <div className="flex items-center gap-3">
@@ -126,9 +119,9 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:bg-white/10 hover:text-white transition-colors duration-200"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/60 transition-colors duration-200 hover:bg-white/10 hover:text-white"
                   >
-                    {IconComp && <IconComp className="w-4 h-4" />}
+                    {IconComp && <IconComp className="h-4 w-4" />}
                   </a>
                 );
               })}
@@ -137,7 +130,7 @@ export function Footer() {
 
           {/* Column 2: Навигация */}
           <div>
-            <h3 className="font-display font-semibold text-sm text-white mb-5 uppercase tracking-wide">
+            <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
               Навигация
             </h3>
             <ul className="space-y-3">
@@ -145,7 +138,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                    className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -156,7 +149,7 @@ export function Footer() {
 
           {/* Column 3: Студентам */}
           <div>
-            <h3 className="font-display font-semibold text-sm text-white mb-5 uppercase tracking-wide">
+            <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
               Студентам
             </h3>
             <ul className="space-y-3">
@@ -164,7 +157,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                    className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -175,59 +168,57 @@ export function Footer() {
 
           {/* Column 4: Контакты */}
           <div>
-            <h3 className="font-display font-semibold text-sm text-white mb-5 uppercase tracking-wide">
+            <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
               {t('contacts')}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="text-white/40 mt-0.5 shrink-0" />
-                <span className="text-sm text-white/60 leading-relaxed">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-white/40" />
+                <span className="text-sm leading-relaxed text-white/60">
                   {UNIVERSITY.address.ru}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="text-white/40 shrink-0" />
+                <Phone size={16} className="shrink-0 text-white/40" />
                 <a
                   href={`tel:${UNIVERSITY.phone.replace(/[\s()-]/g, '')}`}
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                  className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
                   {UNIVERSITY.phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={16} className="text-white/40 shrink-0" />
+                <Mail size={16} className="shrink-0 text-white/40" />
                 <a
                   href={`mailto:${UNIVERSITY.email}`}
-                  className="text-sm text-white/60 hover:text-white transition-colors duration-200"
+                  className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
                   {UNIVERSITY.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Clock size={16} className="text-white/40 shrink-0" />
-                <span className="text-sm text-white/60">
-                  Пн-Пт: 09:00 — 18:00
-                </span>
+                <Clock size={16} className="shrink-0 text-white/40" />
+                <span className="text-sm text-white/60">Пн-Пт: 09:00 — 18:00</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* ── Section 3: Bottom Bar ──────────────────────────────── */}
-        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-white/40">
             &copy; 2026 Жезказганский университет им. О.А. Байконурова. Все права защищены.
           </p>
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="text-xs text-white/40 hover:text-white transition-colors duration-200"
+              className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
               Политика конфиденциальности
             </Link>
             <Link
               href="/sitemap"
-              className="text-xs text-white/40 hover:text-white transition-colors duration-200"
+              className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
               Карта сайта
             </Link>

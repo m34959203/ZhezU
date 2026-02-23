@@ -15,7 +15,7 @@ interface BreadcrumbProps {
 export function Breadcrumb({ items, className }: BreadcrumbProps) {
   return (
     <nav aria-label="Breadcrumb" className={cn('flex items-center', className)}>
-      <ol className="flex items-center gap-1.5 flex-wrap">
+      <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 
@@ -23,7 +23,7 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             <li key={index} className="flex items-center gap-1.5">
               {index > 0 && (
                 <ChevronRight
-                  className="h-3.5 w-3.5 shrink-0 text-text-secondary-light/50 dark:text-text-secondary-dark/50"
+                  className="text-text-secondary-light/50 dark:text-text-secondary-dark/50 h-3.5 w-3.5 shrink-0"
                   aria-hidden="true"
                 />
               )}
@@ -31,10 +31,10 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                 <span
                   aria-current={isLast ? 'page' : undefined}
                   className={cn(
-                    'text-sm max-w-[200px] truncate',
+                    'max-w-[200px] truncate text-sm',
                     isLast
-                      ? 'font-medium text-text-primary-light dark:text-text-primary-dark'
-                      : 'text-text-secondary-light dark:text-text-secondary-dark'
+                      ? 'text-text-primary-light dark:text-text-primary-dark font-medium'
+                      : 'text-text-secondary-light dark:text-text-secondary-dark',
                   )}
                   title={item.label}
                 >
@@ -44,11 +44,11 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
                 <Link
                   href={item.href}
                   className={cn(
-                    'text-sm max-w-[200px] truncate',
+                    'max-w-[200px] truncate text-sm',
                     'text-text-secondary-light dark:text-text-secondary-dark',
                     'hover:text-primary dark:hover:text-primary-light',
                     'transition-colors duration-200',
-                    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm'
+                    'focus-visible:ring-primary/50 rounded-sm focus-visible:ring-2 focus-visible:outline-none',
                   )}
                   title={item.label}
                 >

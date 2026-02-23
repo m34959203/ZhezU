@@ -54,22 +54,20 @@ export default async function LocaleLayout({
           rel="stylesheet"
         />
         {hreflangLinks.map((link) => (
-          <link
-            key={link.hrefLang}
-            rel={link.rel}
-            hrefLang={link.hrefLang}
-            href={link.href}
-          />
+          <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
         />
       </head>
-      <body className="min-h-screen flex flex-col">
+      <body className="flex min-h-screen flex-col">
         <ThemeProvider>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-primary focus:text-white">
+            <a
+              href="#main-content"
+              className="focus:bg-primary sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:text-white"
+            >
               Skip to main content
             </a>
             <Header />

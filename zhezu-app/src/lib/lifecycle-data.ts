@@ -4,11 +4,7 @@
  * ══════════════════════════════════════════════════════════════════════════════
  */
 
-import type {
-  LifecycleQuest,
-  Achievement,
-  StudentProfile,
-} from './student-lifecycle';
+import type { LifecycleQuest, Achievement, StudentProfile } from './student-lifecycle';
 
 // ════════════════════════════════════════════════════════════════════════════
 // КВЕСТЫ: ТАЛАПКЕР (APPLICANT)
@@ -19,7 +15,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-doc-1',
     title: { kk: 'Профиль құру', ru: 'Создать профиль', en: 'Create Profile' },
-    description: { kk: 'Толық профиль құрыңыз', ru: 'Заполните профиль полностью', en: 'Complete your profile' },
+    description: {
+      kk: 'Толық профиль құрыңыз',
+      ru: 'Заполните профиль полностью',
+      en: 'Complete your profile',
+    },
     stage: 'applicant',
     category: 'documents',
     xpReward: 50,
@@ -31,7 +31,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-doc-2',
     title: { kk: 'ЖСН жүктеу', ru: 'Загрузить ИИН', en: 'Upload IIN' },
-    description: { kk: 'Жеке сәйкестендіру нөмірін жүктеңіз', ru: 'Загрузите индивидуальный идентификационный номер', en: 'Upload your individual identification number' },
+    description: {
+      kk: 'Жеке сәйкестендіру нөмірін жүктеңіз',
+      ru: 'Загрузите индивидуальный идентификационный номер',
+      en: 'Upload your individual identification number',
+    },
     stage: 'applicant',
     category: 'documents',
     xpReward: 100,
@@ -43,7 +47,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-doc-3',
     title: { kk: 'Аттестат жүктеу', ru: 'Загрузить аттестат', en: 'Upload Certificate' },
-    description: { kk: 'Мектеп аттестатын жүктеңіз', ru: 'Загрузите школьный аттестат', en: 'Upload your school certificate' },
+    description: {
+      kk: 'Мектеп аттестатын жүктеңіз',
+      ru: 'Загрузите школьный аттестат',
+      en: 'Upload your school certificate',
+    },
     stage: 'applicant',
     category: 'documents',
     xpReward: 150,
@@ -55,7 +63,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-doc-4',
     title: { kk: 'Медициналық анықтама', ru: 'Медицинская справка', en: 'Medical Certificate' },
-    description: { kk: 'Денсаулық анықтамасын жүктеңіз (086-У)', ru: 'Загрузите справку о здоровье (086-У)', en: 'Upload health certificate (086-U)' },
+    description: {
+      kk: 'Денсаулық анықтамасын жүктеңіз (086-У)',
+      ru: 'Загрузите справку о здоровье (086-У)',
+      en: 'Upload health certificate (086-U)',
+    },
     stage: 'applicant',
     category: 'documents',
     xpReward: 100,
@@ -69,7 +81,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-test-1',
     title: { kk: 'ЕНТ тіркелу', ru: 'Регистрация на ЕНТ', en: 'UNT Registration' },
-    description: { kk: 'Ұлттық тестілеуге тіркеліңіз', ru: 'Зарегистрируйтесь на Единое национальное тестирование', en: 'Register for the Unified National Test' },
+    description: {
+      kk: 'Ұлттық тестілеуге тіркеліңіз',
+      ru: 'Зарегистрируйтесь на Единое национальное тестирование',
+      en: 'Register for the Unified National Test',
+    },
     stage: 'applicant',
     category: 'tests',
     xpReward: 100,
@@ -81,7 +97,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-test-2',
     title: { kk: 'Пробный ЕНТ өту', ru: 'Пройти пробный ЕНТ', en: 'Take Practice UNT' },
-    description: { kk: 'Онлайн пробный тест тапсырыңыз', ru: 'Пройдите онлайн пробный тест', en: 'Complete an online practice test' },
+    description: {
+      kk: 'Онлайн пробный тест тапсырыңыз',
+      ru: 'Пройдите онлайн пробный тест',
+      en: 'Complete an online practice test',
+    },
     stage: 'applicant',
     category: 'tests',
     xpReward: 200,
@@ -94,7 +114,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-test-3',
     title: { kk: 'ЕНТ 80+ балл', ru: 'ЕНТ 80+ баллов', en: 'UNT 80+ Score' },
-    description: { kk: 'ЕНТ-де 80+ балл жинаңыз', ru: 'Наберите 80+ баллов на ЕНТ', en: 'Score 80+ on UNT' },
+    description: {
+      kk: 'ЕНТ-де 80+ балл жинаңыз',
+      ru: 'Наберите 80+ баллов на ЕНТ',
+      en: 'Score 80+ on UNT',
+    },
     stage: 'applicant',
     category: 'tests',
     xpReward: 500,
@@ -108,7 +132,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-test-4',
     title: { kk: 'ЕНТ 100+ балл', ru: 'ЕНТ 100+ баллов', en: 'UNT 100+ Score' },
-    description: { kk: 'ЕНТ-де 100+ балл жинаңыз', ru: 'Наберите 100+ баллов на ЕНТ', en: 'Score 100+ on UNT' },
+    description: {
+      kk: 'ЕНТ-де 100+ балл жинаңыз',
+      ru: 'Наберите 100+ баллов на ЕНТ',
+      en: 'Score 100+ on UNT',
+    },
     stage: 'applicant',
     category: 'tests',
     xpReward: 1000,
@@ -124,7 +152,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-explore-1',
     title: { kk: 'Виртуалды тур', ru: 'Виртуальный тур', en: 'Virtual Tour' },
-    description: { kk: 'Кампустың виртуалды турын қараңыз', ru: 'Просмотрите виртуальный тур кампуса', en: 'Watch the campus virtual tour' },
+    description: {
+      kk: 'Кампустың виртуалды турын қараңыз',
+      ru: 'Просмотрите виртуальный тур кампуса',
+      en: 'Watch the campus virtual tour',
+    },
     stage: 'applicant',
     category: 'explore',
     xpReward: 75,
@@ -136,7 +168,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-explore-2',
     title: { kk: 'Ашық есік күні', ru: 'День открытых дверей', en: 'Open House Day' },
-    description: { kk: 'Ашық есік күніне қатысыңыз', ru: 'Посетите день открытых дверей', en: 'Attend the open house event' },
+    description: {
+      kk: 'Ашық есік күніне қатысыңыз',
+      ru: 'Посетите день открытых дверей',
+      en: 'Attend the open house event',
+    },
     stage: 'applicant',
     category: 'explore',
     xpReward: 200,
@@ -148,7 +184,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-explore-3',
     title: { kk: 'Бағдарлама таңдау', ru: 'Выбрать программу', en: 'Choose Program' },
-    description: { kk: 'Оқу бағдарламасын таңдаңыз', ru: 'Выберите образовательную программу', en: 'Select your educational program' },
+    description: {
+      kk: 'Оқу бағдарламасын таңдаңыз',
+      ru: 'Выберите образовательную программу',
+      en: 'Select your educational program',
+    },
     stage: 'applicant',
     category: 'explore',
     xpReward: 150,
@@ -160,7 +200,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-explore-4',
     title: { kk: 'Кафедрамен кездесу', ru: 'Встреча с кафедрой', en: 'Meet the Department' },
-    description: { kk: 'Кафедра оқытушысымен онлайн кездесіңіз', ru: 'Проведите онлайн-встречу с преподавателем кафедры', en: 'Have an online meeting with a department professor' },
+    description: {
+      kk: 'Кафедра оқытушысымен онлайн кездесіңіз',
+      ru: 'Проведите онлайн-встречу с преподавателем кафедры',
+      en: 'Have an online meeting with a department professor',
+    },
     stage: 'applicant',
     category: 'explore',
     xpReward: 250,
@@ -174,7 +218,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-social-1',
     title: { kk: 'Telegram қосылу', ru: 'Вступить в Telegram', en: 'Join Telegram' },
-    description: { kk: 'ZhezU талапкерлер чатына қосылыңыз', ru: 'Вступите в чат абитуриентов ZhezU', en: 'Join the ZhezU applicants chat' },
+    description: {
+      kk: 'ZhezU талапкерлер чатына қосылыңыз',
+      ru: 'Вступите в чат абитуриентов ZhezU',
+      en: 'Join the ZhezU applicants chat',
+    },
     stage: 'applicant',
     category: 'social',
     xpReward: 50,
@@ -186,7 +234,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-social-2',
     title: { kk: 'Студентпен сөйлесу', ru: 'Поговорить со студентом', en: 'Chat with Student' },
-    description: { kk: 'Қазіргі студентпен кеңес алыңыз', ru: 'Получите совет от действующего студента', en: 'Get advice from a current student' },
+    description: {
+      kk: 'Қазіргі студентпен кеңес алыңыз',
+      ru: 'Получите совет от действующего студента',
+      en: 'Get advice from a current student',
+    },
     stage: 'applicant',
     category: 'social',
     xpReward: 150,
@@ -198,7 +250,11 @@ export const APPLICANT_QUESTS: LifecycleQuest[] = [
   {
     id: 'app-social-3',
     title: { kk: 'Дос шақыру', ru: 'Пригласить друга', en: 'Invite a Friend' },
-    description: { kk: 'Досыңызды ZhezU Talapker-ге шақырыңыз', ru: 'Пригласите друга в ZhezU Talapker', en: 'Invite a friend to ZhezU Talapker' },
+    description: {
+      kk: 'Досыңызды ZhezU Talapker-ге шақырыңыз',
+      ru: 'Пригласите друга в ZhezU Talapker',
+      en: 'Invite a friend to ZhezU Talapker',
+    },
     stage: 'applicant',
     category: 'social',
     xpReward: 200,
@@ -219,7 +275,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-1-acad-1',
     title: { kk: 'Бірінші сессия', ru: 'Первая сессия', en: 'First Session' },
-    description: { kk: 'Бірінші сессияны сәтті тапсырыңыз', ru: 'Успешно сдайте первую сессию', en: 'Successfully pass your first session' },
+    description: {
+      kk: 'Бірінші сессияны сәтті тапсырыңыз',
+      ru: 'Успешно сдайте первую сессию',
+      en: 'Successfully pass your first session',
+    },
     stage: 'student',
     year: 1,
     category: 'academic',
@@ -233,7 +293,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-1-acad-2',
     title: { kk: 'GPA 3.0+', ru: 'GPA 3.0+', en: 'GPA 3.0+' },
-    description: { kk: 'Бірінші жылда GPA 3.0+ алыңыз', ru: 'Получите GPA 3.0+ в первый год', en: 'Achieve GPA 3.0+ in first year' },
+    description: {
+      kk: 'Бірінші жылда GPA 3.0+ алыңыз',
+      ru: 'Получите GPA 3.0+ в первый год',
+      en: 'Achieve GPA 3.0+ in first year',
+    },
     stage: 'student',
     year: 1,
     category: 'academic',
@@ -250,7 +314,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-1-skill-1',
     title: { kk: 'AutoCAD негіздері', ru: 'Основы AutoCAD', en: 'AutoCAD Basics' },
-    description: { kk: 'AutoCAD бағдарламасының негіздерін үйреніңіз', ru: 'Изучите основы программы AutoCAD', en: 'Learn the basics of AutoCAD software' },
+    description: {
+      kk: 'AutoCAD бағдарламасының негіздерін үйреніңіз',
+      ru: 'Изучите основы программы AutoCAD',
+      en: 'Learn the basics of AutoCAD software',
+    },
     stage: 'student',
     year: 1,
     category: 'skills',
@@ -264,7 +332,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-1-skill-2',
     title: { kk: 'Python негіздері', ru: 'Основы Python', en: 'Python Basics' },
-    description: { kk: 'Python бағдарламалау тілін үйреніңіз', ru: 'Изучите язык программирования Python', en: 'Learn Python programming language' },
+    description: {
+      kk: 'Python бағдарламалау тілін үйреніңіз',
+      ru: 'Изучите язык программирования Python',
+      en: 'Learn Python programming language',
+    },
     stage: 'student',
     year: 1,
     category: 'skills',
@@ -280,7 +352,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-2-car-1',
     title: { kk: 'Бірінші стажировка', ru: 'Первая стажировка', en: 'First Internship' },
-    description: { kk: 'Жазғы стажировкадан өтіңіз', ru: 'Пройдите летнюю стажировку', en: 'Complete a summer internship' },
+    description: {
+      kk: 'Жазғы стажировкадан өтіңіз',
+      ru: 'Пройдите летнюю стажировку',
+      en: 'Complete a summer internship',
+    },
     stage: 'student',
     year: 2,
     category: 'career',
@@ -295,7 +371,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-2-car-2',
     title: { kk: 'CV құру', ru: 'Создать CV', en: 'Create CV' },
-    description: { kk: 'Кәсіби түйіндеме жасаңыз', ru: 'Создайте профессиональное резюме', en: 'Create a professional resume' },
+    description: {
+      kk: 'Кәсіби түйіндеме жасаңыз',
+      ru: 'Создайте профессиональное резюме',
+      en: 'Create a professional resume',
+    },
     stage: 'student',
     year: 2,
     category: 'career',
@@ -310,7 +390,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-2-res-1',
     title: { kk: 'Ғылыми мақала', ru: 'Научная статья', en: 'Research Paper' },
-    description: { kk: 'Бірінші ғылыми мақаланы жариялаңыз', ru: 'Опубликуйте первую научную статью', en: 'Publish your first research paper' },
+    description: {
+      kk: 'Бірінші ғылыми мақаланы жариялаңыз',
+      ru: 'Опубликуйте первую научную статью',
+      en: 'Publish your first research paper',
+    },
     stage: 'student',
     year: 2,
     category: 'research',
@@ -323,8 +407,16 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   },
   {
     id: 'stu-3-res-1',
-    title: { kk: 'Конференция баяндамасы', ru: 'Доклад на конференции', en: 'Conference Presentation' },
-    description: { kk: 'Ғылыми конференцияда баяндама жасаңыз', ru: 'Выступите с докладом на научной конференции', en: 'Present at a scientific conference' },
+    title: {
+      kk: 'Конференция баяндамасы',
+      ru: 'Доклад на конференции',
+      en: 'Conference Presentation',
+    },
+    description: {
+      kk: 'Ғылыми конференцияда баяндама жасаңыз',
+      ru: 'Выступите с докладом на научной конференции',
+      en: 'Present at a scientific conference',
+    },
     stage: 'student',
     year: 3,
     category: 'research',
@@ -339,7 +431,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-3-lead-1',
     title: { kk: 'Студенттік кеңес', ru: 'Студсовет', en: 'Student Council' },
-    description: { kk: 'Студенттік кеңеске мүше болыңыз', ru: 'Станьте членом студсовета', en: 'Become a student council member' },
+    description: {
+      kk: 'Студенттік кеңеске мүше болыңыз',
+      ru: 'Станьте членом студсовета',
+      en: 'Become a student council member',
+    },
     stage: 'student',
     year: 3,
     category: 'leadership',
@@ -353,7 +449,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-3-lead-2',
     title: { kk: 'Mentor болу', ru: 'Стать ментором', en: 'Become a Mentor' },
-    description: { kk: '1-курс студенттеріне ментор болыңыз', ru: 'Станьте ментором для первокурсников', en: 'Become a mentor for freshmen' },
+    description: {
+      kk: '1-курс студенттеріне ментор болыңыз',
+      ru: 'Станьте ментором для первокурсников',
+      en: 'Become a mentor for freshmen',
+    },
     stage: 'student',
     year: 3,
     category: 'leadership',
@@ -369,7 +469,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-4-thesis-1',
     title: { kk: 'Дипломдық жұмыс тақырыбы', ru: 'Тема дипломной работы', en: 'Thesis Topic' },
-    description: { kk: 'Дипломдық жұмыс тақырыбын бекітіңіз', ru: 'Утвердите тему дипломной работы', en: 'Approve your thesis topic' },
+    description: {
+      kk: 'Дипломдық жұмыс тақырыбын бекітіңіз',
+      ru: 'Утвердите тему дипломной работы',
+      en: 'Approve your thesis topic',
+    },
     stage: 'student',
     year: 4,
     category: 'academic',
@@ -382,7 +486,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-4-thesis-2',
     title: { kk: 'Дипломды қорғау', ru: 'Защита диплома', en: 'Thesis Defense' },
-    description: { kk: 'Дипломдық жұмысты сәтті қорғаңыз', ru: 'Успешно защитите дипломную работу', en: 'Successfully defend your thesis' },
+    description: {
+      kk: 'Дипломдық жұмысты сәтті қорғаңыз',
+      ru: 'Успешно защитите дипломную работу',
+      en: 'Successfully defend your thesis',
+    },
     stage: 'student',
     year: 4,
     category: 'academic',
@@ -396,7 +504,11 @@ export const STUDENT_QUESTS: LifecycleQuest[] = [
   {
     id: 'stu-4-job-1',
     title: { kk: 'Жұмысқа орналасу', ru: 'Трудоустройство', en: 'Get Employed' },
-    description: { kk: 'Түлектер күніне дейін жұмысқа орналасыңыз', ru: 'Трудоустройтесь до дня выпуска', en: 'Get employed before graduation day' },
+    description: {
+      kk: 'Түлектер күніне дейін жұмысқа орналасыңыз',
+      ru: 'Трудоустройтесь до дня выпуска',
+      en: 'Get employed before graduation day',
+    },
     stage: 'student',
     year: 4,
     category: 'career',
@@ -424,7 +536,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-unt-80',
     title: { kk: 'ЕНТ жұлдызы', ru: 'Звезда ЕНТ', en: 'UNT Star' },
-    description: { kk: 'ЕНТ-де 80+ балл алдыңыз', ru: 'Набрали 80+ баллов на ЕНТ', en: 'Scored 80+ on UNT' },
+    description: {
+      kk: 'ЕНТ-де 80+ балл алдыңыз',
+      ru: 'Набрали 80+ баллов на ЕНТ',
+      en: 'Scored 80+ on UNT',
+    },
     icon: 'Star',
     color: '#F59E0B',
     type: 'academic',
@@ -437,7 +553,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-unt-100',
     title: { kk: 'ЕНТ чемпионы', ru: 'Чемпион ЕНТ', en: 'UNT Champion' },
-    description: { kk: 'ЕНТ-де 100+ балл алдыңыз', ru: 'Набрали 100+ баллов на ЕНТ', en: 'Scored 100+ on UNT' },
+    description: {
+      kk: 'ЕНТ-де 100+ балл алдыңыз',
+      ru: 'Набрали 100+ баллов на ЕНТ',
+      en: 'Scored 100+ on UNT',
+    },
     icon: 'Trophy',
     color: '#E6B325',
     type: 'academic',
@@ -450,7 +570,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-referral',
     title: { kk: 'Елші', ru: 'Амбассадор', en: 'Ambassador' },
-    description: { kk: 'Досыңызды ZhezU-ге шақырдыңыз', ru: 'Пригласили друга в ZhezU', en: 'Invited a friend to ZhezU' },
+    description: {
+      kk: 'Досыңызды ZhezU-ге шақырдыңыз',
+      ru: 'Пригласили друга в ZhezU',
+      en: 'Invited a friend to ZhezU',
+    },
     icon: 'UserPlus',
     color: '#8B5CF6',
     type: 'social',
@@ -478,7 +602,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-first-intern',
     title: { kk: 'Бірінші тәжірибе', ru: 'Первый опыт', en: 'First Experience' },
-    description: { kk: 'Бірінші стажировкадан өттіңіз', ru: 'Прошли первую стажировку', en: 'Completed first internship' },
+    description: {
+      kk: 'Бірінші стажировкадан өттіңіз',
+      ru: 'Прошли первую стажировку',
+      en: 'Completed first internship',
+    },
     icon: 'Briefcase',
     color: '#F59E0B',
     type: 'professional',
@@ -493,7 +621,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-first-paper',
     title: { kk: 'Зерттеуші', ru: 'Исследователь', en: 'Researcher' },
-    description: { kk: 'Бірінші ғылыми мақаланы жариялдыңыз', ru: 'Опубликовали первую научную статью', en: 'Published first research paper' },
+    description: {
+      kk: 'Бірінші ғылыми мақаланы жариялдыңыз',
+      ru: 'Опубликовали первую научную статью',
+      en: 'Published first research paper',
+    },
     icon: 'FileText',
     color: '#22C55E',
     type: 'research',
@@ -506,7 +638,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-mentor',
     title: { kk: 'Жол көрсетуші', ru: 'Наставник', en: 'Guide' },
-    description: { kk: 'Кіші курс студенттеріне ментор болдыңыз', ru: 'Стали ментором для младших курсов', en: 'Became a mentor for junior students' },
+    description: {
+      kk: 'Кіші курс студенттеріне ментор болдыңыз',
+      ru: 'Стали ментором для младших курсов',
+      en: 'Became a mentor for junior students',
+    },
     icon: 'Users',
     color: '#8B5CF6',
     type: 'leadership',
@@ -520,7 +656,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-thesis-defense',
     title: { kk: 'Бакалавр', ru: 'Бакалавр', en: 'Bachelor' },
-    description: { kk: 'Дипломдық жұмысты сәтті қорғадыңыз', ru: 'Успешно защитили дипломную работу', en: 'Successfully defended thesis' },
+    description: {
+      kk: 'Дипломдық жұмысты сәтті қорғадыңыз',
+      ru: 'Успешно защитили дипломную работу',
+      en: 'Successfully defended thesis',
+    },
     icon: 'GraduationCap',
     color: '#E6B325',
     type: 'academic',
@@ -534,7 +674,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-employed',
     title: { kk: 'Жұмыс тапқан', ru: 'Трудоустроен', en: 'Employed' },
-    description: { kk: 'Түлектер күніне дейін жұмысқа орналастыңыз', ru: 'Трудоустроились до выпуска', en: 'Got employed before graduation' },
+    description: {
+      kk: 'Түлектер күніне дейін жұмысқа орналастыңыз',
+      ru: 'Трудоустроились до выпуска',
+      en: 'Got employed before graduation',
+    },
     icon: 'Building2',
     color: '#22C55E',
     type: 'professional',
@@ -549,8 +693,16 @@ export const ACHIEVEMENTS: Achievement[] = [
   // ─── Professional Certificates ───
   {
     id: 'ach-safety-cert',
-    title: { kk: 'Қауіпсіздік сертификаты', ru: 'Сертификат безопасности', en: 'Safety Certificate' },
-    description: { kk: 'Өнеркәсіптік қауіпсіздік сертификатын алдыңыз', ru: 'Получили сертификат промышленной безопасности', en: 'Obtained industrial safety certificate' },
+    title: {
+      kk: 'Қауіпсіздік сертификаты',
+      ru: 'Сертификат безопасности',
+      en: 'Safety Certificate',
+    },
+    description: {
+      kk: 'Өнеркәсіптік қауіпсіздік сертификатын алдыңыз',
+      ru: 'Получили сертификат промышленной безопасности',
+      en: 'Obtained industrial safety certificate',
+    },
     icon: 'Shield',
     color: '#EF4444',
     type: 'professional',
@@ -564,7 +716,11 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: 'ach-python-cert',
     title: { kk: 'Python маманы', ru: 'Специалист Python', en: 'Python Specialist' },
-    description: { kk: 'Python сертификатын алдыңыз', ru: 'Получили сертификат Python', en: 'Obtained Python certification' },
+    description: {
+      kk: 'Python сертификатын алдыңыз',
+      ru: 'Получили сертификат Python',
+      en: 'Obtained Python certification',
+    },
     icon: 'Code',
     color: '#3B82F6',
     type: 'professional',
@@ -576,8 +732,16 @@ export const ACHIEVEMENTS: Achievement[] = [
   },
   {
     id: 'ach-best-capstone',
-    title: { kk: 'Үздік дипломдық жоба', ru: 'Лучший капстоун проект', en: 'Best Capstone Project' },
-    description: { kk: 'Жылдың үздік дипломдық жобасы', ru: 'Лучший дипломный проект года', en: 'Best capstone project of the year' },
+    title: {
+      kk: 'Үздік дипломдық жоба',
+      ru: 'Лучший капстоун проект',
+      en: 'Best Capstone Project',
+    },
+    description: {
+      kk: 'Жылдың үздік дипломдық жобасы',
+      ru: 'Лучший дипломный проект года',
+      en: 'Best capstone project of the year',
+    },
     icon: 'Trophy',
     color: '#E6B325',
     type: 'academic',
@@ -599,7 +763,8 @@ export const ACHIEVEMENTS: Achievement[] = [
 export const AIZHAN_PROFILE: StudentProfile = {
   id: 'aizhan-001',
   name: 'Айжан Ахметова',
-  photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face',
+  photo:
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face',
   email: 'aizhan.akhmetova@student.zhezu.edu.kz',
   phone: '+7 777 123 4567',
 
@@ -621,38 +786,104 @@ export const AIZHAN_PROFILE: StudentProfile = {
     city: 'Жезказган',
     graduationYear: 2022,
     untScore: 98,
-    olympiads: [
-      { name: 'Областная олимпиада по физике', place: 2, year: 2021 },
-    ],
+    olympiads: [{ name: 'Областная олимпиада по физике', place: 2, year: 2021 }],
   },
 
   gamification: {
     level: 19,
     xp: 11500,
     completedQuests: [
-      'app-doc-1', 'app-doc-2', 'app-doc-3', 'app-doc-4',
-      'app-test-1', 'app-test-2', 'app-test-3',
-      'app-explore-1', 'app-explore-2', 'app-explore-3', 'app-explore-4',
-      'app-social-1', 'app-social-2',
-      'stu-1-acad-1', 'stu-1-acad-2', 'stu-1-skill-1', 'stu-1-skill-2',
-      'stu-2-car-1', 'stu-2-car-2', 'stu-2-res-1',
-      'stu-3-res-1', 'stu-3-lead-1', 'stu-3-lead-2',
+      'app-doc-1',
+      'app-doc-2',
+      'app-doc-3',
+      'app-doc-4',
+      'app-test-1',
+      'app-test-2',
+      'app-test-3',
+      'app-explore-1',
+      'app-explore-2',
+      'app-explore-3',
+      'app-explore-4',
+      'app-social-1',
+      'app-social-2',
+      'stu-1-acad-1',
+      'stu-1-acad-2',
+      'stu-1-skill-1',
+      'stu-1-skill-2',
+      'stu-2-car-1',
+      'stu-2-car-2',
+      'stu-2-res-1',
+      'stu-3-res-1',
+      'stu-3-lead-1',
+      'stu-3-lead-2',
       'stu-4-thesis-1',
     ],
     earnedAchievements: [
-      'ach-unt-80', 'ach-gpa-3', 'ach-first-intern', 'ach-first-paper',
-      'ach-mentor', 'ach-safety-cert', 'ach-python-cert', 'ach-best-capstone',
+      'ach-unt-80',
+      'ach-gpa-3',
+      'ach-first-intern',
+      'ach-first-paper',
+      'ach-mentor',
+      'ach-safety-cert',
+      'ach-python-cert',
+      'ach-best-capstone',
     ],
     currentStreak: 15,
     longestStreak: 45,
   },
 
   skills: [
-    { id: 'geo-modeling', name: { kk: 'Геологиялық модельдеу', ru: 'Геологическое моделирование', en: 'Geological Modelling' }, categoryId: 'technical', level: 'expert', percentage: 95, verifiedBy: 'Micromine Certificate', source: 'certificate' },
-    { id: 'data-analysis', name: { kk: 'Деректерді талдау', ru: 'Анализ данных', en: 'Data Analysis' }, categoryId: 'technical', level: 'advanced', percentage: 85, source: 'course' },
-    { id: 'python', name: { kk: 'Python/Pandas', ru: 'Python/Pandas', en: 'Python/Pandas' }, categoryId: 'tools', level: 'advanced', percentage: 80, verifiedBy: 'Python Institute', source: 'certificate' },
-    { id: 'project-mgmt', name: { kk: 'Жобаларды басқару', ru: 'Управление проектами', en: 'Project Management' }, categoryId: 'soft', level: 'intermediate', percentage: 65, source: 'internship' },
-    { id: 'safety', name: { kk: 'Өнеркәсіптік қауіпсіздік', ru: 'Промышленная безопасность', en: 'Industrial Safety' }, categoryId: 'technical', level: 'certified', percentage: 100, verifiedBy: 'Kazakhmys Corporation', source: 'certificate' },
+    {
+      id: 'geo-modeling',
+      name: {
+        kk: 'Геологиялық модельдеу',
+        ru: 'Геологическое моделирование',
+        en: 'Geological Modelling',
+      },
+      categoryId: 'technical',
+      level: 'expert',
+      percentage: 95,
+      verifiedBy: 'Micromine Certificate',
+      source: 'certificate',
+    },
+    {
+      id: 'data-analysis',
+      name: { kk: 'Деректерді талдау', ru: 'Анализ данных', en: 'Data Analysis' },
+      categoryId: 'technical',
+      level: 'advanced',
+      percentage: 85,
+      source: 'course',
+    },
+    {
+      id: 'python',
+      name: { kk: 'Python/Pandas', ru: 'Python/Pandas', en: 'Python/Pandas' },
+      categoryId: 'tools',
+      level: 'advanced',
+      percentage: 80,
+      verifiedBy: 'Python Institute',
+      source: 'certificate',
+    },
+    {
+      id: 'project-mgmt',
+      name: { kk: 'Жобаларды басқару', ru: 'Управление проектами', en: 'Project Management' },
+      categoryId: 'soft',
+      level: 'intermediate',
+      percentage: 65,
+      source: 'internship',
+    },
+    {
+      id: 'safety',
+      name: {
+        kk: 'Өнеркәсіптік қауіпсіздік',
+        ru: 'Промышленная безопасность',
+        en: 'Industrial Safety',
+      },
+      categoryId: 'technical',
+      level: 'certified',
+      percentage: 100,
+      verifiedBy: 'Kazakhmys Corporation',
+      source: 'certificate',
+    },
   ],
 
   skillRadar: {
@@ -674,7 +905,11 @@ export const AIZHAN_PROFILE: StudentProfile = {
       startDate: '2023-06-01',
       endDate: '2023-08-31',
       current: false,
-      description: { kk: 'Геологиялық деректерді талдау', ru: 'Анализ геологических данных и моделирование', en: 'Geological data analysis and modeling' },
+      description: {
+        kk: 'Геологиялық деректерді талдау',
+        ru: 'Анализ геологических данных и моделирование',
+        en: 'Geological data analysis and modeling',
+      },
       skills: ['geo-modeling', 'data-analysis'],
       achievements: ['ach-first-intern', 'ach-safety-cert'],
       location: 'Жезказган',
@@ -686,7 +921,11 @@ export const AIZHAN_PROFILE: StudentProfile = {
       type: 'research',
       startDate: '2024-01-01',
       current: true,
-      description: { kk: 'ML қолдану арқылы кен өндіруді оңтайландыру', ru: 'Оптимизация добычи руды с использованием ML', en: 'Ore extraction optimization using ML' },
+      description: {
+        kk: 'ML қолдану арқылы кен өндіруді оңтайландыру',
+        ru: 'Оптимизация добычи руды с использованием ML',
+        en: 'Ore extraction optimization using ML',
+      },
       skills: ['python', 'data-analysis'],
       location: 'Жезказган',
     },
@@ -695,13 +934,25 @@ export const AIZHAN_PROFILE: StudentProfile = {
   portfolio: [
     {
       id: 'port-1',
-      title: { kk: 'ML арқылы кен өндіруді оңтайландыру', ru: 'Оптимизация добычи руды с помощью ML', en: 'Optimization of Ore Extraction using ML' },
-      description: { kk: 'Python және Random Forest алгоритмдерін қолдана отырып болжамдық модель әзірледім', ru: 'Разработала предиктивную модель с использованием Python и алгоритмов Random Forest', en: 'Developed a predictive model using Python and Random Forest algorithms to optimize drilling patterns' },
+      title: {
+        kk: 'ML арқылы кен өндіруді оңтайландыру',
+        ru: 'Оптимизация добычи руды с помощью ML',
+        en: 'Optimization of Ore Extraction using ML',
+      },
+      description: {
+        kk: 'Python және Random Forest алгоритмдерін қолдана отырып болжамдық модель әзірледім',
+        ru: 'Разработала предиктивную модель с использованием Python и алгоритмов Random Forest',
+        en: 'Developed a predictive model using Python and Random Forest algorithms to optimize drilling patterns',
+      },
       type: 'research',
       thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400',
       year: 2023,
       links: [
-        { type: 'paper', url: '#', label: { kk: 'Мақаланы оқу', ru: 'Читать статью', en: 'Read Paper' } },
+        {
+          type: 'paper',
+          url: '#',
+          label: { kk: 'Мақаланы оқу', ru: 'Читать статью', en: 'Read Paper' },
+        },
         { type: 'github', url: '#', label: { kk: 'Деректер', ru: 'Данные', en: 'View Data' } },
       ],
       tags: ['Machine Learning', 'Python', 'Mining'],
@@ -709,13 +960,25 @@ export const AIZHAN_PROFILE: StudentProfile = {
     },
     {
       id: 'port-2',
-      title: { kk: 'Терең шахталар үшін желдету жүйесін қайта жобалау', ru: 'Редизайн системы вентиляции для глубоких шахт', en: 'Ventilation System Redesign for Deep Mines' },
-      description: { kk: 'Жезқазған кен орны үшін энергия үнемдейтін желдету жүйесі', ru: 'Энергоэффективная вентиляционная система для Жезказганского комплекса', en: 'Energy-efficient ventilation network for Zhezkazgan Complex underground operations' },
+      title: {
+        kk: 'Терең шахталар үшін желдету жүйесін қайта жобалау',
+        ru: 'Редизайн системы вентиляции для глубоких шахт',
+        en: 'Ventilation System Redesign for Deep Mines',
+      },
+      description: {
+        kk: 'Жезқазған кен орны үшін энергия үнемдейтін желдету жүйесі',
+        ru: 'Энергоэффективная вентиляционная система для Жезказганского комплекса',
+        en: 'Energy-efficient ventilation network for Zhezkazgan Complex underground operations',
+      },
       type: 'project',
       thumbnail: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400',
       year: 2022,
       links: [
-        { type: 'presentation', url: '#', label: { kk: 'Презентация', ru: 'Презентация', en: 'View Presentation' } },
+        {
+          type: 'presentation',
+          url: '#',
+          label: { kk: 'Презентация', ru: 'Презентация', en: 'View Presentation' },
+        },
       ],
       collaborators: ['Олжас Касымов', 'Дана Сериккызы'],
       tags: ['Ventilation', 'Engineering', 'Energy Efficiency'],
@@ -753,7 +1016,8 @@ export const AIZHAN_PROFILE: StudentProfile = {
 export const NURSULTAN_PROFILE: StudentProfile = {
   id: 'nursultan-002',
   name: 'Нурсултан Омаров',
-  photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+  photo:
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
   email: 'nursultan.omarov@student.zhezu.edu.kz',
 
   stage: 'student',
@@ -779,9 +1043,15 @@ export const NURSULTAN_PROFILE: StudentProfile = {
     level: 12,
     xp: 1800,
     completedQuests: [
-      'app-doc-1', 'app-doc-2', 'app-doc-3', 'app-doc-4',
-      'app-test-1', 'app-test-2', 'app-test-3',
-      'app-explore-1', 'app-explore-3',
+      'app-doc-1',
+      'app-doc-2',
+      'app-doc-3',
+      'app-doc-4',
+      'app-test-1',
+      'app-test-2',
+      'app-test-3',
+      'app-explore-1',
+      'app-explore-3',
       'app-social-1',
       'stu-1-acad-1',
     ],
@@ -791,8 +1061,22 @@ export const NURSULTAN_PROFILE: StudentProfile = {
   },
 
   skills: [
-    { id: 'chemistry', name: { kk: 'Химия', ru: 'Химия', en: 'Chemistry' }, categoryId: 'technical', level: 'intermediate', percentage: 50, source: 'course' },
-    { id: 'math', name: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' }, categoryId: 'technical', level: 'intermediate', percentage: 55, source: 'course' },
+    {
+      id: 'chemistry',
+      name: { kk: 'Химия', ru: 'Химия', en: 'Chemistry' },
+      categoryId: 'technical',
+      level: 'intermediate',
+      percentage: 50,
+      source: 'course',
+    },
+    {
+      id: 'math',
+      name: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' },
+      categoryId: 'technical',
+      level: 'intermediate',
+      percentage: 55,
+      source: 'course',
+    },
   ],
 
   skillRadar: {
@@ -831,7 +1115,8 @@ export const NURSULTAN_PROFILE: StudentProfile = {
 export const MADINA_PROFILE: StudentProfile = {
   id: 'madina-003',
   name: 'Мадина Жумабекова',
-  photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
+  photo:
+    'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
   email: 'madina.zhumabekova@gmail.com',
 
   stage: 'applicant',
@@ -851,10 +1136,14 @@ export const MADINA_PROFILE: StudentProfile = {
     level: 5,
     xp: 950,
     completedQuests: [
-      'app-doc-1', 'app-doc-2',
-      'app-test-1', 'app-test-2',
-      'app-explore-1', 'app-explore-3',
-      'app-social-1', 'app-social-2',
+      'app-doc-1',
+      'app-doc-2',
+      'app-test-1',
+      'app-test-2',
+      'app-explore-1',
+      'app-explore-3',
+      'app-social-1',
+      'app-social-2',
     ],
     earnedAchievements: [],
     currentStreak: 3,
@@ -890,11 +1179,7 @@ export const MADINA_PROFILE: StudentProfile = {
 // ЭКСПОРТ ВСЕХ ПРОФИЛЕЙ
 // ════════════════════════════════════════════════════════════════════════════
 
-export const ALL_PROFILES: StudentProfile[] = [
-  AIZHAN_PROFILE,
-  NURSULTAN_PROFILE,
-  MADINA_PROFILE,
-];
+export const ALL_PROFILES: StudentProfile[] = [AIZHAN_PROFILE, NURSULTAN_PROFILE, MADINA_PROFILE];
 
 // ════════════════════════════════════════════════════════════════════════════
 // HELPER: Получить профиль по ID

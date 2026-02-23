@@ -9,11 +9,7 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Button } from '@/components/ui/Button';
-import {
-  NAVIGATION_ITEMS,
-  AUDIENCE_LINKS,
-  UTILITY_CONTACTS,
-} from '@/lib/navigation';
+import { NAVIGATION_ITEMS, AUDIENCE_LINKS, UTILITY_CONTACTS } from '@/lib/navigation';
 
 /* ------------------------------------------------------------------ */
 /*  Accordion Item                                                     */
@@ -30,19 +26,19 @@ function AccordionNavItem({
   const t = useTranslations('megaNav');
 
   return (
-    <div className="border-b border-border-light/30 dark:border-border-dark/30">
+    <div className="border-border-light/30 dark:border-border-dark/30 border-b">
       {/* Trigger */}
       <button
         onClick={onToggle}
-        className="flex items-center justify-between w-full py-4 px-1 text-left cursor-pointer group"
+        className="group flex w-full cursor-pointer items-center justify-between px-1 py-4 text-left"
         aria-expanded={isExpanded}
       >
         <span
           className={cn(
-            'font-display font-semibold text-base transition-colors',
+            'font-display text-base font-semibold transition-colors',
             isExpanded
               ? 'text-primary dark:text-primary-light'
-              : 'text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light'
+              : 'text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light',
           )}
         >
           {t(item.labelKey + '.title')}
@@ -51,7 +47,7 @@ function AccordionNavItem({
           size={18}
           className={cn(
             'text-text-secondary-light dark:text-text-secondary-dark transition-transform duration-300',
-            isExpanded && 'rotate-180 text-primary dark:text-primary-light'
+            isExpanded && 'text-primary dark:text-primary-light rotate-180',
           )}
         />
       </button>
@@ -66,10 +62,10 @@ function AccordionNavItem({
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="pb-4 px-1 space-y-4">
+            <div className="space-y-4 px-1 pb-4">
               {item.columns.map((column) => (
                 <div key={column.titleKey}>
-                  <h4 className="text-xs font-semibold uppercase tracking-wider text-primary/70 dark:text-primary-light/70 mb-2">
+                  <h4 className="text-primary/70 dark:text-primary-light/70 mb-2 text-xs font-semibold tracking-wider uppercase">
                     {t(column.titleKey)}
                   </h4>
                   <ul className="space-y-1">
@@ -77,7 +73,7 @@ function AccordionNavItem({
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="block py-1.5 pl-3 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light border-l-2 border-transparent hover:border-primary dark:hover:border-primary-light transition-all duration-200"
+                          className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light hover:border-primary dark:hover:border-primary-light block border-l-2 border-transparent py-1.5 pl-3 text-sm transition-all duration-200"
                         >
                           {t(link.labelKey)}
                         </Link>
@@ -90,7 +86,7 @@ function AccordionNavItem({
               {/* View all link */}
               <Link
                 href={item.href}
-                className="inline-block text-sm font-medium text-primary dark:text-primary-light mt-2 hover:underline underline-offset-4"
+                className="text-primary dark:text-primary-light mt-2 inline-block text-sm font-medium underline-offset-4 hover:underline"
               >
                 {t(item.labelKey + '.title')} &rarr;
               </Link>
@@ -140,7 +136,7 @@ export function MobileMenu() {
       {/* Hamburger trigger */}
       <button
         onClick={() => setOpen(true)}
-        className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark transition-colors cursor-pointer"
+        className="text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg transition-colors lg:hidden"
         aria-label="Menu"
       >
         <Menu size={20} />
@@ -167,29 +163,29 @@ export function MobileMenu() {
 
             {/* Panel */}
             <motion.div
-              className="absolute inset-0 bg-bg-light dark:bg-bg-dark flex flex-col"
+              className="bg-bg-light dark:bg-bg-dark absolute inset-0 flex flex-col"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
             >
               {/* Header row */}
-              <div className="flex items-center justify-between px-5 py-4 border-b border-border-light/50 dark:border-border-dark/50">
+              <div className="border-border-light/50 dark:border-border-dark/50 flex items-center justify-between border-b px-5 py-4">
                 <Link
                   href="/"
-                  className="flex items-center gap-2.5 group"
+                  className="group flex items-center gap-2.5"
                   onClick={() => setOpen(false)}
                 >
-                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                  <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
                     <GraduationCap size={18} className="text-white" />
                   </div>
-                  <span className="font-display font-bold text-lg text-primary dark:text-primary-light">
+                  <span className="font-display text-primary dark:text-primary-light text-lg font-bold">
                     ZhezU
                   </span>
                 </Link>
                 <button
                   onClick={() => setOpen(false)}
-                  className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark transition-colors cursor-pointer"
+                  className="hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg transition-colors"
                   aria-label="Close menu"
                 >
                   <X size={22} className="text-text-primary-light dark:text-text-primary-dark" />
@@ -204,7 +200,7 @@ export function MobileMenu() {
                     <Button
                       size="lg"
                       variant="secondary"
-                      className="w-full font-display text-base mb-6"
+                      className="font-display mb-6 w-full text-base"
                     >
                       {t('apply')}
                     </Button>
@@ -223,8 +219,8 @@ export function MobileMenu() {
                   </nav>
 
                   {/* Audience links */}
-                  <div className="mt-6 pt-6 border-t border-border-light/50 dark:border-border-dark/50">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider text-text-secondary-light dark:text-text-secondary-dark mb-3">
+                  <div className="border-border-light/50 dark:border-border-dark/50 mt-6 border-t pt-6">
+                    <h3 className="text-text-secondary-light dark:text-text-secondary-dark mb-3 text-xs font-semibold tracking-wider uppercase">
                       {/* Quick links label — no i18n key needed, uses audience links directly */}
                     </h3>
                     <div className="grid grid-cols-2 gap-2">
@@ -232,7 +228,7 @@ export function MobileMenu() {
                         <Link
                           key={link.id}
                           href={link.href}
-                          className="flex items-center justify-center py-3 px-4 rounded-xl bg-surface-light dark:bg-surface-dark text-sm font-medium text-text-primary-light dark:text-text-primary-dark hover:bg-primary/10 dark:hover:bg-primary-light/10 hover:text-primary dark:hover:text-primary-light transition-colors border border-border-light/30 dark:border-border-dark/30"
+                          className="bg-surface-light dark:bg-surface-dark text-text-primary-light dark:text-text-primary-dark hover:bg-primary/10 dark:hover:bg-primary-light/10 hover:text-primary dark:hover:text-primary-light border-border-light/30 dark:border-border-dark/30 flex items-center justify-center rounded-xl border px-4 py-3 text-sm font-medium transition-colors"
                           onClick={() => setOpen(false)}
                         >
                           {t(link.labelKey)}
@@ -242,17 +238,17 @@ export function MobileMenu() {
                   </div>
 
                   {/* Contact info */}
-                  <div className="mt-6 pt-6 border-t border-border-light/50 dark:border-border-dark/50 space-y-3">
+                  <div className="border-border-light/50 dark:border-border-dark/50 mt-6 space-y-3 border-t pt-6">
                     <a
                       href={UTILITY_CONTACTS.phone.href}
-                      className="flex items-center gap-2.5 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors"
+                      className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light flex items-center gap-2.5 text-sm transition-colors"
                     >
                       <Phone size={16} />
                       <span>{UTILITY_CONTACTS.phone.label}</span>
                     </a>
                     <a
                       href={UTILITY_CONTACTS.email.href}
-                      className="flex items-center gap-2.5 text-sm text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light transition-colors"
+                      className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light flex items-center gap-2.5 text-sm transition-colors"
                     >
                       <Mail size={16} />
                       <span>{UTILITY_CONTACTS.email.label}</span>
@@ -262,12 +258,12 @@ export function MobileMenu() {
               </div>
 
               {/* Bottom bar: theme + language */}
-              <div className="px-5 py-4 border-t border-border-light/50 dark:border-border-dark/50 flex items-center justify-between bg-surface-light/50 dark:bg-surface-dark/50">
+              <div className="border-border-light/50 dark:border-border-dark/50 bg-surface-light/50 dark:bg-surface-dark/50 flex items-center justify-between border-t px-5 py-4">
                 <div className="flex items-center gap-2">
                   <ThemeToggle />
                   <LanguageSwitcher />
                 </div>
-                <span className="text-xs text-text-secondary-light/60 dark:text-text-secondary-dark/60">
+                <span className="text-text-secondary-light/60 dark:text-text-secondary-dark/60 text-xs">
                   &copy; 2026 ZhezU
                 </span>
               </div>

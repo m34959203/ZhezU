@@ -43,7 +43,7 @@ export function NewsCard({ article, locale }: NewsCardProps) {
   const categoryLabel = CATEGORY_LABELS[article.category]?.[locale] ?? article.category;
 
   return (
-    <Link href={`/life/news/${article.id}`} className="block group">
+    <Link href={`/life/news/${article.id}`} className="group block">
       <Card hover padding="none" className="h-full overflow-hidden">
         {/* Image area */}
         <div className="relative h-48 w-full overflow-hidden">
@@ -56,7 +56,7 @@ export function NewsCard({ article, locale }: NewsCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-gold" />
+            <div className="from-primary via-primary-dark to-gold absolute inset-0 bg-gradient-to-br" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
@@ -70,16 +70,16 @@ export function NewsCard({ article, locale }: NewsCardProps) {
 
         {/* Content */}
         <div className="p-5">
-          <h3 className="font-display font-semibold text-lg leading-snug text-text-primary-light dark:text-white group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-300 line-clamp-2">
+          <h3 className="font-display text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light line-clamp-2 text-lg leading-snug font-semibold transition-colors duration-300 dark:text-white">
             {article.title[locale]}
           </h3>
 
-          <p className="mt-2 text-sm text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
+          <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 line-clamp-2 text-sm">
             {article.excerpt[locale]}
           </p>
 
           {/* Meta row */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4 pt-4 border-t border-border-light dark:border-border-dark text-xs text-text-secondary-light dark:text-text-secondary-dark">
+          <div className="border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4 text-xs">
             <span className="inline-flex items-center gap-1.5">
               <Calendar size={13} className="text-primary/60 dark:text-primary-light/60 shrink-0" />
               {formatDate(article.date, locale)}
@@ -91,9 +91,9 @@ export function NewsCard({ article, locale }: NewsCardProps) {
             <ArrowRight
               size={14}
               className={cn(
-                'ml-auto text-text-secondary-light/40 dark:text-text-secondary-dark/40',
+                'text-text-secondary-light/40 dark:text-text-secondary-dark/40 ml-auto',
                 'group-hover:text-primary dark:group-hover:text-primary-light',
-                'group-hover:translate-x-1 transition-all duration-300'
+                'transition-all duration-300 group-hover:translate-x-1',
               )}
             />
           </div>

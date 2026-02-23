@@ -57,7 +57,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         titleKey: 'university.accreditation',
         links: [
           { labelKey: 'university.accreditationNational', href: '/university/accreditation' },
-          { labelKey: 'university.accreditationInternational', href: '/university/accreditation/international' },
+          {
+            labelKey: 'university.accreditationInternational',
+            href: '/university/accreditation/international',
+          },
           { labelKey: 'university.accreditationRankings', href: '/university/rankings' },
         ],
       },
@@ -65,7 +68,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         titleKey: 'university.partners',
         links: [
           { labelKey: 'university.partnersCorporate', href: '/university/partners' },
-          { labelKey: 'university.partnersInternational', href: '/university/partners/international' },
+          {
+            labelKey: 'university.partnersInternational',
+            href: '/university/partners/international',
+          },
         ],
       },
       {
@@ -111,7 +117,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         titleKey: 'admission.scholarships',
         links: [
           { labelKey: 'admission.scholarshipsState', href: '/admission/scholarships' },
-          { labelKey: 'admission.scholarshipsUniversity', href: '/admission/scholarships/university' },
+          {
+            labelKey: 'admission.scholarshipsUniversity',
+            href: '/admission/scholarships/university',
+          },
         ],
       },
       {

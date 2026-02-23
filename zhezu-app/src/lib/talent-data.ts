@@ -4,7 +4,8 @@ export const STUDENTS: StudentProfile[] = [
   {
     id: 'aibek-nurlan',
     name: 'Айбек Нурланов',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+    photo:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
     major: {
       kk: 'Тау-кен ісі',
       ru: 'Горное дело',
@@ -30,7 +31,11 @@ export const STUDENTS: StudentProfile[] = [
     ],
     competencies: [
       {
-        name: { kk: 'Mine Planning & Design', ru: 'Проектирование шахт', en: 'Mine Planning & Design' },
+        name: {
+          kk: 'Mine Planning & Design',
+          ru: 'Проектирование шахт',
+          en: 'Mine Planning & Design',
+        },
         percentage: 95,
         color: '#3B82F6',
       },
@@ -40,7 +45,11 @@ export const STUDENTS: StudentProfile[] = [
         color: '#22C55E',
       },
       {
-        name: { kk: 'AutoCAD / Mining Software', ru: 'AutoCAD / ПО для горного дела', en: 'AutoCAD / Mining Software' },
+        name: {
+          kk: 'AutoCAD / Mining Software',
+          ru: 'AutoCAD / ПО для горного дела',
+          en: 'AutoCAD / Mining Software',
+        },
         percentage: 88,
         color: '#E6B325',
       },
@@ -140,7 +149,8 @@ export const STUDENTS: StudentProfile[] = [
   {
     id: 'dana-serik',
     name: 'Дана Серікова',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
+    photo:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
     major: {
       kk: 'Металлургия',
       ru: 'Металлургия',
@@ -228,7 +238,8 @@ export const STUDENTS: StudentProfile[] = [
   {
     id: 'timur-kasym',
     name: 'Тимур Касымов',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+    photo:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
     major: {
       kk: 'Электроэнергетика',
       ru: 'Электроэнергетика',
@@ -300,7 +311,8 @@ export const STUDENTS: StudentProfile[] = [
   {
     id: 'aliya-zhan',
     name: 'Алия Жанұзақова',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+    photo:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
     major: {
       kk: 'Құқықтану',
       ru: 'Юриспруденция',
@@ -390,7 +402,15 @@ function makeMap(
   const edges: SkillMapEdge[] = [];
 
   // Center
-  nodes.push({ id: 'major', label: center.label, x: 400, y: 300, type: 'major', size: 'lg', color: center.color });
+  nodes.push({
+    id: 'major',
+    label: center.label,
+    x: 400,
+    y: 300,
+    type: 'major',
+    size: 'lg',
+    color: center.color,
+  });
 
   // UNT — top arc
   const untPositions = [
@@ -399,7 +419,14 @@ function makeMap(
     { x: 580, y: 100 },
   ];
   unt.forEach((item, i) => {
-    nodes.push({ ...item, x: untPositions[i]?.x ?? 400, y: untPositions[i]?.y ?? 80, type: 'unt', size: 'md', color: '#3B82F6' });
+    nodes.push({
+      ...item,
+      x: untPositions[i]?.x ?? 400,
+      y: untPositions[i]?.y ?? 80,
+      type: 'unt',
+      size: 'md',
+      color: '#3B82F6',
+    });
     edges.push({ from: 'major', to: item.id });
   });
 
@@ -411,7 +438,14 @@ function makeMap(
     { x: 180, y: 510 },
   ];
   hard.forEach((item, i) => {
-    nodes.push({ ...item, x: hardPositions[i]?.x ?? 120, y: hardPositions[i]?.y ?? 300, type: 'hard', size: 'sm', color: '#22C55E' });
+    nodes.push({
+      ...item,
+      x: hardPositions[i]?.x ?? 120,
+      y: hardPositions[i]?.y ?? 300,
+      type: 'hard',
+      size: 'sm',
+      color: '#22C55E',
+    });
     edges.push({ from: 'major', to: item.id });
   });
 
@@ -422,7 +456,14 @@ function makeMap(
     { x: 690, y: 420 },
   ];
   soft.forEach((item, i) => {
-    nodes.push({ ...item, x: softPositions[i]?.x ?? 700, y: softPositions[i]?.y ?? 300, type: 'soft', size: 'sm', color: '#8B5CF6' });
+    nodes.push({
+      ...item,
+      x: softPositions[i]?.x ?? 700,
+      y: softPositions[i]?.y ?? 300,
+      type: 'soft',
+      size: 'sm',
+      color: '#8B5CF6',
+    });
     edges.push({ from: 'major', to: item.id });
   });
 
@@ -433,7 +474,14 @@ function makeMap(
     { x: 570, y: 530 },
   ];
   career.forEach((item, i) => {
-    nodes.push({ ...item, x: careerPositions[i]?.x ?? 400, y: careerPositions[i]?.y ?? 540, type: 'career', size: 'md', color: '#F59E0B' });
+    nodes.push({
+      ...item,
+      x: careerPositions[i]?.x ?? 400,
+      y: careerPositions[i]?.y ?? 540,
+      type: 'career',
+      size: 'md',
+      color: '#F59E0B',
+    });
     edges.push({ from: 'major', to: item.id });
   });
 
@@ -446,7 +494,11 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
   'pedagogy-philology': makeMap(
     { label: { kk: 'Педагогика', ru: 'Педагогика', en: 'Pedagogy' }, color: '#E6B325' },
     [
-      { id: 'unt-literacy', label: { kk: 'Оқу сауат.', ru: 'Грамотность', en: 'Literacy' }, value: '30/35' },
+      {
+        id: 'unt-literacy',
+        label: { kk: 'Оқу сауат.', ru: 'Грамотность', en: 'Literacy' },
+        value: '30/35',
+      },
       { id: 'unt-lang', label: { kk: 'Тіл', ru: 'Язык', en: 'Language' }, value: '32/35' },
       { id: 'unt-history', label: { kk: 'Тарих', ru: 'История', en: 'History' }, value: '28/35' },
     ],
@@ -478,24 +530,40 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
   'mining-metallurgy-science': makeMap(
     { label: { kk: 'Тау-кен ісі', ru: 'Горное дело', en: 'Mining' }, color: '#3B82F6' },
     [
-      { id: 'unt-math', label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' }, value: '32/35' },
+      {
+        id: 'unt-math',
+        label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' },
+        value: '32/35',
+      },
       { id: 'unt-physics', label: { kk: 'Физика', ru: 'Физика', en: 'Physics' }, value: '30/35' },
       { id: 'unt-chemistry', label: { kk: 'Химия', ru: 'Химия', en: 'Chemistry' }, value: '28/35' },
     ],
     [
       { id: 'hard-autocad', label: { kk: 'AutoCAD', ru: 'AutoCAD', en: 'AutoCAD' } },
       { id: 'hard-surpac', label: { kk: 'Surpac', ru: 'Surpac', en: 'Surpac' } },
-      { id: 'hard-geostat', label: { kk: 'Геостатист.', ru: 'Геостатистика', en: 'Geostatistics' } },
+      {
+        id: 'hard-geostat',
+        label: { kk: 'Геостатист.', ru: 'Геостатистика', en: 'Geostatistics' },
+      },
       { id: 'hard-safety', label: { kk: 'Қауіпсіздік', ru: 'Безопасность', en: 'Safety' } },
     ],
     [
       { id: 'soft-leadership', label: { kk: 'Көшбасшылық', ru: 'Лидерство', en: 'Leadership' } },
       { id: 'soft-teamwork', label: { kk: 'Команда', ru: 'Командная работа', en: 'Teamwork' } },
-      { id: 'soft-problem', label: { kk: 'Мәселе шешу', ru: 'Решение проблем', en: 'Problem Solving' } },
+      {
+        id: 'soft-problem',
+        label: { kk: 'Мәселе шешу', ru: 'Решение проблем', en: 'Problem Solving' },
+      },
     ],
     [
-      { id: 'career-engineer', label: { kk: 'Тау-кен инженер', ru: 'Горный инженер', en: 'Mining Engineer' } },
-      { id: 'career-safety', label: { kk: 'Қауіпсіздік мен.', ru: 'Менеджер безоп.', en: 'Safety Manager' } },
+      {
+        id: 'career-engineer',
+        label: { kk: 'Тау-кен инженер', ru: 'Горный инженер', en: 'Mining Engineer' },
+      },
+      {
+        id: 'career-safety',
+        label: { kk: 'Қауіпсіздік мен.', ru: 'Менеджер безоп.', en: 'Safety Manager' },
+      },
       { id: 'career-geologist', label: { kk: 'Геолог', ru: 'Геолог', en: 'Geologist' } },
     ],
     [
@@ -511,9 +579,17 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
   'history-economics-law': makeMap(
     { label: { kk: 'Экономика', ru: 'Экономика', en: 'Economics' }, color: '#22C55E' },
     [
-      { id: 'unt-math', label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' }, value: '30/35' },
+      {
+        id: 'unt-math',
+        label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' },
+        value: '30/35',
+      },
       { id: 'unt-history', label: { kk: 'Тарих', ru: 'История', en: 'History' }, value: '32/35' },
-      { id: 'unt-literacy', label: { kk: 'Оқу сауат.', ru: 'Грамотность', en: 'Literacy' }, value: '30/35' },
+      {
+        id: 'unt-literacy',
+        label: { kk: 'Оқу сауат.', ru: 'Грамотность', en: 'Literacy' },
+        value: '30/35',
+      },
     ],
     [
       { id: 'hard-accounting', label: { kk: 'Бухгалтерия', ru: 'Бухгалтерия', en: 'Accounting' } },
@@ -524,12 +600,18 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
     [
       { id: 'soft-analytics', label: { kk: 'Аналитика', ru: 'Аналитика', en: 'Analytics' } },
       { id: 'soft-comm', label: { kk: 'Коммуникация', ru: 'Коммуникация', en: 'Communication' } },
-      { id: 'soft-critical', label: { kk: 'Сыни ойлау', ru: 'Критич. мышл.', en: 'Critical Thinking' } },
+      {
+        id: 'soft-critical',
+        label: { kk: 'Сыни ойлау', ru: 'Критич. мышл.', en: 'Critical Thinking' },
+      },
     ],
     [
       { id: 'career-economist', label: { kk: 'Экономист', ru: 'Экономист', en: 'Economist' } },
       { id: 'career-auditor', label: { kk: 'Аудитор', ru: 'Аудитор', en: 'Auditor' } },
-      { id: 'career-analyst', label: { kk: 'Аналитик', ru: 'Бизнес-аналитик', en: 'Business Analyst' } },
+      {
+        id: 'career-analyst',
+        label: { kk: 'Аналитик', ru: 'Бизнес-аналитик', en: 'Business Analyst' },
+      },
     ],
     [
       { from: 'hard-accounting', to: 'career-auditor' },
@@ -543,25 +625,48 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
   'electrical-safety': makeMap(
     { label: { kk: 'Электроэнерг.', ru: 'Энергетика', en: 'Electrical Eng.' }, color: '#8B5CF6' },
     [
-      { id: 'unt-math', label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' }, value: '32/35' },
+      {
+        id: 'unt-math',
+        label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' },
+        value: '32/35',
+      },
       { id: 'unt-physics', label: { kk: 'Физика', ru: 'Физика', en: 'Physics' }, value: '33/35' },
-      { id: 'unt-it', label: { kk: 'Информатика', ru: 'Информатика', en: 'Informatics' }, value: '28/35' },
+      {
+        id: 'unt-it',
+        label: { kk: 'Информатика', ru: 'Информатика', en: 'Informatics' },
+        value: '28/35',
+      },
     ],
     [
       { id: 'hard-scada', label: { kk: 'SCADA', ru: 'SCADA', en: 'SCADA' } },
-      { id: 'hard-circuit', label: { kk: 'Схемотехника', ru: 'Схемотехника', en: 'Circuit Design' } },
+      {
+        id: 'hard-circuit',
+        label: { kk: 'Схемотехника', ru: 'Схемотехника', en: 'Circuit Design' },
+      },
       { id: 'hard-plc', label: { kk: 'ПЛК', ru: 'ПЛК', en: 'PLC' } },
       { id: 'hard-renewable', label: { kk: 'Жаңартыл. энер.', ru: 'ВИЭ', en: 'Renewables' } },
     ],
     [
       { id: 'soft-teamwork', label: { kk: 'Команда', ru: 'Командная работа', en: 'Teamwork' } },
-      { id: 'soft-problem', label: { kk: 'Мәселе шешу', ru: 'Решение проблем', en: 'Problem Solving' } },
-      { id: 'soft-attention', label: { kk: 'Назар аудару', ru: 'Внимательность', en: 'Attention to Detail' } },
+      {
+        id: 'soft-problem',
+        label: { kk: 'Мәселе шешу', ru: 'Решение проблем', en: 'Problem Solving' },
+      },
+      {
+        id: 'soft-attention',
+        label: { kk: 'Назар аудару', ru: 'Внимательность', en: 'Attention to Detail' },
+      },
     ],
     [
       { id: 'career-energo', label: { kk: 'Энергетик', ru: 'Энергетик', en: 'Power Engineer' } },
-      { id: 'career-auto', label: { kk: 'Автоматика инж.', ru: 'Инженер АСУ', en: 'Automation Eng.' } },
-      { id: 'career-safety', label: { kk: 'Еңбекті қорғау', ru: 'Охрана труда', en: 'Safety Officer' } },
+      {
+        id: 'career-auto',
+        label: { kk: 'Автоматика инж.', ru: 'Инженер АСУ', en: 'Automation Eng.' },
+      },
+      {
+        id: 'career-safety',
+        label: { kk: 'Еңбекті қорғау', ru: 'Охрана труда', en: 'Safety Officer' },
+      },
     ],
     [
       { from: 'hard-scada', to: 'career-auto' },
@@ -574,9 +679,16 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
 
   // ── 5. Технологические машины и строительство ──
   'machines-construction': makeMap(
-    { label: { kk: 'Машиналар', ru: 'Машины и стр-во', en: 'Machines & Constr.' }, color: '#F59E0B' },
+    {
+      label: { kk: 'Машиналар', ru: 'Машины и стр-во', en: 'Machines & Constr.' },
+      color: '#F59E0B',
+    },
     [
-      { id: 'unt-math', label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' }, value: '30/35' },
+      {
+        id: 'unt-math',
+        label: { kk: 'Математика', ru: 'Математика', en: 'Mathematics' },
+        value: '30/35',
+      },
       { id: 'unt-physics', label: { kk: 'Физика', ru: 'Физика', en: 'Physics' }, value: '32/35' },
       { id: 'unt-drawing', label: { kk: 'Сызу', ru: 'Черчение', en: 'Drawing' }, value: '28/35' },
     ],
@@ -584,15 +696,27 @@ export const SKILL_MAPS: Record<string, SkillMapDataSet> = {
       { id: 'hard-solidworks', label: { kk: 'SolidWorks', ru: 'SolidWorks', en: 'SolidWorks' } },
       { id: 'hard-autocad', label: { kk: 'AutoCAD', ru: 'AutoCAD', en: 'AutoCAD' } },
       { id: 'hard-material', label: { kk: 'Материалтану', ru: 'Материаловед.', en: 'Materials' } },
-      { id: 'hard-thermo', label: { kk: 'Термодинамика', ru: 'Термодинамика', en: 'Thermodynamics' } },
+      {
+        id: 'hard-thermo',
+        label: { kk: 'Термодинамика', ru: 'Термодинамика', en: 'Thermodynamics' },
+      },
     ],
     [
-      { id: 'soft-project', label: { kk: 'Жоба басқару', ru: 'Упр. проектами', en: 'Project Mgmt' } },
+      {
+        id: 'soft-project',
+        label: { kk: 'Жоба басқару', ru: 'Упр. проектами', en: 'Project Mgmt' },
+      },
       { id: 'soft-teamwork', label: { kk: 'Команда', ru: 'Командная работа', en: 'Teamwork' } },
-      { id: 'soft-spatial', label: { kk: 'Кеңістіктік ойлау', ru: 'Пространств. мышл.', en: 'Spatial Thinking' } },
+      {
+        id: 'soft-spatial',
+        label: { kk: 'Кеңістіктік ойлау', ru: 'Пространств. мышл.', en: 'Spatial Thinking' },
+      },
     ],
     [
-      { id: 'career-mecheng', label: { kk: 'Механик инженер', ru: 'Инженер-механик', en: 'Mech. Engineer' } },
+      {
+        id: 'career-mecheng',
+        label: { kk: 'Механик инженер', ru: 'Инженер-механик', en: 'Mech. Engineer' },
+      },
       { id: 'career-builder', label: { kk: 'Құрылысшы', ru: 'Строитель', en: 'Builder' } },
       { id: 'career-therm', label: { kk: 'Жылу инженері', ru: 'Теплотехник', en: 'Thermal Eng.' } },
     ],

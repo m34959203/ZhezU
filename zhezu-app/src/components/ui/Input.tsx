@@ -14,13 +14,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label htmlFor={inputId} className="text-sm font-medium text-text-primary-light dark:text-text-primary-dark">
+          <label
+            htmlFor={inputId}
+            className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
+          >
             {label}
           </label>
         )}
         <div className="relative">
           {icon && (
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary-light dark:text-text-secondary-dark">
+            <span className="text-text-secondary-light dark:text-text-secondary-dark absolute top-1/2 left-3 -translate-y-1/2">
               {icon}
             </span>
           )}
@@ -28,22 +31,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             className={cn(
-              'w-full h-10 rounded-lg border bg-surface-light dark:bg-surface-dark px-3 text-sm transition-colors',
+              'bg-surface-light dark:bg-surface-dark h-10 w-full rounded-lg border px-3 text-sm transition-colors',
               'border-border-light dark:border-border-dark',
               'placeholder:text-text-secondary-light/60 dark:placeholder:text-text-secondary-dark/60',
-              'focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary dark:focus:border-primary-light',
+              'focus:ring-primary/50 focus:border-primary dark:focus:border-primary-light focus:ring-2 focus:outline-none',
               error && 'border-error focus:ring-error/50',
               icon && 'pl-10',
-              className
+              className,
             )}
             {...props}
           />
         </div>
-        {error && <p className="text-xs text-error">{error}</p>}
-        {helper && !error && <p className="text-xs text-text-secondary-light dark:text-text-secondary-dark">{helper}</p>}
+        {error && <p className="text-error text-xs">{error}</p>}
+        {helper && !error && (
+          <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+            {helper}
+          </p>
+        )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = 'Input';

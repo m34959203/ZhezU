@@ -27,16 +27,16 @@ export default function SkillMapPage() {
   const activeDeptObj = DEPARTMENTS.find((d) => d.id === activeDept)!;
 
   return (
-    <div className="min-h-screen bg-bg-light dark:bg-bg-dark relative overflow-hidden">
+    <div className="bg-bg-light dark:bg-bg-dark relative min-h-screen overflow-hidden">
       {/* ── Ambient background ── */}
-      <div className="fixed inset-0 mesh-gradient pointer-events-none" />
-      <div className="fixed top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full bg-primary/[0.04] blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-[-15%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gold/[0.03] blur-[150px] pointer-events-none" />
-      <div className="fixed top-[40%] left-[60%] w-[350px] h-[350px] rounded-full bg-[#8B5CF6]/[0.03] blur-[150px] pointer-events-none" />
+      <div className="mesh-gradient pointer-events-none fixed inset-0" />
+      <div className="bg-primary/[0.04] pointer-events-none fixed top-[-10%] left-[-5%] h-[500px] w-[500px] rounded-full blur-[150px]" />
+      <div className="bg-gold/[0.03] pointer-events-none fixed right-[-5%] bottom-[-15%] h-[600px] w-[600px] rounded-full blur-[150px]" />
+      <div className="pointer-events-none fixed top-[40%] left-[60%] h-[350px] w-[350px] rounded-full bg-[#8B5CF6]/[0.03] blur-[150px]" />
 
       {/* Grid pattern overlay */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-50 dark:opacity-100"
+        className="pointer-events-none fixed inset-0 opacity-50 dark:opacity-100"
         style={{
           backgroundImage:
             'linear-gradient(rgba(59,130,246,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.02) 1px, transparent 1px)',
@@ -45,27 +45,27 @@ export default function SkillMapPage() {
       />
 
       {/* ── Hero ── */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
+      <section className="relative overflow-hidden py-16 md:py-24">
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="mx-auto mb-14 max-w-3xl text-center">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/8 border border-primary/20 mb-8">
+            <div className="bg-primary/8 border-primary/20 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
               <Network size={14} className="text-primary dark:text-primary-light" />
-              <span className="text-[11px] font-semibold text-primary dark:text-primary-light uppercase tracking-widest">
+              <span className="text-primary dark:text-primary-light text-[11px] font-semibold tracking-widest uppercase">
                 {t('badge')}
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-display font-bold text-gradient mb-5 leading-[1.1]">
+            <h1 className="font-display text-gradient mb-5 text-5xl leading-[1.1] font-bold md:text-7xl">
               {t('title')}
             </h1>
-            <p className="text-lg text-text-secondary-light dark:text-text-secondary-dark max-w-2xl mx-auto leading-relaxed">
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto max-w-2xl text-lg leading-relaxed">
               {t('subtitle')}
             </p>
           </div>
 
           {/* ── Department selection cards ── */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-14 max-w-5xl mx-auto">
+          <div className="mx-auto mb-14 grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {DEPARTMENTS.map((dept) => {
               const isActive = dept.id === activeDept;
               const Icon = DEPT_ICONS[dept.icon] || BookOpen;
@@ -74,7 +74,7 @@ export default function SkillMapPage() {
                 <button
                   key={dept.id}
                   onClick={() => setActiveDept(dept.id)}
-                  className={`group/card relative flex flex-col items-center gap-2.5 p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                  className={`group/card relative flex cursor-pointer flex-col items-center gap-2.5 rounded-2xl border p-4 transition-all duration-300 ${
                     isActive
                       ? 'border-opacity-40 bg-gradient-to-b shadow-lg'
                       : 'border-border-light dark:border-border-dark/50 bg-surface-light/50 dark:bg-surface-dark/30 hover:border-primary/30 dark:hover:border-border-dark hover:bg-surface-light dark:hover:bg-surface-dark/50'
@@ -92,27 +92,35 @@ export default function SkillMapPage() {
                   {/* Active glow */}
                   {isActive && (
                     <div
-                      className="absolute inset-0 rounded-2xl animate-pulse-glow pointer-events-none"
+                      className="animate-pulse-glow pointer-events-none absolute inset-0 rounded-2xl"
                       style={{ backgroundColor: `${dept.color}08` }}
                     />
                   )}
 
                   <div
-                    className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                      isActive ? '' : 'bg-surface-hover-light dark:bg-surface-dark/60 group-hover/card:bg-surface-light dark:group-hover/card:bg-surface-dark/80'
+                    className={`relative flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 ${
+                      isActive
+                        ? ''
+                        : 'bg-surface-hover-light dark:bg-surface-dark/60 group-hover/card:bg-surface-light dark:group-hover/card:bg-surface-dark/80'
                     }`}
                     style={isActive ? { backgroundColor: `${dept.color}20` } : undefined}
                   >
                     <Icon
                       size={20}
                       style={{ color: isActive ? dept.color : undefined }}
-                      className={isActive ? '' : 'text-text-secondary-light dark:text-text-secondary-dark transition-colors duration-300'}
+                      className={
+                        isActive
+                          ? ''
+                          : 'text-text-secondary-light dark:text-text-secondary-dark transition-colors duration-300'
+                      }
                     />
                   </div>
 
                   <span
-                    className={`text-xs font-bold tracking-wide text-center leading-tight ${
-                      isActive ? 'text-text-primary-light dark:text-white' : 'text-text-secondary-light dark:text-text-secondary-dark group-hover/card:text-text-primary-light dark:group-hover/card:text-white/80'
+                    className={`text-center text-xs leading-tight font-bold tracking-wide ${
+                      isActive
+                        ? 'text-text-primary-light dark:text-white'
+                        : 'text-text-secondary-light dark:text-text-secondary-dark group-hover/card:text-text-primary-light dark:group-hover/card:text-white/80'
                     } transition-colors duration-300`}
                   >
                     {dept.shortName[locale]}
@@ -125,13 +133,13 @@ export default function SkillMapPage() {
       </section>
 
       {/* ── Skill Map Visualization ── */}
-      <section className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pb-10">
+      <section className="relative mx-auto max-w-5xl px-4 pb-10 sm:px-6 lg:px-8">
         <div className="premium-card p-5 md:p-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-            <h2 className="text-lg font-display font-bold text-text-primary-light dark:text-white flex items-center gap-3">
+          <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <h2 className="font-display text-text-primary-light flex items-center gap-3 text-lg font-bold dark:text-white">
               <div
-                className="w-1 h-6 rounded-full"
+                className="h-6 w-1 rounded-full"
                 style={{
                   background: `linear-gradient(to bottom, ${activeDeptObj.color}, ${activeDeptObj.color}30)`,
                 }}
@@ -147,9 +155,12 @@ export default function SkillMapPage() {
                 { color: '#8B5CF6', key: 'legendSoft' },
                 { color: '#F59E0B', key: 'legendCareer' },
               ].map((item) => (
-                <span key={item.key} className="flex items-center gap-2 text-text-secondary-light dark:text-text-secondary-dark">
+                <span
+                  key={item.key}
+                  className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-2"
+                >
                   <span
-                    className="w-2.5 h-2.5 rounded-full"
+                    className="h-2.5 w-2.5 rounded-full"
                     style={{
                       backgroundColor: item.color,
                       boxShadow: `0 0 8px ${item.color}40`,
@@ -164,48 +175,44 @@ export default function SkillMapPage() {
           {/* Map */}
           <div className="relative">
             {/* Subtle inner glow at center */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
               <div
-                className="w-40 h-40 rounded-full blur-[60px]"
+                className="h-40 w-40 rounded-full blur-[60px]"
                 style={{ backgroundColor: `${activeDeptObj.color}08` }}
               />
             </div>
             {activeData && (
-              <SkillMap
-                key={activeDept}
-                nodes={activeData.nodes}
-                edges={activeData.edges}
-              />
+              <SkillMap key={activeDept} nodes={activeData.nodes} edges={activeData.edges} />
             )}
           </div>
         </div>
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="premium-card p-10 md:p-14 text-center overflow-hidden">
+      <section className="relative mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+        <div className="premium-card overflow-hidden p-10 text-center md:p-14">
           {/* Background accent */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/[0.06] via-transparent to-gold/[0.06] pointer-events-none" />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+          <div className="from-primary/[0.06] to-gold/[0.06] pointer-events-none absolute inset-0 bg-gradient-to-r via-transparent" />
+          <div className="via-gold/30 absolute top-0 left-1/2 h-px w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
 
           <div className="relative">
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="mb-4 inline-flex items-center gap-2">
               <Sparkles size={16} className="text-gold-dark dark:text-gold" />
-              <span className="text-[10px] font-semibold text-gold-dark dark:text-gold uppercase tracking-widest">
+              <span className="text-gold-dark dark:text-gold text-[10px] font-semibold tracking-widest uppercase">
                 ZhezU Talent
               </span>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-text-primary-light dark:text-white mb-3">
+            <h3 className="font-display text-text-primary-light mb-3 text-2xl font-bold md:text-3xl dark:text-white">
               {t('ctaTitle')}
             </h3>
-            <p className="text-sm text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-8 max-w-lg text-sm leading-relaxed">
               {t('ctaDesc')}
             </p>
 
             <Link
               href="/talent-pool"
-              className="btn-premium inline-flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold to-gold-light text-white dark:text-bg-dark font-bold text-sm tracking-wide"
+              className="btn-premium from-gold to-gold-light dark:text-bg-dark inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r px-8 py-3.5 text-sm font-bold tracking-wide text-white"
             >
               {t('ctaButton')}
               <ArrowRight size={16} />

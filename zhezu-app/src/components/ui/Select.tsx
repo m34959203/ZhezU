@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  useState,
-  useRef,
-  useCallback,
-  useEffect,
-  useId,
-  type KeyboardEvent,
-} from 'react';
+import { useState, useRef, useCallback, useEffect, useId, type KeyboardEvent } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -59,7 +52,7 @@ export function Select({
       onChange?.(optionValue);
       close();
     },
-    [onChange, close]
+    [onChange, close],
   );
 
   const toggle = useCallback(() => {
@@ -77,26 +70,20 @@ export function Select({
   // Close on outside click
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         close();
       }
     }
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      return () =>
-        document.removeEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [isOpen, close]);
 
   // Scroll highlighted option into view
   useEffect(() => {
     if (isOpen && highlightedIndex >= 0 && listboxRef.current) {
-      const option = listboxRef.current.children[highlightedIndex] as
-        | HTMLElement
-        | undefined;
+      const option = listboxRef.current.children[highlightedIndex] as HTMLElement | undefined;
       option?.scrollIntoView({ block: 'nearest' });
     }
   }, [isOpen, highlightedIndex]);
@@ -119,9 +106,7 @@ export function Select({
           if (!isOpen) {
             toggle();
           } else {
-            setHighlightedIndex((prev) =>
-              prev < options.length - 1 ? prev + 1 : 0
-            );
+            setHighlightedIndex((prev) => (prev < options.length - 1 ? prev + 1 : 0));
           }
           break;
         }
@@ -130,9 +115,7 @@ export function Select({
           if (!isOpen) {
             toggle();
           } else {
-            setHighlightedIndex((prev) =>
-              prev > 0 ? prev - 1 : options.length - 1
-            );
+            setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : options.length - 1));
           }
           break;
         }
@@ -163,7 +146,7 @@ export function Select({
         }
       }
     },
-    [isOpen, highlightedIndex, options, selectOption, toggle, close]
+    [isOpen, highlightedIndex, options, selectOption, toggle, close],
   );
 
   const activeDescendant =
@@ -176,7 +159,7 @@ export function Select({
       {label && (
         <label
           id={labelId}
-          className="text-sm font-medium text-text-primary-light dark:text-text-primary-dark"
+          className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
         >
           {label}
         </label>
@@ -195,16 +178,16 @@ export function Select({
           onClick={toggle}
           onKeyDown={handleKeyDown}
           className={cn(
-            'flex w-full items-center justify-between h-10 rounded-lg border px-3 text-sm',
+            'flex h-10 w-full items-center justify-between rounded-lg border px-3 text-sm',
             'bg-surface-light dark:bg-surface-dark',
             'transition-colors duration-200',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary dark:focus-visible:border-primary-light',
-            'disabled:opacity-50 disabled:pointer-events-none',
+            'focus-visible:ring-primary/50 focus-visible:border-primary dark:focus-visible:border-primary-light focus-visible:ring-2 focus-visible:outline-none',
+            'disabled:pointer-events-none disabled:opacity-50',
             'cursor-pointer',
             error
               ? 'border-error focus-visible:ring-error/50'
               : 'border-border-light dark:border-border-dark',
-            isOpen && !error && 'border-primary dark:border-primary-light ring-2 ring-primary/50'
+            isOpen && !error && 'border-primary dark:border-primary-light ring-primary/50 ring-2',
           )}
         >
           <span
@@ -212,16 +195,16 @@ export function Select({
               'truncate',
               selectedOption
                 ? 'text-text-primary-light dark:text-text-primary-dark'
-                : 'text-text-secondary-light/60 dark:text-text-secondary-dark/60'
+                : 'text-text-secondary-light/60 dark:text-text-secondary-dark/60',
             )}
           >
             {selectedOption?.label || placeholder}
           </span>
           <ChevronDown
             className={cn(
-              'h-4 w-4 shrink-0 text-text-secondary-light dark:text-text-secondary-dark',
+              'text-text-secondary-light dark:text-text-secondary-dark h-4 w-4 shrink-0',
               'transition-transform duration-200',
-              isOpen && 'rotate-180'
+              isOpen && 'rotate-180',
             )}
           />
         </button>
@@ -233,11 +216,11 @@ export function Select({
             role="listbox"
             aria-labelledby={label ? labelId : triggerId}
             className={cn(
-              'absolute z-50 mt-1 w-full max-h-60 overflow-auto rounded-lg border',
+              'absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg border',
               'border-border-light dark:border-border-dark',
               'bg-surface-light dark:bg-surface-dark',
               'shadow-lg dark:shadow-2xl',
-              'py-1'
+              'py-1',
             )}
           >
             {options.map((option, index) => {
@@ -257,13 +240,12 @@ export function Select({
                     selectOption(option.value);
                   }}
                   className={cn(
-                    'px-3 py-2 text-sm cursor-pointer',
+                    'cursor-pointer px-3 py-2 text-sm',
                     'transition-colors duration-100',
-                    isHighlighted &&
-                      'bg-surface-hover-light dark:bg-surface-hover-dark',
+                    isHighlighted && 'bg-surface-hover-light dark:bg-surface-hover-dark',
                     isSelected
                       ? 'text-primary dark:text-primary-light font-medium'
-                      : 'text-text-primary-light dark:text-text-primary-dark'
+                      : 'text-text-primary-light dark:text-text-primary-dark',
                   )}
                 >
                   {option.label}
@@ -271,14 +253,14 @@ export function Select({
               );
             })}
             {options.length === 0 && (
-              <li className="px-3 py-2 text-sm text-text-secondary-light dark:text-text-secondary-dark">
+              <li className="text-text-secondary-light dark:text-text-secondary-dark px-3 py-2 text-sm">
                 No options available
               </li>
             )}
           </ul>
         )}
       </div>
-      {error && <p className="text-xs text-error">{error}</p>}
+      {error && <p className="text-error text-xs">{error}</p>}
     </div>
   );
 }

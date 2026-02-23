@@ -9,13 +9,7 @@ import {
   useRef,
   type ReactNode,
 } from 'react';
-import {
-  CheckCircle,
-  XCircle,
-  AlertTriangle,
-  Info,
-  X,
-} from 'lucide-react';
+import { CheckCircle, XCircle, AlertTriangle, Info, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 /* ─────────────────────────── Types ─────────────────────────── */
@@ -30,10 +24,7 @@ interface Toast {
 }
 
 interface ToastContextValue {
-  toast: (
-    message: string,
-    options?: { variant?: ToastVariant; duration?: number }
-  ) => void;
+  toast: (message: string, options?: { variant?: ToastVariant; duration?: number }) => void;
 }
 
 /* ─────────────────────────── Variant config ─────────────────── */
@@ -70,13 +61,7 @@ const ToastContext = createContext<ToastContextValue | null>(null);
 
 /* ─────────────────────────── Single Toast ─────────────────────── */
 
-function ToastItem({
-  toast,
-  onDismiss,
-}: {
-  toast: Toast;
-  onDismiss: (id: string) => void;
-}) {
+function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string) => void }) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLeaving, setIsLeaving] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -114,13 +99,11 @@ function ToastItem({
         'shadow-lg dark:shadow-2xl',
         config.containerClass,
         'transition-all duration-300 ease-in-out',
-        isVisible && !isLeaving
-          ? 'translate-x-0 opacity-100'
-          : 'translate-x-full opacity-0'
+        isVisible && !isLeaving ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
       )}
     >
-      <Icon className={cn('h-5 w-5 shrink-0 mt-0.5', config.iconClass)} />
-      <p className="flex-1 text-sm text-text-primary-light dark:text-text-primary-dark">
+      <Icon className={cn('mt-0.5 h-5 w-5 shrink-0', config.iconClass)} />
+      <p className="text-text-primary-light dark:text-text-primary-dark flex-1 text-sm">
         {toast.message}
       </p>
       <button
@@ -133,8 +116,8 @@ function ToastItem({
           'hover:text-text-primary-light dark:hover:text-text-primary-dark',
           'hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
           'transition-colors duration-200',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
-          'cursor-pointer'
+          'focus-visible:ring-primary/50 focus-visible:ring-2 focus-visible:outline-none',
+          'cursor-pointer',
         )}
       >
         <X className="h-4 w-4" />
@@ -151,10 +134,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const addToast = useCallback(
-    (
-      message: string,
-      options?: { variant?: ToastVariant; duration?: number }
-    ) => {
+    (message: string, options?: { variant?: ToastVariant; duration?: number }) => {
       const id = `toast-${++toastCounter}`;
       const newToast: Toast = {
         id,
@@ -164,7 +144,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       };
       setToasts((prev) => [...prev, newToast]);
     },
-    []
+    [],
   );
 
   const removeToast = useCallback((id: string) => {
@@ -178,9 +158,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       <div
         aria-label="Notifications"
         className={cn(
-          'fixed bottom-4 right-4 z-[9999]',
+          'fixed right-4 bottom-4 z-[9999]',
           'flex flex-col-reverse gap-2',
-          'pointer-events-none'
+          'pointer-events-none',
         )}
       >
         {toasts.map((t) => (

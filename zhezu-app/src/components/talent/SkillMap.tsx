@@ -29,7 +29,7 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
     <div className="relative w-full overflow-x-auto">
       <svg
         viewBox="0 0 800 620"
-        className="w-full min-w-[600px] h-auto"
+        className="h-auto w-full min-w-[600px]"
         style={{ maxHeight: '600px' }}
       >
         <defs>
@@ -64,16 +64,18 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
         </defs>
 
         {/* Center node ambient glow */}
-        {nodes.filter(n => n.type === 'major').map(node => (
-          <circle
-            key={`amb-${node.id}`}
-            cx={node.x}
-            cy={node.y}
-            r={100}
-            fill="url(#sk-center-glow)"
-            className="animate-pulse-glow"
-          />
-        ))}
+        {nodes
+          .filter((n) => n.type === 'major')
+          .map((node) => (
+            <circle
+              key={`amb-${node.id}`}
+              cx={node.x}
+              cy={node.y}
+              r={100}
+              fill="url(#sk-center-glow)"
+              className="animate-pulse-glow"
+            />
+          ))}
 
         {/* Edges — premium animated lines */}
         {edges.map((edge, i) => {
@@ -106,34 +108,36 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
         })}
 
         {/* Flow particles along major edges */}
-        {edges.filter(e => {
-          const from = nodeMap.get(e.from);
-          return from?.type === 'major';
-        }).map((edge, i) => {
-          const fromNode = nodeMap.get(edge.from)!;
-          const toNode = nodeMap.get(edge.to)!;
-          const dx = toNode.x - fromNode.x;
-          const dy = toNode.y - fromNode.y;
-          const cx1 = fromNode.x + dx * 0.3 + dy * 0.08;
-          const cy1 = fromNode.y + dy * 0.3 - dx * 0.08;
-          const pathId = `flow-${i}`;
+        {edges
+          .filter((e) => {
+            const from = nodeMap.get(e.from);
+            return from?.type === 'major';
+          })
+          .map((edge, i) => {
+            const fromNode = nodeMap.get(edge.from)!;
+            const toNode = nodeMap.get(edge.to)!;
+            const dx = toNode.x - fromNode.x;
+            const dy = toNode.y - fromNode.y;
+            const cx1 = fromNode.x + dx * 0.3 + dy * 0.08;
+            const cy1 = fromNode.y + dy * 0.3 - dx * 0.08;
+            const pathId = `flow-${i}`;
 
-          return (
-            <g key={pathId}>
-              <path
-                id={pathId}
-                d={`M ${fromNode.x} ${fromNode.y} Q ${cx1} ${cy1} ${toNode.x} ${toNode.y}`}
-                fill="none"
-                stroke="none"
-              />
-              <circle r="2" fill="#E6B325" opacity="0.6">
-                <animateMotion dur={`${3 + i * 0.4}s`} repeatCount="indefinite">
-                  <mpath href={`#${pathId}`} />
-                </animateMotion>
-              </circle>
-            </g>
-          );
-        })}
+            return (
+              <g key={pathId}>
+                <path
+                  id={pathId}
+                  d={`M ${fromNode.x} ${fromNode.y} Q ${cx1} ${cy1} ${toNode.x} ${toNode.y}`}
+                  fill="none"
+                  stroke="none"
+                />
+                <circle r="2" fill="#E6B325" opacity="0.6">
+                  <animateMotion dur={`${3 + i * 0.4}s`} repeatCount="indefinite">
+                    <mpath href={`#${pathId}`} />
+                  </animateMotion>
+                </circle>
+              </g>
+            );
+          })}
 
         {/* Category labels */}
         {Object.entries(typeLabels).map(([type, labels]) => {
@@ -141,7 +145,8 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
           if (typeNodes.length === 0) return null;
           const avgX = typeNodes.reduce((s, n) => s + n.x, 0) / typeNodes.length;
           const minY = Math.min(...typeNodes.map((n) => n.y));
-          const labelY = type === 'career' ? Math.max(...typeNodes.map((n) => n.y)) + 38 : minY - 32;
+          const labelY =
+            type === 'career' ? Math.max(...typeNodes.map((n) => n.y)) + 38 : minY - 32;
           return (
             <text
               key={`cat-${type}`}
@@ -149,7 +154,12 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
               y={labelY}
               textAnchor="middle"
               fill="#7B8EB5"
-              style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}
+              style={{
+                fontSize: '10px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+              }}
             >
               {labels[locale]}
             </text>
@@ -162,7 +172,11 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
           const isMajor = node.type === 'major';
 
           return (
-            <g key={node.id} filter={isMajor ? 'url(#sk-glow-strong)' : 'url(#sk-glow)'} className="cursor-pointer">
+            <g
+              key={node.id}
+              filter={isMajor ? 'url(#sk-glow-strong)' : 'url(#sk-glow)'}
+              className="cursor-pointer"
+            >
               {/* Outer ring for major */}
               {isMajor && (
                 <circle
@@ -198,12 +212,7 @@ export function SkillMap({ nodes, edges }: SkillMapProps) {
               />
 
               {/* Inner glow */}
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={config.r * 0.6}
-                fill={`${node.color}08`}
-              />
+              <circle cx={node.x} cy={node.y} r={config.r * 0.6} fill={`${node.color}08`} />
 
               {/* Label */}
               <text

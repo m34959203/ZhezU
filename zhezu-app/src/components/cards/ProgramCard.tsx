@@ -28,10 +28,10 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
   const department = DEPARTMENTS.find((d) => d.id === program.department);
 
   return (
-    <Link href={`/academics/${program.id}`} className="block group">
+    <Link href={`/academics/${program.id}`} className="group block">
       <Card hover className="h-full">
         {/* Badges row */}
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
           <Badge variant="primary">
             {DEGREE_LABELS[program.degree]?.[locale] ?? program.degree}
           </Badge>
@@ -54,20 +54,19 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
           <CardTitle className="group-hover:text-primary dark:group-hover:text-primary-light transition-colors duration-300">
             {program.name[locale]}
           </CardTitle>
-          <CardDescription className="line-clamp-2">
-            {program.description[locale]}
-          </CardDescription>
+          <CardDescription className="line-clamp-2">{program.description[locale]}</CardDescription>
         </CardHeader>
 
         {/* Compact info row */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4 pt-4 border-t border-border-light dark:border-border-dark text-xs text-text-secondary-light dark:text-text-secondary-dark">
+        <div className="border-border-light dark:border-border-dark text-text-secondary-light dark:text-text-secondary-dark mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4 text-xs">
           <span className="inline-flex items-center gap-1.5">
             <Clock size={13} className="text-primary/60 dark:text-primary-light/60" />
             {program.duration} {locale === 'en' ? 'years' : locale === 'ru' ? 'года' : 'жыл'}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <BookOpen size={13} className="text-primary/60 dark:text-primary-light/60" />
-            {program.credits} {locale === 'en' ? 'credits' : locale === 'ru' ? 'кредитов' : 'кредит'}
+            {program.credits}{' '}
+            {locale === 'en' ? 'credits' : locale === 'ru' ? 'кредитов' : 'кредит'}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Globe size={13} className="text-primary/60 dark:text-primary-light/60" />
@@ -76,9 +75,12 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
         </div>
 
         {/* Link */}
-        <div className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary dark:text-primary-light group-hover:gap-2.5 transition-all duration-300">
+        <div className="text-primary dark:text-primary-light mt-4 inline-flex items-center gap-1.5 text-sm font-medium transition-all duration-300 group-hover:gap-2.5">
           {locale === 'en' ? 'Learn more' : locale === 'kk' ? 'Толығырақ' : 'Подробнее'}
-          <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowRight
+            size={14}
+            className="transition-transform duration-300 group-hover:translate-x-1"
+          />
         </div>
       </Card>
     </Link>

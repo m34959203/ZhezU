@@ -18,7 +18,15 @@ describe('Button component', () => {
   it('handles click events', async () => {
     const user = userEvent.setup();
     let clicked = false;
-    render(<Button onClick={() => { clicked = true; }}>Click</Button>);
+    render(
+      <Button
+        onClick={() => {
+          clicked = true;
+        }}
+      >
+        Click
+      </Button>,
+    );
 
     await user.click(screen.getByRole('button'));
     expect(clicked).toBe(true);

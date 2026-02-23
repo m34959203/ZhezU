@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  useState,
-  useRef,
-  useCallback,
-  type ReactNode,
-  type KeyboardEvent,
-} from 'react';
+import { useState, useRef, useCallback, type ReactNode, type KeyboardEvent } from 'react';
 import { cn } from '@/lib/utils';
 
 interface Tab {
@@ -22,9 +16,7 @@ interface TabsProps {
 }
 
 export function Tabs({ tabs, defaultTab, className }: TabsProps) {
-  const [activeTab, setActiveTab] = useState(
-    () => defaultTab || tabs[0]?.id || ''
-  );
+  const [activeTab, setActiveTab] = useState(() => defaultTab || tabs[0]?.id || '');
   const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
 
   const setTabRef = useCallback(
@@ -35,7 +27,7 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
         tabRefs.current.delete(id);
       }
     },
-    []
+    [],
   );
 
   const focusTab = useCallback(
@@ -47,7 +39,7 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
         setActiveTab(tab.id);
       }
     },
-    [tabs]
+    [tabs],
   );
 
   const handleKeyDown = useCallback(
@@ -63,8 +55,7 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
         }
         case 'ArrowLeft': {
           e.preventDefault();
-          const prevIndex =
-            (currentIndex - 1 + tabs.length) % tabs.length;
+          const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
           focusTab(prevIndex);
           break;
         }
@@ -80,7 +71,7 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
         }
       }
     },
-    [tabs, activeTab, focusTab]
+    [tabs, activeTab, focusTab],
   );
 
   const activeContent = tabs.find((t) => t.id === activeTab)?.content;
@@ -91,8 +82,8 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
         role="tablist"
         aria-orientation="horizontal"
         className={cn(
-          'flex border-b border-border-light dark:border-border-dark',
-          'overflow-x-auto scrollbar-none'
+          'border-border-light dark:border-border-dark flex border-b',
+          'scrollbar-none overflow-x-auto',
         )}
       >
         {tabs.map((tab) => {
@@ -112,17 +103,17 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
               className={cn(
                 'relative shrink-0 px-4 py-2.5 text-sm font-medium whitespace-nowrap',
                 'transition-colors duration-200',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-inset rounded-t-md',
+                'focus-visible:ring-primary/50 rounded-t-md focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset',
                 'cursor-pointer',
                 isActive
                   ? 'text-primary dark:text-primary-light'
-                  : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark'
+                  : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark',
               )}
             >
               {tab.label}
               {isActive && (
                 <span
-                  className="absolute inset-x-0 bottom-0 h-0.5 bg-primary dark:bg-primary-light"
+                  className="bg-primary dark:bg-primary-light absolute inset-x-0 bottom-0 h-0.5"
                   aria-hidden="true"
                 />
               )}
@@ -138,7 +129,7 @@ export function Tabs({ tabs, defaultTab, className }: TabsProps) {
           aria-labelledby={`tab-${tab.id}`}
           tabIndex={0}
           hidden={tab.id !== activeTab}
-          className="pt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-md"
+          className="focus-visible:ring-primary/50 rounded-md pt-4 focus-visible:ring-2 focus-visible:outline-none"
         >
           {tab.id === activeTab && activeContent}
         </div>

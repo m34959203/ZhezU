@@ -84,12 +84,12 @@ export interface Skill {
 
 /** Профиль навыков для радарной диаграммы */
 export interface SkillRadarData {
-  technical: number;    // Технические навыки (0-100)
-  tools: number;        // Инструменты и ПО
-  softSkills: number;   // Коммуникация, работа в команде
-  leadership: number;   // Лидерство и управление
-  language: number;     // Языковые компетенции
-  safety: number;       // Промышленная безопасность
+  technical: number; // Технические навыки (0-100)
+  tools: number; // Инструменты и ПО
+  softSkills: number; // Коммуникация, работа в команде
+  leadership: number; // Лидерство и управление
+  language: number; // Языковые компетенции
+  safety: number; // Промышленная безопасность
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -106,8 +106,8 @@ export interface Achievement {
   type: 'academic' | 'professional' | 'research' | 'leadership' | 'social';
   rarity: 'common' | 'rare' | 'epic' | 'legendary';
   verification: VerificationType;
-  verifiedBy?: string;      // "Kazakhmys Corporation", "Engineering Dept."
-  awardedAt: string;        // ISO date
+  verifiedBy?: string; // "Kazakhmys Corporation", "Engineering Dept."
+  awardedAt: string; // ISO date
   linkedStage: LifecycleStage;
   linkedYear?: AcademicYear;
   xpReward: number;
@@ -150,8 +150,8 @@ export interface Experience {
   endDate?: string;
   current: boolean;
   description: LocalizedString;
-  skills: string[];         // Skill IDs
-  achievements?: string[];  // Achievement IDs earned during
+  skills: string[]; // Skill IDs
+  achievements?: string[]; // Achievement IDs earned during
   location: string;
 }
 
@@ -168,18 +168,18 @@ export interface LifecycleQuest {
 
   // Классификация
   stage: LifecycleStage;
-  year?: AcademicYear;           // Для студентов: 1-4 курс
-  category: string;               // documents, academic, career, research, social
+  year?: AcademicYear; // Для студентов: 1-4 курс
+  category: string; // documents, academic, career, research, social
 
   // Награды
   xpReward: number;
   skillRewards?: { skillId: string; percentage: number }[];
-  achievementReward?: string;     // Achievement ID to unlock
+  achievementReward?: string; // Achievement ID to unlock
 
   // Сложность и требования
   difficulty: 'easy' | 'medium' | 'hard' | 'epic';
-  required: boolean;              // Обязательный для перехода на следующий этап
-  prerequisites?: string[];       // Quest IDs
+  required: boolean; // Обязательный для перехода на следующий этап
+  prerequisites?: string[]; // Quest IDs
 
   // Визуал
   icon: string;
@@ -211,13 +211,13 @@ export interface StudentProfile {
 
   // ─── Образование ───
   education: {
-    program: string;            // Program code (e.g., "6B07201")
-    department: string;         // Department ID
-    enrollmentYear?: number;    // Год поступления
+    program: string; // Program code (e.g., "6B07201")
+    department: string; // Department ID
+    enrollmentYear?: number; // Год поступления
     expectedGraduation?: number;
-    gpa?: number;               // Cumulative GPA
-    classRank?: string;         // "Top 5%", "Top 10%"
-    credits?: number;           // Earned credits
+    gpa?: number; // Cumulative GPA
+    classRank?: string; // "Top 5%", "Top 10%"
+    credits?: number; // Earned credits
   };
 
   // ─── Довузовские данные (Талапкер) ───
@@ -235,7 +235,7 @@ export interface StudentProfile {
     xp: number;
     completedQuests: string[];
     earnedAchievements: string[];
-    currentStreak: number;      // Days active
+    currentStreak: number; // Days active
     longestStreak: number;
   };
 
@@ -270,7 +270,7 @@ export interface StudentProfile {
   // ─── Мета ───
   registrationDate: string;
   lastActive: string;
-  profileCompleteness: number;  // 0-100%
+  profileCompleteness: number; // 0-100%
   isVerified: boolean;
   isTopTalent: boolean;
 }
@@ -289,7 +289,7 @@ export interface StageTransition {
     description: LocalizedString;
     completed: boolean;
   }[];
-  unlocks: string[];  // What features/quests become available
+  unlocks: string[]; // What features/quests become available
 }
 
 /** Прогресс по этапу */
@@ -309,29 +309,107 @@ export interface StageProgress {
 // КАТЕГОРИИ КВЕСТОВ ПО ЭТАПАМ
 // ════════════════════════════════════════════════════════════════════════════
 
-export const QUEST_CATEGORIES: Record<LifecycleStage, { id: string; name: LocalizedString; icon: string; color: string }[]> = {
+export const QUEST_CATEGORIES: Record<
+  LifecycleStage,
+  { id: string; name: LocalizedString; icon: string; color: string }[]
+> = {
   applicant: [
-    { id: 'documents', name: { kk: 'Құжаттар', ru: 'Документы', en: 'Documents' }, icon: 'FileCheck', color: '#3B82F6' },
-    { id: 'tests', name: { kk: 'Тесттер', ru: 'Тесты', en: 'Tests' }, icon: 'ClipboardList', color: '#F59E0B' },
-    { id: 'explore', name: { kk: 'Зерттеу', ru: 'Исследование', en: 'Explore' }, icon: 'BookOpen', color: '#22C55E' },
-    { id: 'social', name: { kk: 'Әлеуметтік', ru: 'Социальные', en: 'Social' }, icon: 'MessageCircle', color: '#8B5CF6' },
+    {
+      id: 'documents',
+      name: { kk: 'Құжаттар', ru: 'Документы', en: 'Documents' },
+      icon: 'FileCheck',
+      color: '#3B82F6',
+    },
+    {
+      id: 'tests',
+      name: { kk: 'Тесттер', ru: 'Тесты', en: 'Tests' },
+      icon: 'ClipboardList',
+      color: '#F59E0B',
+    },
+    {
+      id: 'explore',
+      name: { kk: 'Зерттеу', ru: 'Исследование', en: 'Explore' },
+      icon: 'BookOpen',
+      color: '#22C55E',
+    },
+    {
+      id: 'social',
+      name: { kk: 'Әлеуметтік', ru: 'Социальные', en: 'Social' },
+      icon: 'MessageCircle',
+      color: '#8B5CF6',
+    },
   ],
   student: [
-    { id: 'academic', name: { kk: 'Академиялық', ru: 'Академические', en: 'Academic' }, icon: 'GraduationCap', color: '#3B82F6' },
-    { id: 'career', name: { kk: 'Мансап', ru: 'Карьера', en: 'Career' }, icon: 'Briefcase', color: '#F59E0B' },
-    { id: 'research', name: { kk: 'Ғылым', ru: 'Наука', en: 'Research' }, icon: 'FlaskConical', color: '#22C55E' },
-    { id: 'leadership', name: { kk: 'Көшбасшылық', ru: 'Лидерство', en: 'Leadership' }, icon: 'Crown', color: '#8B5CF6' },
-    { id: 'skills', name: { kk: 'Дағдылар', ru: 'Навыки', en: 'Skills' }, icon: 'Target', color: '#E6B325' },
+    {
+      id: 'academic',
+      name: { kk: 'Академиялық', ru: 'Академические', en: 'Academic' },
+      icon: 'GraduationCap',
+      color: '#3B82F6',
+    },
+    {
+      id: 'career',
+      name: { kk: 'Мансап', ru: 'Карьера', en: 'Career' },
+      icon: 'Briefcase',
+      color: '#F59E0B',
+    },
+    {
+      id: 'research',
+      name: { kk: 'Ғылым', ru: 'Наука', en: 'Research' },
+      icon: 'FlaskConical',
+      color: '#22C55E',
+    },
+    {
+      id: 'leadership',
+      name: { kk: 'Көшбасшылық', ru: 'Лидерство', en: 'Leadership' },
+      icon: 'Crown',
+      color: '#8B5CF6',
+    },
+    {
+      id: 'skills',
+      name: { kk: 'Дағдылар', ru: 'Навыки', en: 'Skills' },
+      icon: 'Target',
+      color: '#E6B325',
+    },
   ],
   graduate: [
-    { id: 'thesis', name: { kk: 'Диплом', ru: 'Диплом', en: 'Thesis' }, icon: 'FileText', color: '#3B82F6' },
-    { id: 'employment', name: { kk: 'Жұмысқа орналасу', ru: 'Трудоустройство', en: 'Employment' }, icon: 'Building2', color: '#22C55E' },
-    { id: 'portfolio', name: { kk: 'Портфолио', ru: 'Портфолио', en: 'Portfolio' }, icon: 'FolderOpen', color: '#8B5CF6' },
+    {
+      id: 'thesis',
+      name: { kk: 'Диплом', ru: 'Диплом', en: 'Thesis' },
+      icon: 'FileText',
+      color: '#3B82F6',
+    },
+    {
+      id: 'employment',
+      name: { kk: 'Жұмысқа орналасу', ru: 'Трудоустройство', en: 'Employment' },
+      icon: 'Building2',
+      color: '#22C55E',
+    },
+    {
+      id: 'portfolio',
+      name: { kk: 'Портфолио', ru: 'Портфолио', en: 'Portfolio' },
+      icon: 'FolderOpen',
+      color: '#8B5CF6',
+    },
   ],
   alumni: [
-    { id: 'mentoring', name: { kk: 'Менторлық', ru: 'Менторство', en: 'Mentoring' }, icon: 'Users', color: '#3B82F6' },
-    { id: 'giving', name: { kk: 'Қайырымдылық', ru: 'Благотворительность', en: 'Giving Back' }, icon: 'Heart', color: '#E6B325' },
-    { id: 'career', name: { kk: 'Мансап', ru: 'Карьерный рост', en: 'Career Growth' }, icon: 'TrendingUp', color: '#22C55E' },
+    {
+      id: 'mentoring',
+      name: { kk: 'Менторлық', ru: 'Менторство', en: 'Mentoring' },
+      icon: 'Users',
+      color: '#3B82F6',
+    },
+    {
+      id: 'giving',
+      name: { kk: 'Қайырымдылық', ru: 'Благотворительность', en: 'Giving Back' },
+      icon: 'Heart',
+      color: '#E6B325',
+    },
+    {
+      id: 'career',
+      name: { kk: 'Мансап', ru: 'Карьерный рост', en: 'Career Growth' },
+      icon: 'TrendingUp',
+      color: '#22C55E',
+    },
   ],
 };
 
@@ -347,33 +425,223 @@ export interface LifecycleLevel {
   maxXp: number;
   color: string;
   icon: string;
-  perks: LocalizedString[];  // Что открывается на этом уровне
+  perks: LocalizedString[]; // Что открывается на этом уровне
 }
 
 export const LIFECYCLE_LEVELS: LifecycleLevel[] = [
   // ─── Талапкер (Applicant) Levels 1-10 ───
-  { level: 1, title: { kk: 'Жаңадан келген', ru: 'Новичок', en: 'Newcomer' }, stage: 'applicant', minXp: 0, maxXp: 100, color: '#94A3B8', icon: '🌱', perks: [{ kk: 'Бастапқы квесттер', ru: 'Начальные квесты', en: 'Starter quests' }] },
-  { level: 2, title: { kk: 'Зерттеуші', ru: 'Исследователь', en: 'Explorer' }, stage: 'applicant', minXp: 100, maxXp: 250, color: '#22C55E', icon: '🔍', perks: [{ kk: 'Кампус турына қол жеткізу', ru: 'Доступ к туру кампуса', en: 'Campus tour access' }] },
-  { level: 3, title: { kk: 'Құжаттарды жинаушы', ru: 'Документовед', en: 'Document Collector' }, stage: 'applicant', minXp: 250, maxXp: 500, color: '#3B82F6', icon: '📋', perks: [{ kk: 'Құжаттар тексерушісі', ru: 'Проверка документов', en: 'Document checker' }] },
-  { level: 4, title: { kk: 'ЕНТ дайындығы', ru: 'К ЕНТ готов', en: 'UNT Ready' }, stage: 'applicant', minXp: 500, maxXp: 850, color: '#F59E0B', icon: '📚', perks: [{ kk: 'Тегін ЕНТ материалдары', ru: 'Бесплатные материалы ЕНТ', en: 'Free UNT materials' }] },
-  { level: 5, title: { kk: 'Белсенді талапкер', ru: 'Активный абитуриент', en: 'Active Applicant' }, stage: 'applicant', minXp: 850, maxXp: 1300, color: '#8B5CF6', icon: '⚡', perks: [{ kk: 'Студенттермен чат', ru: 'Чат со студентами', en: 'Student chat access' }] },
-  { level: 6, title: { kk: 'Мақсатқа жетуші', ru: 'Целеустремлённый', en: 'Goal Oriented' }, stage: 'applicant', minXp: 1300, maxXp: 1850, color: '#EC4899', icon: '🎯', perks: [{ kk: 'Бағдарлама кеңесшісі', ru: 'Консультант программы', en: 'Program advisor' }] },
-  { level: 7, title: { kk: 'Жетілген талапкер', ru: 'Продвинутый', en: 'Advanced Applicant' }, stage: 'applicant', minXp: 1850, maxXp: 2500, color: '#06B6D4', icon: '🚀', perks: [{ kk: 'Приоритетті қарау', ru: 'Приоритетное рассмотрение', en: 'Priority review' }] },
-  { level: 8, title: { kk: 'Элита', ru: 'Элита', en: 'Elite' }, stage: 'applicant', minXp: 2500, maxXp: 3300, color: '#10B981', icon: '👑', perks: [{ kk: 'VIP экскурсия', ru: 'VIP экскурсия', en: 'VIP campus tour' }] },
-  { level: 9, title: { kk: 'Үміткер чемпион', ru: 'Чемпион', en: 'Champion' }, stage: 'applicant', minXp: 3300, maxXp: 4200, color: '#EF4444', icon: '🏆', perks: [{ kk: 'Стипендия ұсынысы', ru: 'Рекомендация на стипендию', en: 'Scholarship recommendation' }] },
-  { level: 10, title: { kk: 'Болашақ көшбасшы', ru: 'Будущий лидер', en: 'Future Leader' }, stage: 'applicant', minXp: 4200, maxXp: 9999, color: '#E6B325', icon: '⭐', perks: [{ kk: 'Менторлық бағдарлама', ru: 'Программа менторства', en: 'Mentorship program' }] },
+  {
+    level: 1,
+    title: { kk: 'Жаңадан келген', ru: 'Новичок', en: 'Newcomer' },
+    stage: 'applicant',
+    minXp: 0,
+    maxXp: 100,
+    color: '#94A3B8',
+    icon: '🌱',
+    perks: [{ kk: 'Бастапқы квесттер', ru: 'Начальные квесты', en: 'Starter quests' }],
+  },
+  {
+    level: 2,
+    title: { kk: 'Зерттеуші', ru: 'Исследователь', en: 'Explorer' },
+    stage: 'applicant',
+    minXp: 100,
+    maxXp: 250,
+    color: '#22C55E',
+    icon: '🔍',
+    perks: [
+      { kk: 'Кампус турына қол жеткізу', ru: 'Доступ к туру кампуса', en: 'Campus tour access' },
+    ],
+  },
+  {
+    level: 3,
+    title: { kk: 'Құжаттарды жинаушы', ru: 'Документовед', en: 'Document Collector' },
+    stage: 'applicant',
+    minXp: 250,
+    maxXp: 500,
+    color: '#3B82F6',
+    icon: '📋',
+    perks: [{ kk: 'Құжаттар тексерушісі', ru: 'Проверка документов', en: 'Document checker' }],
+  },
+  {
+    level: 4,
+    title: { kk: 'ЕНТ дайындығы', ru: 'К ЕНТ готов', en: 'UNT Ready' },
+    stage: 'applicant',
+    minXp: 500,
+    maxXp: 850,
+    color: '#F59E0B',
+    icon: '📚',
+    perks: [
+      { kk: 'Тегін ЕНТ материалдары', ru: 'Бесплатные материалы ЕНТ', en: 'Free UNT materials' },
+    ],
+  },
+  {
+    level: 5,
+    title: { kk: 'Белсенді талапкер', ru: 'Активный абитуриент', en: 'Active Applicant' },
+    stage: 'applicant',
+    minXp: 850,
+    maxXp: 1300,
+    color: '#8B5CF6',
+    icon: '⚡',
+    perks: [{ kk: 'Студенттермен чат', ru: 'Чат со студентами', en: 'Student chat access' }],
+  },
+  {
+    level: 6,
+    title: { kk: 'Мақсатқа жетуші', ru: 'Целеустремлённый', en: 'Goal Oriented' },
+    stage: 'applicant',
+    minXp: 1300,
+    maxXp: 1850,
+    color: '#EC4899',
+    icon: '🎯',
+    perks: [{ kk: 'Бағдарлама кеңесшісі', ru: 'Консультант программы', en: 'Program advisor' }],
+  },
+  {
+    level: 7,
+    title: { kk: 'Жетілген талапкер', ru: 'Продвинутый', en: 'Advanced Applicant' },
+    stage: 'applicant',
+    minXp: 1850,
+    maxXp: 2500,
+    color: '#06B6D4',
+    icon: '🚀',
+    perks: [{ kk: 'Приоритетті қарау', ru: 'Приоритетное рассмотрение', en: 'Priority review' }],
+  },
+  {
+    level: 8,
+    title: { kk: 'Элита', ru: 'Элита', en: 'Elite' },
+    stage: 'applicant',
+    minXp: 2500,
+    maxXp: 3300,
+    color: '#10B981',
+    icon: '👑',
+    perks: [{ kk: 'VIP экскурсия', ru: 'VIP экскурсия', en: 'VIP campus tour' }],
+  },
+  {
+    level: 9,
+    title: { kk: 'Үміткер чемпион', ru: 'Чемпион', en: 'Champion' },
+    stage: 'applicant',
+    minXp: 3300,
+    maxXp: 4200,
+    color: '#EF4444',
+    icon: '🏆',
+    perks: [
+      {
+        kk: 'Стипендия ұсынысы',
+        ru: 'Рекомендация на стипендию',
+        en: 'Scholarship recommendation',
+      },
+    ],
+  },
+  {
+    level: 10,
+    title: { kk: 'Болашақ көшбасшы', ru: 'Будущий лидер', en: 'Future Leader' },
+    stage: 'applicant',
+    minXp: 4200,
+    maxXp: 9999,
+    color: '#E6B325',
+    icon: '⭐',
+    perks: [{ kk: 'Менторлық бағдарлама', ru: 'Программа менторства', en: 'Mentorship program' }],
+  },
 
   // ─── Студент (Student) Levels 11-30 ───
-  { level: 11, title: { kk: '1-курс студенті', ru: 'Первокурсник', en: 'Freshman' }, stage: 'student', minXp: 0, maxXp: 500, color: '#3B82F6', icon: '🎓', perks: [{ kk: 'Студенттік билет', ru: 'Студенческий билет', en: 'Student ID' }] },
-  { level: 12, title: { kk: 'Бейімделген', ru: 'Адаптировался', en: 'Adapted' }, stage: 'student', minXp: 500, maxXp: 1200, color: '#22C55E', icon: '🌿', perks: [{ kk: 'Ғылыми үйірме', ru: 'Научный кружок', en: 'Science club' }] },
-  { level: 13, title: { kk: 'Үздік студент', ru: 'Отличник', en: 'Honor Student' }, stage: 'student', minXp: 1200, maxXp: 2000, color: '#F59E0B', icon: '📖', perks: [{ kk: 'Кітапхана VIP', ru: 'VIP библиотека', en: 'Library VIP' }] },
-  { level: 14, title: { kk: 'Зерттеуші', ru: 'Исследователь', en: 'Researcher' }, stage: 'student', minXp: 2000, maxXp: 3000, color: '#8B5CF6', icon: '🔬', perks: [{ kk: 'Зертхана қол жеткізу', ru: 'Доступ к лаборатории', en: 'Lab access' }] },
-  { level: 15, title: { kk: 'Стажер', ru: 'Стажёр', en: 'Intern' }, stage: 'student', minXp: 3000, maxXp: 4500, color: '#EC4899', icon: '💼', perks: [{ kk: 'Стажировка базасы', ru: 'База стажировок', en: 'Internship database' }] },
-  { level: 16, title: { kk: 'Көшбасшы', ru: 'Лидер', en: 'Leader' }, stage: 'student', minXp: 4500, maxXp: 6000, color: '#06B6D4', icon: '👥', perks: [{ kk: 'Студенттік кеңес', ru: 'Студсовет', en: 'Student council' }] },
-  { level: 17, title: { kk: 'Маман', ru: 'Специалист', en: 'Specialist' }, stage: 'student', minXp: 6000, maxXp: 8000, color: '#10B981', icon: '⚙️', perks: [{ kk: 'Сертификаттау', ru: 'Сертификация', en: 'Certification' }] },
-  { level: 18, title: { kk: 'Сарапшы', ru: 'Эксперт', en: 'Expert' }, stage: 'student', minXp: 8000, maxXp: 10000, color: '#EF4444', icon: '🎖️', perks: [{ kk: 'Менторлық', ru: 'Менторство младших', en: 'Junior mentoring' }] },
-  { level: 19, title: { kk: 'Үздік түлек', ru: 'Лучший выпускник', en: 'Top Graduate' }, stage: 'student', minXp: 10000, maxXp: 12000, color: '#E6B325', icon: '🌟', perks: [{ kk: 'Жұмыс берушілер базасы', ru: 'База работодателей', en: 'Employer database' }] },
-  { level: 20, title: { kk: 'Алтын түлек', ru: 'Золотой выпускник', en: 'Golden Graduate' }, stage: 'student', minXp: 12000, maxXp: 99999, color: '#E6B325', icon: '👑', perks: [{ kk: 'Алумни клубы', ru: 'Клуб выпускников', en: 'Alumni club' }] },
+  {
+    level: 11,
+    title: { kk: '1-курс студенті', ru: 'Первокурсник', en: 'Freshman' },
+    stage: 'student',
+    minXp: 0,
+    maxXp: 500,
+    color: '#3B82F6',
+    icon: '🎓',
+    perks: [{ kk: 'Студенттік билет', ru: 'Студенческий билет', en: 'Student ID' }],
+  },
+  {
+    level: 12,
+    title: { kk: 'Бейімделген', ru: 'Адаптировался', en: 'Adapted' },
+    stage: 'student',
+    minXp: 500,
+    maxXp: 1200,
+    color: '#22C55E',
+    icon: '🌿',
+    perks: [{ kk: 'Ғылыми үйірме', ru: 'Научный кружок', en: 'Science club' }],
+  },
+  {
+    level: 13,
+    title: { kk: 'Үздік студент', ru: 'Отличник', en: 'Honor Student' },
+    stage: 'student',
+    minXp: 1200,
+    maxXp: 2000,
+    color: '#F59E0B',
+    icon: '📖',
+    perks: [{ kk: 'Кітапхана VIP', ru: 'VIP библиотека', en: 'Library VIP' }],
+  },
+  {
+    level: 14,
+    title: { kk: 'Зерттеуші', ru: 'Исследователь', en: 'Researcher' },
+    stage: 'student',
+    minXp: 2000,
+    maxXp: 3000,
+    color: '#8B5CF6',
+    icon: '🔬',
+    perks: [{ kk: 'Зертхана қол жеткізу', ru: 'Доступ к лаборатории', en: 'Lab access' }],
+  },
+  {
+    level: 15,
+    title: { kk: 'Стажер', ru: 'Стажёр', en: 'Intern' },
+    stage: 'student',
+    minXp: 3000,
+    maxXp: 4500,
+    color: '#EC4899',
+    icon: '💼',
+    perks: [{ kk: 'Стажировка базасы', ru: 'База стажировок', en: 'Internship database' }],
+  },
+  {
+    level: 16,
+    title: { kk: 'Көшбасшы', ru: 'Лидер', en: 'Leader' },
+    stage: 'student',
+    minXp: 4500,
+    maxXp: 6000,
+    color: '#06B6D4',
+    icon: '👥',
+    perks: [{ kk: 'Студенттік кеңес', ru: 'Студсовет', en: 'Student council' }],
+  },
+  {
+    level: 17,
+    title: { kk: 'Маман', ru: 'Специалист', en: 'Specialist' },
+    stage: 'student',
+    minXp: 6000,
+    maxXp: 8000,
+    color: '#10B981',
+    icon: '⚙️',
+    perks: [{ kk: 'Сертификаттау', ru: 'Сертификация', en: 'Certification' }],
+  },
+  {
+    level: 18,
+    title: { kk: 'Сарапшы', ru: 'Эксперт', en: 'Expert' },
+    stage: 'student',
+    minXp: 8000,
+    maxXp: 10000,
+    color: '#EF4444',
+    icon: '🎖️',
+    perks: [{ kk: 'Менторлық', ru: 'Менторство младших', en: 'Junior mentoring' }],
+  },
+  {
+    level: 19,
+    title: { kk: 'Үздік түлек', ru: 'Лучший выпускник', en: 'Top Graduate' },
+    stage: 'student',
+    minXp: 10000,
+    maxXp: 12000,
+    color: '#E6B325',
+    icon: '🌟',
+    perks: [{ kk: 'Жұмыс берушілер базасы', ru: 'База работодателей', en: 'Employer database' }],
+  },
+  {
+    level: 20,
+    title: { kk: 'Алтын түлек', ru: 'Золотой выпускник', en: 'Golden Graduate' },
+    stage: 'student',
+    minXp: 12000,
+    maxXp: 99999,
+    color: '#E6B325',
+    icon: '👑',
+    perks: [{ kk: 'Алумни клубы', ru: 'Клуб выпускников', en: 'Alumni club' }],
+  },
 ];
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -383,7 +651,9 @@ export const LIFECYCLE_LEVELS: LifecycleLevel[] = [
 /** Получить уровень по XP и этапу */
 export function getLifecycleLevel(xp: number, stage: LifecycleStage): LifecycleLevel {
   const stageLevels = LIFECYCLE_LEVELS.filter((l) => l.stage === stage);
-  return stageLevels.find((l) => xp >= l.minXp && xp < l.maxXp) || stageLevels[stageLevels.length - 1];
+  return (
+    stageLevels.find((l) => xp >= l.minXp && xp < l.maxXp) || stageLevels[stageLevels.length - 1]
+  );
 }
 
 /** Рассчитать процент заполненности профиля */
@@ -424,10 +694,10 @@ export function getStageProgress(profile: StudentProfile, quests: LifecycleQuest
   const requiredQuests = stageQuests.filter((q) => q.required);
 
   const completedQuests = stageQuests.filter((q) =>
-    profile.gamification.completedQuests.includes(q.id)
+    profile.gamification.completedQuests.includes(q.id),
   );
   const completedRequired = requiredQuests.filter((q) =>
-    profile.gamification.completedQuests.includes(q.id)
+    profile.gamification.completedQuests.includes(q.id),
   );
 
   const xpTotal = stageQuests.reduce((sum, q) => sum + q.xpReward, 0);
@@ -442,12 +712,16 @@ export function getStageProgress(profile: StudentProfile, quests: LifecycleQuest
     completedRequired: completedRequired.length,
     xpEarned,
     xpTotal,
-    percentage: stageQuests.length > 0 ? Math.round((completedQuests.length / stageQuests.length) * 100) : 0,
+    percentage:
+      stageQuests.length > 0 ? Math.round((completedQuests.length / stageQuests.length) * 100) : 0,
   };
 }
 
 /** Проверить готовность к переходу на следующий этап */
-export function canTransitionToNextStage(profile: StudentProfile, quests: LifecycleQuest[]): boolean {
+export function canTransitionToNextStage(
+  profile: StudentProfile,
+  quests: LifecycleQuest[],
+): boolean {
   const progress = getStageProgress(profile, quests);
   return progress.completedRequired === progress.requiredQuests;
 }
@@ -455,7 +729,10 @@ export function canTransitionToNextStage(profile: StudentProfile, quests: Lifecy
 /** Получить AI-сгенерированное резюме на основе профиля */
 export function generateProfessionalSummary(profile: StudentProfile): LocalizedString {
   // В реальном приложении здесь был бы вызов AI API
-  const skills = profile.skills.slice(0, 3).map(s => s.name.en).join(', ');
+  const skills = profile.skills
+    .slice(0, 3)
+    .map((s) => s.name.en)
+    .join(', ');
   const topSkill = profile.skills[0]?.name || { kk: '', ru: '', en: '' };
 
   return {
