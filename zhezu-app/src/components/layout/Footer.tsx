@@ -107,7 +107,7 @@ export function Footer() {
                   alt="ZhezU"
                   width={40}
                   height={36}
-                  className="h-9 w-10 object-contain brightness-0 invert"
+                  className="h-9 w-10 object-contain drop-shadow-[0_0_2px_rgba(255,255,255,0.3)]"
                 />
               </div>
               <span className="font-display text-lg font-bold text-white">ZhezU</span>
