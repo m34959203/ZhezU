@@ -140,13 +140,55 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* ═══════════════════ HERO — Bold Typography + Stats Grid ═══════════════════ */}
       <section className="bg-bg-light dark:bg-bg-dark relative overflow-hidden">
-        {/* Background decorations */}
+        {/* Background decorations — stronger in light mode */}
         <div className="mesh-gradient absolute inset-0" />
-        <div className="bg-primary/[0.03] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
-        <div className="bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
+        <div className="bg-primary/[0.07] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
+        <div className="bg-gold/[0.08] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
+        {/* Decorative geometric shapes */}
+        <div className="pointer-events-none absolute top-16 right-[10%] hidden lg:block">
+          <svg
+            width="120"
+            height="120"
+            viewBox="0 0 120 120"
+            fill="none"
+            className="animate-float text-primary/[0.06] dark:text-primary-light/[0.08]"
+          >
+            <rect
+              width="80"
+              height="80"
+              x="20"
+              y="20"
+              rx="16"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <rect
+              width="50"
+              height="50"
+              x="35"
+              y="35"
+              rx="10"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+          </svg>
+        </div>
+        <div className="pointer-events-none absolute bottom-24 left-[5%] hidden lg:block">
+          <svg
+            width="80"
+            height="80"
+            viewBox="0 0 80 80"
+            fill="none"
+            className="animate-float text-gold/[0.1] dark:text-gold/[0.08]"
+            style={{ animationDelay: '3s' }}
+          >
+            <circle cx="40" cy="40" r="30" stroke="currentColor" strokeWidth="1.5" />
+            <circle cx="40" cy="40" r="16" stroke="currentColor" strokeWidth="1" />
+          </svg>
+        </div>
 
         <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-28">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
             {/* Left: Bold Typography */}
             <div>
               <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
@@ -155,9 +197,9 @@ export default function HomePage() {
               </div>
 
               <h1 className="font-display mb-6 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                <span className="text-gradient">ZhezU</span>
-                <br />
-                <span className="text-text-secondary-light dark:text-text-secondary-dark mt-2 block text-2xl font-medium tracking-normal sm:text-3xl lg:text-4xl">
+                <span className="text-primary dark:text-primary-light">ZhezU</span>
+                <span className="text-gold ml-1 inline-block h-3 w-3 rounded-full align-super sm:h-4 sm:w-4" />
+                <span className="border-gold/40 text-text-primary-light dark:text-text-primary-dark mt-3 block border-l-2 pl-4 text-xl font-medium tracking-normal sm:text-2xl lg:text-3xl">
                   {t('hero.subtitle')}
                 </span>
               </h1>
@@ -180,51 +222,58 @@ export default function HomePage() {
             </div>
 
             {/* Right: Stats Premium Cards */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  value: '1370+',
-                  label: t('stats.students'),
-                  icon: Users,
-                  color: 'text-primary dark:text-primary-light',
-                  bg: 'bg-primary/5 dark:bg-primary-light/10',
-                },
-                {
-                  value: '24+',
-                  label: t('stats.programs'),
-                  icon: BookOpen,
-                  color: 'text-gold dark:text-gold-light',
-                  bg: 'bg-gold/5 dark:bg-gold/10',
-                },
-                {
-                  value: '87%',
-                  label: t('stats.employment'),
-                  icon: TrendingUp,
-                  color: 'text-success',
-                  bg: 'bg-success/5 dark:bg-success/10',
-                },
-                {
-                  value: '65+',
-                  label: t('stats.years'),
-                  icon: Award,
-                  color: 'text-purple-600 dark:text-purple-400',
-                  bg: 'bg-purple-600/5 dark:bg-purple-400/10',
-                },
-              ].map((stat) => (
-                <div key={stat.label} className="premium-card p-6 text-center">
+            <div className="relative">
+              {/* Glow behind cards */}
+              <div className="bg-primary/[0.03] dark:bg-primary-light/[0.04] absolute inset-0 -m-4 rounded-3xl blur-2xl" />
+              <div className="relative grid grid-cols-2 gap-4">
+                {[
+                  {
+                    value: '1370+',
+                    label: t('stats.students'),
+                    icon: Users,
+                    color: 'text-primary dark:text-primary-light',
+                    bg: 'bg-primary/8 dark:bg-primary-light/10',
+                  },
+                  {
+                    value: '24+',
+                    label: t('stats.programs'),
+                    icon: BookOpen,
+                    color: 'text-gold dark:text-gold-light',
+                    bg: 'bg-gold/8 dark:bg-gold/10',
+                  },
+                  {
+                    value: '87%',
+                    label: t('stats.employment'),
+                    icon: TrendingUp,
+                    color: 'text-success',
+                    bg: 'bg-success/8 dark:bg-success/10',
+                  },
+                  {
+                    value: '65+',
+                    label: t('stats.years'),
+                    icon: Award,
+                    color: 'text-purple-600 dark:text-purple-400',
+                    bg: 'bg-purple-600/8 dark:bg-purple-400/10',
+                  },
+                ].map((stat) => (
                   <div
-                    className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${stat.bg}`}
+                    key={stat.label}
+                    className="premium-card p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.08)] sm:p-6 dark:shadow-none"
                   >
-                    <stat.icon size={22} className={stat.color} />
+                    <div
+                      className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl sm:h-12 sm:w-12 ${stat.bg}`}
+                    >
+                      <stat.icon size={22} className={stat.color} />
+                    </div>
+                    <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
+                      {stat.value}
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-[11px] font-medium tracking-wide uppercase">
+                      {stat.label}
+                    </p>
                   </div>
-                  <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
-                    {stat.value}
-                  </p>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium tracking-wide uppercase">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

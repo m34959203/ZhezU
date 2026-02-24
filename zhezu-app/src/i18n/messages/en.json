@@ -38,7 +38,7 @@
     "system": "System"
   },
   "home": {
-    "heroBadge": "Admissions for 2025 are open",
+    "heroBadge": "Admissions for 2025-2026 academic year open",
     "hero": {
       "title": "Zhezkazgan University",
       "subtitle": "named after O.A. Baikonurov",
@@ -95,7 +95,7 @@
   "admission": {
     "title": "Admission to ZhezU",
     "subtitle": "Begin your journey at ZhezU. Discover world-class programs, generous scholarships, and a community dedicated to your future success.",
-    "heroBadge": "FALL 2025 APPLICATIONS OPEN",
+    "heroBadge": "FALL 2025-2026 APPLICATIONS OPEN",
     "startApplication": "Start Application",
     "viewRequirements": "View Requirements",
     "requirements": {
