@@ -138,6 +138,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    prefetch={false}
                     className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
@@ -157,6 +158,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
+                    prefetch={false}
                     className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                   >
                     {link.label}
@@ -212,12 +214,14 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
+              prefetch={false}
               className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
               Политика конфиденциальности
             </Link>
             <Link
               href="/sitemap"
+              prefetch={false}
               className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
               Карта сайта
