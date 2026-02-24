@@ -139,17 +139,17 @@ export default function ContactPage() {
       <main className="mx-auto w-full max-w-[1280px] flex-1 px-4 py-8 sm:px-10">
         {/* -------- Page Header -------- */}
         <div className="mb-10 text-center sm:text-left">
-          <h1 className="mb-4 text-4xl font-black tracking-tight text-slate-900 md:text-5xl dark:text-white">
+          <h1 className="text-text-primary-light dark:text-text-primary-dark mb-4 text-4xl font-black tracking-tight md:text-5xl">
             Контакты
           </h1>
-          <p className="max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
             Свяжитесь с Жезказганским университетом. Будь вы абитуриент, исследователь или гость --
             мы всегда готовы помочь.
           </p>
         </div>
 
         {/* -------- Map Placeholder -------- */}
-        <div className="relative mb-12 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-sm dark:border-slate-800 dark:bg-slate-800">
+        <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark relative mb-12 w-full overflow-hidden rounded-xl border shadow-sm">
           <div className="aspect-video w-full" />
           {/* Pin icon */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
@@ -162,7 +162,7 @@ export default function ContactPage() {
             href="https://maps.google.com/?q=Zhezkazgan+University"
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute right-4 bottom-4 flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-slate-900 shadow-md transition-colors hover:bg-slate-50 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+            className="bg-surface-light text-text-primary-light hover:bg-bg-light dark:bg-surface-dark dark:text-text-primary-dark dark:hover:bg-bg-dark absolute right-4 bottom-4 flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium shadow-md transition-colors"
           >
             Открыть в Google Maps
             <ExternalLink size={14} />
@@ -175,19 +175,21 @@ export default function ContactPage() {
           <div className="flex flex-col gap-8 lg:col-span-4">
             {/* Main Office */}
             <div className="flex flex-col gap-4">
-              <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Building2 size={20} className="text-primary" />
                 Главный офис
               </h2>
-              <div className="flex flex-col gap-6 rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex flex-col gap-6 rounded-xl border p-6 shadow-sm">
                 {/* Address */}
                 <div className="flex items-start gap-4">
                   <div className="bg-primary/10 text-primary shrink-0 rounded-lg p-2">
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">Адрес</h3>
-                    <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                    <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                      Адрес
+                    </h3>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
                       пр. Алашахана, 1Б,
                       <br />
                       г. Жезказган, Казахстан
@@ -201,8 +203,10 @@ export default function ContactPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">Телефон</h3>
-                    <div className="mt-1 flex flex-col gap-1 text-sm text-slate-600 dark:text-slate-400">
+                    <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                      Телефон
+                    </h3>
+                    <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex flex-col gap-1 text-sm">
                       <a href="tel:+77102744392" className="hover:text-primary transition-colors">
                         +7 (7102) 74-43-92
                       </a>
@@ -219,10 +223,12 @@ export default function ContactPage() {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-900 dark:text-white">Email</h3>
+                    <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                      Email
+                    </h3>
                     <a
                       href="mailto:info@zhezu.edu.kz"
-                      className="hover:text-primary mt-1 block text-sm text-slate-600 transition-colors dark:text-slate-400"
+                      className="hover:text-primary text-text-secondary-light dark:text-text-secondary-dark mt-1 block text-sm transition-colors"
                     >
                       info@zhezu.edu.kz
                     </a>
@@ -233,27 +239,29 @@ export default function ContactPage() {
 
             {/* Opening Hours */}
             <div className="flex flex-col gap-4">
-              <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Clock size={20} className="text-primary" />
                 Часы работы
               </h2>
-              <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark rounded-xl border p-6 shadow-sm">
                 <ul className="flex flex-col gap-3 text-sm">
                   {OPENING_HOURS.map((item, idx) => (
                     <li
                       key={item.day}
                       className={`flex items-center justify-between ${
                         idx < OPENING_HOURS.length - 1
-                          ? 'border-b border-slate-100 pb-2 dark:border-slate-700'
+                          ? 'border-border-light dark:border-border-dark border-b pb-2'
                           : 'pt-1'
                       }`}
                     >
-                      <span className="text-slate-600 dark:text-slate-400">{item.day}</span>
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark">
+                        {item.day}
+                      </span>
                       <span
                         className={
                           item.closed
                             ? 'text-primary font-medium'
-                            : 'font-medium text-slate-900 dark:text-white'
+                            : 'text-text-primary-light dark:text-text-primary-dark font-medium'
                         }
                       >
                         {item.hours}
@@ -266,31 +274,33 @@ export default function ContactPage() {
 
             {/* Departments */}
             <div className="flex flex-col gap-4">
-              <h2 className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Users size={20} className="text-primary" />
                 Отделы
               </h2>
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-1 dark:border-slate-700 dark:bg-slate-800/50">
+              <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark rounded-xl border p-1">
                 {DEPARTMENTS.map((dept, idx) => (
                   <div key={dept.title}>
-                    <div className="group cursor-pointer rounded-lg p-3 transition-colors hover:bg-white dark:hover:bg-slate-800">
+                    <div className="group hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer rounded-lg p-3 transition-colors">
                       <div className="flex items-start gap-3">
                         <div className={`shrink-0 rounded-lg p-1.5 ${dept.bg}`}>
                           <dept.icon size={16} className={dept.color} />
                         </div>
                         <div className="min-w-0">
-                          <h4 className="group-hover:text-primary text-sm font-semibold text-slate-900 dark:text-white">
+                          <h4 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">
                             {dept.title}
                           </h4>
-                          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                          <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-xs">
                             {dept.email}
                           </p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400">{dept.phone}</p>
+                          <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                            {dept.phone}
+                          </p>
                         </div>
                       </div>
                     </div>
                     {idx < DEPARTMENTS.length - 1 && (
-                      <div className="mx-3 h-px bg-slate-200 dark:bg-slate-700" />
+                      <div className="bg-border-light dark:bg-border-dark mx-3 h-px" />
                     )}
                   </div>
                 ))}
@@ -300,13 +310,13 @@ export default function ContactPage() {
 
           {/* RIGHT COLUMN -- Contact Form */}
           <div className="lg:col-span-8">
-            <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+            <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex h-full flex-col overflow-hidden rounded-2xl border shadow-sm">
               {/* Form Header */}
-              <div className="border-b border-slate-100 p-8 dark:border-slate-800">
-                <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+              <div className="border-border-light dark:border-border-dark border-b p-8">
+                <h2 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-2xl font-bold">
                   Напишите нам
                 </h2>
-                <p className="text-slate-600 dark:text-slate-400">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark">
                   Есть вопрос или нужна помощь? Заполните форму ниже, и наша команда ответит вам в
                   течение 24 часов.
                 </p>
@@ -319,10 +329,10 @@ export default function ContactPage() {
                     <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900/30">
                       <CheckCircle2 size={32} className="text-emerald-600 dark:text-emerald-400" />
                     </div>
-                    <h3 className="mb-2 text-xl font-bold text-slate-900 dark:text-white">
+                    <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-xl font-bold">
                       Сообщение отправлено!
                     </h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
                       Мы свяжемся с вами в ближайшее время.
                     </p>
                   </div>
@@ -352,18 +362,18 @@ export default function ContactPage() {
                   <div className="flex flex-col gap-1.5">
                     <label
                       htmlFor="subject"
-                      className="text-sm font-medium text-slate-700 dark:text-slate-300"
+                      className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
                     >
                       Тема
                     </label>
                     <div className="relative">
-                      <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-slate-400">
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark pointer-events-none absolute top-1/2 left-3 -translate-y-1/2">
                         <Mail size={16} />
                       </span>
                       <select
                         id="subject"
                         {...register('subject')}
-                        className="focus:border-primary focus:ring-primary h-10 w-full rounded-lg border border-slate-300 bg-slate-50 pr-4 pl-10 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                        className="focus:border-primary focus:ring-primary border-border-light bg-bg-light text-text-primary-light dark:border-border-dark dark:bg-bg-dark dark:text-text-primary-dark h-10 w-full rounded-lg border pr-4 pl-10 text-sm"
                         defaultValue=""
                       >
                         <option value="" disabled>
@@ -385,7 +395,7 @@ export default function ContactPage() {
                   <div className="flex flex-1 flex-col gap-1.5">
                     <label
                       htmlFor="message"
-                      className="text-sm font-medium text-slate-700 dark:text-slate-300"
+                      className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
                     >
                       Сообщение
                     </label>
@@ -394,7 +404,7 @@ export default function ContactPage() {
                       rows={6}
                       placeholder="Чем мы можем помочь?"
                       {...register('message')}
-                      className="focus:border-primary focus:ring-primary w-full flex-1 resize-none rounded-lg border border-slate-300 bg-slate-50 p-4 text-sm text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                      className="focus:border-primary focus:ring-primary border-border-light bg-bg-light text-text-primary-light dark:border-border-dark dark:bg-bg-dark dark:text-text-primary-dark w-full flex-1 resize-none rounded-lg border p-4 text-sm"
                     />
                     {errors.message && (
                       <p className="text-xs text-red-500">{errors.message.message}</p>
@@ -410,7 +420,7 @@ export default function ContactPage() {
 
                   {/* Footer row */}
                   <div className="mt-auto flex items-center justify-between pt-4">
-                    <p className="max-w-xs text-xs text-slate-500 dark:text-slate-400">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-xs text-xs">
                       Отправляя форму, вы соглашаетесь с нашей политикой конфиденциальности и
                       условиями использования.
                     </p>

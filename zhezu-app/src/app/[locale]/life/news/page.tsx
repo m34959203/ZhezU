@@ -180,7 +180,10 @@ export default function NewsPage() {
   /* ---------------------------------------------------------------- */
 
   function renderCategoryBadge(category: string, className?: string) {
-    const colors = CATEGORY_COLORS[category] ?? { bg: 'bg-slate-100', text: 'text-slate-600' };
+    const colors = CATEGORY_COLORS[category] ?? {
+      bg: 'bg-bg-light dark:bg-bg-dark',
+      text: 'text-text-secondary-light dark:text-text-secondary-dark',
+    };
     return (
       <span
         className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${colors.bg} ${colors.text} ${className ?? ''}`}
@@ -204,7 +207,7 @@ export default function NewsPage() {
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             disabled={currentPage === 1}
-            className="relative inline-flex items-center rounded-l-md px-2 py-2 text-slate-400 ring-1 ring-slate-300 transition-colors ring-inset hover:bg-slate-50 disabled:opacity-40 dark:ring-slate-700 dark:hover:bg-slate-800"
+            className="text-text-secondary-light dark:text-text-secondary-dark ring-border-light dark:ring-border-dark hover:bg-bg-light dark:hover:bg-bg-dark relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 transition-colors ring-inset disabled:opacity-40"
           >
             <span className="sr-only">Предыдущая</span>
             <ChevronLeft size={20} />
@@ -214,7 +217,7 @@ export default function NewsPage() {
             p === '...' ? (
               <span
                 key={`ellipsis-${i}`}
-                className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-300 ring-inset dark:text-slate-400 dark:ring-slate-700"
+                className="text-text-primary-light dark:text-text-primary-dark ring-border-light dark:ring-border-dark relative inline-flex items-center px-4 py-2 text-sm font-semibold ring-1 ring-inset"
               >
                 ...
               </span>
@@ -225,7 +228,7 @@ export default function NewsPage() {
                 className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold transition-colors ${
                   currentPage === p
                     ? 'bg-primary focus-visible:outline-primary z-10 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2'
-                    : 'text-slate-900 ring-1 ring-slate-300 ring-inset hover:bg-slate-50 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800'
+                    : 'text-text-primary-light dark:text-text-primary-dark ring-border-light dark:ring-border-dark hover:bg-bg-light dark:hover:bg-bg-dark ring-1 ring-inset'
                 }`}
               >
                 {p}
@@ -236,7 +239,7 @@ export default function NewsPage() {
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
             disabled={currentPage === totalPages}
-            className="relative inline-flex items-center rounded-r-md px-2 py-2 text-slate-400 ring-1 ring-slate-300 transition-colors ring-inset hover:bg-slate-50 disabled:opacity-40 dark:ring-slate-700 dark:hover:bg-slate-800"
+            className="text-text-secondary-light dark:text-text-secondary-dark ring-border-light dark:ring-border-dark hover:bg-bg-light dark:hover:bg-bg-dark relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 transition-colors ring-inset disabled:opacity-40"
           >
             <span className="sr-only">Следующая</span>
             <ChevronRight size={20} />
@@ -264,7 +267,7 @@ export default function NewsPage() {
                   className={`inline-flex h-9 shrink-0 items-center justify-center rounded-full px-5 text-sm font-medium transition-all active:scale-95 ${
                     activeCategory === cat.id
                       ? 'bg-slate-900 text-white shadow-sm dark:bg-white dark:text-slate-900'
-                      : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
+                      : 'border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark text-text-primary-light dark:text-text-primary-dark hover:bg-bg-light dark:hover:bg-bg-dark border'
                   }`}
                 >
                   {cat.label}
@@ -275,7 +278,7 @@ export default function NewsPage() {
 
           {/* -------- Featured Story -------- */}
           <section className="mb-16">
-            <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-900/5 lg:flex-row dark:bg-slate-800 dark:ring-white/10">
+            <div className="group bg-surface-light dark:bg-surface-dark relative flex flex-col overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-900/5 lg:flex-row dark:ring-white/10">
               {/* Image (60%) */}
               <div className="relative h-64 w-full flex-shrink-0 overflow-hidden lg:h-auto lg:w-3/5">
                 <Image
@@ -290,11 +293,13 @@ export default function NewsPage() {
               {/* Content (40%) */}
               <div className="flex flex-col justify-center p-8 lg:w-2/5">
                 <div className="flex items-center gap-2 text-sm">
-                  <span className="text-primary font-semibold">
+                  <span className="text-primary dark:text-primary-light font-semibold">
                     {CATEGORY_LABELS[featured.category]}
                   </span>
-                  <span className="text-slate-300 dark:text-slate-600">&bull;</span>
-                  <span className="text-slate-500 dark:text-slate-400">
+                  <span className="text-text-secondary-light dark:text-text-secondary-dark">
+                    &bull;
+                  </span>
+                  <span className="text-text-secondary-light dark:text-text-secondary-dark">
                     {new Date(featured.date).toLocaleDateString('ru-RU', {
                       year: 'numeric',
                       month: 'long',
@@ -302,23 +307,26 @@ export default function NewsPage() {
                     })}
                   </span>
                 </div>
-                <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 lg:text-3xl dark:text-white">
+                <h2 className="text-text-primary-light dark:text-text-primary-dark mt-4 text-2xl font-bold tracking-tight lg:text-3xl">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-slate-600 lg:text-lg dark:text-slate-300">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mt-4 text-base leading-relaxed lg:text-lg">
                   {featured.excerpt}
                 </p>
                 <div className="mt-8 flex items-center gap-4">
                   <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-700">
-                      <User size={14} className="text-slate-500" />
+                    <div className="bg-bg-light dark:bg-bg-dark flex h-8 w-8 items-center justify-center rounded-full">
+                      <User
+                        size={14}
+                        className="text-text-secondary-light dark:text-text-secondary-dark"
+                      />
                     </div>
-                    <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                    <span className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium">
                       {featured.author}
                     </span>
                   </div>
-                  <span className="text-slate-300 dark:text-slate-600">|</span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">
+                  <span className="text-text-secondary-light dark:text-text-secondary-dark">|</span>
+                  <span className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
                     {featured.readTime} чтения
                   </span>
                 </div>
@@ -329,7 +337,7 @@ export default function NewsPage() {
           {/* -------- Latest News Grid -------- */}
           <section>
             <div className="mb-8 flex items-center justify-between">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h3 className="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold">
                 Последние новости
               </h3>
               <Button
@@ -345,7 +353,7 @@ export default function NewsPage() {
 
             {paged.length === 0 ? (
               <div className="py-16 text-center">
-                <p className="text-slate-500 dark:text-slate-400">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark">
                   Статей в этой категории пока нет.
                 </p>
               </div>
@@ -354,7 +362,7 @@ export default function NewsPage() {
                 {paged.map((article) => (
                   <article key={article.id} className="group flex cursor-pointer flex-col">
                     {/* Card Image */}
-                    <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+                    <div className="bg-bg-light dark:bg-bg-dark relative aspect-[16/9] w-full overflow-hidden rounded-xl">
                       <Image
                         src={article.image}
                         alt={article.title}
@@ -367,7 +375,7 @@ export default function NewsPage() {
                     {/* Meta */}
                     <div className="mt-4 flex items-center gap-3 text-xs font-medium">
                       {renderCategoryBadge(article.category)}
-                      <span className="flex items-center gap-1 text-slate-400">
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1">
                         <Calendar size={12} />
                         {new Date(article.date).toLocaleDateString('ru-RU', {
                           year: 'numeric',
@@ -378,19 +386,22 @@ export default function NewsPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="group-hover:text-primary mt-3 text-lg leading-tight font-bold text-slate-900 transition-colors dark:text-white">
+                    <h3 className="group-hover:text-primary dark:group-hover:text-primary-light text-text-primary-light dark:text-text-primary-dark mt-3 text-lg leading-tight font-bold transition-colors">
                       {article.title}
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 line-clamp-2 text-sm leading-relaxed">
                       {article.excerpt}
                     </p>
 
                     {/* Author */}
                     <div className="mt-4 flex items-center gap-2">
-                      <User size={12} className="text-slate-400" />
-                      <span className="text-xs font-medium text-slate-500 dark:text-slate-500">
+                      <User
+                        size={12}
+                        className="text-text-secondary-light dark:text-text-secondary-dark"
+                      />
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">
                         {article.author}
                       </span>
                     </div>
