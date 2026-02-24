@@ -1003,6 +1003,233 @@
       "aboutP2": "As the only multidisciplinary university in the Ulytau region, the university focuses on training specialists for mining, metallurgy, education, and engineering industries. The 87% graduate employment rate demonstrates high demand for specialists in the labor market.",
       "ctaAccreditation": "Accreditation",
       "ctaAbout": "About the University"
+    },
+    "partners": {
+      "pageTitle": "Corporate Partners — Zhezkazgan University",
+      "pageDescription": "Corporate and industry partners of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Partners",
+      "title": "Corporate Partners",
+      "subtitle": "Zhezkazgan University develops partnerships with leading enterprises in mining, energy, and construction industries of the Ulytau region",
+      "aboutTitle": "Business Cooperation",
+      "aboutP1": "As the only multidisciplinary university in the Ulytau region, Zhezkazgan University is a key supplier of qualified personnel for regional enterprises. The university maintains and develops cooperation with government and business structures, public organizations and enterprises.",
+      "aboutP2": "The mining industry is a priority area of Kazakhstan's industrial and innovation development. The university trains specialists in mining, geology, metallurgy, energy, construction and mechanical engineering, who are in demand at enterprises in the Zhezkazgan region.",
+      "industriesTitle": "Industry Partners",
+      "industriesSubtitle": "Enterprises and organizations with which the university maintains active cooperation",
+      "industries": {
+        "mining": {
+          "title": "Mining Industry",
+          "text": "Zhezkazgan is one of the largest mining centers in Kazakhstan. The university trains mining engineers, geologists and ore processing specialists for regional enterprises.",
+          "partners": "Kazakhmys Corporation, KAZ Minerals, Zhezkazgantsvetmet LLP"
+        },
+        "energy": {
+          "title": "Energy",
+          "text": "Training electrical power engineers and automation specialists for thermal power plants and energy systems in the region.",
+          "partners": "Kazakhmys Energy LLP, Zhezkazgan CHP, GRES"
+        },
+        "construction": {
+          "title": "Construction",
+          "text": "Training construction engineers and thermal engineering specialists for the construction industry of the Ulytau region.",
+          "partners": "Regional construction companies"
+        },
+        "education": {
+          "title": "Education",
+          "text": "The university is the largest supplier of teaching staff for schools in the Ulytau region: primary school teachers, philologists, mathematicians, biologists.",
+          "partners": "Ulytau Region Education Department, regional schools"
+        },
+        "government": {
+          "title": "Government Bodies",
+          "text": "Cooperation with akimats, departments and government bodies of the Ulytau region on staffing and scientific-methodological support.",
+          "partners": "Ulytau Region Akimat, Zhezkazgan City Akimat"
+        },
+        "manufacturing": {
+          "title": "Metallurgy and Engineering",
+          "text": "Training metallurgists and process engineers for metallurgical enterprises and manufacturing in the Zhezkazgan industrial region.",
+          "partners": "Zhezkazgan Copper Smelter, KMO enterprises"
+        }
+      },
+      "cooperationTitle": "Forms of Cooperation",
+      "cooperation": {
+        "practice": {
+          "title": "Industrial Practice",
+          "text": "Students complete internships at partner enterprises"
+        },
+        "employment": {
+          "title": "Employment",
+          "text": "87% of graduates find employment in their field"
+        },
+        "dual": {
+          "title": "Dual Education",
+          "text": "Combining university theory with hands-on industrial practice"
+        },
+        "research": {
+          "title": "R&D",
+          "text": "Joint research projects with enterprises"
+        }
+      },
+      "stats": {
+        "employment": {
+          "value": "87%",
+          "label": "Graduate Employment"
+        },
+        "partners": {
+          "value": "50+",
+          "label": "Partner Enterprises"
+        },
+        "regions": {
+          "value": "65+",
+          "label": "Years Training Regional Specialists"
+        }
+      },
+      "ctaInternational": "International Partners",
+      "ctaCareer": "Graduate Careers"
+    },
+    "charter": {
+      "pageTitle": "University Charter — Zhezkazgan University",
+      "pageDescription": "Charter of O.A. Baikonurov Zhezkazgan University — the main founding document of the university",
+      "badge": "Documents",
+      "title": "University Charter",
+      "subtitle": "The main founding document defining the legal status, goals, objectives and operating procedures of O.A. Baikonurov Zhezkazgan University",
+      "aboutTitle": "About the Charter",
+      "aboutP1": "The Charter of O.A. Baikonurov Zhezkazgan University is the main founding document regulating the university's activities in accordance with the legislation of the Republic of Kazakhstan in the field of education.",
+      "aboutP2": "The university was established by Resolution No. 573 of the Government of the Republic of Kazakhstan dated May 7, 1996. The charter defines the organizational and legal form, management structure, academic and financial activities of the university.",
+      "detailsTitle": "Registration Details",
+      "details": {
+        "fullName": {
+          "label": "Full Name",
+          "value": "O.A. Baikonurov Zhezkazgan University"
+        },
+        "bin": {
+          "label": "BIN",
+          "value": "010940001389"
+        },
+        "registered": {
+          "label": "Date of State Registration",
+          "value": "September 28, 2001"
+        },
+        "address": {
+          "label": "Legal Address"
+        },
+        "rector": {
+          "label": "Rector"
+        },
+        "activity": {
+          "label": "Main Activity (OKED)",
+          "value": "85421 — Higher Education"
+        }
+      },
+      "sectionsTitle": "Charter Sections",
+      "sectionsSubtitle": "The charter includes the following main sections covering all aspects of the university's activities",
+      "sections": {
+        "general": {
+          "title": "General Provisions",
+          "text": "Legal status, name, location and organizational-legal form of the university"
+        },
+        "governance": {
+          "title": "University Governance",
+          "text": "Structure of governing bodies: Supervisory Board, Academic Council, Rectorate"
+        },
+        "academic": {
+          "title": "Educational Activities",
+          "text": "Organization of the educational process, educational programs, research activities"
+        },
+        "financial": {
+          "title": "Financial and Economic Activities",
+          "text": "University property, funding sources, budget and reporting"
+        },
+        "students": {
+          "title": "Rights and Obligations",
+          "text": "Rights and obligations of students, faculty and staff"
+        },
+        "amendments": {
+          "title": "Amendment Procedures",
+          "text": "Procedures for making changes and additions to the university charter"
+        }
+      },
+      "ctaLicenses": "Licenses",
+      "ctaAbout": "About University"
+    },
+    "licenses": {
+      "pageTitle": "Licenses — Zhezkazgan University",
+      "pageDescription": "Licenses and permits of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Documents",
+      "title": "Licenses and Permits",
+      "subtitle": "Permits confirming the right of Zhezkazgan University to conduct educational activities",
+      "licenses": {
+        "education": {
+          "title": "Education License",
+          "number": "Issued by Ministry of Education and Science of RK",
+          "text": "The license grants the right to conduct educational activities in higher and postgraduate education programs in accredited specialties.",
+          "issued": "Current license",
+          "status": "Active"
+        },
+        "retraining": {
+          "title": "Retraining License",
+          "number": "AB No. 0137384 dated 03.02.2010",
+          "text": "License for the right to conduct retraining and professional development activities in various fields.",
+          "issued": "Issued February 3, 2010",
+          "status": "Active"
+        },
+        "accreditation": {
+          "title": "Accreditation Certificate",
+          "number": "A No. 0000035 dated 03.08.2001",
+          "text": "State accreditation confirms the compliance of the university's educational programs with state quality standards.",
+          "issued": "Issued August 3, 2001",
+          "status": "Active"
+        },
+        "iso": {
+          "title": "ISO 9001 Certificate",
+          "number": "ISO 9001:2000",
+          "text": "The university's quality management system is certified to the international ISO 9001 standard, confirming a high level of educational process organization.",
+          "issued": "Since 2006",
+          "status": "Active"
+        }
+      },
+      "infoTitle": "About Licensing",
+      "infoP1": "Licensing of educational activities in the Republic of Kazakhstan is carried out in accordance with the Law of RK 'On Education' and the Law of RK 'On Permits and Notifications'. A license is a mandatory requirement for conducting educational activities.",
+      "infoP2": "O.A. Baikonurov Zhezkazgan University holds all necessary permits for conducting educational activities at all levels — bachelor's, master's and doctoral programs.",
+      "ctaCharter": "University Charter",
+      "ctaAccreditation": "Accreditation"
+    },
+    "reports": {
+      "pageTitle": "Reports — Zhezkazgan University",
+      "pageDescription": "Reporting of O.A. Baikonurov Zhezkazgan University — openness and transparency",
+      "badge": "Documents",
+      "title": "University Reports",
+      "subtitle": "Zhezkazgan University ensures openness and transparency of its activities through regular publication of reports",
+      "metricsTitle": "Key Metrics",
+      "metrics": {
+        "students": "Students Enrolled",
+        "programs": "Educational Programs",
+        "faculty": "Faculty Members",
+        "employment": "Graduate Employment",
+        "doctors": "Doctors of Science",
+        "candidates": "Candidates of Science"
+      },
+      "typesTitle": "Types of Reports",
+      "typesSubtitle": "The university publishes various types of reports to inform the public about its performance",
+      "types": {
+        "annual": {
+          "title": "Annual Report",
+          "text": "Comprehensive report on the university's activities for the academic year, including results of educational, research and extracurricular work."
+        },
+        "financial": {
+          "title": "Financial Report",
+          "text": "Report on the financial and economic activities of the university, including revenue, expenses and investments in development."
+        },
+        "quality": {
+          "title": "Quality Report",
+          "text": "Results of internal and external quality assessment of education, monitoring of educational programs and student satisfaction."
+        },
+        "research": {
+          "title": "Research Report",
+          "text": "Results of research activities: publications, grants, patents and scientific events."
+        }
+      },
+      "transparencyTitle": "Transparency and Openness",
+      "transparencyP1": "Zhezkazgan University is committed to the principles of transparency and accountability. We regularly publish information about our performance and provide reports to stakeholders.",
+      "transparencyP2": "For additional information or to request specific reports, you can contact us through the following channels:",
+      "ctaLicenses": "Licenses",
+      "ctaAccreditation": "Accreditation"
     }
   },
   "programs": {

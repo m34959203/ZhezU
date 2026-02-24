@@ -108,7 +108,9 @@ export default function AcademicCouncilPage({ params }: { params: { locale: stri
       {/* Functions */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('functionsTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('functionsTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('functionsSubtitle')}
           </p>
@@ -136,7 +138,9 @@ export default function AcademicCouncilPage({ params }: { params: { locale: stri
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="font-display mb-6 text-2xl font-bold sm:text-3xl">{t('compositionTitle')}</h2>
+            <h2 className="font-display mb-6 text-2xl font-bold sm:text-3xl">
+              {t('compositionTitle')}
+            </h2>
             <div className="text-text-secondary-light dark:text-text-secondary-dark space-y-4 leading-relaxed">
               <p>{t('compositionP1')}</p>
               <p>{t('compositionP2')}</p>

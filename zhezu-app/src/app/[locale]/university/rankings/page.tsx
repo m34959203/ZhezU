@@ -75,7 +75,9 @@ export default function RankingsPage() {
                     <span className="text-primary dark:text-primary-light">{r.icon}</span>
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold">{t(`rankings.${r.key}.title`)}</h3>
+                    <h3 className="font-display text-lg font-semibold">
+                      {t(`rankings.${r.key}.title`)}
+                    </h3>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
                       {t(`rankings.${r.key}.source`)}
                     </p>
@@ -101,7 +103,9 @@ export default function RankingsPage() {
       {/* Key Indicators */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold">{t('indicatorsTitle')}</h2>
+          <h2 className="font-display mb-10 text-center text-3xl font-bold">
+            {t('indicatorsTitle')}
+          </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {indicators.map((ind) => (
               <div
