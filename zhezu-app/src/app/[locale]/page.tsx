@@ -166,9 +166,10 @@ export default function HomePage() {
                   {t('heroBadge')}
                 </div>
 
-                <h1 className="font-display mb-6 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                  <span className="text-primary dark:text-primary-light">ZhezU</span>
-                  <span className="text-gold ml-1 inline-block h-3 w-3 rounded-full align-super sm:h-4 sm:w-4" />
+                <h1 className="font-display mb-6 leading-[1.1] font-bold tracking-tight">
+                  <span className="text-primary dark:text-primary-light text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">
+                    Жезказганский университет
+                  </span>
                   <span className="border-gold/40 text-text-primary-light dark:text-text-primary-dark mt-3 block border-l-2 pl-4 text-xl font-medium tracking-normal sm:text-2xl lg:text-3xl">
                     {t('hero.subtitle')}
                   </span>
