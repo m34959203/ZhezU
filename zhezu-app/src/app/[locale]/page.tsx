@@ -9,9 +9,6 @@ import {
   BookOpen,
   Briefcase,
   GraduationCap,
-  Users,
-  Award,
-  TrendingUp,
   Brain,
   Zap,
   Wrench,
@@ -222,59 +219,17 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Right: Stats Premium Cards */}
-            <div className="relative">
-              {/* Glow behind cards */}
-              <div className="bg-primary/[0.03] dark:bg-primary-light/[0.04] absolute inset-0 -m-4 rounded-3xl blur-2xl" />
-              <div className="relative grid grid-cols-2 gap-4">
-                {[
-                  {
-                    value: '1370+',
-                    label: t('stats.students'),
-                    icon: Users,
-                    color: 'text-primary dark:text-primary-light',
-                    bg: 'bg-primary/8 dark:bg-primary-light/10',
-                  },
-                  {
-                    value: '24+',
-                    label: t('stats.programs'),
-                    icon: BookOpen,
-                    color: 'text-gold dark:text-gold-light',
-                    bg: 'bg-gold/8 dark:bg-gold/10',
-                  },
-                  {
-                    value: '87%',
-                    label: t('stats.employment'),
-                    icon: TrendingUp,
-                    color: 'text-success',
-                    bg: 'bg-success/8 dark:bg-success/10',
-                  },
-                  {
-                    value: '65+',
-                    label: t('stats.years'),
-                    icon: Award,
-                    color: 'text-purple-600 dark:text-purple-400',
-                    bg: 'bg-purple-600/8 dark:bg-purple-400/10',
-                  },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="dark:border-border-dark dark:bg-surface-dark/90 rounded-2xl border border-white/80 bg-white/90 p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm sm:p-6 dark:shadow-none"
-                  >
-                    <div
-                      className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl sm:h-12 sm:w-12 ${stat.bg}`}
-                    >
-                      <stat.icon size={22} className={stat.color} />
-                    </div>
-                    <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
-                      {stat.value}
-                    </p>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-[11px] font-medium tracking-wide uppercase">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            {/* Right: University Emblem */}
+            <div className="relative flex items-center justify-center">
+              <div className="bg-gold/[0.08] dark:bg-gold/[0.04] absolute h-[360px] w-[360px] rounded-full blur-3xl" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-emblem.png"
+                alt="ZhezU — Жезказганский университет"
+                width={320}
+                height={286}
+                className="relative h-auto w-[280px] object-contain drop-shadow-2xl sm:w-[320px] lg:w-[360px] dark:brightness-0 dark:drop-shadow-[0_4px_24px_rgba(255,255,255,0.1)] dark:invert"
+              />
             </div>
           </div>
         </div>
