@@ -578,6 +578,163 @@ export const PROGRAMS = [
   },
 ] as const;
 
+export const DEPARTMENT_HEADS: Record<
+  string,
+  { name: Record<string, string>; title: Record<string, string> }
+> = {
+  'mining-metallurgy-science': {
+    name: {
+      kk: 'Тақышов Абділмәлік Арғынұлы',
+      ru: 'Такишов Абдилмалик Аргынович',
+      en: 'Takishov Abdilmalik Argynovich',
+    },
+    title: {
+      kk: 'т.ғ.д., профессор',
+      ru: 'д.т.н., профессор',
+      en: 'D.Sc., Professor',
+    },
+  },
+  'electrical-safety': {
+    name: {
+      kk: 'Ахметбекова Ардақ Мажитовна',
+      ru: 'Ахметбекова Ардак Мажитовна',
+      en: 'Akhmetbekova Ardak Mazhitovna',
+    },
+    title: {
+      kk: 'т.ғ.к., доцент',
+      ru: 'к.т.н., доцент',
+      en: 'Ph.D., Associate Professor',
+    },
+  },
+  'machines-construction': {
+    name: {
+      kk: 'Кульшикова Сауле Тюякбайевна',
+      ru: 'Кульшикова Сауле Тюякбайевна',
+      en: 'Kulshikova Saule Tyuyakbayevna',
+    },
+    title: {
+      kk: 'т.ғ.к.',
+      ru: 'к.т.н.',
+      en: 'Ph.D.',
+    },
+  },
+  'history-economics-law': {
+    name: {
+      kk: 'Темірбаева Гүлнара Рапықовна',
+      ru: 'Темирбаева Гульнара Рапыковна',
+      en: 'Temirbayeva Gulnara Rapykovna',
+    },
+    title: {
+      kk: 'э.ғ.д., профессор',
+      ru: 'д.э.н., профессор',
+      en: 'D.Sc. (Economics), Professor',
+    },
+  },
+};
+
+export const ADMIN_CENTERS = [
+  {
+    name: {
+      kk: 'Оқу-әдістемелік орталық',
+      ru: 'Учебно-методический центр',
+      en: 'Academic and Methodological Center',
+    },
+    icon: 'BookOpen',
+  },
+  {
+    name: {
+      kk: 'Ғылым және инновациялар орталығы',
+      ru: 'Центр науки и инноваций',
+      en: 'Center for Science and Innovation',
+    },
+    icon: 'Lightbulb',
+  },
+  {
+    name: {
+      kk: 'Жоспарлау, аккредиттеу және сапаны бағалау орталығы',
+      ru: 'Центр планирования, аккредитации и оценки качества',
+      en: 'Center for Planning, Accreditation and Quality Assessment',
+    },
+    icon: 'ClipboardCheck',
+  },
+  {
+    name: {
+      kk: 'АТ дамыту және цифрлық университет орталығы',
+      ru: 'Центр развития ИТ и цифрового университета',
+      en: 'IT Development and Digital University Center',
+    },
+    icon: 'Monitor',
+  },
+  {
+    name: {
+      kk: 'Кадрларды қайта даярлау, маркетинг және ЖОО алды білім беру орталығы',
+      ru: 'Центр переподготовки кадров, маркетинга и довузовского образования',
+      en: 'Center for Retraining, Marketing and Pre-University Education',
+    },
+    icon: 'Users',
+  },
+  {
+    name: {
+      kk: 'Тәрбие және жастар саясаты орталығы',
+      ru: 'Центр воспитания и молодёжной политики',
+      en: 'Center for Education and Youth Policy',
+    },
+    icon: 'Heart',
+  },
+] as const;
+
+export const SERVICE_UNITS = [
+  {
+    name: {
+      kk: 'Кеңсе',
+      ru: 'Канцелярия',
+      en: 'Chancellery',
+    },
+  },
+  {
+    name: {
+      kk: 'Тіркеуші офисі',
+      ru: 'Офис регистратора',
+      en: 'Registrar Office',
+    },
+  },
+  {
+    name: {
+      kk: 'Қаржы-экономикалық қызмет',
+      ru: 'Финансово-экономическая служба',
+      en: 'Financial and Economic Service',
+    },
+  },
+  {
+    name: {
+      kk: 'Персоналды басқару бөлімі',
+      ru: 'Отдел управления персоналом',
+      en: 'Human Resources Department',
+    },
+  },
+  {
+    name: {
+      kk: 'ЖОО-дан кейінгі білім беру бөлімі',
+      ru: 'Отдел послевузовского образования',
+      en: 'Postgraduate Education Department',
+    },
+  },
+  {
+    name: {
+      kk: '«Мансап» бөлімі',
+      ru: 'Отдел «Карьера»',
+      en: 'Career Department',
+    },
+  },
+  {
+    name: {
+      kk: 'Сервистік қызмет көрсету бөлімі',
+      ru: 'Отдел сервисного обслуживания',
+      en: 'Service Department',
+    },
+  },
+] as const;
+
 export const NAV_ITEMS = [
   { href: '/', key: 'home' },
   { href: '/admission', key: 'admission' },
