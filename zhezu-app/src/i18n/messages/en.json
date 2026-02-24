@@ -38,7 +38,7 @@
     "system": "System"
   },
   "home": {
-    "heroBadge": "Admissions for 2025-2026 academic year open",
+    "heroBadge": "Admissions for 2026-2027 academic year open",
     "hero": {
       "title": "Zhezkazgan University",
       "subtitle": "named after O.A. Baikonurov",
@@ -95,7 +95,7 @@
   "admission": {
     "title": "Admission to ZhezU",
     "subtitle": "Begin your journey at ZhezU. Discover world-class programs, generous scholarships, and a community dedicated to your future success.",
-    "heroBadge": "FALL 2025-2026 APPLICATIONS OPEN",
+    "heroBadge": "2026-2027 APPLICATIONS OPEN",
     "startApplication": "Start Application",
     "viewRequirements": "View Requirements",
     "requirements": {
@@ -639,6 +639,55 @@
       "vision": {
         "title": "Vision",
         "text": "To become the leading university in Central Kazakhstan, a recognized center for mining education, scientific research and innovation, integrated into the international educational space."
+      }
+    },
+    "mission": {
+      "pageTitle": "Mission & Values — Zhezkazgan University",
+      "pageDescription": "Mission, vision, values and strategic goals of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Mission & Values",
+      "title": "University Mission & Vision",
+      "intro": "O.A. Baikonurov Zhezkazgan University is a dynamically developing educational, scientific and cultural center of the Ulytau region, providing a wide range of educational and research services.",
+      "missionTitle": "Mission",
+      "missionQuote": "Training professional competent graduates capable of creating and strengthening the innovation potential of the region and the country.",
+      "missionText": "The university trains specialists for the information society, introduces innovative training programs, develops new teaching technologies and builds partnerships with government agencies and business.",
+      "visionTitle": "Vision",
+      "visionQuote": "To take a leading position as a practice-oriented university in Kazakhstan for training highly qualified specialists in mining and metallurgical, economic and pedagogical specialties.",
+      "visionText": "The university strives to become a leading practice-oriented institution with deep integration into the international scientific and educational space, ensuring a high level of scientific research in priority areas of innovative economic development.",
+      "strategicTitle": "Strategic Goal",
+      "strategicText": "Creating conditions for the dynamic development of Zhezkazgan University as a multidisciplinary university and base center for training teachers and engineers in the Ulytau region, effectively contributing to staffing, scientific-methodological and information-technological support of the innovative development of the national education system.",
+      "valuesTitle": "Our Values",
+      "values": {
+        "quality": {
+          "title": "Quality Education",
+          "text": "Training competitive specialists meeting labor market demands and societal needs."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "text": "Implementing advanced learning technologies, developing research and digital transformation of the educational process."
+        },
+        "partnership": {
+          "title": "Partnership",
+          "text": "Building partnerships with stakeholders, educational and research centers, government agencies and business."
+        },
+        "openness": {
+          "title": "Openness",
+          "text": "Integration into the international educational space, exchange of experience and best practices."
+        }
+      },
+      "achievementsTitle": "Recognition & Achievements",
+      "achievements": {
+        "spi": {
+          "title": "SPI Gold Medal",
+          "text": "For the high quality of specialist training for industry, the university received the Gold Medal from the Association for the Promotion of Industry (Paris)."
+        },
+        "gold": {
+          "title": "Golden Ingot Award",
+          "text": "International award in the 'Effectively Developing Enterprise' nomination (Amsterdam)."
+        },
+        "bologna": {
+          "title": "Bologna Process",
+          "text": "In 2010, the university joined the Magna Charta Universitatum, confirming its integration into the international educational space."
+        }
       }
     },
     "leadership": {
