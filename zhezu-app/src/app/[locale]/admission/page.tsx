@@ -1,228 +1,302 @@
+'use client';
+
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Accordion } from '@/components/ui/Accordion';
 import {
+  BookOpen,
   FileText,
-  Calendar,
+  Send,
   ClipboardCheck,
-  GraduationCap,
   ArrowRight,
-  CheckCircle2,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  Shield,
-  Award,
+  Globe,
+  BadgeCheck,
 } from 'lucide-react';
+
+/* ------------------------------------------------------------------ */
+/*  Static data for program cards (images from the stitch design)      */
+/* ------------------------------------------------------------------ */
+const PROGRAM_CARDS = [
+  {
+    key: 'cs',
+    degree: 'B.Sc.',
+    duration: 4,
+    lang: 'English',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBwRMBBfq_5taGdnlvygxrbUvKpt-TL5QMWKcLGgyIjGU8z_TeN5oXIpa4Mw6qXYxBUS-HGsSOLlECHY7yZtDUD2MxIa2I-Y3KUxWhPbUfhPEW96uyLaEjXHnyAVtv9mNd8ZRwEmj72doEs0YZ3KIklOKWouvoMWMvu6PlRO1m4R04yxfsfCbHR2fttYlhpY_v10wnOGu47IgcyrdB1i4NZTGsehl-Y-l66IEM1AxhxYqThXkPm3RKj2qic8tYXO2l__CBGTSEvPa6T',
+  },
+  {
+    key: 'arch',
+    degree: 'B.Arch',
+    duration: 5,
+    lang: 'English / Kazakh',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAmoKRtsbjfCMtKIoQhFj8vG3NZC6Q6cJbXf02Z0exyRae51tpMZqsO8Dvu57YhkTe_9CE1BBc9XsfLJYwRzK1PC9aGDKnH3HqekiyGsErOVLXUtAtvnMwRGYFCj7LbAM_8MA-ddZv_lPnJcDklpXIxoVKmiISLrPmHcXw7J3gbReLt29yA7go3tienZ1xDosS1Y9Wuda4jH4lvYUmJ1fvnGkGK1cr0EjcDCwuwUVZGVcjS2lUjlrMMZsvZzDDo9h7Pz7JzH0UNtJxP',
+  },
+  {
+    key: 'biz',
+    degree: 'MBA',
+    duration: 2,
+    lang: 'English',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDExVSSskaat2L5lsqoEUdjhyafelldX5jGkJQ-ne5PTzLGLWO-jQhMUa4Sx7r8kZTCOWlhtKAfjBN1AQTkPiGVv2YwMpzLnjLgVzQFWJJmBbKziUGxI2dLAXNoMCAp9mW5QE4Jzjb3GD3PAFQgkdhjk8A6xFEKy184psvlwClZXM_0y9x2l03yS1J1RZtf_ddoH4JubN2jBv48naZMwxBDFPp1TNMrF1NsWf6ePjxLzIFYmFUWGmz4fyUnqLdgApkEPn-sMLVU_ASw',
+  },
+  {
+    key: 'civil',
+    degree: 'B.Eng',
+    duration: 4,
+    lang: 'Russian',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbc5ZfW09_IU9uX9PoQzlf9NB0BNZkpGkNjBzbOUDi7APE7-eFkZagRz0c-eHB7ZvnasABpYdb_To-tjpPu93U18MJbF8NKhMnwkyoG4N9U0cAv1PZoaslYjOIbPTmMRBsxRR0Hp5fnBwchfiOzl01iOgSkaZ62IH82v85IKZKme54CIgWUmfOyqNhfBWB1Q_0vP4Mn0ADe_Of9UyHZOeW0O58xZQa0xhUfyfsGG3QVGoRovX2VydWxQG-SmZSP247jiNIB5vLcuqC',
+  },
+  {
+    key: 'econ',
+    degree: 'B.A.',
+    duration: 3,
+    lang: 'English',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDjCI7ikUNAHkHtKpIRzfW8utO9I1u2BqcdJEYe1dGZUA_kffNOovu050lmrkVSHCcf_jl8WFyEZGrEWhmcS75zpv74xRAD5Sg_-aDc3Gn10FoOzaIYtlb63iOlBR_B2HHkoKYZWlk6EyynXcVvuQ7Z3vKEPrkPcv4RH4cyxbnzOGJiY0ZwCzMb9v2eN0iyZVBsJCx8-R1nROCKCrYfrzPaR21YWKk3ZteTtnrfYMoM_mQCz4dSOS_oD38zlhNpGLjKSxeiGRrmQKf_',
+  },
+  {
+    key: 'psych',
+    degree: 'B.Sc.',
+    duration: 4,
+    lang: 'Kazakh / English',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBjjVKnfXKyPj8JLqE-J_-y_d5DwPprpD4V-2MtIa6vYcNqStPoutJnX2vPeRDbsqMdqiGtHaNEb4J_Jw5ADrZDx7Dm9HwaqyKA1xetCeftyHTxOvZ6TeEHud53FffdIypOn3FjDIByNQqA5xQVml4VRPfhv7_QKq8EJdboIExwArYJoniXRk0u2bn4qAHWA9cSKhbXLQh2p0Vl3b9pFZUFMZMRtUIhNfbIypRtwYZ-AF3nvWqOdSFlJg9nFbX4acUueYFc_zd-5QAf',
+  },
+];
 
 export default function AdmissionPage() {
   const t = useTranslations('admission');
   const tActions = useTranslations('actions');
 
+  /* Tuition calculator state */
+  const [isResident, setIsResident] = useState(true);
+  const [gpa, setGpa] = useState(35); // stored as 0-40, displayed as 0.0-4.0
+  const [onCampus, setOnCampus] = useState(true);
+
+  const gpaDisplay = (gpa / 10).toFixed(1);
+  const baseTuition = isResident ? 12000 : 22000;
+  const housing = onCampus ? 8500 : 0;
+  const scholarship = gpa >= 35 ? 5000 : gpa >= 30 ? 3000 : gpa >= 25 ? 1000 : 0;
+  const total = baseTuition + housing - scholarship;
+
+  /* Steps data */
   const steps = [
-    {
-      icon: FileText,
-      step: t('steps.step1'),
-      desc: t('steps.step1Desc'),
-      num: '01',
-      color: 'text-primary dark:text-primary-light',
-      bg: 'bg-primary/10 dark:bg-primary-light/10',
-      border: 'border-primary/30',
-    },
-    {
-      icon: ClipboardCheck,
-      step: t('steps.step2'),
-      desc: t('steps.step2Desc'),
-      num: '02',
-      color: 'text-gold',
-      bg: 'bg-gold/10',
-      border: 'border-gold/30',
-    },
-    {
-      icon: Calendar,
-      step: t('steps.step3'),
-      desc: t('steps.step3Desc'),
-      num: '03',
-      color: 'text-success',
-      bg: 'bg-success/10',
-      border: 'border-success/30',
-    },
-    {
-      icon: GraduationCap,
-      step: t('steps.step4'),
-      desc: t('steps.step4Desc'),
-      num: '04',
-      color: 'text-primary dark:text-primary-light',
-      bg: 'bg-primary/10 dark:bg-primary-light/10',
-      border: 'border-primary/30',
-    },
+    { icon: BookOpen, label: t('steps.step1'), desc: t('steps.step1Desc'), active: true },
+    { icon: FileText, label: t('steps.step2'), desc: t('steps.step2Desc'), active: false },
+    { icon: Send, label: t('steps.step3'), desc: t('steps.step3Desc'), active: false },
+    { icon: ClipboardCheck, label: t('steps.step4'), desc: t('steps.step4Desc'), active: false },
+  ];
+
+  /* FAQ items */
+  const faqItems = [
+    { id: 'faq-1', trigger: t('faq.q1'), content: t('faq.a1') },
+    { id: 'faq-2', trigger: t('faq.q2'), content: t('faq.a2') },
+    { id: 'faq-3', trigger: t('faq.q3'), content: t('faq.a3') },
+    { id: 'faq-4', trigger: t('faq.q4'), content: t('faq.a4') },
   ];
 
   return (
     <div className="flex flex-col">
-      {/* Hero — dark */}
-      <section className="bg-bg-dark relative overflow-hidden py-20 lg:py-28">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=1920&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[rgba(10,14,23,0.92)] to-[rgba(10,14,23,0.75)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(230,179,37,0.1),transparent_50%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="border-gold/30 bg-gold/10 mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1">
-              <Calendar size={14} className="text-gold" />
-              <span className="text-gold text-sm font-medium">2026/2027</span>
-            </div>
-            <h1 className="font-display mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {t('title')}
-            </h1>
-            <p className="mb-8 max-w-2xl text-lg text-white/60">{t('subtitle')}</p>
+      {/* ============================================================ */}
+      {/* 1. HERO SECTION                                              */}
+      {/* ============================================================ */}
+      <section className="relative flex min-h-[560px] flex-col items-center justify-center bg-cover bg-center bg-no-repeat p-8 text-center">
+        {/* Background image with overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage:
+              'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJEsrpAMTM1QYcTMat30yhLfeHb6b6kAUnQZU6yLw7uSmCJEK9yY6FYGouMqJGswKMmuVr3WkG9cYHiiuv2w--GxixZfFiQCOtcHhu5QrSnXZ01PBSKjDEAgW8jLbQtjM6asj3_bZJJw4j4ziqlTjBT7B-49qC12OSZ96Jj3pSJjuhdBrPrrGX7FfD1Grn-n4Gvz8IVUbpQVd6rksU_g3GJuE9FCV3GlS101oEw_HTkdU_p8R39To1epKi3caUJqBB9UlDBWzXU_Ly")',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(17,22,33,0.6)] to-[rgba(17,22,33,0.8)]" />
+
+        <div className="relative z-10 flex max-w-3xl flex-col items-center gap-6">
+          {/* Badge */}
+          <Badge
+            variant="warning"
+            className="border-gold/30 bg-gold/20 text-gold-light border px-4 py-1.5 text-xs font-bold tracking-wider uppercase backdrop-blur-sm"
+          >
+            {t('heroBadge')}
+          </Badge>
+
+          {/* Title */}
+          <h1 className="text-4xl leading-tight font-black tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            {t('title')}
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-200 sm:text-xl">
+            {t('subtitle')}
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button
               variant="secondary"
               size="lg"
-              icon={<ArrowRight size={18} />}
-              iconPosition="right"
+              className="min-w-[160px] shadow-lg transition-transform hover:scale-105"
             >
-              {tActions('apply')}
+              {t('startApplication')}
             </Button>
+            <button className="flex h-12 min-w-[160px] cursor-pointer items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
+              {t('viewRequirements')}
+            </button>
           </div>
         </div>
       </section>
 
-      {/* Steps — with connecting line */}
+      {/* ============================================================ */}
+      {/* 2. YOUR PATH TO ZHEZU - 4-step process                       */}
+      {/* ============================================================ */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-12 text-center text-3xl font-bold sm:text-4xl">
-            {t('steps.title')}
-          </h2>
+          <div className="mb-10 text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{t('steps.title')}</h2>
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mt-4 text-lg">
+              {t('steps.subtitle')}
+            </p>
+          </div>
+
           <div className="relative">
-            <div className="from-primary/20 via-gold/30 to-primary/20 absolute top-12 right-[12.5%] left-[12.5%] hidden h-0.5 bg-gradient-to-r lg:block" />
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {/* Connecting line (desktop) */}
+            <div className="absolute top-8 right-[12.5%] left-[12.5%] hidden h-0.5 bg-slate-200 lg:block dark:bg-slate-700" />
+
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-4">
               {steps.map((step, i) => (
-                <Card key={i} padding="lg" hover glow>
-                  <div className="mb-5 flex items-center justify-center">
-                    <div
-                      className={`relative h-16 w-16 rounded-full ${step.bg} border-2 ${step.border} flex items-center justify-center`}
-                    >
-                      <span className={`font-display text-lg font-bold ${step.color}`}>
-                        {step.num}
-                      </span>
-                      <div
-                        className={`bg-surface-light dark:bg-surface-dark absolute -right-1 -bottom-1 h-7 w-7 rounded-full border-2 ${step.border} flex items-center justify-center`}
-                      >
-                        <step.icon size={14} className={step.color} />
-                      </div>
-                    </div>
+                <div key={i} className="group relative flex flex-col items-center text-center">
+                  <div
+                    className={`relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 shadow-sm transition-colors ${
+                      step.active
+                        ? 'border-primary bg-surface-light text-primary group-hover:bg-primary dark:bg-surface-dark dark:border-primary group-hover:text-white'
+                        : 'border-border-light bg-surface-light text-text-secondary-light group-hover:border-primary group-hover:text-primary dark:bg-surface-dark dark:border-border-dark dark:text-text-secondary-dark'
+                    }`}
+                  >
+                    <step.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="font-display mb-2 text-center font-semibold">{step.step}</h3>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-center text-sm leading-relaxed">
-                    {step.desc}
-                  </p>
-                </Card>
+                  <div className="mt-4 flex flex-col items-center">
+                    <h3 className="text-lg font-bold">{step.label}</h3>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 text-sm">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Programs */}
+      {/* ============================================================ */}
+      {/* 3. FIND YOUR PROGRAM - sidebar filters + card grid            */}
+      {/* ============================================================ */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold sm:text-4xl">
-            {t('programs.title')}
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              {
-                key: 'bachelor',
-                icon: GraduationCap,
-                color: 'text-primary dark:text-primary-light',
-                bgColor: 'bg-primary/10 dark:bg-primary-light/10',
-                borderColor: 'border-primary/20',
-                count: '35+',
-                img: 'https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=600&q=80',
-              },
-              {
-                key: 'master',
-                icon: ClipboardCheck,
-                color: 'text-gold dark:text-gold-light',
-                bgColor: 'bg-gold/10',
-                borderColor: 'border-gold/20',
-                count: '15+',
-                img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80',
-              },
-              {
-                key: 'doctorate',
-                icon: FileText,
-                color: 'text-success',
-                bgColor: 'bg-success/10',
-                borderColor: 'border-success/20',
-                count: '5+',
-                img: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80',
-              },
-            ].map((prog) => (
-              <Card
-                key={prog.key}
-                hover
-                glow
-                padding="none"
-                image={prog.img}
-                imageAlt={prog.key}
-                imageHeight="h-40"
-              >
-                <div className="p-6 text-center">
-                  <div
-                    className={`h-14 w-14 ${prog.bgColor} relative z-10 mx-auto -mt-10 mb-4 flex items-center justify-center rounded-2xl border-2 ${prog.borderColor} bg-surface-light dark:bg-surface-dark`}
-                  >
-                    <prog.icon size={28} className={prog.color} />
-                  </div>
-                  <h3 className="font-display mb-2 text-xl font-bold">
-                    {t(`programs.${prog.key}` as Parameters<typeof t>[0])}
-                  </h3>
-                  <p className="font-display text-primary dark:text-primary-light mb-1 text-3xl font-bold">
-                    {prog.count}
-                  </p>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                    {t('programs.title').toLowerCase()}
-                  </p>
-                </div>
-              </Card>
-            ))}
+          {/* Header */}
+          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <h2 className="text-2xl font-bold sm:text-3xl">{t('programs.title')}</h2>
+              <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2">
+                {t('programs.subtitle')}
+              </p>
+            </div>
+            <button className="text-primary hover:text-primary-dark flex items-center gap-1 font-semibold">
+              {t('programs.viewAll')} <ArrowRight className="h-4 w-4" />
+            </button>
           </div>
-        </div>
-      </section>
 
-      {/* Scholarships + Trust Badges */}
-      <section className="py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-gold/20 relative overflow-hidden rounded-2xl border bg-gradient-to-br from-[#221d10] to-[#1a1608] p-8 sm:p-12">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(230,179,37,0.15),transparent_50%)]" />
-            <div className="relative flex flex-col items-start gap-8 lg:flex-row lg:items-center">
-              <div className="flex-1">
-                <div className="border-gold/30 bg-gold/10 mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1">
-                  <Award size={14} className="text-gold" />
-                  <span className="text-gold text-sm font-medium">{t('scholarships.title')}</span>
-                </div>
-                <h2 className="font-display mb-4 text-2xl font-bold text-white sm:text-3xl">
-                  {t('scholarships.title')}
-                </h2>
-                <p className="mb-6 max-w-xl text-white/60">{t('scholarships.description')}</p>
-                <Button variant="secondary" icon={<ArrowRight size={16} />} iconPosition="right">
-                  {tActions('learnMore')}
-                </Button>
-              </div>
-              <div className="flex flex-col gap-3">
-                {[
-                  { icon: Shield, text: 'МОН РК лицензия' },
-                  { icon: Award, text: 'IQAA аккредитация' },
-                  { icon: CheckCircle2, text: 'Гос. грант' },
-                ].map((badge) => (
-                  <div
-                    key={badge.text}
-                    className="border-gold/20 bg-gold/5 flex items-center gap-3 rounded-lg border px-4 py-2.5"
-                  >
-                    <badge.icon size={18} className="text-gold shrink-0" />
-                    <span className="text-sm font-medium text-white/80">{badge.text}</span>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+            {/* Filters sidebar */}
+            <aside className="border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark h-fit rounded-xl border p-6 shadow-sm">
+              <h3 className="mb-4 text-lg font-bold">{t('filters.title')}</h3>
+              <div className="space-y-6">
+                {/* Department checkboxes */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold">
+                    {t('filters.department')}
+                  </label>
+                  <div className="space-y-2">
+                    {(['engineering', 'business', 'artsSciences', 'medicine'] as const).map(
+                      (dept) => (
+                        <label key={dept} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            className="text-primary focus:ring-primary rounded border-slate-300 dark:border-slate-600 dark:bg-slate-800"
+                          />
+                          <span className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                            {t(`filters.departments.${dept}`)}
+                          </span>
+                        </label>
+                      ),
+                    )}
                   </div>
+                </div>
+
+                {/* Level dropdown */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold">{t('filters.level')}</label>
+                  <select className="border-border-light bg-surface-hover-light focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark w-full rounded-lg py-2 text-sm">
+                    {(['all', 'undergraduate', 'graduate', 'phd'] as const).map((level) => (
+                      <option key={level}>{t(`filters.levels.${level}`)}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Language radios */}
+                <div>
+                  <label className="mb-2 block text-sm font-semibold">
+                    {t('filters.language')}
+                  </label>
+                  <div className="space-y-2">
+                    {(['english', 'kazakh', 'russian'] as const).map((lang, i) => (
+                      <label key={lang} className="flex items-center gap-2">
+                        <input
+                          type="radio"
+                          name="lang"
+                          defaultChecked={i === 0}
+                          className="text-primary focus:ring-primary border-slate-300 dark:border-slate-600 dark:bg-slate-800"
+                        />
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                          {t(`filters.languages.${lang}`)}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Program cards grid */}
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {PROGRAM_CARDS.map((prog) => (
+                  <Card key={prog.key} hover padding="none" className="cursor-pointer">
+                    {/* Card image */}
+                    <div
+                      className="aspect-video w-full bg-slate-200 bg-cover bg-center"
+                      style={{ backgroundImage: `url('${prog.img}')` }}
+                    />
+                    {/* Card body */}
+                    <div className="flex flex-1 flex-col p-5">
+                      <div className="mb-2 flex items-center justify-between">
+                        <Badge variant="default" className="text-xs font-semibold">
+                          {prog.degree}
+                        </Badge>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                          {prog.duration} {t('programCards.years')}
+                        </span>
+                      </div>
+                      <h4 className="group-hover:text-primary mb-2 text-lg font-bold">
+                        {t(`programCards.${prog.key}` as Parameters<typeof t>[0])}
+                      </h4>
+                      <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 flex-1 text-sm">
+                        {t(`programCards.${prog.key}Desc` as Parameters<typeof t>[0])}
+                      </p>
+                      <div className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-2 text-xs font-medium">
+                        <Globe className="h-3.5 w-3.5" /> {prog.lang}
+                      </div>
+                    </div>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -230,55 +304,189 @@ export default function AdmissionPage() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
+      {/* ============================================================ */}
+      {/* 4. TUITION ESTIMATOR                                          */}
+      {/* ============================================================ */}
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold sm:text-4xl">
-            {t('contact.title')}
-          </h2>
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: Phone,
-                label: t('contact.phone'),
-                value: '+7 (7102) 72-40-00',
-                color: 'text-primary dark:text-primary-light',
-                bg: 'bg-primary/10 dark:bg-primary-light/10',
-              },
-              {
-                icon: Mail,
-                label: t('contact.email'),
-                value: 'admission@zhezu.edu.kz',
-                color: 'text-gold',
-                bg: 'bg-gold/10',
-              },
-              {
-                icon: MapPin,
-                label: t('contact.address'),
-                value: 'пр. Алашахана, 1Б',
-                color: 'text-success',
-                bg: 'bg-success/10',
-              },
-              {
-                icon: Clock,
-                label: t('contact.schedule'),
-                value: 'Пн-Пт: 09:00-18:00',
-                color: 'text-primary dark:text-primary-light',
-                bg: 'bg-primary/10 dark:bg-primary-light/10',
-              },
-            ].map((info) => (
-              <Card key={info.label} padding="md" hover className="text-center">
-                <div
-                  className={`h-12 w-12 ${info.bg} mx-auto mb-3 flex items-center justify-center rounded-xl`}
-                >
-                  <info.icon size={22} className={info.color} />
+          <div className="bg-primary rounded-2xl px-6 py-12 md:px-12 dark:bg-blue-900">
+            <div className="mx-auto max-w-5xl">
+              {/* Header */}
+              <div className="mb-10 text-center text-white">
+                <h2 className="text-3xl font-bold">{t('tuition.title')}</h2>
+                <p className="mt-2 text-blue-100 opacity-90">{t('tuition.subtitle')}</p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                {/* Controls */}
+                <div className="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-lg">
+                  <div className="space-y-6">
+                    {/* Residency toggle */}
+                    <div>
+                      <label className="mb-2 block text-sm font-semibold">
+                        {t('tuition.residency')}
+                      </label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          onClick={() => setIsResident(true)}
+                          className={`cursor-pointer rounded-lg py-2 text-sm font-medium transition-colors ${
+                            isResident
+                              ? 'bg-primary text-white shadow-sm'
+                              : 'bg-surface-hover-light dark:bg-surface-hover-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-slate-200 dark:hover:bg-slate-600'
+                          }`}
+                        >
+                          {t('tuition.resident')}
+                        </button>
+                        <button
+                          onClick={() => setIsResident(false)}
+                          className={`cursor-pointer rounded-lg py-2 text-sm font-medium transition-colors ${
+                            !isResident
+                              ? 'bg-primary text-white shadow-sm'
+                              : 'bg-surface-hover-light dark:bg-surface-hover-dark text-text-secondary-light dark:text-text-secondary-dark hover:bg-slate-200 dark:hover:bg-slate-600'
+                          }`}
+                        >
+                          {t('tuition.international')}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* GPA slider */}
+                    <div>
+                      <label className="mb-2 block text-sm font-semibold">{t('tuition.gpa')}</label>
+                      <input
+                        type="range"
+                        min="0"
+                        max="40"
+                        value={gpa}
+                        onChange={(e) => setGpa(Number(e.target.value))}
+                        className="accent-primary h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-600"
+                      />
+                      <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex justify-between text-xs">
+                        <span>2.0</span>
+                        <span className="text-primary font-bold">{gpaDisplay}</span>
+                        <span>4.0</span>
+                      </div>
+                    </div>
+
+                    {/* Living on campus radio */}
+                    <div>
+                      <label className="mb-2 block text-sm font-semibold">
+                        {t('tuition.livingOnCampus')}
+                      </label>
+                      <div className="flex items-center gap-4">
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="radio"
+                            name="housing"
+                            checked={onCampus}
+                            onChange={() => setOnCampus(true)}
+                            className="text-primary focus:ring-primary"
+                          />
+                          <span className="text-sm">{t('tuition.yes')}</span>
+                        </label>
+                        <label className="flex items-center gap-2">
+                          <input
+                            type="radio"
+                            name="housing"
+                            checked={!onCampus}
+                            onChange={() => setOnCampus(false)}
+                            className="text-primary focus:ring-primary"
+                          />
+                          <span className="text-sm">{t('tuition.no')}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-1 text-xs">
-                  {info.label}
-                </p>
-                <p className="text-sm font-medium">{info.value}</p>
-              </Card>
-            ))}
+
+                {/* Results breakdown */}
+                <div className="flex flex-col justify-center rounded-xl border border-white/20 bg-white/10 p-6 text-white backdrop-blur-sm">
+                  <div className="space-y-4">
+                    <div className="flex justify-between border-b border-white/20 pb-4">
+                      <span className="text-blue-100">{t('tuition.baseTuition')}</span>
+                      <span className="font-bold">${baseTuition.toLocaleString()}</span>
+                    </div>
+                    {onCampus && (
+                      <div className="flex justify-between border-b border-white/20 pb-4">
+                        <span className="text-blue-100">{t('tuition.housingMeals')}</span>
+                        <span className="font-bold">${housing.toLocaleString()}</span>
+                      </div>
+                    )}
+                    {scholarship > 0 && (
+                      <div className="flex justify-between border-b border-white/20 pb-4 text-green-300">
+                        <span className="flex items-center gap-1">
+                          <BadgeCheck className="h-4 w-4" /> {t('tuition.meritScholarship')}
+                        </span>
+                        <span className="font-bold">-${scholarship.toLocaleString()}</span>
+                      </div>
+                    )}
+                    <div className="mt-6 flex items-end justify-between pt-2">
+                      <span className="text-lg font-medium">{t('tuition.estimatedTotal')}</span>
+                      <span className="text-4xl font-bold text-white">
+                        ${total.toLocaleString()}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-xs text-blue-200">{t('tuition.disclaimer')}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 5. FAQ ACCORDION                                              */}
+      {/* ============================================================ */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl font-bold sm:text-3xl">{t('faq.title')}</h2>
+          </div>
+          <Accordion items={faqItems} type="single" />
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 6. CTA SECTION - "Ready to Shape Your Future?"                */}
+      {/* ============================================================ */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-900 to-slate-800 px-6 py-16 text-center sm:px-12">
+            {/* Dot pattern background */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                backgroundSize: '32px 32px',
+              }}
+            />
+
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <Badge
+                variant="warning"
+                className="border-gold/30 bg-gold/20 text-gold mb-4 inline-block border px-3 py-1 text-xs font-semibold tracking-wider uppercase"
+              >
+                {t('cta.badge')}
+              </Badge>
+
+              <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">{t('cta.title')}</h2>
+
+              <p className="mb-8 text-lg text-slate-300">{t('cta.subtitle')}</p>
+
+              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="min-w-[200px] shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
+                >
+                  {tActions('apply')}
+                </Button>
+                <button className="flex h-12 min-w-[200px] cursor-pointer items-center justify-center rounded-lg bg-white/10 px-8 text-lg font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
+                  {t('cta.contactAdmissions')}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

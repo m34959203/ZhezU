@@ -38,6 +38,7 @@
     "system": "System"
   },
   "home": {
+    "heroBadge": "Admissions for 2025 are open",
     "hero": {
       "title": "Zhezkazgan University",
       "subtitle": "named after O.A. Baikonurov",
@@ -49,24 +50,41 @@
       "students": "students",
       "programs": "programs",
       "employment": "employment rate",
-      "years": "years of experience"
+      "years": "years of history",
+      "partners": "partners"
     },
     "features": {
-      "title": "Why ZhezU?",
+      "title": "Why Choose ZhezU?",
+      "subtitle": "We provide a world-class education with a focus on innovation, practical skills, and future-ready careers.",
+      "ai": "AI & Innovation Focus",
+      "aiDesc": "State-of-the-art AI Center providing students with hands-on experience in machine learning and data science.",
+      "faculty": "Expert Faculty",
+      "facultyDesc": "Learn from distinguished professors and industry experts dedicated to your academic and professional growth.",
+      "career": "Career Opportunities",
+      "careerDesc": "Strong partnerships with leading companies ensure high employability rates for our graduates.",
       "modernEducation": "Modern Education",
       "modernEducationDesc": "Curricula designed to international standards and labor market requirements.",
       "research": "Research Opportunities",
-      "researchDesc": "Opportunities to participate in research projects and publish studies from the first year.",
-      "career": "Career Support",
-      "careerDesc": "Career center with mentorship programs, internships, and direct employer connections."
+      "researchDesc": "Opportunities to participate in research projects and publish studies from the first year."
     },
     "programs": {
       "title": "Popular Programs",
-      "subtitle": "Discover our leading educational directions"
+      "subtitle": "Discover our most sought-after academic paths"
     },
     "news": {
-      "title": "Latest News",
-      "subtitle": "Stay updated with university events"
+      "title": "News & Events",
+      "subtitle": "Stay updated with university events",
+      "viewAll": "View All News"
+    },
+    "departments": {
+      "title": "Our Departments"
+    },
+    "audience": {
+      "applicants": "Applicants",
+      "students": "Students",
+      "staff": "Staff",
+      "alumni": "Alumni",
+      "partners": "Partners"
     },
     "cta": {
       "title": "Ready to start your journey?",
@@ -75,8 +93,11 @@
     }
   },
   "admission": {
-    "title": "Admission",
-    "subtitle": "Everything you need to know about applying to Zhezkazgan University",
+    "title": "Admission to ZhezU",
+    "subtitle": "Begin your journey at ZhezU. Discover world-class programs, generous scholarships, and a community dedicated to your future success.",
+    "heroBadge": "FALL 2025 APPLICATIONS OPEN",
+    "startApplication": "Start Application",
+    "viewRequirements": "View Requirements",
     "requirements": {
       "title": "Admission Requirements",
       "documents": "Required Documents",
@@ -84,28 +105,99 @@
       "exams": "Entrance Exams"
     },
     "steps": {
-      "title": "Admission Steps",
-      "step1": "Apply Online",
-      "step1Desc": "Fill out the application on our portal and upload required documents.",
-      "step2": "Take UNT / Entrance Exams",
-      "step2Desc": "Pass the Unified National Test or the university's internal exams.",
-      "step3": "Results and Enrollment",
-      "step3Desc": "Receive your results and enrollment order in your student portal.",
-      "step4": "Registration and Start",
-      "step4Desc": "Register for courses and begin your journey at ZhezU."
+      "title": "Your Path to ZhezU",
+      "subtitle": "Follow these four simple steps to join our academic community.",
+      "step1": "Program Choice",
+      "step1Desc": "Explore our catalog and find your perfect major.",
+      "step2": "Documents",
+      "step2Desc": "Prepare transcripts and identification.",
+      "step3": "Application",
+      "step3Desc": "Submit your application online easily.",
+      "step4": "Results",
+      "step4Desc": "Receive your admission decision."
     },
     "programs": {
-      "title": "Study Programs",
+      "title": "Find Your Program",
+      "subtitle": "Search over 50 undergraduate and graduate degrees.",
+      "viewAll": "View All Programs",
       "bachelor": "Bachelor's",
       "master": "Master's",
       "doctorate": "Doctorate"
+    },
+    "filters": {
+      "title": "Filters",
+      "department": "Department",
+      "departments": {
+        "engineering": "Engineering",
+        "business": "Business",
+        "artsSciences": "Arts & Sciences",
+        "medicine": "Medicine"
+      },
+      "level": "Level",
+      "levels": {
+        "all": "All Levels",
+        "undergraduate": "Undergraduate",
+        "graduate": "Graduate",
+        "phd": "PhD"
+      },
+      "language": "Language",
+      "languages": {
+        "english": "English",
+        "kazakh": "Kazakh",
+        "russian": "Russian"
+      }
+    },
+    "programCards": {
+      "cs": "Computer Science",
+      "csDesc": "Master the fundamentals of software engineering and AI.",
+      "arch": "Architecture",
+      "archDesc": "Design sustainable futures with cutting-edge studio work.",
+      "biz": "Business Administration",
+      "bizDesc": "Lead with confidence in the global marketplace.",
+      "civil": "Civil Engineering",
+      "civilDesc": "Build the infrastructure of tomorrow.",
+      "econ": "Economics",
+      "econDesc": "Analyze markets and policy impacts.",
+      "psych": "Psychology",
+      "psychDesc": "Understand the human mind and behavior.",
+      "years": "Years"
+    },
+    "tuition": {
+      "title": "Tuition Estimator",
+      "subtitle": "Calculate your estimated annual costs and potential scholarships.",
+      "residency": "Residency Status",
+      "resident": "Resident",
+      "international": "International",
+      "gpa": "GPA Score (0.0 - 4.0)",
+      "livingOnCampus": "Living On Campus?",
+      "yes": "Yes",
+      "no": "No",
+      "baseTuition": "Base Tuition",
+      "housingMeals": "Housing & Meals",
+      "meritScholarship": "Merit Scholarship",
+      "estimatedTotal": "Estimated Total",
+      "disclaimer": "* This is an estimate. Official costs may vary."
     },
     "scholarships": {
       "title": "Scholarships & Grants",
       "description": "Learn about available government grants and university scholarship programs."
     },
     "faq": {
-      "title": "Frequently Asked Questions"
+      "title": "Frequently Asked Questions",
+      "q1": "What is the application deadline?",
+      "a1": "For the Fall semester, early action applications are due by November 1st, and regular decision applications are due by January 15th. Spring semester applications are due by October 1st.",
+      "q2": "Do I need to take the IELTS/TOEFL?",
+      "a2": "International applicants whose primary language of instruction was not English are required to submit English proficiency scores. We accept IELTS (minimum 6.5) or TOEFL iBT (minimum 80).",
+      "q3": "Are there application fee waivers?",
+      "a3": "Yes, ZhezU offers fee waivers for students who demonstrate financial need. Please contact the admissions office with supporting documentation before submitting your application.",
+      "q4": "Can I apply to multiple programs?",
+      "a4": "You may apply to a primary and a secondary choice of major within your application. If you are not accepted to your first choice, you will automatically be considered for your second choice."
+    },
+    "cta": {
+      "badge": "Join Class of 2029",
+      "title": "Ready to Shape Your Future?",
+      "subtitle": "Take the first step towards an extraordinary career and lifelong community. Applications take less than 30 minutes to start.",
+      "contactAdmissions": "Contact Admissions"
     },
     "contact": {
       "title": "Contact Admissions Office",
@@ -132,6 +224,17 @@
     "tableLang": "Language",
     "years": "years",
     "noResults": "No programs found. Try changing your search terms.",
+    "filterDepartment": "Department",
+    "filterLevel": "Level",
+    "filterLanguage": "Language",
+    "levelBachelor": "Bachelor's Degree",
+    "levelMaster": "Master's Degree",
+    "levelPhd": "PhD / Doctorate",
+    "langKk": "Kazakh",
+    "langRu": "Russian",
+    "langEn": "English",
+    "showing": "Showing",
+    "of": "of",
     "ctaTitle": "Start your journey at ZhezU",
     "ctaDesc": "Apply for admission and become part of the university community",
     "ctaButton": "Apply Now"
@@ -177,32 +280,53 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Get in touch — we're always happy to help",
-    "form": {
-      "name": "Your Name",
-      "email": "Email",
-      "phone": "Phone",
-      "subject": "Subject",
-      "message": "Message",
-      "submit": "Send Message",
-      "submitting": "Sending...",
-      "success": "Message sent! We'll get back to you soon.",
-      "subjects": {
-        "general": "General Inquiry",
-        "admission": "Admission Question",
-        "academic": "Academic Question",
-        "technical": "Technical Support",
-        "other": "Other"
-      }
+    "subtitle": "Get in touch with Zhezkazgan University. Whether you're a prospective student, a researcher, or a visitor, we are here to assist you.",
+    "map": {
+      "openInGoogleMaps": "Open in Google Maps"
     },
+    "mainOffice": "Main Office",
     "info": {
+      "addressLabel": "Address",
       "address": "1B Alashakhan Ave., Zhezkazgan, Ulytau Region",
+      "phoneLabel": "Phone",
       "phone": "+7 (7102) 73-60-15",
       "phoneAdmissions": "+7 (7102) 41-04-61",
       "phoneMobile": "+7 777 218 93 25",
+      "emailLabel": "Email",
       "email": "univer@zhezu.edu.kz",
       "schedule": "Mon-Fri: 09:00 — 18:00",
       "map": "Show on Map"
+    },
+    "openingHours": {
+      "title": "Opening Hours",
+      "monFri": "Mon - Fri",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "closed": "Closed"
+    },
+    "form": {
+      "formTitle": "Send us a message",
+      "description": "Have a question or need assistance? Fill out the form below and our team will get back to you within 24 hours.",
+      "name": "Full Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "phone": "Phone",
+      "subject": "Subject",
+      "selectTopic": "Select a topic",
+      "message": "Message",
+      "messagePlaceholder": "How can we help you?",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message sent! We'll get back to you soon.",
+      "privacyNote": "By submitting this form, you agree to our privacy policy and terms of service.",
+      "subjects": {
+        "general": "General Inquiry",
+        "admission": "Admission Inquiry",
+        "academic": "Academic Programs",
+        "technical": "Technical Support",
+        "other": "Other"
+      }
     },
     "departments": {
       "title": "Departments",
@@ -210,7 +334,7 @@
       "registrar": "Registrar's Office",
       "finance": "Finance Department",
       "it": "IT Support",
-      "international": "International Office"
+      "international": "International Relations"
     }
   },
   "footer": {
@@ -353,6 +477,11 @@
     "email": "Email",
     "searchPlaceholder": "Search the website...",
     "apply": "Apply",
+    "whyZhezU": "Why ZhezU?",
+    "whyZhezUDesc": "Discover our impact",
+    "virtualTour": "Virtual Tour",
+    "virtualTourDesc": "Explore the campus",
+    "seeAll": "See all",
     "university": {
       "title": "University",
       "about": "About",

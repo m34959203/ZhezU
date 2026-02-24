@@ -1,8 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
+import { Breadcrumb } from '@/components/ui/Breadcrumb';
+import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
+import { Pagination } from '@/components/ui/Pagination';
+import { Link } from '@/i18n/navigation';
 import {
   Search,
   GraduationCap,
@@ -12,14 +17,16 @@ import {
   Zap,
   Cog,
   Clock,
-  Languages,
-  ChevronDown,
-  ChevronUp,
-  Sparkles,
-  Users,
+  Globe,
+  Building2,
+  BookMarked,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Locale } from '@/types';
+
+/* ─── Constants ─── */
+
+const ITEMS_PER_PAGE = 6;
 
 const DEPT_ICONS: Record<string, LucideIcon> = {
   BookOpen,
@@ -29,321 +36,390 @@ const DEPT_ICONS: Record<string, LucideIcon> = {
   Cog,
 };
 
+const DEPT_GRADIENTS: Record<string, string> = {
+  'pedagogy-philology': 'from-amber-400 to-orange-500',
+  'mining-metallurgy-science': 'from-blue-600 to-indigo-700',
+  'history-economics-law': 'from-emerald-500 to-teal-700',
+  'electrical-safety': 'from-purple-500 to-violet-700',
+  'machines-construction': 'from-slate-600 to-slate-800',
+};
+
+const DEPT_ACCENT_TEXT: Record<string, string> = {
+  'pedagogy-philology': 'text-amber-500',
+  'mining-metallurgy-science': 'text-blue-600',
+  'history-economics-law': 'text-emerald-600',
+  'electrical-safety': 'text-purple-600',
+  'machines-construction': 'text-slate-600 dark:text-slate-400',
+};
+
+const DEPT_ICON_COLORS: Record<string, string> = {
+  'pedagogy-philology': 'text-amber-500',
+  'mining-metallurgy-science': 'text-primary',
+  'history-economics-law': 'text-emerald-600',
+  'electrical-safety': 'text-purple-600',
+  'machines-construction': 'text-slate-700 dark:text-slate-300',
+};
+
+const DEGREE_TYPES = ['bachelor', 'master', 'doctorate'] as const;
+
+const LANG_CODES = ['kk', 'ru', 'en'] as const;
+
+/* ─── Page Component ─── */
+
 export default function AcademicsPage() {
   const t = useTranslations('academics');
+  const tNav = useTranslations('nav');
   const locale = useLocale() as Locale;
 
+  // Filter state
+  const [selectedDepts, setSelectedDepts] = useState<Set<string>>(new Set());
+  const [selectedLevels, setSelectedLevels] = useState<Set<string>>(new Set());
+  const [selectedLangs, setSelectedLangs] = useState<Set<string>>(new Set());
   const [search, setSearch] = useState('');
-  const [expandedDepts, setExpandedDepts] = useState<Set<string>>(
-    new Set(DEPARTMENTS.map((d) => d.id)),
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const toggleDept = (id: string) => {
-    setExpandedDepts((prev) => {
+  // Toggle helpers
+  const toggleFilter = (
+    setter: React.Dispatch<React.SetStateAction<Set<string>>>,
+    value: string,
+  ) => {
+    setter((prev) => {
       const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
       return next;
     });
   };
 
-  const filteredPrograms = PROGRAMS.filter((p) => {
-    if (!search) return true;
-    const q = search.toLowerCase();
-    return (
-      p.name[locale].toLowerCase().includes(q) ||
-      p.code.toLowerCase().includes(q) ||
-      p.description[locale].toLowerCase().includes(q)
-    );
-  });
+  // Filtered programs
+  const filteredPrograms = useMemo(() => {
+    return PROGRAMS.filter((p) => {
+      // Search filter
+      if (search) {
+        const q = search.toLowerCase();
+        const matches =
+          p.name[locale].toLowerCase().includes(q) ||
+          p.code.toLowerCase().includes(q) ||
+          p.description[locale].toLowerCase().includes(q);
+        if (!matches) return false;
+      }
 
-  const getProgramsForDept = (deptId: string) =>
-    filteredPrograms.filter((p) => p.department === deptId);
+      // Department filter
+      if (selectedDepts.size > 0 && !selectedDepts.has(p.department)) return false;
 
-  const totalPrograms = PROGRAMS.length;
-  const totalDepts = DEPARTMENTS.length;
+      // Level filter
+      if (selectedLevels.size > 0 && !selectedLevels.has(p.degree)) return false;
+
+      // Language filter
+      if (selectedLangs.size > 0 && !p.languages.some((l) => selectedLangs.has(l))) return false;
+
+      return true;
+    });
+  }, [search, selectedDepts, selectedLevels, selectedLangs, locale]);
+
+  // Reset page when filters change
+  const handleFilterChange = (
+    setter: React.Dispatch<React.SetStateAction<Set<string>>>,
+    value: string,
+  ) => {
+    toggleFilter(setter, value);
+    setCurrentPage(1);
+  };
+
+  // Department program counts (based on all programs, not filtered)
+  const deptCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const p of PROGRAMS) {
+      counts[p.department] = (counts[p.department] || 0) + 1;
+    }
+    return counts;
+  }, []);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredPrograms.length / ITEMS_PER_PAGE);
+  const paginatedPrograms = filteredPrograms.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE,
+  );
+
+  // Degree label helper
+  const degreeLabel = (degree: string): string => {
+    switch (degree) {
+      case 'bachelor':
+        return t('levelBachelor');
+      case 'master':
+        return t('levelMaster');
+      case 'doctorate':
+        return t('levelPhd');
+      default:
+        return degree;
+    }
+  };
+
+  // Short degree label for badge on card
+  const degreeBadgeLabel = (degree: string): string => {
+    switch (degree) {
+      case 'bachelor':
+        return locale === 'en' ? "Bachelor's" : locale === 'ru' ? 'Бакалавр' : 'Бакалавр';
+      case 'master':
+        return locale === 'en' ? "Master's" : locale === 'ru' ? 'Магистр' : 'Магистр';
+      case 'doctorate':
+        return locale === 'en' ? 'PhD' : locale === 'ru' ? 'PhD' : 'PhD';
+      default:
+        return degree;
+    }
+  };
+
+  // Language label helper
+  const langLabel = (code: string): string => {
+    switch (code) {
+      case 'kk':
+        return t('langKk');
+      case 'ru':
+        return t('langRu');
+      case 'en':
+        return t('langEn');
+      default:
+        return code;
+    }
+  };
 
   return (
-    <div className="bg-bg-light dark:bg-bg-dark relative min-h-screen overflow-hidden">
-      {/* ── Ambient background ── */}
-      <div className="mesh-gradient pointer-events-none fixed inset-0" />
-      <div className="bg-primary/[0.04] pointer-events-none fixed top-[-10%] left-[-5%] h-[500px] w-[500px] rounded-full blur-[150px]" />
-      <div className="bg-gold/[0.03] pointer-events-none fixed right-[-5%] bottom-[-15%] h-[600px] w-[600px] rounded-full blur-[150px]" />
-      <div className="pointer-events-none fixed top-[40%] left-[60%] h-[350px] w-[350px] rounded-full bg-[#8B5CF6]/[0.03] blur-[150px]" />
+    <main className="bg-bg-light dark:bg-bg-dark min-h-screen">
+      <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-10">
+        {/* ── Breadcrumbs & Title ── */}
+        <div className="mb-8 flex flex-col gap-6">
+          <Breadcrumb items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]} />
 
-      {/* Grid pattern */}
-      <div
-        className="pointer-events-none fixed inset-0 opacity-50 dark:opacity-100"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(59,130,246,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.02) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* ── Hero ── */}
-      <section className="relative py-16 md:py-24">
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto mb-14 max-w-3xl text-center">
-            <div className="bg-primary/8 border-primary/20 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5">
-              <GraduationCap size={14} className="text-primary dark:text-primary-light" />
-              <span className="text-primary dark:text-primary-light text-[11px] font-semibold tracking-widest uppercase">
-                {t('badge')}
-              </span>
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div className="flex max-w-2xl flex-col gap-2">
+              <h1 className="font-display text-text-primary-light text-4xl leading-tight font-black tracking-[-0.033em] md:text-5xl dark:text-white">
+                {t('title')}
+              </h1>
+              <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed font-normal">
+                {t('subtitle')}
+              </p>
             </div>
 
-            <h1 className="font-display text-gradient mb-5 text-5xl leading-[1.1] font-bold md:text-7xl">
-              {t('title')}
-            </h1>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto max-w-2xl text-lg leading-relaxed">
-              {t('subtitle')}
-            </p>
-          </div>
-
-          {/* Stats */}
-          <div className="mx-auto mb-14 grid max-w-2xl grid-cols-3 gap-4">
-            <div className="premium-card p-4 text-center">
-              <div className="text-text-primary-light mb-1 text-3xl font-bold tabular-nums dark:text-white">
-                {totalPrograms}
-              </div>
-              <div className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">
-                {t('statPrograms')}
-              </div>
-            </div>
-            <div className="premium-card p-4 text-center">
-              <div className="text-text-primary-light mb-1 text-3xl font-bold tabular-nums dark:text-white">
-                {totalDepts}
-              </div>
-              <div className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">
-                {t('statDepts')}
-              </div>
-            </div>
-            <div className="premium-card p-4 text-center">
-              <div className="text-text-primary-light mb-1 text-3xl font-bold tabular-nums dark:text-white">
-                4
-              </div>
-              <div className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">
-                {t('statYears')}
-              </div>
-            </div>
-          </div>
-
-          {/* Search */}
-          <div className="relative mx-auto max-w-2xl">
-            <div className="bg-primary/10 pointer-events-none absolute -inset-1 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-focus-within:opacity-100" />
-            <div className="group relative">
+            {/* Search bar */}
+            <div className="relative w-full min-w-[200px] md:w-auto md:min-w-[280px]">
               <Search
                 size={18}
-                className="text-text-secondary-light dark:text-text-secondary-dark pointer-events-none absolute top-1/2 left-4 -translate-y-1/2"
+                className="text-text-secondary-light dark:text-text-secondary-dark pointer-events-none absolute top-1/2 left-3 -translate-y-1/2"
               />
               <input
                 type="text"
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setCurrentPage(1);
+                }}
                 placeholder={t('searchPlaceholder')}
-                className="bg-surface-light/80 dark:bg-surface-dark/50 border-border-light dark:border-border-dark/60 text-text-primary-light placeholder:text-text-secondary-light/60 dark:placeholder:text-text-secondary-dark/60 focus:border-primary/40 focus:bg-surface-light dark:focus:bg-surface-dark/70 w-full rounded-2xl border py-4 pr-5 pl-12 text-sm transition-all duration-300 focus:outline-none dark:text-white"
+                className="border-border-light bg-surface-light text-text-primary-light placeholder:text-text-secondary-light/60 focus:border-primary/40 focus:ring-primary/20 dark:border-border-dark dark:bg-surface-dark dark:placeholder:text-text-secondary-dark/60 h-10 w-full rounded-lg border pr-4 pl-10 text-sm focus:ring-2 focus:outline-none dark:text-white"
               />
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ── Departments & Programs ── */}
-      <section className="relative mx-auto max-w-5xl px-4 pb-24 sm:px-6 lg:px-8">
-        <div className="space-y-6">
-          {DEPARTMENTS.map((dept) => {
-            const deptPrograms = getProgramsForDept(dept.id);
-            const isExpanded = expandedDepts.has(dept.id);
-            const Icon = DEPT_ICONS[dept.icon] || BookOpen;
-
-            if (search && deptPrograms.length === 0) return null;
-
-            return (
-              <div key={dept.id} className="premium-card overflow-hidden">
-                {/* Department header */}
-                <button
-                  onClick={() => toggleDept(dept.id)}
-                  className="group/dept flex w-full cursor-pointer items-center justify-between p-5 md:p-6"
-                >
-                  <div className="flex items-center gap-4">
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-xl"
-                      style={{ backgroundColor: `${dept.color}15` }}
-                    >
-                      <Icon size={20} style={{ color: dept.color }} />
-                    </div>
-                    <div className="text-left">
-                      <h2 className="font-display text-text-primary-light group-hover/dept:text-primary dark:group-hover/dept:text-primary-light text-base font-bold transition-colors md:text-lg dark:text-white">
-                        {dept.name[locale]}
-                      </h2>
-                      <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium">
-                        МОП, КЭД · {deptPrograms.length}{' '}
-                        {deptPrograms.length === 1 ? t('programSingular') : t('programPlural')}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="hidden rounded-full px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase sm:inline-flex"
-                      style={{
-                        backgroundColor: `${dept.color}15`,
-                        color: dept.color,
-                      }}
-                    >
+        {/* ── Content Grid ── */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          {/* ── Sidebar Filters ── */}
+          <aside className="space-y-6 lg:col-span-3">
+            {/* Department Filter */}
+            <Card padding="none" className="p-5 shadow-sm">
+              <h3 className="font-display text-text-primary-light mb-4 flex items-center gap-2 text-base font-bold dark:text-white">
+                <Building2 size={18} className="text-primary dark:text-primary-light" />
+                {t('filterDepartment')}
+              </h3>
+              <div className="space-y-3">
+                {DEPARTMENTS.map((dept) => (
+                  <label key={dept.id} className="group flex cursor-pointer items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedDepts.has(dept.id)}
+                      onChange={() => handleFilterChange(setSelectedDepts, dept.id)}
+                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                    />
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
                       {dept.shortName[locale]}
                     </span>
-                    {isExpanded ? (
-                      <ChevronUp
-                        size={18}
-                        className="text-text-secondary-light dark:text-text-secondary-dark"
-                      />
-                    ) : (
-                      <ChevronDown
-                        size={18}
-                        className="text-text-secondary-light dark:text-text-secondary-dark"
-                      />
-                    )}
-                  </div>
-                </button>
-
-                {/* Programs table */}
-                {isExpanded && deptPrograms.length > 0 && (
-                  <div className="border-border-light dark:border-border-dark/30 border-t">
-                    <div className="overflow-x-auto">
-                      <table className="w-full">
-                        <thead>
-                          <tr className="bg-surface-hover-light dark:bg-surface-dark/30">
-                            <th className="text-text-secondary-light dark:text-text-secondary-dark w-[120px] px-5 py-3 text-left text-[10px] font-semibold tracking-wider uppercase md:px-6">
-                              {t('tableCode')}
-                            </th>
-                            <th className="text-text-secondary-light dark:text-text-secondary-dark px-3 py-3 text-left text-[10px] font-semibold tracking-wider uppercase">
-                              {t('tableName')}
-                            </th>
-                            <th className="text-text-secondary-light dark:text-text-secondary-dark hidden w-[100px] px-3 py-3 text-left text-[10px] font-semibold tracking-wider uppercase md:table-cell">
-                              {t('tableDuration')}
-                            </th>
-                            <th className="text-text-secondary-light dark:text-text-secondary-dark hidden w-[100px] px-3 py-3 text-left text-[10px] font-semibold tracking-wider uppercase md:table-cell">
-                              {t('tableCredits')}
-                            </th>
-                            <th className="text-text-secondary-light dark:text-text-secondary-dark hidden w-[100px] px-3 py-3 text-left text-[10px] font-semibold tracking-wider uppercase lg:table-cell">
-                              {t('tableLang')}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {deptPrograms.map((program, idx) => (
-                            <tr
-                              key={program.id}
-                              className={`group/row hover:bg-surface-hover-light dark:hover:bg-surface-dark/40 transition-colors duration-200 ${
-                                idx !== deptPrograms.length - 1
-                                  ? 'border-border-light dark:border-border-dark/20 border-b'
-                                  : ''
-                              }`}
-                            >
-                              <td className="px-5 py-4 md:px-6">
-                                <span
-                                  className="inline-flex rounded-lg px-2.5 py-1 font-mono text-xs font-bold"
-                                  style={{
-                                    backgroundColor: `${dept.color}10`,
-                                    color: dept.color,
-                                  }}
-                                >
-                                  {program.code}
-                                </span>
-                              </td>
-                              <td className="px-3 py-4">
-                                <div>
-                                  <p className="text-text-primary-light group-hover/row:text-primary dark:group-hover/row:text-primary-light text-sm font-semibold transition-colors dark:text-white">
-                                    {program.name[locale]}
-                                  </p>
-                                  <p className="text-text-secondary-light/70 dark:text-text-secondary-dark/70 mt-0.5 line-clamp-1 max-w-md text-xs">
-                                    {program.description[locale]}
-                                  </p>
-                                </div>
-                              </td>
-                              <td className="hidden px-3 py-4 md:table-cell">
-                                <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1.5 text-xs">
-                                  <Clock size={12} />
-                                  {program.duration} {t('years')}
-                                </span>
-                              </td>
-                              <td className="hidden px-3 py-4 md:table-cell">
-                                <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1.5 text-xs">
-                                  <BookOpen size={12} />
-                                  {program.credits}
-                                </span>
-                              </td>
-                              <td className="hidden px-3 py-4 lg:table-cell">
-                                <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1.5 text-xs">
-                                  <Languages size={12} />
-                                  {program.languages.join(', ').toUpperCase()}
-                                </span>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                )}
-
-                {isExpanded && deptPrograms.length === 0 && (
-                  <div className="border-border-light dark:border-border-dark/30 border-t px-6 py-8 text-center">
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                      {t('noResults')}
-                    </p>
-                  </div>
-                )}
+                    <span className="bg-bg-light text-text-secondary-light dark:bg-surface-dark dark:text-text-secondary-dark ml-auto rounded-full px-2 py-0.5 text-xs">
+                      {deptCounts[dept.id] || 0}
+                    </span>
+                  </label>
+                ))}
               </div>
-            );
-          })}
-        </div>
+            </Card>
 
-        {/* No results */}
-        {search && filteredPrograms.length === 0 && (
-          <div className="premium-card mt-6 p-12 text-center">
-            <GraduationCap
-              size={48}
-              className="text-text-secondary-light/40 dark:text-text-secondary-dark/40 mx-auto mb-4"
-            />
-            <p className="text-text-secondary-light dark:text-text-secondary-dark">
-              {t('noResults')}
-            </p>
-          </div>
-        )}
+            {/* Level Filter */}
+            <Card padding="none" className="p-5 shadow-sm">
+              <h3 className="font-display text-text-primary-light mb-4 flex items-center gap-2 text-base font-bold dark:text-white">
+                <GraduationCap size={18} className="text-primary dark:text-primary-light" />
+                {t('filterLevel')}
+              </h3>
+              <div className="space-y-3">
+                {DEGREE_TYPES.map((level) => (
+                  <label key={level} className="group flex cursor-pointer items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedLevels.has(level)}
+                      onChange={() => handleFilterChange(setSelectedLevels, level)}
+                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                    />
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
+                      {degreeLabel(level)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </Card>
 
-        {/* CTA */}
-        <div className="premium-card mt-12 overflow-hidden p-10 text-center md:p-14">
-          <div className="from-primary/[0.06] to-gold/[0.06] pointer-events-none absolute inset-0 bg-gradient-to-r via-transparent" />
-          <div className="via-gold/30 absolute top-0 left-1/2 h-px w-1/2 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
+            {/* Language Filter */}
+            <Card padding="none" className="p-5 shadow-sm">
+              <h3 className="font-display text-text-primary-light mb-4 flex items-center gap-2 text-base font-bold dark:text-white">
+                <Globe size={18} className="text-primary dark:text-primary-light" />
+                {t('filterLanguage')}
+              </h3>
+              <div className="space-y-3">
+                {LANG_CODES.map((lang) => (
+                  <label key={lang} className="group flex cursor-pointer items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedLangs.has(lang)}
+                      onChange={() => handleFilterChange(setSelectedLangs, lang)}
+                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                    />
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
+                      {langLabel(lang)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </Card>
+          </aside>
 
-          <div className="relative">
-            <div className="mb-4 inline-flex items-center gap-2">
-              <Sparkles size={16} className="text-gold-dark dark:text-gold" />
-              <span className="text-gold-dark dark:text-gold text-[10px] font-semibold tracking-widest uppercase">
-                ZhezU
-              </span>
+          {/* ── Programs Grid ── */}
+          <div className="lg:col-span-9">
+            {/* Results count */}
+            {filteredPrograms.length > 0 && (
+              <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 text-sm">
+                {t('showing')}{' '}
+                <span className="text-text-primary-light font-semibold dark:text-white">
+                  {(currentPage - 1) * ITEMS_PER_PAGE + 1}
+                  &ndash;
+                  {Math.min(currentPage * ITEMS_PER_PAGE, filteredPrograms.length)}
+                </span>{' '}
+                {t('of')}{' '}
+                <span className="text-text-primary-light font-semibold dark:text-white">
+                  {filteredPrograms.length}
+                </span>{' '}
+                {t('statPrograms').toLowerCase()}
+              </p>
+            )}
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {paginatedPrograms.map((program) => {
+                const dept = DEPARTMENTS.find((d) => d.id === program.department);
+                const gradient =
+                  DEPT_GRADIENTS[program.department] || 'from-blue-600 to-indigo-700';
+                const accentText = DEPT_ACCENT_TEXT[program.department] || 'text-primary';
+                const iconColor = DEPT_ICON_COLORS[program.department] || 'text-primary';
+                const DeptIcon = dept ? DEPT_ICONS[dept.icon] || BookOpen : BookOpen;
+
+                return (
+                  <Link
+                    key={program.id}
+                    href={`/academics/${program.id}`}
+                    className="group border-border-light bg-surface-light hover:border-primary/50 dark:border-border-dark dark:bg-surface-dark flex h-full flex-col overflow-hidden rounded-xl border transition-all duration-300 hover:shadow-lg"
+                  >
+                    {/* Gradient header */}
+                    <div className={`relative h-32 overflow-hidden bg-gradient-to-r ${gradient}`}>
+                      {/* Subtle pattern overlay */}
+                      <div
+                        className="absolute inset-0 opacity-10"
+                        style={{
+                          backgroundImage:
+                            "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                        }}
+                      />
+                      {/* Degree badge */}
+                      <div className="absolute top-4 right-4 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur-md">
+                        {degreeBadgeLabel(program.degree)}
+                      </div>
+                    </div>
+
+                    {/* Card body */}
+                    <div className="relative flex flex-1 flex-col p-6">
+                      {/* Floating icon */}
+                      <div className="border-border-light dark:border-border-dark dark:bg-surface-dark absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-lg border bg-white shadow-sm transition-transform duration-300 group-hover:scale-110">
+                        <DeptIcon size={24} className={iconColor} />
+                      </div>
+
+                      <div className="mt-4 mb-2">
+                        {/* Department label */}
+                        <span
+                          className={`mb-1 block text-xs font-bold tracking-wider uppercase ${accentText}`}
+                        >
+                          {dept?.shortName[locale]}
+                        </span>
+                        {/* Program title */}
+                        <h3 className="font-display text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-lg font-bold transition-colors dark:text-white">
+                          {program.name[locale]}
+                        </h3>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-text-secondary-light dark:text-text-secondary-dark mb-6 line-clamp-2 text-sm">
+                        {program.description[locale]}
+                      </p>
+
+                      {/* Footer */}
+                      <div className="border-border-light text-text-secondary-light dark:border-border-dark dark:text-text-secondary-dark mt-auto flex items-center justify-between border-t pt-4 text-sm">
+                        <div className="flex items-center gap-1.5">
+                          <Clock size={16} />
+                          <span>
+                            {program.duration} {t('years')}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <BookMarked size={16} />
+                          <span>
+                            {program.credits} {t('tableCredits')}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
 
-            <h3 className="font-display text-text-primary-light mb-3 text-2xl font-bold md:text-3xl dark:text-white">
-              {t('ctaTitle')}
-            </h3>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-8 max-w-lg text-sm leading-relaxed">
-              {t('ctaDesc')}
-            </p>
+            {/* No results */}
+            {filteredPrograms.length === 0 && (
+              <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark rounded-xl border p-12 text-center">
+                <GraduationCap
+                  size={48}
+                  className="text-text-secondary-light/40 dark:text-text-secondary-dark/40 mx-auto mb-4"
+                />
+                <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                  {t('noResults')}
+                </p>
+              </div>
+            )}
 
-            <a
-              href="https://zhezu.edu.kz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-premium from-gold to-gold-light dark:text-bg-dark inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r px-8 py-3.5 text-sm font-bold tracking-wide text-white"
-            >
-              {t('ctaButton')}
-              <Users size={16} />
-            </a>
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="mt-12 flex justify-center">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
+            )}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </main>
   );
 }

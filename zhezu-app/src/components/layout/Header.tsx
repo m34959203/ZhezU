@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import { Search, GraduationCap, Phone, Mail, ChevronDown } from 'lucide-react';
+import { Search, GraduationCap, Phone, Mail, ChevronDown, ArrowRight, Compass } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -137,20 +137,20 @@ function MegaMenuPanel({
       )}
     >
       {/* shadow/backdrop */}
-      <div className="bg-surface-light dark:bg-surface-dark border-border-light dark:border-border-dark border-b shadow-xl">
+      <div className="border-border-light dark:border-border-dark dark:bg-surface-dark border-t border-b bg-white shadow-xl">
         <div className="mx-auto max-w-screen-xl px-4 pt-12 pb-8 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-8">
+          <div className="grid grid-cols-2 gap-x-10 gap-y-6 md:grid-cols-3 lg:grid-cols-5">
             {item.columns.map((column) => (
-              <div key={column.titleKey} className="min-w-[180px] flex-1">
-                <h3 className="font-display text-primary dark:text-primary-light mb-4 text-sm font-semibold tracking-wide uppercase">
+              <div key={column.titleKey} className="flex flex-col">
+                <h3 className="font-display text-primary dark:text-primary-light mb-3 text-xs font-semibold tracking-widest uppercase">
                   {t(column.titleKey)}
                 </h3>
-                <ul className="space-y-1">
+                <ul className="flex flex-col gap-2">
                   {column.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light block px-1 py-1.5 text-sm transition-all duration-200 hover:translate-x-0.5"
+                        className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light block py-1.5 text-sm font-normal transition-colors duration-200"
                       >
                         {t(link.labelKey)}
                       </Link>
@@ -161,13 +161,48 @@ function MegaMenuPanel({
             ))}
           </div>
 
-          {/* Bottom CTA row inside panel */}
+          {/* Bottom action bar */}
           <div className="border-border-light/50 dark:border-border-dark/50 mt-8 flex items-center justify-between border-t pt-6">
+            <div className="flex gap-4">
+              <Link
+                href="/university/about"
+                className="group flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              >
+                <div className="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
+                  <GraduationCap size={18} />
+                </div>
+                <div>
+                  <p className="text-text-primary-light text-sm font-bold dark:text-white">
+                    {t('whyZhezU')}
+                  </p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                    {t('whyZhezUDesc')}
+                  </p>
+                </div>
+              </Link>
+              <Link
+                href="/university/campus"
+                className="group flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              >
+                <div className="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
+                  <Compass size={18} />
+                </div>
+                <div>
+                  <p className="text-text-primary-light text-sm font-bold dark:text-white">
+                    {t('virtualTour')}
+                  </p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                    {t('virtualTourDesc')}
+                  </p>
+                </div>
+              </Link>
+            </div>
             <Link
               href={item.href}
-              className="text-primary dark:text-primary-light text-sm font-medium underline-offset-4 hover:underline"
+              className="group text-primary dark:text-primary-light flex items-center gap-1.5 text-sm font-bold decoration-2 underline-offset-4 hover:underline"
             >
-              {t(item.labelKey + '.title')} &rarr;
+              {t('seeAll')} {t(item.labelKey + '.title')}
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
         </div>
