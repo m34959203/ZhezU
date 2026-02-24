@@ -888,6 +888,58 @@
       },
       "ctaAbout": "About the University",
       "ctaMission": "Mission and Values"
+    },
+    "internationalAccreditation": {
+      "pageTitle": "International Accreditation — Zhezkazgan University",
+      "pageDescription": "International recognition and accreditation of O.A. Baikonurov Zhezkazgan University",
+      "badge": "International Accreditation",
+      "title": "International Recognition",
+      "subtitle": "Zhezkazgan University is integrated into the international educational space and has recognition from leading international organizations",
+      "aboutTitle": "International Status",
+      "aboutP1": "O.A. Baikonurov Zhezkazgan University actively develops international relations and consistently undergoes international accreditation procedures. The university is a participant in the Bologna Process and a member of the Magna Charta Universitatum.",
+      "aboutP2": "For the high quality of specialist training, the university has received international awards from leading European organizations, confirming its status as a recognized educational center.",
+      "achievementsTitle": "International Achievements",
+      "achievementsSubtitle": "Key international awards and recognition of the university",
+      "achievements": {
+        "magna": {
+          "title": "Magna Charta Universitatum",
+          "year": "Bologna, Italy — 2010",
+          "text": "In September 2010, Rector Takishov A.A. signed the Bologna Declaration in Bologna, Italy. Zhezkazgan University joined the Magna Charta Universitatum — an international association of over 900 universities from 88 countries, affirming commitment to principles of academic freedom and institutional autonomy."
+        },
+        "spi": {
+          "title": "SPI Gold Medal",
+          "year": "Paris, France",
+          "text": "For the high quality of specialist training for industry, the university received the Gold Medal of the Association for the Promotion of Industry (Société de l'industrie minérale — SPI) in Paris — one of the prestigious awards in mining and engineering education."
+        },
+        "gold": {
+          "title": "Golden Ingot International Award",
+          "year": "Amsterdam, Netherlands",
+          "text": "The university was awarded the international Golden Ingot Award in the 'Effectively Developing Enterprise' nomination (Amsterdam), confirming the high level of management and dynamic development of the university at the international level."
+        },
+        "iso": {
+          "title": "ISO 9001 — International Standard",
+          "year": "Since 2006",
+          "text": "The university's quality management system is certified to the international standard ISO 9001:2000, which is recognized worldwide as the benchmark for quality management in organizations."
+        }
+      },
+      "cooperationTitle": "International Cooperation",
+      "cooperationSubtitle": "Areas of the university's international activities",
+      "cooperation": {
+        "bologna": {
+          "title": "Bologna Process",
+          "text": "Integration into the European Higher Education Area: ECTS credit system, three-level education structure, academic mobility."
+        },
+        "mobility": {
+          "title": "Academic Mobility",
+          "text": "Student and faculty exchange programs with international partner universities, internships and joint projects."
+        },
+        "research": {
+          "title": "Research Cooperation",
+          "text": "Participation in international scientific conferences, joint research projects, publications in international journals."
+        }
+      },
+      "ctaNational": "National Accreditation",
+      "ctaAbout": "About the University"
     }
   },
   "programs": {
