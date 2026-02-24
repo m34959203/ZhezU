@@ -103,7 +103,7 @@ export function Footer() {
               <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                  src="/logo.png"
                   alt="ZhezU"
                   width={56}
                   height={56}
