@@ -99,10 +99,15 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Column 1: University Info */}
           <div className="lg:col-span-1">
-            <Link href="/" className="group mb-4 flex items-center gap-2.5">
-              <div className="bg-primary flex h-9 w-9 items-center justify-center rounded-lg shadow-sm transition-shadow duration-300 group-hover:shadow-[0_0_15px_rgba(29,86,201,0.4)]">
-                <GraduationCap size={20} className="text-white" />
-              </div>
+            <Link href="/" className="group mb-4 flex items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                alt="ZhezU"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain brightness-0 invert"
+              />
               <span className="font-display text-lg font-bold text-white">ZhezU</span>
             </Link>
 

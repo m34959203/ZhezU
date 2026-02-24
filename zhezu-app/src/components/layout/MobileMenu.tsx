@@ -176,9 +176,14 @@ export function MobileMenu() {
                   className="group flex items-center gap-2.5"
                   onClick={() => setOpen(false)}
                 >
-                  <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg">
-                    <GraduationCap size={18} className="text-white" />
-                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                    alt="ZhezU"
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 object-contain"
+                  />
                   <span className="font-display text-primary dark:text-primary-light text-lg font-bold">
                     ZhezU
                   </span>
