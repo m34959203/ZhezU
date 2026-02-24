@@ -175,7 +175,7 @@ export function Header() {
                   alt="ZhezU"
                   width={48}
                   height={43}
-                  className="h-[43px] w-[48px] object-contain"
+                  className="h-[43px] w-[48px] object-contain dark:brightness-0 dark:invert"
                 />
                 <div className="flex flex-col">
                   <span className="font-display text-primary dark:text-primary-light text-base leading-tight font-bold">
