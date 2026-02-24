@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ZhezU News &amp; Life</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1d56c9",
+              "background-light": "#f6f6f8",
+              "background-dark": "#111621",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased selection:bg-primary/20 selection:text-primary">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm">
+<div class="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-4 sm:px-6 lg:px-8">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 transition-opacity hover:opacity-80" href="#">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined !text-[20px]">school</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">ZhezU News</h1>
+</a>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-slate-900 hover:text-primary dark:text-slate-200 dark:hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-primary dark:text-primary" href="#">News</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Events</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Media</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+</div>
+<!-- Right Actions -->
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex relative group w-64">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined !text-[20px]">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 bg-slate-100 dark:bg-slate-800 py-2 pl-10 pr-3 text-sm text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:bg-white dark:focus:bg-slate-900 transition-all" placeholder="Search news..." type="text"/>
+</div>
+<button class="flex items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors">
+                        Subscribe
+                    </button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="mx-auto max-w-[1200px] px-4 py-8 sm:px-6 lg:px-8">
+<!-- Category Filter -->
+<div class="mb-10 overflow-x-auto pb-2">
+<div class="flex gap-3">
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-slate-900 dark:bg-white px-5 text-sm font-medium text-white dark:text-slate-900 shadow-sm transition-transform active:scale-95">
+                            All
+                        </button>
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                            University
+                        </button>
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                            Science
+                        </button>
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                            Students
+                        </button>
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                            Sport
+                        </button>
+<button class="inline-flex h-9 items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                            Culture
+                        </button>
+</div>
+</div>
+<!-- Featured Story -->
+<section class="mb-16">
+<div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-slate-800 shadow-sm ring-1 ring-slate-900/5 dark:ring-white/10 lg:flex-row">
+<div class="relative h-64 w-full flex-shrink-0 lg:h-auto lg:w-3/5 overflow-hidden">
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-700 transition-transform duration-500 group-hover:scale-105" data-alt="Scientists working in a modern laboratory with blue lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAEhoKyQOkNH6NompVXPZMOkJWMqTUezwS5yLvxhSgz_zGqVZ1c9SgLYDZZg8RLDcQk3JXSByuWOc8PhNCoclfdK4Vuv3mohX3NCc6WpCorFzwNozbMYxgWekvvhmuVscsybRsq_SUsNZ5i-e--P0vX9k6ACeSSsxKiKwCuS6f5k7qT-EEduLwECvEa_NUUuRC2h24smh7UpYsuQoatfJMGeLmmC4NiSlfazDc5NFQnFxwUy4syoKBqHykiwOLHQWktAGLR4UYRTlny"); background-size: cover; background-position: center;'>
+</div>
+</div>
+<div class="flex flex-col justify-center p-8 lg:w-2/5">
+<div class="flex items-center gap-2 text-sm">
+<span class="font-semibold text-primary">Science</span>
+<span class="text-slate-300 dark:text-slate-600">•</span>
+<span class="text-slate-500 dark:text-slate-400">Oct 25, 2023</span>
+</div>
+<h2 class="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white lg:text-3xl">
+                                Groundbreaking Research: ZhezU Scientists Discover New Renewable Energy Source
+                            </h2>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                                A team of researchers at ZhezU has published findings that could revolutionize solar panel efficiency by up to 40% using new nanomaterials.
+                            </p>
+<div class="mt-8 flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center" data-alt="Portrait of Dr. James Chen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmuMcvhhqyU1RWwxvPpr7moNOc3cdyuGLlJth6NHHIpNyBdAQPgG5CrAUDqi6PqbJugpvE8p_jjjcoTqJa-PsMGJvNEGw4zzLxGJKopuDXBrlPaBZekeU-YNgfVL49_Nmc1vcktiRWXNt7PdQiY0dz_NJOSan56CJd-Lr1ZlxLUEYnf2H6gN0xl8LrEz9xfb2MNG2oelgCBYD-n2K-Dqgwt-dkM8zau2hCm9DaSqB1b9-xyhObGvwktkytC6vnmt3p2WtIZ8ee1FQh")'></div>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Dr. James Chen</span>
+</div>
+<span class="text-slate-300 dark:text-slate-600">|</span>
+<span class="text-sm text-slate-500 dark:text-slate-400">5 min read</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest News Grid -->
+<section>
+<div class="mb-8 flex items-center justify-between">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">Latest News</h3>
+<a class="hidden text-sm font-semibold text-primary hover:text-blue-700 sm:block" href="#">View all articles →</a>
+</div>
+<div class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+<!-- Card 1 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="Students gathered in a large university lecture hall" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDc2CHwQdz6Gp-I8Q-AI6zNZkNky3Ic9pjzQ-NpsAhLkr2bNpguo0Q-nUVBnfPrt58dlc_vMY3I18G6dvUyRG2-Gsr1rSiPNpvq2sqLP2Yn0UKX1eaJJnRj44cDOtkdv4BFQoPZSzxifHla5YDI7FfQ_Cfe_-RMSqU3AX70mTnfYi0qi-dJz-YWS9U2QmMDcEA7fzoC6mgMUnzLxnLk6gJ5kGiwmIprVy_fKHjhf7c7zc1IcPluTOkltjAdjaV9g8mTa7enrEJfbsnG");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-purple-100 dark:bg-purple-900/30 px-2.5 py-0.5 text-purple-700 dark:text-purple-300">University</span>
+<span class="text-slate-400">Oct 24, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                Student Council Elections: Meet the Candidates and Their Platforms
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                As election week approaches, we break down the key proposals from the three main parties vying for the student council leadership.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Sarah Jenkins</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="Action shot of a basketball game in the university gym" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGKMwF5jhQgKqwxy41dKh3FlP7CnAt1tDz5OherdOtOi_PC0b0YUuyM5rt-Xtw1rIJvzpgJQG6sK8U9RHst-dP9qz5cfv9j2QEEJH68un1-3kJq8D8BXpwAfdqal2WKcRu4a1Lf9dPHliaaGbTzuscEc0MzlDu9MknJgf4BuZ0VI1l0deT2dd7Fd1Bqes-WkEawTJ0qt_H-PIVutP8XaPDTBkr5Nxd985ZJZ4io4iWXtQ03W81unlKoALMw2QtPUnb3poLWg3xycQG");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-orange-100 dark:bg-orange-900/30 px-2.5 py-0.5 text-orange-700 dark:text-orange-300">Sport</span>
+<span class="text-slate-400">Oct 23, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                ZhezU Basketball Team Secures Spot in Regional Finals
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                In a thrilling overtime victory against Tech State, the ZhezU Tigers have advanced to the regional championship for the first time in a decade.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Mike Ross</span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="Modern art gallery exhibition with paintings on white walls" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBb0zruOt1yCU4Xj7D2cOb4byDTC5FQr6lkIefyFbCQS0QwfZDekCzAtGPl6t8-jfvH5CaLgj5mQUrXNHCwr1g-XbJIJ0StoksKOhfSkaUbM4a4KAsmxR5RH6SjZPGW9msmE8mqr2Awu0xbF6MDHknZ78tjxxUaYFsrFZENnyuqX3X3Yx3oVZnBh9eLA394weV8ao846FYryHEa5YHSJBgPX3DeN-BZF301RP24DjIUyP-KzxRD6dl_UBKUbH9IbGckJb2VUuOU917d");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-pink-100 dark:bg-pink-900/30 px-2.5 py-0.5 text-pink-700 dark:text-pink-300">Culture</span>
+<span class="text-slate-400">Oct 22, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                New Art Exhibition 'Horizons' Opens at Campus Gallery
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Featuring works from over 30 student artists, the new exhibition explores themes of future landscapes and digital identity.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Art Dept</span>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="Futuristic digital interface representing AI technology" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBc-NWzzSzDHno5--LrcGu80ixL1ZJHHviY_nJp3pPKPrw_xpjHee066GyK-NniZ0HH8McYBJRokFiLBSlMbIeXnukxGuU4kPJZ8sMf-n_wypODefxE1G9MS4fKTU9Cq8ws5zYnIMY790OLjLVzQhOD19H_wMqy9y6WtdwSE2ujeSjQUk77xY9ZAZcef-kNy0fyZpP_2_7nPEJKIoxAEakFwMe7lHR76TiGXxYxmr6U7tiLZgmlTGFxvYR8ekR6WFUgc9podd34GNyV");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-blue-100 dark:bg-blue-900/30 px-2.5 py-0.5 text-blue-700 dark:text-blue-300">Science</span>
+<span class="text-slate-400">Oct 21, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                Guest Lecture: The Future of AI in Education
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Renowned AI researcher Prof. Alan Turing III visited ZhezU to discuss how large language models are reshaping the classroom.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Science Faculty</span>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="Group of volunteers planting trees in a park" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCc9dRarsn_i1DRnhEubuAyDNAiomOVjnFfZj2KamtrHA1H927ilv9dOvPvkZvdtHrtC1DRyJDp6PSO06Y2LhfntESucAPqEcuMwP5pnnk2oazRH79GaTP8mhLoAwIdJXcKJkz2tG0xs08uzUB32uO06xv8SPHxy0Z1Wpqrjm3fJQEzgsJoYSM_uswOzNZl2aHvnIhwfUoGvzG7gfGFRDN11lgxeEfo150JG421ixmSrrcACKkGEgRXmC-Ii9w4FPoEH5BRa0BZdXf6");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-0.5 text-green-700 dark:text-green-300">Events</span>
+<span class="text-slate-400">Oct 20, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                Campus Sustainability Week Kicks Off with Tree Planting
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                Hundreds of students joined the Green Team initiative to plant over 500 native trees around the campus perimeter.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Green Team</span>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="flex flex-col group cursor-pointer">
+<div class="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
+<div class="absolute inset-0 transition-transform duration-300 group-hover:scale-105 bg-cover bg-center" data-alt="People networking at a formal business event" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAb9dQetske4duVjcAjAzYUdmaZf1iSDLJ1vtJv9DSMXv1Wt1PFtQGGZGpnm-eKX-h8RJ5bvH25L-6B6wgSGkd2EM86XFOUdsfCcpKQv-0U7mRfXw5TUG0n9i8idV-5wFtz72PpSXdPblU0njlcHjVm3OK2_X30YA5URnkUpcmardR4AQZ22HHH3tkjgxU4AV1A_HWkdtGdXExUww1UBCYsGNsC3Yln3eCSfLHhztvI5vFvFoJU0MgNY-C24GSvdkRK5cIWiIyRtxpP");'>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-3 text-xs font-medium">
+<span class="rounded-full bg-indigo-100 dark:bg-indigo-900/30 px-2.5 py-0.5 text-indigo-700 dark:text-indigo-300">Alumni</span>
+<span class="text-slate-400">Oct 19, 2023</span>
+</div>
+<h3 class="mt-3 text-lg font-bold leading-tight text-slate-900 dark:text-white group-hover:text-primary transition-colors">
+                                ZhezU Alumni Network expands to Europe
+                            </h3>
+<p class="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                                A new chapter of the ZhezU Alumni Association has been officially inaugurated in Berlin, connecting graduates across the EU.
+                            </p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-xs font-medium text-slate-500 dark:text-slate-500">By Alumni Assoc</span>
+</div>
+</article>
+</div>
+</section>
+<!-- Pagination -->
+<div class="mt-16 flex items-center justify-center">
+<nav aria-label="Pagination" class="isolate inline-flex -space-x-px rounded-md shadow-sm">
+<a class="relative inline-flex items-center rounded-l-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Previous</span>
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_left</span>
+</a>
+<a aria-current="page" class="relative z-10 inline-flex items-center bg-primary px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" href="#">1</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-900 dark:text-slate-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0" href="#">2</a>
+<a class="relative hidden items-center px-4 py-2 text-sm font-semibold text-slate-900 dark:text-slate-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0 md:inline-flex" href="#">3</a>
+<span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-700 dark:text-slate-400 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 focus:outline-offset-0">...</span>
+<a class="relative hidden items-center px-4 py-2 text-sm font-semibold text-slate-900 dark:text-slate-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0 md:inline-flex" href="#">8</a>
+<a class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-slate-900 dark:text-slate-300 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0" href="#">9</a>
+<a class="relative inline-flex items-center rounded-r-md px-2 py-2 text-slate-400 ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 focus:z-20 focus:outline-offset-0" href="#">
+<span class="sr-only">Next</span>
+<span class="material-symbols-outlined" style="font-size: 20px;">chevron_right</span>
+</a>
+</nav>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark py-12">
+<div class="mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8">
+<div class="md:flex md:items-center md:justify-between">
+<div class="flex justify-center space-x-6 md:order-2">
+<a class="text-slate-400 hover:text-primary" href="#">
+<span class="sr-only">Facebook</span>
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg>
+</a>
+<a class="text-slate-400 hover:text-primary" href="#">
+<span class="sr-only">Twitter</span>
+<svg aria-hidden="true" class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+</div>
+<div class="mt-8 md:order-1 md:mt-0">
+<p class="text-center text-xs leading-5 text-slate-500 dark:text-slate-400">© 2023 ZhezU University. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
