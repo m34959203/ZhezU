@@ -177,7 +177,7 @@ export default function AICenterPage() {
       </section>
 
       {/* Tab Navigation */}
-      <div className="sticky top-16 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
+      <div className="border-border-light bg-surface-light/95 dark:border-border-dark dark:bg-surface-dark/95 sticky top-16 z-40 border-b shadow-sm backdrop-blur">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <nav aria-label="Tabs" className="scrollbar-none flex space-x-8 overflow-x-auto">
             {TABS.map((tab) => (
@@ -188,7 +188,7 @@ export default function AICenterPage() {
                 className={`border-b-2 px-1 py-4 text-sm font-medium whitespace-nowrap transition-colors ${
                   activeTab === tab
                     ? 'border-primary text-primary font-bold'
-                    : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+                    : 'text-text-secondary-light hover:border-border-light hover:text-text-primary-light dark:text-text-secondary-dark dark:hover:border-border-dark dark:hover:text-text-primary-dark border-transparent'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -204,8 +204,10 @@ export default function AICenterPage() {
         <section>
           <div className="mb-8 flex items-center justify-between">
             <div>
-              <h2 className="text-3xl font-bold tracking-tight">{t('projects.title')}</h2>
-              <p className="mt-2 text-slate-600 dark:text-slate-400">
+              <h2 className="text-text-primary-light dark:text-text-primary-dark text-3xl font-bold tracking-tight">
+                {t('projects.title')}
+              </h2>
+              <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2">
                 Discover breakthrough initiatives from our research labs.
               </p>
             </div>
@@ -220,7 +222,7 @@ export default function AICenterPage() {
             {featuredProjects.map((project) => (
               <div
                 key={project.title}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800"
+                className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg"
               >
                 <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900">
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -239,18 +241,18 @@ export default function AICenterPage() {
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="group-hover:text-primary mb-2 text-xl font-bold transition-colors dark:text-white">
+                  <h3 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark mb-2 text-xl font-bold transition-colors">
                     {project.title}
                   </h3>
-                  <p className="mb-4 line-clamp-3 text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 line-clamp-3 text-sm">
                     {project.description}
                   </p>
-                  <div className="mt-auto flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-700">
+                  <div className="border-border-light dark:border-border-dark mt-auto flex items-center justify-between border-t pt-4">
                     <div className="flex gap-2">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded bg-slate-100 px-2 py-1 text-[10px] font-bold text-slate-500 uppercase dark:bg-slate-700 dark:text-slate-300"
+                          className="bg-bg-light text-text-secondary-light dark:bg-bg-dark dark:text-text-secondary-dark rounded px-2 py-1 text-[10px] font-bold uppercase"
                         >
                           {tag}
                         </span>
@@ -328,20 +330,24 @@ export default function AICenterPage() {
 
         {/* Developer Tools Section */}
         <section>
-          <h2 className="mb-6 text-2xl font-bold">{t('tools.title')}</h2>
+          <h2 className="text-text-primary-light dark:text-text-primary-dark mb-6 text-2xl font-bold">
+            {t('tools.title')}
+          </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {devTools.map((tool) => (
               <a
                 key={tool.title}
                 href="#"
-                className="group flex items-start rounded-lg border border-slate-200 bg-white p-4 transition-colors hover:border-blue-300 dark:border-slate-700 dark:bg-slate-800"
+                className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex items-start rounded-lg border p-4 transition-colors hover:border-blue-300"
               >
                 <div className="bg-primary/10 text-primary group-hover:bg-primary rounded-lg p-2 transition-colors group-hover:text-white">
                   <tool.icon size={24} />
                 </div>
                 <div className="ml-4">
-                  <h4 className="font-bold dark:text-white">{tool.title}</h4>
-                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                  <h4 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                    {tool.title}
+                  </h4>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
                     {tool.description}
                   </p>
                 </div>

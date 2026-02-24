@@ -46,7 +46,7 @@ const DEPT_GRADIENTS: Record<string, string> = {
 
 const DEPT_ACCENT_TEXT: Record<string, string> = {
   'pedagogy-philology': 'text-amber-500',
-  'mining-metallurgy-science': 'text-blue-600',
+  'mining-metallurgy-science': 'text-primary dark:text-primary-light',
   'history-economics-law': 'text-emerald-600',
   'electrical-safety': 'text-purple-600',
   'machines-construction': 'text-slate-600 dark:text-slate-400',
@@ -238,9 +238,9 @@ export default function AcademicsPage() {
                       type="checkbox"
                       checked={selectedDepts.has(dept.id)}
                       onChange={() => handleFilterChange(setSelectedDepts, dept.id)}
-                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                      className="text-primary focus:ring-primary/25 border-border-light dark:border-border-dark h-5 w-5 cursor-pointer rounded transition-all"
                     />
-                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light dark:text-text-primary-dark text-sm font-medium transition-colors">
                       {dept.shortName[locale]}
                     </span>
                     <span className="bg-bg-light text-text-secondary-light dark:bg-surface-dark dark:text-text-secondary-dark ml-auto rounded-full px-2 py-0.5 text-xs">
@@ -264,9 +264,9 @@ export default function AcademicsPage() {
                       type="checkbox"
                       checked={selectedLevels.has(level)}
                       onChange={() => handleFilterChange(setSelectedLevels, level)}
-                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                      className="text-primary focus:ring-primary/25 border-border-light dark:border-border-dark h-5 w-5 cursor-pointer rounded transition-all"
                     />
-                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light dark:text-text-primary-dark text-sm font-medium transition-colors">
                       {degreeLabel(level)}
                     </span>
                   </label>
@@ -287,9 +287,9 @@ export default function AcademicsPage() {
                       type="checkbox"
                       checked={selectedLangs.has(lang)}
                       onChange={() => handleFilterChange(setSelectedLangs, lang)}
-                      className="text-primary focus:ring-primary/25 h-5 w-5 cursor-pointer rounded border-gray-300 transition-all"
+                      className="text-primary focus:ring-primary/25 border-border-light dark:border-border-dark h-5 w-5 cursor-pointer rounded transition-all"
                     />
-                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light text-sm font-medium transition-colors dark:text-gray-300">
+                    <span className="text-text-primary-light group-hover:text-primary dark:group-hover:text-primary-light dark:text-text-primary-dark text-sm font-medium transition-colors">
                       {langLabel(lang)}
                     </span>
                   </label>
@@ -351,7 +351,7 @@ export default function AcademicsPage() {
                     {/* Card body */}
                     <div className="relative flex flex-1 flex-col p-6">
                       {/* Floating icon */}
-                      <div className="border-border-light dark:border-border-dark dark:bg-surface-dark absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-lg border bg-white shadow-sm transition-transform duration-300 group-hover:scale-110">
+                      <div className="border-border-light dark:border-border-dark dark:bg-surface-dark bg-surface-light absolute -top-6 left-6 flex h-12 w-12 items-center justify-center rounded-lg border shadow-sm transition-transform duration-300 group-hover:scale-110">
                         <DeptIcon size={24} className={iconColor} />
                       </div>
 

@@ -44,13 +44,39 @@ const DEPT_ICON_MAP: Record<string, typeof BookOpen> = {
   'machines-construction': Wrench,
 };
 
-const DEPT_COLORS: Record<string, { bg: string; text: string }> = {
-  'pedagogy-philology': { bg: 'bg-yellow-50', text: 'text-yellow-600' },
-  'mining-metallurgy-science': { bg: 'bg-blue-50', text: 'text-blue-600' },
-  'history-economics-law': { bg: 'bg-green-50', text: 'text-green-600' },
-  'electrical-safety': { bg: 'bg-purple-50', text: 'text-purple-600' },
-  'machines-construction': { bg: 'bg-orange-50', text: 'text-orange-600' },
-};
+const DEPT_COLORS: Record<string, { bg: string; text: string; darkBg: string; darkText: string }> =
+  {
+    'pedagogy-philology': {
+      bg: 'bg-yellow-50',
+      text: 'text-yellow-600',
+      darkBg: 'dark:bg-yellow-900/20',
+      darkText: 'dark:text-yellow-400',
+    },
+    'mining-metallurgy-science': {
+      bg: 'bg-blue-50',
+      text: 'text-blue-600',
+      darkBg: 'dark:bg-blue-900/20',
+      darkText: 'dark:text-blue-400',
+    },
+    'history-economics-law': {
+      bg: 'bg-green-50',
+      text: 'text-green-600',
+      darkBg: 'dark:bg-green-900/20',
+      darkText: 'dark:text-green-400',
+    },
+    'electrical-safety': {
+      bg: 'bg-purple-50',
+      text: 'text-purple-600',
+      darkBg: 'dark:bg-purple-900/20',
+      darkText: 'dark:text-purple-400',
+    },
+    'machines-construction': {
+      bg: 'bg-orange-50',
+      text: 'text-orange-600',
+      darkBg: 'dark:bg-orange-900/20',
+      darkText: 'dark:text-orange-400',
+    },
+  };
 
 const NEWS_ITEMS = [
   {
@@ -115,11 +141,11 @@ export default function HomePage() {
             }}
           />
         </div>
-        <div className="absolute bottom-0 left-0 z-20 h-24 w-full bg-gradient-to-t from-[#f8f9fb] to-transparent" />
+        <div className="from-bg-light dark:from-bg-dark absolute bottom-0 left-0 z-20 h-24 w-full bg-gradient-to-t to-transparent" />
 
         <div className="relative z-20 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-[#e6b325]" />
+            <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
             {t('heroBadge')}
           </div>
 
@@ -138,7 +164,7 @@ export default function HomePage() {
                 size="lg"
                 icon={<ArrowRight size={18} />}
                 iconPosition="right"
-                className="shadow-xl shadow-[#e6b325]/20 transition-all hover:-translate-y-1"
+                className="shadow-gold/20 shadow-xl transition-all hover:-translate-y-1"
               >
                 {t('hero.cta')}
               </Button>
@@ -158,7 +184,7 @@ export default function HomePage() {
       {/* ═══════════════════ STATS BAR ═══════════════════ */}
       <section className="relative z-30 -mt-16 mb-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-4 rounded-2xl border border-gray-100 bg-white p-6 shadow-xl shadow-gray-200/50 md:grid-cols-4 md:gap-6 md:p-10">
+          <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark grid grid-cols-2 gap-4 rounded-2xl border p-6 shadow-xl shadow-gray-200/50 md:grid-cols-4 md:gap-6 md:p-10 dark:shadow-black/30">
             {[
               {
                 value: `${UNIVERSITY.stats.students.toLocaleString()}+`,
@@ -183,13 +209,16 @@ export default function HomePage() {
             ].map((stat, idx) => (
               <div
                 key={stat.label}
-                className={`p-2 text-center ${idx > 0 ? 'border-l border-gray-100' : ''}`}
+                className={`p-2 text-center ${idx > 0 ? 'border-border-light dark:border-border-dark border-l' : ''}`}
               >
-                <stat.icon size={20} className="text-primary mx-auto mb-2" />
-                <p className="font-display text-primary mb-2 text-4xl font-bold md:text-5xl">
+                <stat.icon
+                  size={20}
+                  className="text-primary dark:text-primary-light mx-auto mb-2"
+                />
+                <p className="font-display text-primary dark:text-primary-light mb-2 text-4xl font-bold md:text-5xl">
                   {stat.value}
                 </p>
-                <p className="text-sm font-medium tracking-wide text-gray-500 uppercase">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium tracking-wide uppercase">
                   {stat.label}
                 </p>
               </div>
@@ -199,13 +228,15 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ WHY CHOOSE ZHEZU ═══════════════════ */}
-      <section className="bg-white py-16">
+      <section className="bg-surface-light dark:bg-surface-dark py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <h2 className="font-display mb-4 text-3xl font-bold md:text-4xl">
+            <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-4 text-3xl font-bold md:text-4xl">
               {t('features.title')}
             </h2>
-            <p className="mx-auto max-w-2xl text-gray-500">{t('features.subtitle')}</p>
+            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto max-w-2xl">
+              {t('features.subtitle')}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -214,35 +245,39 @@ export default function HomePage() {
                 icon: Brain,
                 title: t('features.ai'),
                 desc: t('features.aiDesc'),
-                iconBg: 'bg-blue-50',
-                iconColor: 'text-[#1d56c9]',
+                iconBg: 'bg-blue-50 dark:bg-blue-900/20',
+                iconColor: 'text-primary dark:text-primary-light',
               },
               {
                 icon: GraduationCap,
                 title: t('features.faculty'),
                 desc: t('features.facultyDesc'),
-                iconBg: 'bg-yellow-50',
-                iconColor: 'text-[#e6b325]',
+                iconBg: 'bg-yellow-50 dark:bg-yellow-900/20',
+                iconColor: 'text-gold dark:text-gold-light',
               },
               {
                 icon: Briefcase,
                 title: t('features.career'),
                 desc: t('features.careerDesc'),
-                iconBg: 'bg-green-50',
-                iconColor: 'text-green-600',
+                iconBg: 'bg-green-50 dark:bg-green-900/20',
+                iconColor: 'text-green-600 dark:text-green-400',
               },
             ].map((feature) => (
               <div
                 key={feature.title}
-                className="group rounded-2xl border border-transparent bg-gray-50 p-8 transition-all duration-300 hover:border-gray-100 hover:bg-white hover:shadow-xl hover:shadow-blue-500/5"
+                className="group bg-bg-light hover:border-border-light hover:bg-surface-light hover:shadow-primary/5 dark:bg-bg-dark dark:hover:border-border-dark dark:hover:bg-surface-dark dark:hover:shadow-primary-light/5 rounded-2xl border border-transparent p-8 transition-all duration-300 hover:shadow-xl"
               >
                 <div
                   className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${feature.iconBg} transition-transform group-hover:scale-110`}
                 >
                   <feature.icon size={28} className={feature.iconColor} />
                 </div>
-                <h3 className="mb-3 text-xl font-bold">{feature.title}</h3>
-                <p className="leading-relaxed text-gray-500">{feature.desc}</p>
+                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-3 text-xl font-bold">
+                  {feature.title}
+                </h3>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
+                  {feature.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -250,18 +285,20 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ POPULAR PROGRAMS — image overlay cards ═══════════════════ */}
-      <section className="overflow-hidden bg-gray-50 py-16">
+      <section className="bg-bg-light dark:bg-bg-dark overflow-hidden py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <h2 className="font-display mb-2 text-3xl font-bold md:text-4xl">
+              <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-2 text-3xl font-bold md:text-4xl">
                 {t('programs.title')}
               </h2>
-              <p className="text-gray-500">{t('programs.subtitle')}</p>
+              <p className="text-text-secondary-light dark:text-text-secondary-dark">
+                {t('programs.subtitle')}
+              </p>
             </div>
             <Link
               href="/academics"
-              className="text-primary hidden items-center gap-1 font-semibold transition-all hover:gap-2 md:flex"
+              className="text-primary dark:text-primary-light hidden items-center gap-1 font-semibold transition-all hover:gap-2 md:flex"
             >
               {tActions('viewAll')} <ArrowRight size={16} />
             </Link>
@@ -310,9 +347,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ NEWS & EVENTS ═══════════════════ */}
-      <section className="bg-white py-20">
+      <section className="bg-surface-light dark:bg-surface-dark py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold md:text-4xl">
+          <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-10 text-center text-3xl font-bold md:text-4xl">
             {t('news.title')}
           </h2>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -324,27 +361,29 @@ export default function HomePage() {
                     className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url(${featured.image})` }}
                   />
-                  <div className="absolute top-4 left-4 min-w-[60px] rounded-lg bg-white/90 px-4 py-2 text-center backdrop-blur">
-                    <span className="block text-xl leading-none font-bold">
+                  <div className="dark:bg-surface-dark/90 absolute top-4 left-4 min-w-[60px] rounded-lg bg-white/90 px-4 py-2 text-center backdrop-blur">
+                    <span className="text-text-primary-light dark:text-text-primary-dark block text-xl leading-none font-bold">
                       {featured.date.day}
                     </span>
-                    <span className="block text-xs font-medium text-gray-500 uppercase">
+                    <span className="text-text-secondary-light dark:text-text-secondary-dark block text-xs font-medium uppercase">
                       {featured.date.month}
                     </span>
                   </div>
                 </div>
                 <div className="pr-4">
-                  <div className="mb-2 flex items-center gap-3 text-sm text-gray-500">
-                    <span className="font-semibold text-[#e6b325]">{featured.category}</span>
+                  <div className="text-text-secondary-light dark:text-text-secondary-dark mb-2 flex items-center gap-3 text-sm">
+                    <span className="text-gold font-semibold">{featured.category}</span>
                     <span>&middot;</span>
                     <span className="flex items-center gap-1">
                       <Clock size={12} /> {featured.readTime}
                     </span>
                   </div>
-                  <h3 className="group-hover:text-primary mb-3 text-2xl font-bold transition-colors">
+                  <h3 className="text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light mb-3 text-2xl font-bold transition-colors">
                     {featured.title}
                   </h3>
-                  <p className="line-clamp-2 text-gray-500">{featured.excerpt}</p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
+                    {featured.excerpt}
+                  </p>
                 </div>
               </div>
             )}
@@ -354,7 +393,7 @@ export default function HomePage() {
               {sideNews.map((item, i) => (
                 <div
                   key={item.id}
-                  className={`group flex cursor-pointer gap-4 ${i < sideNews.length - 1 ? 'border-b border-gray-100 pb-6' : ''}`}
+                  className={`group flex cursor-pointer gap-4 ${i < sideNews.length - 1 ? 'border-border-light dark:border-border-dark border-b pb-6' : ''}`}
                 >
                   <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
                     <div
@@ -363,13 +402,13 @@ export default function HomePage() {
                     />
                   </div>
                   <div>
-                    <span className="text-primary mb-1 block text-xs font-bold">
+                    <span className="text-primary dark:text-primary-light mb-1 block text-xs font-bold">
                       {item.category}
                     </span>
-                    <h4 className="group-hover:text-primary mb-1 text-lg leading-tight font-bold transition-colors">
+                    <h4 className="text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light mb-1 text-lg leading-tight font-bold transition-colors">
                       {item.title}
                     </h4>
-                    <span className="flex items-center gap-1 text-xs text-gray-500">
+                    <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
                       <Calendar size={10} /> {item.date.month} {item.date.day}, 2023
                     </span>
                   </div>
@@ -388,9 +427,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ DEPARTMENTS ═══════════════════ */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-bg-light dark:bg-bg-dark py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-3xl font-bold md:text-4xl">
+          <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-10 text-3xl font-bold md:text-4xl">
             {t('departments.title')}
           </h2>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
@@ -399,19 +438,23 @@ export default function HomePage() {
               const colors = DEPT_COLORS[dept.id] || {
                 bg: 'bg-gray-50',
                 text: 'text-gray-400',
+                darkBg: 'dark:bg-gray-800/20',
+                darkText: 'dark:text-gray-400',
               };
               return (
                 <Link
                   key={dept.id}
                   href="/academics"
-                  className="group flex flex-col items-center rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm transition-all hover:border-blue-300/30 hover:shadow-md"
+                  className="group border-border-light bg-surface-light hover:border-primary/30 dark:border-border-dark dark:bg-surface-dark dark:hover:border-primary-light/30 flex flex-col items-center rounded-xl border p-6 text-center shadow-sm transition-all hover:shadow-md"
                 >
                   <div
-                    className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${colors.bg} ${colors.text} transition-all group-hover:scale-110 group-hover:text-[#1d56c9]`}
+                    className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${colors.bg} ${colors.text} ${colors.darkBg} ${colors.darkText} group-hover:text-primary dark:group-hover:text-primary-light transition-all group-hover:scale-110`}
                   >
                     <IconComp size={28} />
                   </div>
-                  <h3 className="text-sm font-bold">{dept.shortName[locale]}</h3>
+                  <h3 className="text-text-primary-light dark:text-text-primary-dark text-sm font-bold">
+                    {dept.shortName[locale]}
+                  </h3>
                 </Link>
               );
             })}
@@ -420,7 +463,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ AUDIENCE QUICK LINKS ═══════════════════ */}
-      <section className="bg-[#1d56c9] py-12">
+      <section className="bg-primary dark:bg-primary-dark py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {[
@@ -434,7 +477,7 @@ export default function HomePage() {
                 {i > 0 && <span className="hidden text-white/30 md:inline">|</span>}
                 <Link
                   href={link.href}
-                  className="border-b-2 border-transparent pb-1 text-lg font-medium text-white/80 transition-all hover:border-[#e6b325] hover:text-white"
+                  className="hover:border-gold border-b-2 border-transparent pb-1 text-lg font-medium text-white/80 transition-all hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -445,7 +488,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════ CTA ═══════════════════ */}
-      <section className="py-16 lg:py-24">
+      <section className="bg-bg-light dark:bg-bg-dark py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="from-primary via-primary relative overflow-hidden rounded-2xl bg-gradient-to-br to-blue-900 p-8 text-center text-white sm:p-12 lg:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(230,179,37,0.2),transparent_60%)]" />

@@ -273,7 +273,7 @@ export default function AdmissionPage() {
                   <Card key={prog.key} hover padding="none" className="cursor-pointer">
                     {/* Card image */}
                     <div
-                      className="aspect-video w-full bg-slate-200 bg-cover bg-center"
+                      className="aspect-video w-full bg-slate-200 bg-cover bg-center dark:bg-slate-700"
                       style={{ backgroundImage: `url('${prog.img}')` }}
                     />
                     {/* Card body */}

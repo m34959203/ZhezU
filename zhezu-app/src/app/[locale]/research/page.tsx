@@ -170,7 +170,7 @@ export default function ResearchPage() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="group relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 dark:border-slate-700 dark:bg-slate-800"
+              className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark relative overflow-hidden rounded-xl border p-6 shadow-sm transition-all hover:border-blue-300"
             >
               <div className="flex items-center justify-between">
                 <div
@@ -184,10 +184,12 @@ export default function ResearchPage() {
                 </span>
               </div>
               <div className="mt-4">
-                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium">
                   {stat.label}
                 </p>
-                <p className="text-3xl font-bold dark:text-white">{stat.value}</p>
+                <p className="text-text-primary-light dark:text-text-primary-dark text-3xl font-bold">
+                  {stat.value}
+                </p>
               </div>
             </div>
           ))}
@@ -202,8 +204,10 @@ export default function ResearchPage() {
             {/* Focus Areas */}
             <div>
               <div className="mb-6">
-                <h2 className="text-2xl font-bold dark:text-white">{t('areas.title')}</h2>
-                <p className="mt-2 text-slate-500 dark:text-slate-400">
+                <h2 className="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold">
+                  {t('areas.title')}
+                </h2>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2">
                   Strategic initiatives addressing global challenges.
                 </p>
               </div>
@@ -211,13 +215,15 @@ export default function ResearchPage() {
                 {focusAreas.map((area) => (
                   <div
                     key={area.title}
-                    className="rounded-xl border border-slate-200 bg-white p-4 transition-all hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+                    className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark rounded-xl border p-4 transition-all hover:shadow-md"
                   >
                     <div className="bg-primary/10 text-primary mb-3 flex h-10 w-10 items-center justify-center rounded-lg">
                       <area.icon size={20} />
                     </div>
-                    <h3 className="font-bold dark:text-white">{area.title}</h3>
-                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                    <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                      {area.title}
+                    </h3>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
                       {area.description}
                     </p>
                   </div>
@@ -228,7 +234,9 @@ export default function ResearchPage() {
             {/* Research Labs */}
             <div>
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-2xl font-bold dark:text-white">{t('labs.title')}</h2>
+                <h2 className="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold">
+                  {t('labs.title')}
+                </h2>
                 <Link
                   href="/research"
                   className="text-primary text-sm font-semibold hover:underline"
@@ -241,14 +249,18 @@ export default function ResearchPage() {
                   <a
                     key={lab.title}
                     href="#"
-                    className="flex items-center gap-4 rounded-xl bg-white p-3 shadow-sm transition-colors hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                    className="bg-surface-light hover:bg-bg-light dark:bg-surface-dark dark:hover:bg-bg-dark flex items-center gap-4 rounded-xl p-3 shadow-sm transition-colors"
                   >
                     <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-slate-700 to-slate-900">
                       <lab.icon size={24} className="text-blue-400/60" />
                     </div>
                     <div>
-                      <h4 className="font-bold dark:text-white">{lab.title}</h4>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{lab.location}</p>
+                      <h4 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                        {lab.title}
+                      </h4>
+                      <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                        {lab.location}
+                      </p>
                     </div>
                   </a>
                 ))}
@@ -259,17 +271,19 @@ export default function ResearchPage() {
           {/* Right Column: Publications */}
           <div className="lg:w-2/3">
             <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold dark:text-white">{t('publications.title')}</h2>
+              <h2 className="text-text-primary-light dark:text-text-primary-dark text-2xl font-bold">
+                {t('publications.title')}
+              </h2>
               <div className="flex gap-2">
                 <button
                   type="button"
-                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+                  className="border-border-light bg-surface-light text-text-primary-light hover:bg-bg-light dark:border-border-dark dark:bg-surface-dark dark:text-text-primary-dark dark:hover:bg-bg-dark flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium"
                 >
                   <Filter size={14} /> Filter
                 </button>
                 <button
                   type="button"
-                  className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+                  className="border-border-light bg-surface-light text-text-primary-light hover:bg-bg-light dark:border-border-dark dark:bg-surface-dark dark:text-text-primary-dark dark:hover:bg-bg-dark flex items-center gap-2 rounded-lg border px-3 py-1.5 text-sm font-medium"
                 >
                   <ArrowUpDown size={14} /> Recent
                 </button>
@@ -279,7 +293,7 @@ export default function ResearchPage() {
               {publications.map((pub) => (
                 <div
                   key={pub.title}
-                  className="group flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-5 transition-all hover:border-blue-400 hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-500/50"
+                  className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex flex-col gap-4 rounded-xl border p-5 transition-all hover:border-blue-400 hover:shadow-md dark:hover:border-blue-500/50"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -287,33 +301,33 @@ export default function ResearchPage() {
                         <span className={`rounded px-2 py-0.5 text-xs font-bold ${pub.typeBadge}`}>
                           {pub.type}
                         </span>
-                        <span className="text-xs text-slate-500 dark:text-slate-400">
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
                           {pub.date}
                         </span>
                       </div>
-                      <h3 className="group-hover:text-primary text-lg leading-tight font-bold dark:text-white">
+                      <h3 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark text-lg leading-tight font-bold">
                         {pub.title}
                       </h3>
-                      <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                        <span className="font-medium dark:text-slate-200">Authors:</span>{' '}
+                      <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2 text-sm">
+                        <span className="dark:text-text-primary-dark font-medium">Authors:</span>{' '}
                         {pub.authors}
                       </p>
-                      <p className="text-sm text-slate-500 italic dark:text-slate-500">
+                      <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm italic">
                         {pub.journal}
                       </p>
                     </div>
                     <div className="hidden sm:block">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100 text-slate-500 dark:bg-slate-700 dark:text-slate-400">
+                      <div className="bg-bg-light text-text-secondary-light dark:bg-bg-dark dark:text-text-secondary-dark flex h-12 w-12 items-center justify-center rounded-lg">
                         <FileText size={20} />
                       </div>
                     </div>
                   </div>
-                  <div className="mt-2 flex items-center gap-6 border-t border-slate-100 pt-4 dark:border-slate-700">
-                    <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                  <div className="border-border-light dark:border-border-dark mt-2 flex items-center gap-6 border-t pt-4">
+                    <div className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1.5 text-sm">
                       <Quote size={14} />
                       <span>{pub.citations} Citations</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1.5 text-sm">
                       <Download size={14} />
                       <span>{pub.downloads} Downloads</span>
                     </div>
