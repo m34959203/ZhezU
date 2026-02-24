@@ -158,7 +158,7 @@ export default function HomePage() {
                 aria-hidden="true"
                 width={320}
                 height={286}
-                className="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.06] dark:opacity-[0.04] dark:invert"
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.12] dark:opacity-[0.06] dark:invert"
               />
               <div className="relative">
                 <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
