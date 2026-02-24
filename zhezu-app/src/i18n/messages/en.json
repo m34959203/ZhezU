@@ -940,6 +940,69 @@
       },
       "ctaNational": "National Accreditation",
       "ctaAbout": "About the University"
+    },
+    "rankings": {
+      "pageTitle": "Rankings — Zhezkazgan University",
+      "pageDescription": "Positions of O.A. Baikonurov Zhezkazgan University in national and international rankings",
+      "badge": "Rankings",
+      "title": "University Rankings",
+      "subtitle": "Positions of Zhezkazgan University in national and international ranking systems",
+      "rankingsTitle": "Ranking Positions",
+      "rankingsSubtitle": "The university is represented in leading national and international ranking systems",
+      "rankings": {
+        "national": {
+          "title": "IQAA National Ranking",
+          "source": "IQAA-Ranking, Kazakhstan",
+          "position": "Participant",
+          "scope": "among 51 universities in Kazakhstan",
+          "text": "The university participates in the National Ranking of Leading Universities of Kazakhstan conducted by the Independent Agency for Quality Assurance in Education (IQAA). The ranking evaluates universities across six categories."
+        },
+        "webometrics": {
+          "title": "Webometrics",
+          "source": "Ranking Web of Universities",
+          "position": "#77",
+          "scope": "in Kazakhstan",
+          "text": "In the Webometrics ranking, which evaluates the web presence and digital activity of universities, ZhezU holds the 77th position among Kazakh universities by visibility and impact indicators."
+        },
+        "edurank": {
+          "title": "EduRank",
+          "source": "edurank.org",
+          "position": "#89",
+          "scope": "out of 108 universities in Kazakhstan",
+          "text": "The international EduRank ranking evaluates universities by scientific publications and citations. ZhezU is among 108 Kazakh universities represented in this ranking."
+        },
+        "unirank": {
+          "title": "UniRank",
+          "source": "unirank.org",
+          "position": "#77",
+          "scope": "in Kazakhstan",
+          "text": "The international UniRank directory ranks over 14,000 universities worldwide. Zhezkazgan University holds the 77th position among Kazakh universities."
+        }
+      },
+      "indicatorsTitle": "Key Indicators",
+      "indicators": {
+        "students": {
+          "value": "1370+",
+          "label": "Students"
+        },
+        "programs": {
+          "value": "24+",
+          "label": "Academic Programs"
+        },
+        "employment": {
+          "value": "87%",
+          "label": "Employment Rate"
+        },
+        "experience": {
+          "value": "65+",
+          "label": "Years in Education"
+        }
+      },
+      "aboutTitle": "About Rankings",
+      "aboutP1": "University rankings are an important tool for evaluating education quality. Zhezkazgan University participates in both national (IQAA) and international (Webometrics, EduRank, UniRank) ranking systems.",
+      "aboutP2": "As the only multidisciplinary university in the Ulytau region, the university focuses on training specialists for mining, metallurgy, education, and engineering industries. The 87% graduate employment rate demonstrates high demand for specialists in the labor market.",
+      "ctaAccreditation": "Accreditation",
+      "ctaAbout": "About the University"
     }
   },
   "programs": {
