@@ -801,6 +801,93 @@
       },
       "ctaAdmin": "Administration",
       "ctaRector": "President-Rector"
+    },
+    "accreditation": {
+      "pageTitle": "Accreditation — Zhezkazgan University",
+      "pageDescription": "National accreditation and certification of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Accreditation",
+      "title": "Accreditation and Quality",
+      "subtitle": "Zhezkazgan University confirms educational quality through national and international accreditation, quality management system certification",
+      "aboutTitle": "Quality Assurance",
+      "aboutP1": "O.A. Baikonurov Zhezkazgan University consistently undergoes state attestation and independent accreditation procedures, confirming that educational programs meet national and international standards.",
+      "aboutP2": "The university's quality management system has been certified to the international ISO 9001 standard since 2006. In 2010, the university joined the Magna Charta Universitatum, confirming its integration into the Bologna Process.",
+      "standardsTitle": "Standards and Certifications",
+      "standardsSubtitle": "The university meets key national and international education quality standards",
+      "standards": {
+        "state": {
+          "title": "State Accreditation",
+          "status": "Certificate A No. 0000035",
+          "text": "State accreditation issued by the Ministry of Education and Science of the Republic of Kazakhstan. Certificate A No. 0000035 dated August 3, 2001 confirms the university's compliance with state higher education standards."
+        },
+        "iqaa": {
+          "title": "IQAA Accreditation",
+          "status": "Institutional and Program",
+          "text": "The Independent Agency for Quality Assurance in Education (IQAA) conducted institutional accreditation of the university. In 2019, specialized program accreditation of educational programs was carried out."
+        },
+        "iso": {
+          "title": "ISO 9001",
+          "status": "Certified since 2006",
+          "text": "The university's quality management system has been certified to the international standard ISO 9001:2000 since 2006, confirming the effectiveness of the education quality management system."
+        },
+        "bologna": {
+          "title": "Bologna Process",
+          "status": "Magna Charta Universitatum, 2010",
+          "text": "In September 2010, the rector signed the Bologna Declaration in Bologna, Italy. Zhezkazgan University joined the Magna Charta Universitatum, confirming its integration into the European Higher Education Area."
+        }
+      },
+      "timelineTitle": "Accreditation Timeline",
+      "timeline": {
+        "2001": {
+          "year": "2001",
+          "title": "State Accreditation",
+          "text": "Certificate of state accreditation A No. 0000035 dated August 3, 2001 issued by the Ministry of Education and Science of the Republic of Kazakhstan."
+        },
+        "2006": {
+          "year": "2006",
+          "title": "ISO 9001:2000 Certification",
+          "text": "The education quality management system was certified to the international standard ISO 9001:2000."
+        },
+        "2008": {
+          "year": "2008",
+          "title": "State Attestation",
+          "text": "JSC Zhezkazgan University named after O.A. Baikonurov passed state attestation (Order of the Ministry of Education No. 585 dated 28.04.2008)."
+        },
+        "2010": {
+          "year": "2010",
+          "title": "Magna Charta Universitatum",
+          "text": "The university joined the Magna Charta Universitatum by signing the Bologna Declaration in Bologna, Italy."
+        },
+        "2016": {
+          "year": "2016",
+          "title": "IQAA Institutional Accreditation",
+          "text": "Passed institutional accreditation by the Independent Agency for Quality Assurance in Education (IQAA)."
+        },
+        "2019": {
+          "year": "2019",
+          "title": "IQAA Program Accreditation",
+          "text": "Specialized program accreditation of the university's educational programs was conducted."
+        }
+      },
+      "figures": {
+        "programs": {
+          "value": "21+",
+          "label": "Accredited Programs"
+        },
+        "years": {
+          "value": "65+",
+          "label": "Years in Education"
+        },
+        "employment": {
+          "value": "87%",
+          "label": "Graduate Employment"
+        },
+        "iso": {
+          "value": "ISO 9001",
+          "label": "Quality Certificate"
+        }
+      },
+      "ctaAbout": "About the University",
+      "ctaMission": "Mission and Values"
     }
   },
   "programs": {
