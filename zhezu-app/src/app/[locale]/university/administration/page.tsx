@@ -1,7 +1,13 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { UNIVERSITY, DEPARTMENTS, DEPARTMENT_HEADS, ADMIN_CENTERS, SERVICE_UNITS } from '@/lib/constants';
+import {
+  UNIVERSITY,
+  DEPARTMENTS,
+  DEPARTMENT_HEADS,
+  ADMIN_CENTERS,
+  SERVICE_UNITS,
+} from '@/lib/constants';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
@@ -84,12 +90,19 @@ export default function AdministrationPage({ params }: { params: { locale: strin
                   <Badge variant="primary" className="mb-2">
                     {t('rectorRole')}
                   </Badge>
-                  <h3 className="font-display mb-1 text-xl font-bold">{UNIVERSITY.rector.name[locale]}</h3>
+                  <h3 className="font-display mb-1 text-xl font-bold">
+                    {UNIVERSITY.rector.name[locale]}
+                  </h3>
                   <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 text-sm">
                     {UNIVERSITY.rector.title[locale]}
                   </p>
                   <Link href="/university/rector">
-                    <Button variant="outline" size="sm" icon={<ArrowRight size={14} />} iconPosition="right">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      icon={<ArrowRight size={14} />}
+                      iconPosition="right"
+                    >
                       {t('rectorMore')}
                     </Button>
                   </Link>
@@ -103,7 +116,9 @@ export default function AdministrationPage({ params }: { params: { locale: strin
       {/* Pro-Rectors */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-8 text-center text-3xl font-bold">{t('proRectorsTitle')}</h2>
+          <h2 className="font-display mb-8 text-center text-3xl font-bold">
+            {t('proRectorsTitle')}
+          </h2>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {UNIVERSITY.proRectors.map((pr, index) => {
               const photos = ['/WhatsApp_Image_2024-01-23_at_11.39.00_1-682x1024.jpeg', null];
@@ -142,7 +157,9 @@ export default function AdministrationPage({ params }: { params: { locale: strin
       {/* Department Heads */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('departmentsTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('departmentsTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('departmentsSubtitle')}
           </p>
@@ -158,7 +175,7 @@ export default function AdministrationPage({ params }: { params: { locale: strin
                     >
                       <GraduationCap size={20} style={{ color: dept.color }} />
                     </div>
-                    <h3 className="font-display text-sm font-semibold leading-tight">
+                    <h3 className="font-display text-sm leading-tight font-semibold">
                       {dept.shortName[locale]}
                     </h3>
                   </div>
@@ -254,7 +271,12 @@ export default function AdministrationPage({ params }: { params: { locale: strin
               {UNIVERSITY.phone}
             </a>
             <Link href="/university/about">
-              <Button variant="outline" size="sm" icon={<ArrowRight size={14} />} iconPosition="right">
+              <Button
+                variant="outline"
+                size="sm"
+                icon={<ArrowRight size={14} />}
+                iconPosition="right"
+              >
                 {t('ctaAbout')}
               </Button>
             </Link>

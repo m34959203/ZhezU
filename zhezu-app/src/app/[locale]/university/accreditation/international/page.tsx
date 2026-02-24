@@ -5,14 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import {
-  Globe,
-  Award,
-  ShieldCheck,
-  Handshake,
-  BookOpen,
-  ArrowRight,
-} from 'lucide-react';
+import { Globe, Award, ShieldCheck, Handshake, BookOpen, ArrowRight } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -37,11 +30,7 @@ export default function InternationalAccreditationPage() {
     { key: 'iso', icon: <ShieldCheck size={24} /> },
   ];
 
-  const partnerships = [
-    { key: 'bologna' },
-    { key: 'mobility' },
-    { key: 'research' },
-  ];
+  const partnerships = [{ key: 'bologna' }, { key: 'mobility' }, { key: 'research' }];
 
   return (
     <div className="flex flex-col">
@@ -73,7 +62,9 @@ export default function InternationalAccreditationPage() {
       {/* International Achievements */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('achievementsTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('achievementsTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('achievementsSubtitle')}
           </p>
@@ -105,7 +96,9 @@ export default function InternationalAccreditationPage() {
       {/* International Cooperation */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('cooperationTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('cooperationTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('cooperationSubtitle')}
           </p>

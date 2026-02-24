@@ -96,7 +96,9 @@ export default function ReportsPage() {
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
             {reportTypes.map((rt) => (
               <Card key={rt} padding="lg" hover>
-                <h3 className="font-display mb-2 text-base font-semibold">{t(`types.${rt}.title`)}</h3>
+                <h3 className="font-display mb-2 text-base font-semibold">
+                  {t(`types.${rt}.title`)}
+                </h3>
                 <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
                   {t(`types.${rt}.text`)}
                 </p>
@@ -110,7 +112,9 @@ export default function ReportsPage() {
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl">
-            <h2 className="font-display mb-6 text-2xl font-bold sm:text-3xl">{t('transparencyTitle')}</h2>
+            <h2 className="font-display mb-6 text-2xl font-bold sm:text-3xl">
+              {t('transparencyTitle')}
+            </h2>
             <div className="text-text-secondary-light dark:text-text-secondary-dark space-y-4 leading-relaxed">
               <p>{t('transparencyP1')}</p>
               <p>{t('transparencyP2')}</p>

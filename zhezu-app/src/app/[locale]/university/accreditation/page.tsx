@@ -77,7 +77,9 @@ export default function AccreditationPage() {
       {/* Standards Cards */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('standardsTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('standardsTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('standardsSubtitle')}
           </p>
@@ -89,7 +91,9 @@ export default function AccreditationPage() {
                     <span className="text-primary dark:text-primary-light">{s.icon}</span>
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold">{t(`standards.${s.key}.title`)}</h3>
+                    <h3 className="font-display text-lg font-semibold">
+                      {t(`standards.${s.key}.title`)}
+                    </h3>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
                       {t(`standards.${s.key}.status`)}
                     </p>
@@ -107,11 +111,13 @@ export default function AccreditationPage() {
       {/* Timeline */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold">{t('timelineTitle')}</h2>
+          <h2 className="font-display mb-10 text-center text-3xl font-bold">
+            {t('timelineTitle')}
+          </h2>
           <div className="mx-auto max-w-3xl">
             <div className="relative space-y-8">
               {/* Vertical line */}
-              <div className="border-border-light dark:border-border-dark absolute left-6 top-0 bottom-0 w-px border-l-2" />
+              <div className="border-border-light dark:border-border-dark absolute top-0 bottom-0 left-6 w-px border-l-2" />
 
               {timeline.map((item) => (
                 <div key={item.key} className="relative flex items-start gap-6 pl-2">

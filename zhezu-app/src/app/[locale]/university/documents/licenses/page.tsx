@@ -5,13 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import {
-  FileCheck,
-  ShieldCheck,
-  Award,
-  GraduationCap,
-  ArrowRight,
-} from 'lucide-react';
+import { FileCheck, ShieldCheck, Award, GraduationCap, ArrowRight } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -61,8 +55,12 @@ export default function LicensesPage() {
                     <span className="text-primary dark:text-primary-light">{lic.icon}</span>
                   </div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold">{t(`licenses.${lic.key}.title`)}</h3>
-                    <p className="text-gold text-xs font-medium">{t(`licenses.${lic.key}.number`)}</p>
+                    <h3 className="font-display text-lg font-semibold">
+                      {t(`licenses.${lic.key}.title`)}
+                    </h3>
+                    <p className="text-gold text-xs font-medium">
+                      {t(`licenses.${lic.key}.number`)}
+                    </p>
                   </div>
                 </div>
                 <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 text-sm leading-relaxed">

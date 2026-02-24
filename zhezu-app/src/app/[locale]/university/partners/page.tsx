@@ -80,7 +80,9 @@ export default function PartnersPage() {
       {/* Industry Partners */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('industriesTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('industriesTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('industriesSubtitle')}
           </p>
@@ -110,7 +112,9 @@ export default function PartnersPage() {
       {/* Cooperation Forms */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-10 text-center text-3xl font-bold">{t('cooperationTitle')}</h2>
+          <h2 className="font-display mb-10 text-center text-3xl font-bold">
+            {t('cooperationTitle')}
+          </h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {cooperation.map((c) => (
               <div
