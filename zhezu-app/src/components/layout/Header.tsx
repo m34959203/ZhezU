@@ -169,14 +169,16 @@ export function Header() {
             <div className="flex h-16 items-center justify-between">
               {/* Logo */}
               <Link href="/" className="group flex shrink-0 items-center gap-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
-                  alt="ZhezU"
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 object-contain"
-                />
+                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                    alt="ZhezU"
+                    width={56}
+                    height={56}
+                    className="h-14 w-14 -translate-x-[3px] object-contain"
+                  />
+                </div>
                 <div className="flex flex-col">
                   <span className="font-display text-primary dark:text-primary-light text-base leading-tight font-bold">
                     ZhezU

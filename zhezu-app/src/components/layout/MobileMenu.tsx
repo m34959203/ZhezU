@@ -176,14 +176,16 @@ export function MobileMenu() {
                   className="group flex items-center gap-2.5"
                   onClick={() => setOpen(false)}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
-                    alt="ZhezU"
-                    width={32}
-                    height={32}
-                    className="h-8 w-8 object-contain"
-                  />
+                  <div className="h-8 w-8 shrink-0 overflow-hidden rounded-md">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                      alt="ZhezU"
+                      width={44}
+                      height={44}
+                      className="h-11 w-11 -translate-x-[2px] object-contain"
+                    />
+                  </div>
                   <span className="font-display text-primary dark:text-primary-light text-lg font-bold">
                     ZhezU
                   </span>
