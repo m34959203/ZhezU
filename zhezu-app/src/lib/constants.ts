@@ -61,14 +61,14 @@ export const UNIVERSITY = {
     },
     {
       name: {
-        kk: 'Свидерский Александр Константинович',
-        ru: 'Свидерский Александр Константинович',
-        en: 'Sviderskiy Alexander Konstantinovich',
+        kk: 'Сарсембаев Динмухамед Жакупович',
+        ru: 'Сарсембаев Динмухамед Жакупович',
+        en: 'Sarsembaev Dinmukhamed Zhakupovich',
       },
       title: {
-        kk: 'Ғылым және стратегиялық даму жөніндегі проректор, х.ғ.д., профессор',
-        ru: 'Проректор по науке и стратегическому развитию, д.х.н., профессор',
-        en: 'Pro-Rector for Science and Strategic Development, D.Sc., Professor',
+        kk: 'Ғылым және стратегиялық даму жөніндегі проректор',
+        ru: 'Проректор по науке и стратегическому развитию',
+        en: 'Pro-Rector for Science and Strategic Development',
       },
     },
   ],
