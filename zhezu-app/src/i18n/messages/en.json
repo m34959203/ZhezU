@@ -724,6 +724,83 @@
       },
       "proRectorsTitle": "Pro-Rectors",
       "ctaAbout": "More about the university"
+    },
+    "administration": {
+      "pageTitle": "Administration — Zhezkazgan University",
+      "pageDescription": "Administration of Zhezkazgan University — leadership, departments, centers and services",
+      "badge": "Administration",
+      "title": "University Administration",
+      "subtitle": "Management structure and divisions of O.A. Baikonurov Zhezkazgan University",
+      "rectorTitle": "President-Rector",
+      "rectorRole": "President-Rector",
+      "rectorMore": "More about the Rector",
+      "proRectorsTitle": "Pro-Rectors",
+      "departmentsTitle": "Department Heads",
+      "departmentsSubtitle": "University departments are led by experienced scholars and educators",
+      "headNotListed": "Information being updated",
+      "centersTitle": "Administrative Centers",
+      "centersSubtitle": "Centers support the academic, scientific and organizational activities of the university",
+      "servicesTitle": "Services and Departments",
+      "ctaAbout": "About the University"
+    },
+    "academicCouncil": {
+      "pageTitle": "Academic Council — Zhezkazgan University",
+      "pageDescription": "Academic Council of O.A. Baikonurov Zhezkazgan University — composition, functions, activities",
+      "badge": "Academic Council",
+      "title": "University Academic Council",
+      "subtitle": "The highest collegial governing body for academic and research activities of the university",
+      "aboutTitle": "About the Council",
+      "aboutP1": "The Academic Council of O.A. Baikonurov Zhezkazgan University is the highest collegial governing body for the university's academic, research and educational activities. The Council determines strategic development directions and makes decisions on key educational policy issues.",
+      "aboutP2": "The composition of the Academic Council was approved by order dated September 17, 2021. Its members include the Rector, Pro-Rectors, Department Heads, leading professors and associate professors, as well as student government representatives.",
+      "chairmanTitle": "Chairman of the Academic Council",
+      "chairmanRole": "Chairman",
+      "functionsTitle": "Council Functions",
+      "functionsSubtitle": "Key areas of activity of the University Academic Council",
+      "functions": {
+        "strategy": {
+          "title": "Strategic Planning",
+          "text": "Defining priority development areas, approving strategic plans and development programs."
+        },
+        "academic": {
+          "title": "Academic Activities",
+          "text": "Approving curricula, educational programs, and procedures for organizing the educational process."
+        },
+        "science": {
+          "title": "Research Activities",
+          "text": "Defining research directions, approving dissertation topics, coordinating scientific work."
+        },
+        "degrees": {
+          "title": "Academic Titles",
+          "text": "Reviewing matters of conferring academic titles, recommendations for dissertation defense."
+        },
+        "quality": {
+          "title": "Education Quality",
+          "text": "Monitoring the quality of specialist training, analyzing accreditation results and external assessments."
+        },
+        "docs": {
+          "title": "Regulatory Documents",
+          "text": "Approving internal regulatory documents, provisions, and operational regulations of divisions."
+        }
+      },
+      "compositionTitle": "Council Composition",
+      "compositionP1": "The Academic Council includes heads of structural divisions, leading scholars and faculty members, representatives of employers and student government.",
+      "compositionP2": "The full composition of the council is approved by the Rector's order dated September 17, 2021. Meetings are held at least once a month during the academic year.",
+      "composition": {
+        "doctors": {
+          "value": "3+",
+          "label": "Doctors of Science"
+        },
+        "candidates": {
+          "value": "30+",
+          "label": "Candidates of Science"
+        },
+        "total": {
+          "value": "108",
+          "label": "Faculty Members"
+        }
+      },
+      "ctaAdmin": "Administration",
+      "ctaRector": "President-Rector"
     }
   },
   "programs": {
