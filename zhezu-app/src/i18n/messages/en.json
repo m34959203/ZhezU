@@ -38,6 +38,7 @@
     "system": "System"
   },
   "home": {
+    "heroBadge": "Admissions for 2025 are open",
     "hero": {
       "title": "Zhezkazgan University",
       "subtitle": "named after O.A. Baikonurov",
@@ -49,24 +50,41 @@
       "students": "students",
       "programs": "programs",
       "employment": "employment rate",
-      "years": "years of experience"
+      "years": "years of history",
+      "partners": "partners"
     },
     "features": {
-      "title": "Why ZhezU?",
+      "title": "Why Choose ZhezU?",
+      "subtitle": "We provide a world-class education with a focus on innovation, practical skills, and future-ready careers.",
+      "ai": "AI & Innovation Focus",
+      "aiDesc": "State-of-the-art AI Center providing students with hands-on experience in machine learning and data science.",
+      "faculty": "Expert Faculty",
+      "facultyDesc": "Learn from distinguished professors and industry experts dedicated to your academic and professional growth.",
+      "career": "Career Opportunities",
+      "careerDesc": "Strong partnerships with leading companies ensure high employability rates for our graduates.",
       "modernEducation": "Modern Education",
       "modernEducationDesc": "Curricula designed to international standards and labor market requirements.",
       "research": "Research Opportunities",
-      "researchDesc": "Opportunities to participate in research projects and publish studies from the first year.",
-      "career": "Career Support",
-      "careerDesc": "Career center with mentorship programs, internships, and direct employer connections."
+      "researchDesc": "Opportunities to participate in research projects and publish studies from the first year."
     },
     "programs": {
       "title": "Popular Programs",
-      "subtitle": "Discover our leading educational directions"
+      "subtitle": "Discover our most sought-after academic paths"
     },
     "news": {
-      "title": "Latest News",
-      "subtitle": "Stay updated with university events"
+      "title": "News & Events",
+      "subtitle": "Stay updated with university events",
+      "viewAll": "View All News"
+    },
+    "departments": {
+      "title": "Our Departments"
+    },
+    "audience": {
+      "applicants": "Applicants",
+      "students": "Students",
+      "staff": "Staff",
+      "alumni": "Alumni",
+      "partners": "Partners"
     },
     "cta": {
       "title": "Ready to start your journey?",
