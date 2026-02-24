@@ -3,7 +3,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import { Search, GraduationCap, ChevronDown, ArrowRight, Compass } from 'lucide-react';
+import { Search, ChevronDown, ArrowRight, Compass, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -168,10 +168,15 @@ export function Header() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               {/* Logo */}
-              <Link href="/" className="group flex shrink-0 items-center gap-2.5">
-                <div className="bg-primary flex h-9 w-9 items-center justify-center rounded-lg shadow-sm transition-shadow duration-300 group-hover:shadow-[0_0_15px_rgba(29,86,201,0.3)]">
-                  <GraduationCap size={20} className="text-white" />
-                </div>
+              <Link href="/" className="group flex shrink-0 items-center gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                  alt="ZhezU"
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 object-contain"
+                />
                 <div className="flex flex-col">
                   <span className="font-display text-primary dark:text-primary-light text-base leading-tight font-bold">
                     ZhezU
