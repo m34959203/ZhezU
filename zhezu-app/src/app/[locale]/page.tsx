@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { UNIVERSITY, PROGRAMS, DEPARTMENTS } from '@/lib/constants';
+import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 import {
   ArrowRight,
   BookOpen,
@@ -17,18 +17,22 @@ import {
   Wrench,
   Mountain,
   Landmark,
-  Eye,
   Calendar,
   Clock,
+  Sparkles,
 } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types';
 
+/* ------------------------------------------------------------------ */
+/*  Static Data                                                        */
+/* ------------------------------------------------------------------ */
+
 const PROGRAM_IMAGES: Record<string, string> = {
-  'informatics-teacher': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80',
   mining: 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=600&q=80',
   'foreign-languages': 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80',
-  law: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
+  metallurgy: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80',
+  construction: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
 };
 
 const DEGREE_COLORS: Record<string, string> = {
@@ -115,6 +119,10 @@ const NEWS_ITEMS = [
   },
 ];
 
+/* ================================================================== */
+/*  HOME PAGE                                                          */
+/* ================================================================== */
+
 export default function HomePage() {
   const t = useTranslations('home');
   const tActions = useTranslations('actions');
@@ -130,162 +138,172 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
-      {/* ═══════════════════ HERO ═══════════════════ */}
-      <section className="relative flex h-[600px] items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#1d56c9]/90 to-blue-900/80 mix-blend-multiply" />
-          <div
-            className="h-full w-full bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80')",
-            }}
-          />
-        </div>
-        <div className="from-bg-light dark:from-bg-dark absolute bottom-0 left-0 z-20 h-24 w-full bg-gradient-to-t to-transparent" />
+      {/* ═══════════════════ HERO — Bold Typography + Stats Grid ═══════════════════ */}
+      <section className="bg-bg-light dark:bg-bg-dark relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="mesh-gradient absolute inset-0" />
+        <div className="bg-primary/[0.03] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
+        <div className="bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
 
-        <div className="relative z-20 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-            <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
-            {t('heroBadge')}
-          </div>
-
-          <h1 className="font-display mb-4 text-4xl leading-tight font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-            ZhezU / {t('hero.title')}
-          </h1>
-
-          <p className="mx-auto mb-10 max-w-2xl text-xl font-light text-gray-200 md:text-2xl">
-            {t('hero.subtitle')}
-          </p>
-
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/admission">
-              <Button
-                variant="secondary"
-                size="lg"
-                icon={<ArrowRight size={18} />}
-                iconPosition="right"
-                className="shadow-gold/20 shadow-xl transition-all hover:-translate-y-1"
-              >
-                {t('hero.cta')}
-              </Button>
-            </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              className="!border-2 !border-white !text-white hover:!bg-white/10"
-              icon={<Eye size={18} />}
-            >
-              {t('hero.virtualTour')}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════ STATS BAR ═══════════════════ */}
-      <section className="relative z-30 -mt-16 mb-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark grid grid-cols-2 gap-4 rounded-2xl border p-6 shadow-xl shadow-gray-200/50 md:grid-cols-4 md:gap-6 md:p-10 dark:shadow-black/30">
-            {[
-              {
-                value: '1370+',
-                label: t('stats.students'),
-                icon: Users,
-              },
-              {
-                value: '24+',
-                label: t('stats.programs'),
-                icon: BookOpen,
-              },
-              {
-                value: '87%',
-                label: t('stats.employment'),
-                icon: TrendingUp,
-              },
-              {
-                value: '65+',
-                label: t('stats.years'),
-                icon: Award,
-              },
-            ].map((stat, idx) => (
-              <div
-                key={stat.label}
-                className={`p-2 text-center ${idx > 0 ? 'border-border-light dark:border-border-dark border-l' : ''}`}
-              >
-                <stat.icon
-                  size={20}
-                  className="text-primary dark:text-primary-light mx-auto mb-2"
-                />
-                <p className="font-display text-primary dark:text-primary-light mb-2 text-4xl font-bold md:text-5xl">
-                  {stat.value}
-                </p>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm font-medium tracking-wide uppercase">
-                  {stat.label}
-                </p>
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-28">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            {/* Left: Bold Typography */}
+            <div>
+              <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
+                <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
+                {t('heroBadge')}
               </div>
-            ))}
+
+              <h1 className="font-display mb-6 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+                <span className="text-gradient">ZhezU</span>
+                <br />
+                <span className="text-text-secondary-light dark:text-text-secondary-dark mt-2 block text-2xl font-medium tracking-normal sm:text-3xl lg:text-4xl">
+                  {t('hero.subtitle')}
+                </span>
+              </h1>
+
+              <p className="text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-lg text-lg leading-relaxed">
+                {t('hero.description')}
+              </p>
+
+              <Link href="/admission">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  icon={<ArrowRight size={18} />}
+                  iconPosition="right"
+                  className="shadow-gold/20 shadow-xl"
+                >
+                  {t('hero.cta')}
+                </Button>
+              </Link>
+            </div>
+
+            {/* Right: Stats Premium Cards */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                {
+                  value: '1370+',
+                  label: t('stats.students'),
+                  icon: Users,
+                  color: 'text-primary dark:text-primary-light',
+                  bg: 'bg-primary/5 dark:bg-primary-light/10',
+                },
+                {
+                  value: '24+',
+                  label: t('stats.programs'),
+                  icon: BookOpen,
+                  color: 'text-gold dark:text-gold-light',
+                  bg: 'bg-gold/5 dark:bg-gold/10',
+                },
+                {
+                  value: '87%',
+                  label: t('stats.employment'),
+                  icon: TrendingUp,
+                  color: 'text-success',
+                  bg: 'bg-success/5 dark:bg-success/10',
+                },
+                {
+                  value: '65+',
+                  label: t('stats.years'),
+                  icon: Award,
+                  color: 'text-purple-600 dark:text-purple-400',
+                  bg: 'bg-purple-600/5 dark:bg-purple-400/10',
+                },
+              ].map((stat) => (
+                <div key={stat.label} className="premium-card p-6 text-center">
+                  <div
+                    className={`mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl ${stat.bg}`}
+                  >
+                    <stat.icon size={22} className={stat.color} />
+                  </div>
+                  <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
+                    {stat.value}
+                  </p>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs font-medium tracking-wide uppercase">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════ WHY CHOOSE ZHEZU ═══════════════════ */}
-      <section className="bg-surface-light dark:bg-surface-dark py-16">
+      {/* ═══════════════════ WHY CHOOSE ZHEZU — Asymmetric Layout ═══════════════════ */}
+      <section className="bg-surface-light dark:bg-surface-dark py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-4 text-3xl font-bold md:text-4xl">
+          <div className="mb-12 max-w-2xl">
+            <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
               {t('features.title')}
             </h2>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto max-w-2xl">
+            <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg">
               {t('features.subtitle')}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: Brain,
-                title: t('features.ai'),
-                desc: t('features.aiDesc'),
-                iconBg: 'bg-blue-50 dark:bg-blue-900/20',
-                iconColor: 'text-primary dark:text-primary-light',
-              },
-              {
-                icon: GraduationCap,
-                title: t('features.faculty'),
-                desc: t('features.facultyDesc'),
-                iconBg: 'bg-yellow-50 dark:bg-yellow-900/20',
-                iconColor: 'text-gold dark:text-gold-light',
-              },
-              {
-                icon: Briefcase,
-                title: t('features.career'),
-                desc: t('features.careerDesc'),
-                iconBg: 'bg-green-50 dark:bg-green-900/20',
-                iconColor: 'text-green-600 dark:text-green-400',
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="group bg-bg-light hover:border-border-light hover:bg-surface-light hover:shadow-primary/5 dark:bg-bg-dark dark:hover:border-border-dark dark:hover:bg-surface-dark dark:hover:shadow-primary-light/5 rounded-2xl border border-transparent p-8 transition-all duration-300 hover:shadow-xl"
-              >
-                <div
-                  className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${feature.iconBg} transition-transform group-hover:scale-110`}
-                >
-                  <feature.icon size={28} className={feature.iconColor} />
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {/* Featured AI Card — spans 2 columns */}
+            <div className="premium-card premium-card-gold group relative overflow-hidden p-8 md:col-span-2 md:p-10">
+              <div className="bg-gold/5 group-hover:bg-gold/10 absolute top-0 right-0 h-40 w-40 rounded-full blur-3xl transition-all" />
+              <div className="relative">
+                <div className="bg-gold/10 dark:bg-gold/20 mb-6 flex h-14 w-14 items-center justify-center rounded-xl">
+                  <Brain size={28} className="text-gold dark:text-gold-light" />
                 </div>
-                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-3 text-xl font-bold">
-                  {feature.title}
+                <div className="text-gold dark:text-gold-light bg-gold/10 dark:bg-gold/20 mb-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold">
+                  <Sparkles size={12} />
+                  AI-Центр
+                </div>
+                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-3 text-2xl font-bold lg:text-3xl">
+                  {t('features.ai')}
                 </h3>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark leading-relaxed">
-                  {feature.desc}
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-6 max-w-lg text-base leading-relaxed lg:text-lg">
+                  {t('features.aiDesc')}
+                </p>
+                <Link
+                  href="/ai-center"
+                  className="text-gold dark:text-gold-light group/link inline-flex items-center gap-1.5 text-sm font-bold"
+                >
+                  {tActions('learnMore')}
+                  <ArrowRight
+                    size={14}
+                    className="transition-transform group-hover/link:translate-x-0.5"
+                  />
+                </Link>
+              </div>
+            </div>
+
+            {/* Two smaller stacked cards */}
+            <div className="flex flex-col gap-6">
+              <div className="premium-card group flex-1 p-6 lg:p-8">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-transform group-hover:scale-110 dark:bg-blue-900/20">
+                  <GraduationCap size={24} className="text-primary dark:text-primary-light" />
+                </div>
+                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-lg font-bold">
+                  {t('features.faculty')}
+                </h3>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
+                  {t('features.facultyDesc')}
                 </p>
               </div>
-            ))}
+
+              <div className="premium-card group flex-1 p-6 lg:p-8">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 transition-transform group-hover:scale-110 dark:bg-green-900/20">
+                  <Briefcase size={24} className="text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-lg font-bold">
+                  {t('features.career')}
+                </h3>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
+                  {t('features.careerDesc')}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════ POPULAR PROGRAMS — image overlay cards ═══════════════════ */}
+      {/* ═══════════════════ POPULAR PROGRAMS — Horizontal Scroll ═══════════════════ */}
       <section className="bg-bg-light dark:bg-bg-dark overflow-hidden py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex items-end justify-between">
@@ -410,7 +428,7 @@ export default function HomePage() {
                       {item.title}
                     </h4>
                     <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
-                      <Calendar size={10} /> {item.date.month} {item.date.day}, 2023
+                      <Calendar size={10} /> {item.date.month} {item.date.day}, 2025
                     </span>
                   </div>
                 </div>
@@ -463,33 +481,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════ AUDIENCE QUICK LINKS ═══════════════════ */}
-      <section className="bg-primary dark:bg-primary-dark py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            {[
-              { label: t('audience.applicants'), href: '/admission' },
-              { label: t('audience.students'), href: '/academics' },
-              { label: t('audience.staff'), href: '/contact' },
-              { label: t('audience.alumni'), href: '/life/news' },
-              { label: t('audience.partners'), href: '/contact' },
-            ].map((link, i) => (
-              <span key={link.label} className="flex items-center gap-4 md:gap-8">
-                {i > 0 && <span className="hidden text-white/30 md:inline">|</span>}
-                <Link
-                  href={link.href}
-                  className="hover:border-gold border-b-2 border-transparent pb-1 text-lg font-medium text-white/80 transition-all hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══════════════════ CTA ═══════════════════ */}
-      <section className="bg-bg-light dark:bg-bg-dark py-16 lg:py-24">
+      <section className="bg-surface-light dark:bg-surface-dark py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="from-primary via-primary relative overflow-hidden rounded-2xl bg-gradient-to-br to-blue-900 p-8 text-center text-white sm:p-12 lg:p-16">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(230,179,37,0.2),transparent_60%)]" />
