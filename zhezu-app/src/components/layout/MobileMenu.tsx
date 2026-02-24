@@ -179,7 +179,7 @@ export function MobileMenu() {
                   <div className="h-8 w-8 shrink-0 overflow-hidden rounded-md">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="https://zhezu.edu.kz/wp-content/uploads/2023/12/logo.png"
+                      src="/logo.png"
                       alt="ZhezU"
                       width={44}
                       height={44}
