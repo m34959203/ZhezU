@@ -21,6 +21,7 @@ import {
   Calendar,
   Clock,
 } from 'lucide-react';
+import { useLocale } from 'next-intl';
 import type { Locale } from '@/types';
 
 const PROGRAM_IMAGES: Record<string, string> = {
@@ -117,7 +118,7 @@ const NEWS_ITEMS = [
 export default function HomePage() {
   const t = useTranslations('home');
   const tActions = useTranslations('actions');
-  const locale = 'ru' as Locale;
+  const locale = useLocale() as Locale;
 
   const featuredPrograms = PROGRAMS.filter((p) => Object.keys(PROGRAM_IMAGES).includes(p.id)).slice(
     0,
@@ -187,22 +188,22 @@ export default function HomePage() {
           <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark grid grid-cols-2 gap-4 rounded-2xl border p-6 shadow-xl shadow-gray-200/50 md:grid-cols-4 md:gap-6 md:p-10 dark:shadow-black/30">
             {[
               {
-                value: `${UNIVERSITY.stats.students.toLocaleString()}+`,
+                value: '1370+',
                 label: t('stats.students'),
                 icon: Users,
               },
               {
-                value: `${UNIVERSITY.stats.programs + UNIVERSITY.stats.masterPrograms}+`,
+                value: '24+',
                 label: t('stats.programs'),
                 icon: BookOpen,
               },
               {
-                value: `${UNIVERSITY.stats.employmentRate}%`,
+                value: '87%',
                 label: t('stats.employment'),
                 icon: TrendingUp,
               },
               {
-                value: `${UNIVERSITY.stats.yearsOfExperience}+`,
+                value: '65+',
                 label: t('stats.years'),
                 icon: Award,
               },

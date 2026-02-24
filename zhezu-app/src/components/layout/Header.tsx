@@ -150,6 +150,7 @@ function MegaMenuPanel({
                     <li key={link.href}>
                       <Link
                         href={link.href}
+                        prefetch={false}
                         className="text-text-secondary-light dark:text-text-secondary-dark hover:text-primary dark:hover:text-primary-light block py-1.5 text-sm font-normal transition-colors duration-200"
                       >
                         {t(link.labelKey)}
@@ -166,6 +167,7 @@ function MegaMenuPanel({
             <div className="flex gap-4">
               <Link
                 href="/university/about"
+                prefetch={false}
                 className="group flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
               >
                 <div className="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
@@ -182,6 +184,7 @@ function MegaMenuPanel({
               </Link>
               <Link
                 href="/university/campus"
+                prefetch={false}
                 className="group flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-slate-800/50"
               >
                 <div className="bg-primary/10 text-primary group-hover:bg-primary flex h-10 w-10 items-center justify-center rounded-lg transition-colors group-hover:text-white">
@@ -199,6 +202,7 @@ function MegaMenuPanel({
             </div>
             <Link
               href={item.href}
+              prefetch={false}
               className="group text-primary dark:text-primary-light flex items-center gap-1.5 text-sm font-bold decoration-2 underline-offset-4 hover:underline"
             >
               {t('seeAll')} {t(item.labelKey + '.title')}
@@ -228,6 +232,7 @@ function AudienceBar() {
               <Link
                 key={link.id}
                 href={link.href}
+                prefetch={false}
                 className={cn(
                   'text-xs font-medium transition-colors duration-200',
                   isActive
@@ -346,6 +351,7 @@ export function Header() {
                     >
                       <Link
                         href={item.href}
+                        prefetch={false}
                         className={cn(
                           'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                           isActive
