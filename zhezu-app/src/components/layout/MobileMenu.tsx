@@ -176,16 +176,14 @@ export function MobileMenu() {
                   className="group flex items-center gap-2.5"
                   onClick={() => setOpen(false)}
                 >
-                  <div className="h-8 w-8 shrink-0 overflow-hidden rounded-md">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/logo.png"
-                      alt="ZhezU"
-                      width={44}
-                      height={44}
-                      className="h-11 w-11 -translate-x-[2px] object-contain"
-                    />
-                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/logo-emblem.png"
+                    alt="ZhezU"
+                    width={36}
+                    height={32}
+                    className="h-8 w-9 object-contain"
+                  />
                   <span className="font-display text-primary dark:text-primary-light text-lg font-bold">
                     ZhezU
                   </span>

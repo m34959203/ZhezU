@@ -100,14 +100,14 @@ export function Footer() {
           {/* Column 1: University Info */}
           <div className="lg:col-span-1">
             <Link href="/" className="group mb-4 flex items-center gap-2">
-              <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg">
+              <div className="h-10 w-10 shrink-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/logo.png"
+                  src="/logo-emblem.png"
                   alt="ZhezU"
-                  width={56}
-                  height={56}
-                  className="h-14 w-14 -translate-x-[3px] object-contain brightness-0 invert"
+                  width={40}
+                  height={36}
+                  className="h-9 w-10 object-contain brightness-0 invert"
                 />
               </div>
               <span className="font-display text-lg font-bold text-white">ZhezU</span>
