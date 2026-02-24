@@ -164,19 +164,19 @@ export function Header() {
     <>
       <header ref={headerRef} className="sticky top-0 z-40 w-full">
         {/* Single navigation layer */}
-        <div className="bg-bg-light/80 dark:bg-bg-dark/80 border-border-light/50 dark:border-border-dark/50 overflow-visible border-b backdrop-blur-xl">
+        <div className="bg-bg-light/80 dark:bg-bg-dark/80 border-border-light/50 dark:border-border-dark/50 border-b backdrop-blur-xl">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-20 items-center justify-between">
-              {/* Logo — висячий, выступает из хедера */}
-              <Link href="/" className="group relative flex shrink-0 items-center gap-2.5">
-                <div className="relative z-10 flex h-[68px] w-[68px] shrink-0 items-start justify-center overflow-hidden rounded-2xl border-2 border-white bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800">
+            <div className="flex h-16 items-center justify-between">
+              {/* Logo */}
+              <Link href="/" className="group flex shrink-0 items-center gap-2.5">
+                <div className="h-[56px] w-[56px] shrink-0 overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/logo.png"
                     alt="ZhezU"
-                    width={88}
-                    height={88}
-                    className="h-[88px] w-[88px] -translate-x-[2px] translate-y-[2px] object-contain"
+                    width={76}
+                    height={76}
+                    className="h-[76px] w-[76px] -translate-x-[4px] object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
