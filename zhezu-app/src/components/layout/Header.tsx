@@ -169,14 +169,14 @@ export function Header() {
             <div className="flex h-16 items-center justify-between">
               {/* Logo */}
               <Link href="/" className="group flex shrink-0 items-center gap-2">
-                <div className="h-10 w-10 shrink-0 overflow-hidden rounded-lg">
+                <div className="h-[52px] w-[52px] shrink-0 overflow-hidden rounded-lg">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/logo.png"
                     alt="ZhezU"
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 -translate-x-[3px] object-contain"
+                    width={72}
+                    height={72}
+                    className="h-[72px] w-[72px] -translate-x-[4px] object-contain"
                   />
                 </div>
                 <div className="flex flex-col">
