@@ -1003,6 +1003,85 @@
       "aboutP2": "As the only multidisciplinary university in the Ulytau region, the university focuses on training specialists for mining, metallurgy, education, and engineering industries. The 87% graduate employment rate demonstrates high demand for specialists in the labor market.",
       "ctaAccreditation": "Accreditation",
       "ctaAbout": "About the University"
+    },
+    "partners": {
+      "pageTitle": "Corporate Partners — Zhezkazgan University",
+      "pageDescription": "Corporate and industry partners of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Partners",
+      "title": "Corporate Partners",
+      "subtitle": "Zhezkazgan University develops partnerships with leading enterprises in mining, energy, and construction industries of the Ulytau region",
+      "aboutTitle": "Business Cooperation",
+      "aboutP1": "As the only multidisciplinary university in the Ulytau region, Zhezkazgan University is a key supplier of qualified personnel for regional enterprises. The university maintains and develops cooperation with government and business structures, public organizations and enterprises.",
+      "aboutP2": "The mining industry is a priority area of Kazakhstan's industrial and innovation development. The university trains specialists in mining, geology, metallurgy, energy, construction and mechanical engineering, who are in demand at enterprises in the Zhezkazgan region.",
+      "industriesTitle": "Industry Partners",
+      "industriesSubtitle": "Enterprises and organizations with which the university maintains active cooperation",
+      "industries": {
+        "mining": {
+          "title": "Mining Industry",
+          "text": "Zhezkazgan is one of the largest mining centers in Kazakhstan. The university trains mining engineers, geologists and ore processing specialists for regional enterprises.",
+          "partners": "Kazakhmys Corporation, KAZ Minerals, Zhezkazgantsvetmet LLP"
+        },
+        "energy": {
+          "title": "Energy",
+          "text": "Training electrical power engineers and automation specialists for thermal power plants and energy systems in the region.",
+          "partners": "Kazakhmys Energy LLP, Zhezkazgan CHP, GRES"
+        },
+        "construction": {
+          "title": "Construction",
+          "text": "Training construction engineers and thermal engineering specialists for the construction industry of the Ulytau region.",
+          "partners": "Regional construction companies"
+        },
+        "education": {
+          "title": "Education",
+          "text": "The university is the largest supplier of teaching staff for schools in the Ulytau region: primary school teachers, philologists, mathematicians, biologists.",
+          "partners": "Ulytau Region Education Department, regional schools"
+        },
+        "government": {
+          "title": "Government Bodies",
+          "text": "Cooperation with akimats, departments and government bodies of the Ulytau region on staffing and scientific-methodological support.",
+          "partners": "Ulytau Region Akimat, Zhezkazgan City Akimat"
+        },
+        "manufacturing": {
+          "title": "Metallurgy and Engineering",
+          "text": "Training metallurgists and process engineers for metallurgical enterprises and manufacturing in the Zhezkazgan industrial region.",
+          "partners": "Zhezkazgan Copper Smelter, KMO enterprises"
+        }
+      },
+      "cooperationTitle": "Forms of Cooperation",
+      "cooperation": {
+        "practice": {
+          "title": "Industrial Practice",
+          "text": "Students complete internships at partner enterprises"
+        },
+        "employment": {
+          "title": "Employment",
+          "text": "87% of graduates find employment in their field"
+        },
+        "dual": {
+          "title": "Dual Education",
+          "text": "Combining university theory with hands-on industrial practice"
+        },
+        "research": {
+          "title": "R&D",
+          "text": "Joint research projects with enterprises"
+        }
+      },
+      "stats": {
+        "employment": {
+          "value": "87%",
+          "label": "Graduate Employment"
+        },
+        "partners": {
+          "value": "50+",
+          "label": "Partner Enterprises"
+        },
+        "regions": {
+          "value": "65+",
+          "label": "Years Training Regional Specialists"
+        }
+      },
+      "ctaInternational": "International Partners",
+      "ctaCareer": "Graduate Careers"
     }
   },
   "programs": {
