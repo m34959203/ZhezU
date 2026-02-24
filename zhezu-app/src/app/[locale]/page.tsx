@@ -142,8 +142,8 @@ export default function HomePage() {
       <section className="bg-bg-light dark:bg-bg-dark relative overflow-hidden">
         {/* Background decorations — stronger in light mode */}
         <div className="mesh-gradient absolute inset-0" />
-        <div className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full bg-primary/[0.07] blur-3xl dark:bg-primary-light/[0.05]" />
-        <div className="absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full bg-gold/[0.08] blur-3xl dark:bg-gold/[0.04]" />
+        <div className="bg-primary/[0.07] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
+        <div className="bg-gold/[0.08] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
         {/* Decorative geometric shapes */}
         <div className="pointer-events-none absolute top-16 right-[10%] hidden lg:block">
           <svg
@@ -224,7 +224,7 @@ export default function HomePage() {
             {/* Right: Stats Premium Cards */}
             <div className="relative">
               {/* Glow behind cards */}
-              <div className="absolute inset-0 -m-4 rounded-3xl bg-primary/[0.03] blur-2xl dark:bg-primary-light/[0.04]" />
+              <div className="bg-primary/[0.03] dark:bg-primary-light/[0.04] absolute inset-0 -m-4 rounded-3xl blur-2xl" />
               <div className="relative grid grid-cols-2 gap-4">
                 {[
                   {
@@ -265,9 +265,7 @@ export default function HomePage() {
                     >
                       <stat.icon size={22} className={stat.color} />
                     </div>
-                    <p
-                      className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}
-                    >
+                    <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
                       {stat.value}
                     </p>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark text-[11px] font-medium tracking-wide uppercase">
