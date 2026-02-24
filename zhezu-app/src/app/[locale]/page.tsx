@@ -9,6 +9,9 @@ import {
   BookOpen,
   Briefcase,
   GraduationCap,
+  Users,
+  Award,
+  TrendingUp,
   Brain,
   Zap,
   Wrench,
@@ -143,73 +146,105 @@ export default function HomePage() {
         <div className="bg-gold/[0.10] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
         <div className="from-primary/[0.04] dark:from-primary-light/[0.03] absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-12 sm:px-6 sm:pt-16 sm:pb-16 lg:px-8 lg:pt-20 lg:pb-20">
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-28">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
-            {/* Left: Bold Typography */}
-            <div>
-              <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
-                <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
-                {t('heroBadge')}
-              </div>
-
-              <h1 className="font-display mb-6 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
-                <span className="text-primary dark:text-primary-light">ZhezU</span>
-                <span className="text-gold ml-1 inline-block h-3 w-3 rounded-full align-super sm:h-4 sm:w-4" />
-                <span className="border-gold/40 text-text-primary-light dark:text-text-primary-dark mt-3 block border-l-2 pl-4 text-xl font-medium tracking-normal sm:text-2xl lg:text-3xl">
-                  {t('hero.subtitle')}
-                </span>
-              </h1>
-
-              <p className="text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-lg text-lg leading-relaxed">
-                {t('hero.description')}
-              </p>
-
-              <Link href="/admission">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  icon={<ArrowRight size={18} />}
-                  iconPosition="right"
-                  className="shadow-gold/20 shadow-xl"
-                >
-                  {t('hero.cta')}
-                </Button>
-              </Link>
-            </div>
-
-            {/* Right: University Emblem */}
-            <div className="relative flex items-center justify-center">
-              <div className="bg-gold/[0.06] dark:bg-gold/[0.03] absolute h-[260px] w-[260px] rounded-full blur-3xl" />
+            {/* Left: Bold Typography with watermark emblem */}
+            <div className="relative">
+              {/* Watermark emblem behind text */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo-emblem.png"
-                alt="ZhezU — Жезказганский университет"
-                width={214}
-                height={191}
-                className="relative h-auto w-[180px] object-contain drop-shadow-lg sm:w-[200px] lg:w-[214px] dark:brightness-0 dark:drop-shadow-[0_2px_12px_rgba(255,255,255,0.1)] dark:invert"
+                alt=""
+                aria-hidden="true"
+                width={320}
+                height={286}
+                className="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.06] dark:opacity-[0.04] dark:invert"
               />
-            </div>
-          </div>
-        </div>
+              <div className="relative">
+                <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
+                  <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
+                  {t('heroBadge')}
+                </div>
 
-        {/* Stats strip */}
-        <div className="border-border-light/50 dark:border-border-dark/50 relative border-t">
-          <div className="divide-border-light/50 dark:divide-border-dark/50 mx-auto grid max-w-7xl grid-cols-2 divide-x lg:grid-cols-4">
-            {[
-              { value: '1370+', label: t('stats.students') },
-              { value: '24+', label: t('stats.programs') },
-              { value: '87%', label: t('stats.employment') },
-              { value: '65+', label: t('stats.years') },
-            ].map((stat) => (
-              <div key={stat.label} className="px-4 py-5 text-center sm:py-6">
-                <p className="font-display text-primary dark:text-primary-light text-2xl font-bold sm:text-3xl">
-                  {stat.value}
+                <h1 className="font-display mb-6 text-5xl leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+                  <span className="text-primary dark:text-primary-light">ZhezU</span>
+                  <span className="text-gold ml-1 inline-block h-3 w-3 rounded-full align-super sm:h-4 sm:w-4" />
+                  <span className="border-gold/40 text-text-primary-light dark:text-text-primary-dark mt-3 block border-l-2 pl-4 text-xl font-medium tracking-normal sm:text-2xl lg:text-3xl">
+                    {t('hero.subtitle')}
+                  </span>
+                </h1>
+
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-8 max-w-lg text-lg leading-relaxed">
+                  {t('hero.description')}
                 </p>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[11px] font-medium tracking-wider uppercase">
-                  {stat.label}
-                </p>
+
+                <Link href="/admission">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    icon={<ArrowRight size={18} />}
+                    iconPosition="right"
+                    className="shadow-gold/20 shadow-xl"
+                  >
+                    {t('hero.cta')}
+                  </Button>
+                </Link>
               </div>
-            ))}
+            </div>
+
+            {/* Right: Stats Premium Cards */}
+            <div className="relative">
+              <div className="bg-primary/[0.03] dark:bg-primary-light/[0.04] absolute inset-0 -m-4 rounded-3xl blur-2xl" />
+              <div className="relative grid grid-cols-2 gap-4">
+                {[
+                  {
+                    value: '1370+',
+                    label: t('stats.students'),
+                    icon: Users,
+                    color: 'text-primary dark:text-primary-light',
+                    bg: 'bg-primary/8 dark:bg-primary-light/10',
+                  },
+                  {
+                    value: '24+',
+                    label: t('stats.programs'),
+                    icon: BookOpen,
+                    color: 'text-gold dark:text-gold-light',
+                    bg: 'bg-gold/8 dark:bg-gold/10',
+                  },
+                  {
+                    value: '87%',
+                    label: t('stats.employment'),
+                    icon: TrendingUp,
+                    color: 'text-success',
+                    bg: 'bg-success/8 dark:bg-success/10',
+                  },
+                  {
+                    value: '65+',
+                    label: t('stats.years'),
+                    icon: Award,
+                    color: 'text-purple-600 dark:text-purple-400',
+                    bg: 'bg-purple-600/8 dark:bg-purple-400/10',
+                  },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="dark:border-border-dark dark:bg-surface-dark/90 rounded-2xl border border-white/80 bg-white/90 p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm sm:p-6 dark:shadow-none"
+                  >
+                    <div
+                      className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl sm:h-12 sm:w-12 ${stat.bg}`}
+                    >
+                      <stat.icon size={22} className={stat.color} />
+                    </div>
+                    <p className={`font-display mb-1 text-3xl font-bold sm:text-4xl ${stat.color}`}>
+                      {stat.value}
+                    </p>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-[11px] font-medium tracking-wide uppercase">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
