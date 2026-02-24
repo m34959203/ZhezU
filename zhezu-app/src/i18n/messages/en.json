@@ -702,6 +702,28 @@
       "proRectors": {
         "title": "Pro-Rectors"
       }
+    },
+    "rector": {
+      "pageTitle": "Rector — Zhezkazgan University",
+      "pageDescription": "Takishov Abdilmalik Argynovich — President-Rector of O.A. Baikonurov Zhezkazgan University, D.Sc., Professor",
+      "badge": "Leadership",
+      "title": "President-Rector of the University",
+      "subtitle": "Takishov Abdilmalik Argynovich heads O.A. Baikonurov Zhezkazgan University — the only multidisciplinary higher education institution in the Ulytau region.",
+      "role": "President-Rector",
+      "credentials": {
+        "degree": "Doctor of Technical Sciences",
+        "title": "Professor",
+        "academy": "Academician of KazNANS",
+        "bologna": "Bologna Process signatory"
+      },
+      "bioTitle": "About the Rector",
+      "bio": {
+        "p1": "Takishov Abdilmalik Argynovich is a Doctor of Technical Sciences, Professor, and Academician of the Kazakhstan National Academy of Natural Sciences. He heads Zhezkazgan University named after O.A. Baikonurov as President-Rector.",
+        "p2": "Under his leadership, the university has significantly strengthened its position as a leading educational and scientific center of the Ulytau region. In September 2010, the rector signed the Bologna Declaration in Bologna (Italy), and Zhezkazgan University joined the Magna Charta Universitatum, confirming the university's integration into the international educational space.",
+        "p3": "For the high quality of specialist training for industry, under the leadership of Takishov A.A., the university was awarded the Gold Medal of the Association for the Promotion of Industry SPI (Paris) and the international Golden Ingot Award in the 'Effectively Developing Enterprise' nomination (Amsterdam)."
+      },
+      "proRectorsTitle": "Pro-Rectors",
+      "ctaAbout": "More about the university"
     }
   },
   "programs": {
