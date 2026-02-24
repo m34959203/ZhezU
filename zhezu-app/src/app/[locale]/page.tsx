@@ -139,11 +139,12 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* ═══════════════════ HERO — Bold Typography + Stats Grid ═══════════════════ */}
-      <section className="bg-bg-light dark:bg-bg-dark relative overflow-hidden">
-        {/* Background decorations — stronger in light mode */}
+      <section className="to-bg-light dark:from-bg-dark dark:via-bg-dark dark:to-bg-dark relative overflow-hidden bg-gradient-to-b from-[#eef2fa] via-[#f3f6fc]">
+        {/* Background decorations */}
         <div className="mesh-gradient absolute inset-0" />
-        <div className="bg-primary/[0.07] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
-        <div className="bg-gold/[0.08] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
+        <div className="bg-primary/[0.10] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
+        <div className="bg-gold/[0.10] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
+        <div className="from-primary/[0.04] dark:from-primary-light/[0.03] absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l to-transparent" />
         {/* Decorative geometric shapes */}
         <div className="pointer-events-none absolute top-16 right-[10%] hidden lg:block">
           <svg
@@ -151,7 +152,7 @@ export default function HomePage() {
             height="120"
             viewBox="0 0 120 120"
             fill="none"
-            className="animate-float text-primary/[0.06] dark:text-primary-light/[0.08]"
+            className="animate-float text-primary/[0.12] dark:text-primary-light/[0.08]"
           >
             <rect
               width="80"
@@ -179,7 +180,7 @@ export default function HomePage() {
             height="80"
             viewBox="0 0 80 80"
             fill="none"
-            className="animate-float text-gold/[0.1] dark:text-gold/[0.08]"
+            className="animate-float text-gold/[0.18] dark:text-gold/[0.08]"
             style={{ animationDelay: '3s' }}
           >
             <circle cx="40" cy="40" r="30" stroke="currentColor" strokeWidth="1.5" />
@@ -258,7 +259,7 @@ export default function HomePage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="premium-card p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.08)] sm:p-6 dark:shadow-none"
+                    className="dark:border-border-dark dark:bg-surface-dark/90 rounded-2xl border border-white/80 bg-white/90 p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-sm sm:p-6 dark:shadow-none"
                   >
                     <div
                       className={`mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl sm:h-12 sm:w-12 ${stat.bg}`}
