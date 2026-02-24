@@ -142,50 +142,8 @@ export default function HomePage() {
         <div className="bg-primary/[0.10] dark:bg-primary-light/[0.05] absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full blur-3xl" />
         <div className="bg-gold/[0.10] dark:bg-gold/[0.04] absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full blur-3xl" />
         <div className="from-primary/[0.04] dark:from-primary-light/[0.03] absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l to-transparent" />
-        {/* Decorative geometric shapes */}
-        <div className="pointer-events-none absolute top-16 right-[10%] hidden lg:block">
-          <svg
-            width="120"
-            height="120"
-            viewBox="0 0 120 120"
-            fill="none"
-            className="animate-float text-primary/[0.12] dark:text-primary-light/[0.08]"
-          >
-            <rect
-              width="80"
-              height="80"
-              x="20"
-              y="20"
-              rx="16"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-            <rect
-              width="50"
-              height="50"
-              x="35"
-              y="35"
-              rx="10"
-              stroke="currentColor"
-              strokeWidth="1"
-            />
-          </svg>
-        </div>
-        <div className="pointer-events-none absolute bottom-24 left-[5%] hidden lg:block">
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 80 80"
-            fill="none"
-            className="animate-float text-gold/[0.18] dark:text-gold/[0.08]"
-            style={{ animationDelay: '3s' }}
-          >
-            <circle cx="40" cy="40" r="30" stroke="currentColor" strokeWidth="1.5" />
-            <circle cx="40" cy="40" r="16" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 lg:pt-20 lg:pb-28">
+        <div className="relative mx-auto max-w-7xl px-4 pt-12 pb-12 sm:px-6 sm:pt-16 sm:pb-16 lg:px-8 lg:pt-20 lg:pb-20">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-12">
             {/* Left: Bold Typography */}
             <div>
@@ -221,16 +179,37 @@ export default function HomePage() {
 
             {/* Right: University Emblem */}
             <div className="relative flex items-center justify-center">
-              <div className="bg-gold/[0.08] dark:bg-gold/[0.04] absolute h-[360px] w-[360px] rounded-full blur-3xl" />
+              <div className="bg-gold/[0.06] dark:bg-gold/[0.03] absolute h-[260px] w-[260px] rounded-full blur-3xl" />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/logo-emblem.png"
                 alt="ZhezU — Жезказганский университет"
-                width={320}
-                height={286}
-                className="relative h-auto w-[280px] object-contain drop-shadow-2xl sm:w-[320px] lg:w-[360px] dark:brightness-0 dark:drop-shadow-[0_4px_24px_rgba(255,255,255,0.1)] dark:invert"
+                width={214}
+                height={191}
+                className="relative h-auto w-[180px] object-contain drop-shadow-lg sm:w-[200px] lg:w-[214px] dark:brightness-0 dark:drop-shadow-[0_2px_12px_rgba(255,255,255,0.1)] dark:invert"
               />
             </div>
+          </div>
+        </div>
+
+        {/* Stats strip */}
+        <div className="border-border-light/50 dark:border-border-dark/50 relative border-t">
+          <div className="divide-border-light/50 dark:divide-border-dark/50 mx-auto grid max-w-7xl grid-cols-2 divide-x lg:grid-cols-4">
+            {[
+              { value: '1370+', label: t('stats.students') },
+              { value: '24+', label: t('stats.programs') },
+              { value: '87%', label: t('stats.employment') },
+              { value: '65+', label: t('stats.years') },
+            ].map((stat) => (
+              <div key={stat.label} className="px-4 py-5 text-center sm:py-6">
+                <p className="font-display text-primary dark:text-primary-light text-2xl font-bold sm:text-3xl">
+                  {stat.value}
+                </p>
+                <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-[11px] font-medium tracking-wider uppercase">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
