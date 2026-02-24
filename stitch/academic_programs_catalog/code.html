@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academic Programs Catalog - ZhezU</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1d56c9",
+                        "primary-content": "#ffffff",
+                        "background-light": "#f8f9fb",
+                        "background-dark": "#111621",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2233",
+                        "text-main": "#0e121b",
+                        "text-muted": "#506795",
+                        "border-light": "#e8ebf3",
+                        "border-dark": "#2d3748",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        "2xl": "1rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Checkbox Style to match provided SVG */
+        input[type="checkbox"]:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-text-main dark:text-gray-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark px-4 md:px-10 py-3 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">school</span>
+</div>
+<h2 class="text-text-main dark:text-white text-2xl font-display font-bold leading-tight tracking-[-0.015em]">ZhezU</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-text-main dark:text-gray-200 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Home</a>
+<a class="text-text-main dark:text-gray-200 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Admissions</a>
+<a class="text-primary text-sm font-bold leading-normal" href="#">Academics</a>
+<a class="text-text-main dark:text-gray-200 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Research</a>
+<a class="text-text-main dark:text-gray-200 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Student Life</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 md:gap-8 items-center">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-light dark:border-border-dark bg-background-light dark:bg-gray-800 overflow-hidden">
+<div class="text-text-muted dark:text-gray-400 flex border-none items-center justify-center pl-3">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-text-main dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-text-muted px-3 text-sm font-normal leading-normal" placeholder="Search programs..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-blue-700 transition-colors text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Apply Now</span>
+</button>
+<button class="flex sm:hidden min-w-[40px] items-center justify-center rounded-lg h-10 w-10 bg-background-light dark:bg-gray-800 text-text-main dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<button class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-background-light dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-text-main dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Login</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Layout -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-4 md:px-10 py-8">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col gap-6 mb-8">
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-text-muted hover:text-primary transition-colors font-medium" href="#">Home</a>
+<span class="text-text-muted font-medium">/</span>
+<span class="text-text-main dark:text-gray-200 font-medium">Academics</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-text-main dark:text-white text-4xl md:text-5xl font-display font-black leading-tight tracking-[-0.033em]">Academic Programs</h1>
+<p class="text-text-muted dark:text-gray-400 text-lg font-normal leading-relaxed">
+                        Explore our comprehensive catalog of 24 undergraduate and graduate programs designed to shape your future leaders and innovators.
+                    </p>
+</div>
+<div class="relative min-w-[200px]">
+<select class="w-full h-10 pl-3 pr-10 text-sm bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg text-text-main dark:text-white focus:ring-primary focus:border-primary cursor-pointer appearance-none">
+<option>Sort by: Popularity</option>
+<option>Sort by: Alphabetical (A-Z)</option>
+<option>Sort by: Alphabetical (Z-A)</option>
+<option>Sort by: Newest</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-text-muted">
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Sidebar Filters -->
+<aside class="lg:col-span-3 space-y-8">
+<!-- Department Filter -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-5 border border-border-light dark:border-border-dark shadow-sm">
+<h3 class="text-text-main dark:text-white text-base font-bold font-display mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">domain</span>
+                        Department
+                    </h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Computer Science</span>
+<span class="ml-auto text-xs text-text-muted bg-background-light dark:bg-gray-800 px-2 py-0.5 rounded-full">8</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Engineering</span>
+<span class="ml-auto text-xs text-text-muted bg-background-light dark:bg-gray-800 px-2 py-0.5 rounded-full">6</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Business</span>
+<span class="ml-auto text-xs text-text-muted bg-background-light dark:bg-gray-800 px-2 py-0.5 rounded-full">5</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Humanities</span>
+<span class="ml-auto text-xs text-text-muted bg-background-light dark:bg-gray-800 px-2 py-0.5 rounded-full">3</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Sciences</span>
+<span class="ml-auto text-xs text-text-muted bg-background-light dark:bg-gray-800 px-2 py-0.5 rounded-full">2</span>
+</label>
+</div>
+</div>
+<!-- Degree Level Filter -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-5 border border-border-light dark:border-border-dark shadow-sm">
+<h3 class="text-text-main dark:text-white text-base font-bold font-display mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                        Level
+                    </h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Bachelor's Degree</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Master's Degree</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">PhD / Doctorate</span>
+</label>
+</div>
+</div>
+<!-- Language Filter -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-5 border border-border-light dark:border-border-dark shadow-sm">
+<h3 class="text-text-main dark:text-white text-base font-bold font-display mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">language</span>
+                        Language
+                    </h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">English</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">Spanish</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary/25 cursor-pointer transition-all" type="checkbox"/>
+<span class="text-text-main dark:text-gray-300 text-sm font-medium group-hover:text-primary transition-colors">French</span>
+</label>
+</div>
+</div>
+</aside>
+<!-- Programs Grid -->
+<div class="lg:col-span-9">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Program Card 1 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-blue-600 to-indigo-700 relative overflow-hidden" data-alt="Abstract blue gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                Bachelor
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-2xl">terminal</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-primary text-xs font-bold tracking-wider uppercase mb-1 block">Computer Science</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-primary transition-colors">Software Engineering</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Master the fundamentals of coding, algorithms, and system design to build scalable software solutions.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>4 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>120 Credits</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Card 2 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-emerald-500 to-teal-700 relative overflow-hidden" data-alt="Abstract green gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                Master
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-emerald-600 text-2xl">eco</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-emerald-600 text-xs font-bold tracking-wider uppercase mb-1 block">Sciences</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-emerald-600 transition-colors">Environmental Science</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Study the complex interactions within the environment and develop sustainable solutions for global challenges.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>2 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>60 Credits</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Card 3 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-orange-400 to-red-500 relative overflow-hidden" data-alt="Abstract orange gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                Bachelor
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-orange-500 text-2xl">trending_up</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-orange-500 text-xs font-bold tracking-wider uppercase mb-1 block">Business</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-orange-500 transition-colors">Business Administration</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Develop leadership skills and strategic thinking necessary to thrive in the competitive global business landscape.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>4 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>120 Credits</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Card 4 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-purple-500 to-violet-700 relative overflow-hidden" data-alt="Abstract purple gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                PhD
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-purple-600 text-2xl">psychology</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-purple-600 text-xs font-bold tracking-wider uppercase mb-1 block">Humanities</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-purple-600 transition-colors">Cognitive Psychology</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Advanced research into mental processes, including perception, memory, reasoning, and language.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>3-5 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>Dissertation</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Card 5 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-slate-600 to-slate-800 relative overflow-hidden" data-alt="Abstract slate gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                Master
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300 text-2xl">engineering</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-slate-600 dark:text-slate-400 text-xs font-bold tracking-wider uppercase mb-1 block">Engineering</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-primary transition-colors">Civil Engineering</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Design, construction, and maintenance of the physical and naturally built environment.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>2 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>60 Credits</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Program Card 6 -->
+<div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 cursor-pointer h-full">
+<div class="h-32 bg-gradient-to-r from-blue-600 to-cyan-500 relative overflow-hidden" data-alt="Abstract cyan gradient header">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/30">
+                                Bachelor
+                             </div>
+</div>
+<div class="p-6 flex flex-col flex-1 relative">
+<div class="w-12 h-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-border-light dark:border-border-dark flex items-center justify-center absolute -top-6 left-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-cyan-600 text-2xl">database</span>
+</div>
+<div class="mt-4 mb-2">
+<span class="text-cyan-600 text-xs font-bold tracking-wider uppercase mb-1 block">Computer Science</span>
+<h3 class="text-xl font-display font-bold text-text-main dark:text-white group-hover:text-cyan-600 transition-colors">Data Science</h3>
+</div>
+<p class="text-text-muted dark:text-gray-400 text-sm mb-6 line-clamp-2">
+                                Learn to extract meaningful insights from data using statistical methods, algorithms, and systems.
+                            </p>
+<div class="mt-auto pt-4 border-t border-border-light dark:border-border-dark flex items-center justify-between text-sm text-text-muted">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>4 Years</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">credit_card</span>
+<span>120 Credits</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center">
+<nav class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 text-text-muted transition-colors disabled:opacity-50">
+<span class="material-symbols-outlined text-sm">arrow_back_ios_new</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-sm shadow-md shadow-primary/30">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-gray-300 font-medium text-sm transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-gray-300 font-medium text-sm transition-colors">3</button>
+<span class="px-2 text-text-muted">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 text-text-main dark:text-gray-300 font-medium text-sm transition-colors">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-800 text-text-muted transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Simple) -->
+<footer class="mt-auto border-t border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark py-12 px-4 md:px-10">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined text-3xl">school</span>
+<span class="text-text-main dark:text-white text-xl font-bold font-display">ZhezU</span>
+</div>
+<p class="text-text-muted text-sm text-center md:text-right">
+                © 2024 ZhezU Academic Institution. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>
