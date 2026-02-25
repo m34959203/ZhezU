@@ -1102,6 +1102,69 @@
     }
   },
   "university": {
+    "hub": {
+      "pageTitle": "University — Zhezkazgan University",
+      "pageDescription": "O.A. Baikonurov Zhezkazgan University — all sections: history, leadership, accreditation, partners, documents",
+      "badge": "University",
+      "title": "O.A. Baikonurov Zhezkazgan University",
+      "subtitle": "One of the leading universities of the Ulytau region with over 65 years of experience training highly qualified specialists in mining, education, and economics.",
+      "stats": {
+        "students": "Students",
+        "programs": "Programs",
+        "faculty": "Faculty",
+        "years": "Years of experience"
+      },
+      "sectionsTitle": "All Sections",
+      "sectionsSubtitle": "Select a section to learn more about the university",
+      "sections": {
+        "about": {
+          "title": "About Us",
+          "text": "History, mission, values, and strategic goals of the university.",
+          "links": {
+            "history": "History & Facts",
+            "mission": "Mission & Values"
+          }
+        },
+        "leadership": {
+          "title": "Leadership",
+          "text": "Rector, pro-rectors, academic senate, and administrative structure.",
+          "links": {
+            "rector": "Rector",
+            "administration": "Administration",
+            "senate": "Academic Senate"
+          }
+        },
+        "accreditation": {
+          "title": "Accreditation & Rankings",
+          "text": "National and international accreditation, university rankings.",
+          "links": {
+            "national": "National Accreditation",
+            "international": "International Accreditation",
+            "rankings": "Rankings"
+          }
+        },
+        "partners": {
+          "title": "Partners",
+          "text": "Corporate and academic partnerships, international cooperation.",
+          "links": {
+            "corporate": "Partners & Cooperation"
+          }
+        },
+        "documents": {
+          "title": "Documents",
+          "text": "Charter, licenses, reports, and regulatory documents.",
+          "links": {
+            "charter": "Charter",
+            "licenses": "Licenses",
+            "reports": "Reports"
+          }
+        }
+      },
+      "ctaTitle": "Ready to become part of our university?",
+      "ctaText": "Apply for admission or get a free consultation from the admissions office.",
+      "ctaApply": "Apply Now",
+      "ctaConsult": "Get Consultation"
+    },
     "about": {
       "pageTitle": "About — Zhezkazgan University",
       "pageDescription": "About O.A. Baikonurov Zhezkazgan University — history, mission, departments",
