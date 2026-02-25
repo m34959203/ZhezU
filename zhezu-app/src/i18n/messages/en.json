@@ -205,6 +205,504 @@
       "email": "Email",
       "address": "Address",
       "schedule": "Working Hours"
+    },
+    "bachelor": {
+      "pageTitle": "Bachelor's Programs — Zhezkazgan University",
+      "pageDescription": "Bachelor's degree programs at Zhezkazgan University — 21 specializations across 5 departments",
+      "badge": "Bachelor's",
+      "title": "Bachelor's Programs",
+      "subtitle": "21 bachelor's programs across 5 university departments. Duration — 4 years, 240 credits.",
+      "programsCount": "programs",
+      "duration": "4 years of study",
+      "credits": "credits",
+      "requirementsTitle": "Admission Requirements",
+      "entTitle": "UNT (Unified National Testing)",
+      "entText": "Applicants take 3 mandatory and 2 profile subjects. Maximum score — 140.",
+      "entPedagogy": "Pedagogical programs",
+      "entTechnical": "Technical programs",
+      "entMax": "Maximum score",
+      "docsTitle": "Required Documents",
+      "doc1": "Secondary school certificate with transcript (original)",
+      "doc2": "UNT certificate",
+      "doc3": "Medical certificate (form 075-U)",
+      "doc4": "ID copy — 3 copies",
+      "doc5": "Photos 3×4 — 6 pieces",
+      "programsTitle": "Programs by Department",
+      "programsSubtitle": "Choose a program that matches your interests and career goals",
+      "years": "years",
+      "statPrograms": "Bachelor's programs",
+      "statDepartments": "Departments",
+      "statEmployment": "Employment rate",
+      "statStudents": "Students",
+      "ctaDocs": "Required Documents",
+      "ctaApply": "Apply Now"
+    },
+    "master": {
+      "pageTitle": "Master's Programs — Zhezkazgan University",
+      "pageDescription": "Master's degree programs at Zhezkazgan University — 3 scientific-pedagogical programs",
+      "badge": "Master's",
+      "title": "Master's Programs",
+      "subtitle": "3 master's programs in the scientific-pedagogical direction. Duration — 2 years, 120 credits.",
+      "programsCount": "programs",
+      "duration": "2 years of study",
+      "credits": "credits",
+      "examTitle": "Entrance Exam",
+      "ktTitle": "Comprehensive Testing (CT)",
+      "ktSubtitle": "Scientific-pedagogical master's",
+      "ktTotal": "Maximum score",
+      "ktMin": "Threshold score",
+      "ktForeign": "Foreign language (minimum)",
+      "ktProfile": "Profile disciplines (minimum each)",
+      "programsTitle": "Master's Programs",
+      "programsSubtitle": "Zhezkazgan University offers 3 master's programs",
+      "yearsShort": "yr",
+      "docsTitle": "Required Documents",
+      "doc1": "Higher education diploma with transcript (original)",
+      "doc2": "CT certificate or international language certificate",
+      "doc3": "ID copy",
+      "doc4": "Medical certificate (form 075-U)",
+      "doc5": "Photos 3×4 — 6 pieces",
+      "ctaExams": "Entrance Exams",
+      "ctaApply": "Apply Now"
+    },
+    "doctorate": {
+      "pageTitle": "Doctorate — Zhezkazgan University",
+      "pageDescription": "Information about PhD admission in Kazakhstan",
+      "badge": "Doctorate PhD",
+      "title": "Doctorate (PhD)",
+      "subtitle": "Doctoral programs in Kazakhstan universities. Duration — 3 years. Requires a master's degree and at least 9 months of work experience.",
+      "duration": "3 years of study",
+      "experience": "9+ months experience",
+      "requirementsTitle": "Admission Requirements",
+      "basicReqs": "Basic Requirements",
+      "req1": "Master's degree (notarized copy of diploma)",
+      "req2": "At least 9 months of work experience",
+      "req3": "KAZTEST certificate (for citizens of Kazakhstan)",
+      "req4": "International foreign language certificate (B1 level or above)",
+      "langTitle": "Foreign Language Requirements",
+      "langText": "International certificate at B1 level or above is required:",
+      "examTitle": "Entrance Exam Structure",
+      "examSubtitle": "Total score — 100, minimum passing — 75",
+      "exam": { "interview": "Interview", "profile": "Profile exam", "essay": "Essay" },
+      "examTotal": "Total",
+      "examMin": "Minimum passing score",
+      "docsTitle": "Required Documents",
+      "doc1": "Identity document",
+      "doc2": "KAZTEST certificate",
+      "doc3": "International language certificate (IELTS/TOEFL etc.)",
+      "doc4": "Employment verification document (9+ months experience)",
+      "doc5": "Notarized copy of master's diploma with transcript",
+      "doc6": "List of scientific publications (last 3 years)",
+      "doc7": "Research plan (research proposal)",
+      "doc8": "Photos 3×4 — 6 pieces",
+      "note": "Currently, Zhezkazgan University does not offer doctoral programs. ZhezU master's graduates can pursue doctoral studies at partner universities — KarU (Karaganda), KazNU (Almaty), ENU (Astana). Information on this page reflects general PhD admission rules in Kazakhstan.",
+      "ctaScholarships": "Scholarships & Grants",
+      "ctaContact": "Contact Us"
+    },
+    "documents": {
+      "pageTitle": "Required Documents — Zhezkazgan University",
+      "pageDescription": "List of documents required for admission to Zhezkazgan University",
+      "badge": "Documents",
+      "title": "Required Documents",
+      "subtitle": "Complete list of documents for admission at all education levels",
+      "bachelor": {
+        "title": "Bachelor's",
+        "b1": "Secondary school certificate with transcript (original) or college/university diploma",
+        "b2": "UNT (Unified National Testing) certificate",
+        "b3": "Medical certificate form No. 075-U",
+        "b4": "ID copy — 3 copies",
+        "b5": "Photos 3×4 cm — 6 pieces"
+      },
+      "master": {
+        "title": "Master's",
+        "m1": "Higher education diploma with transcript (original)",
+        "m2": "Comprehensive Testing (CT) certificate",
+        "m3": "International language certificate (if available — exempts from CT language section)",
+        "m4": "ID copy",
+        "m5": "Medical certificate form 075-U"
+      },
+      "doctorate": {
+        "title": "Doctorate (PhD)",
+        "d1": "Identity document",
+        "d2": "KAZTEST certificate (state language)",
+        "d3": "International language certificate (IELTS, TOEFL, etc.)",
+        "d4": "Employment verification document (9+ months experience)",
+        "d5": "Notarized copy of master's diploma with transcript",
+        "d6": "List of scientific publications (last 3 years)",
+        "d7": "Research plan (research proposal)",
+        "d8": "Photos 3×4 cm — 6 pieces"
+      },
+      "noticeTitle": "Important Information",
+      "noticeText": "All documents in a foreign language must be translated into the state or Russian language and notarized. The admissions committee may request additional documents. For clarification, call: +7 (7102) 41-04-61.",
+      "ctaDeadlines": "Deadlines",
+      "ctaApply": "Apply Now"
+    },
+    "exams": {
+      "pageTitle": "Entrance Exams — Zhezkazgan University",
+      "pageDescription": "UNT, CT and entrance exams for admission to Zhezkazgan University",
+      "badge": "Exams",
+      "title": "Entrance Exams",
+      "subtitle": "Information about the format, structure and passing scores for entrance exams at all education levels",
+      "entTitle": "UNT — Unified National Testing",
+      "entDesc": "UNT is the main entrance exam for bachelor's programs in Kazakhstan universities. It consists of 3 mandatory and 2 profile subjects. Maximum score — 140.",
+      "tableSubject": "Subject",
+      "tableQuestions": "Questions",
+      "tablePoints": "Points",
+      "tableMin": "Threshold",
+      "ent": {
+        "history": "History of Kazakhstan",
+        "mathLit": "Mathematical literacy",
+        "readLit": "Reading literacy",
+        "profile1": "Profile subject 1",
+        "profile2": "Profile subject 2"
+      },
+      "entTotal": "Total",
+      "passingPedagogy": "Pedagogical programs",
+      "passingPedagogyNote": "Minimum UNT score for grant competition in pedagogical specializations",
+      "passingTechnical": "Technical programs",
+      "passingTechnicalNote": "Minimum UNT score for grant competition in technical specializations",
+      "ktTitle": "CT — Comprehensive Testing (Master's)",
+      "ktDesc": "Comprehensive testing for scientific-pedagogical master's programs. Includes foreign language, profile disciplines and learning readiness test.",
+      "ktTotal": "Maximum score",
+      "ktMin": "Threshold score",
+      "ktForeign": "Foreign language (minimum)",
+      "ktProfile": "Profile disciplines (minimum each)",
+      "phdTitle": "Doctoral Entrance Exam",
+      "phdDesc": "The PhD entrance exam consists of an interview, profile exam and essay writing. Maximum score — 100, minimum passing — 75.",
+      "phdInterview": "Interview",
+      "phdProfile": "Profile exam",
+      "phdEssay": "Essay",
+      "phdTotal": "Total",
+      "phdMin": "minimum",
+      "ctaDocs": "Required Documents",
+      "ctaDeadlines": "Deadlines"
+    },
+    "deadlines": {
+      "pageTitle": "Deadlines — Zhezkazgan University",
+      "pageDescription": "Admission campaign calendar for Zhezkazgan University 2025-2026",
+      "badge": "Deadlines",
+      "title": "Application Deadlines",
+      "subtitle": "Admission campaign calendar for the 2025-2026 academic year. Don't miss important dates!",
+      "bachelorTitle": "Bachelor's",
+      "dates": {
+        "entReg": "April 1 — June 30",
+        "entExam": "May 16 — July 5",
+        "docsSubmit": "June 20 — August 25",
+        "grantCompRepublic": "July 13 — July 20",
+        "grantCompLocal": "August 5 — August 10",
+        "enrollment": "August 25",
+        "masterDocs": "July 1 — August 20",
+        "masterExam": "July 20 — August 10",
+        "masterEnroll": "August 28",
+        "phdDocs1": "July 3 — August 3",
+        "phdExam1": "August 4 — August 20",
+        "phdDocs2": "October 28 — November 10",
+        "phdExam2": "November 19 — December 11"
+      },
+      "bachelor": {
+        "entReg": "UNT Registration",
+        "entExam": "UNT Examination (summer session)",
+        "docsSubmit": "Document submission at ZhezU",
+        "grantCompRepublic": "Republican grant competition",
+        "grantCompLocal": "Local budget grant competition",
+        "enrollment": "Enrollment"
+      },
+      "masterTitle": "Master's",
+      "master": {
+        "masterDocs": "Document submission",
+        "masterExam": "Comprehensive Testing (CT)",
+        "masterEnroll": "Enrollment"
+      },
+      "phdTitle": "Doctorate (PhD)",
+      "phd": {
+        "phdDocs1": "Document submission (1st intake)",
+        "phdExam1": "Entrance exams (1st intake)",
+        "phdDocs2": "Document submission (2nd intake)",
+        "phdExam2": "Entrance exams (2nd intake)"
+      },
+      "note": "Dates are approximate for the 2025-2026 academic year. Exact dates may be adjusted by the Ministry of Education. Follow updates on the university website and testcenter.kz.",
+      "ctaDocs": "Required Documents",
+      "ctaApply": "Apply Now"
+    },
+    "apply": {
+      "pageTitle": "Apply — Zhezkazgan University",
+      "pageDescription": "Apply for admission to Zhezkazgan University online or at the admissions office",
+      "badge": "Apply",
+      "title": "Apply for Admission",
+      "subtitle": "You can apply online or in person at the university admissions office",
+      "stepsTitle": "Application Process",
+      "stepLabel": "Step",
+      "step1": {
+        "title": "Prepare Documents",
+        "text": "Gather required documents: certificate, UNT results, medical certificate and photos."
+      },
+      "step2": {
+        "title": "Fill Application",
+        "text": "Complete the applicant questionnaire with your chosen program and study form."
+      },
+      "step3": {
+        "title": "Submit Documents",
+        "text": "Submit your application and documents online or in person at the admissions office."
+      },
+      "step4": {
+        "title": "Get Results",
+        "text": "Wait for the admissions committee decision. Results are published on the website."
+      },
+      "methodsTitle": "Submission Methods",
+      "onlineTitle": "Online Application",
+      "onlineText": "Apply through the egov.kz e-government portal or through the Zhezkazgan University website.",
+      "online1": "24/7 document submission",
+      "online2": "Real-time status tracking",
+      "online3": "Electronic document copies",
+      "offlineTitle": "Admissions Office",
+      "offlineText": "Apply in person by visiting the Zhezkazgan University admissions office. Our specialists will help you with the process.",
+      "ctaStatus": "Application Status",
+      "ctaConsultation": "Consultation"
+    },
+    "status": {
+      "pageTitle": "Application Status — Zhezkazgan University",
+      "pageDescription": "Check your application status at Zhezkazgan University",
+      "badge": "Status",
+      "title": "Application Status",
+      "subtitle": "Check the current status of your admission application",
+      "checkTitle": "How to check status?",
+      "checkText": "Contact the admissions office by phone, WhatsApp or email, providing your full name and chosen program.",
+      "byPhone": "By phone",
+      "byMobile": "WhatsApp / Mobile",
+      "byEmail": "By email",
+      "statusesTitle": "Possible Statuses",
+      "statuses": {
+        "received": {
+          "title": "Application Received",
+          "text": "Your documents have been received and registered by the admissions committee."
+        },
+        "review": {
+          "title": "Under Review",
+          "text": "Your application is being reviewed. Processing takes up to 5 business days."
+        },
+        "accepted": {
+          "title": "Accepted",
+          "text": "Congratulations! You have been admitted to Zhezkazgan University. Expect the enrollment order."
+        },
+        "rejected": {
+          "title": "Rejected",
+          "text": "Unfortunately, your application did not pass the competitive selection. Contact admissions for details."
+        }
+      },
+      "ctaApply": "Apply",
+      "ctaContact": "Contact"
+    },
+    "consultation": {
+      "pageTitle": "Consultation — Zhezkazgan University",
+      "pageDescription": "Get admission consultation at Zhezkazgan University",
+      "badge": "Consultation",
+      "title": "Admissions Consultation",
+      "subtitle": "Our specialists will help you choose a program, prepare documents and answer all questions about admission",
+      "contactTitle": "Contact Us",
+      "contact": {
+        "phone": "Admissions Phone",
+        "mobile": "Mobile / WhatsApp",
+        "email": "Email",
+        "whatsapp": "WhatsApp"
+      },
+      "servicesTitle": "Consultation Services",
+      "servicesSubtitle": "The Zhezkazgan University admissions office provides the following consultation services",
+      "services": {
+        "service1": {
+          "title": "Program Selection",
+          "text": "We'll help you choose a study program that matches your interests and career goals."
+        },
+        "service2": {
+          "title": "Document Preparation",
+          "text": "We'll check your document completeness and advise on any missing items."
+        },
+        "service3": {
+          "title": "Grant Information",
+          "text": "Learn about government grants, scholarships and tuition financing options."
+        },
+        "service4": {
+          "title": "UNT Preparation",
+          "text": "Information about UNT format, profile subjects and preparation tips."
+        },
+        "service5": {
+          "title": "Housing Questions",
+          "text": "Consultation on dormitories, living conditions and costs."
+        }
+      },
+      "officeTitle": "Admissions Office",
+      "officeHours": "Mon — Fri: 9:00 AM — 6:00 PM, Sat: 9:00 AM — 1:00 PM",
+      "ctaApply": "Apply Now",
+      "ctaFaq": "FAQ"
+    },
+    "scholarships": {
+      "pageTitle": "Government Grants — Zhezkazgan University",
+      "pageDescription": "Government educational grants for admission to Kazakhstan universities",
+      "badge": "Grants",
+      "title": "Government Educational Grants",
+      "subtitle": "The state educational order covers tuition costs. Grants are awarded competitively based on UNT results.",
+      "howTitle": "How Grants Work",
+      "howText": "The government annually allocates educational grants based on labor market demand forecasts.",
+      "how1": {
+        "title": "Competitive Basis",
+        "text": "Grants are awarded based on UNT scores — the higher your score, the better your chances."
+      },
+      "how2": { "title": "Rural Quotas", "text": "35% of grants are reserved for rural youth." },
+      "how3": {
+        "title": "Coverage",
+        "text": "Grants cover tuition up to 1 million tenge/year. Students receive a monthly stipend."
+      },
+      "fieldsTitle": "Grant Distribution by Field",
+      "fieldsSubtitle": "Bachelor's, 2025-2026 academic year — over 71,000 grants",
+      "fields": {
+        "engineering": "Engineering, manufacturing, construction",
+        "pedagogy": "Pedagogical sciences",
+        "ict": "ICT (information technology)",
+        "science": "Natural sciences, mathematics, statistics",
+        "agriculture": "Agriculture and bioresources",
+        "social": "Social sciences, journalism",
+        "business": "Business, management, law"
+      },
+      "scoresTitle": "Minimum UNT Scores for Grant Competition",
+      "scores": {
+        "national": "National universities",
+        "other": "Other universities (incl. ZhezU)",
+        "pedagogy": "Pedagogical sciences",
+        "medicine": "Medicine",
+        "agriculture": "Agriculture"
+      },
+      "quotaTitle": "Quotas and Special Conditions",
+      "quota1": "65% of grants — general competition, 35% — for rural youth",
+      "quota2": "2,010 additional grants for those who completed military service",
+      "quota3": "With equal UNT scores, priority goes to applicants with higher school certificate GPA",
+      "ctaUniversity": "University Scholarships",
+      "ctaApply": "Apply Now"
+    },
+    "uniScholarships": {
+      "pageTitle": "Scholarships — Zhezkazgan University",
+      "pageDescription": "Scholarships and financial support for Zhezkazgan University students",
+      "badge": "Scholarships",
+      "title": "University Scholarships",
+      "subtitle": "Grant-funded students who pass exams with 'good' and 'excellent' grades receive a monthly stipend",
+      "conditions": "Conditions",
+      "state": {
+        "title": "State Stipend",
+        "amount": "52,372 ₸/month",
+        "text": "Basic monthly stipend for bachelor's students on government grants.",
+        "conditions": "Grant-funded, full-time, 'good' and 'excellent' grades in all exams"
+      },
+      "presidential": {
+        "title": "Presidential Stipend",
+        "amount": "104,744 ₸/month",
+        "text": "Awarded to students from 3rd year bachelor's and 2nd year master's for outstanding achievements.",
+        "conditions": "All 'excellent' grades throughout entire study period, participation in olympiads, conferences, sports"
+      },
+      "increased": {
+        "title": "Enhanced Stipend (+15%)",
+        "amount": "60,228 ₸/month",
+        "text": "15% bonus to the base stipend for passing all exams with 'excellent' grades.",
+        "conditions": "All 'excellent' grades in the last session"
+      },
+      "bolashak": {
+        "title": "Bolashak Scholarship",
+        "amount": "Full funding",
+        "text": "Presidential program for studying and internships abroad at top world universities.",
+        "conditions": "Priority fields: innovations, technology, natural sciences, medicine, education"
+      },
+      "specialTitle": "Additional Allowances",
+      "special1": {
+        "title": "Pedagogy & Medicine",
+        "amount": "84,000 ₸/month",
+        "text": "Enhanced stipend for students in pedagogical and medical programs"
+      },
+      "special2": {
+        "title": "Students with Disabilities",
+        "amount": "+75% to stipend",
+        "text": "Additional allowance for students with vision or hearing impairments"
+      },
+      "special3": {
+        "title": "Orphan Students",
+        "amount": "+30% to stipend",
+        "text": "Additional allowance for orphans and students without parental care"
+      },
+      "ctaGrants": "Government Grants",
+      "ctaApply": "Apply Now"
+    },
+    "faqPage": {
+      "pageTitle": "FAQ — Zhezkazgan University",
+      "pageDescription": "Frequently asked questions about admission to Zhezkazgan University",
+      "badge": "FAQ",
+      "title": "Frequently Asked Questions",
+      "subtitle": "Answers to the most popular questions about admission, documents and studying",
+      "generalTitle": "General Questions",
+      "general": {
+        "q1": "What programs does ZhezU offer?",
+        "a1": "Zhezkazgan University offers 21 bachelor's and 3 master's programs across 5 departments: pedagogy and philology, mining and metallurgy, history and economics, electrical engineering, technological machines and construction.",
+        "q2": "What is the minimum UNT score for admission?",
+        "a2": "The minimum score depends on the field: 75 points for pedagogical and 50 points for technical programs. A minimum of 50 points is required for the government grant competition.",
+        "q3": "Can I apply without UNT?",
+        "a3": "For paid tuition, you can apply with UNT results from any of 5 sessions per year (May-July, January, March, August). Admission to bachelor's programs without UNT is not possible.",
+        "q4": "Is dormitory available?",
+        "a4": "Yes, Zhezkazgan University provides dormitory accommodation for out-of-town students. Places are limited, with priority given to grant-funded and socially vulnerable students.",
+        "q5": "How much is tuition?",
+        "a5": "Tuition is approximately 500,000-800,000 tenge per year depending on the program. Contact the admissions office for exact figures.",
+        "q6": "What study forms are available?",
+        "a6": "The university offers full-time study. Accelerated programs with reduced duration are available for those with higher education or college diplomas.",
+        "q7": "How to get a government grant?",
+        "a7": "Government grants are awarded competitively based on UNT scores. Higher scores mean better chances. 35% of grants are reserved for rural youth.",
+        "q8": "Is there a military department?",
+        "a8": "For current information about the military department, please contact the admissions office at +7 (7102) 41-04-61."
+      },
+      "docsTitle": "Document Questions",
+      "docs": {
+        "q1": "What documents are needed for admission?",
+        "a1": "For bachelor's: school certificate (original), UNT certificate, medical certificate 075-U, ID copy (3 copies), photos 3×4 (6 pieces).",
+        "q2": "Are documents accepted in Kazakh?",
+        "a2": "Yes, documents are accepted in Kazakh and Russian. Documents in other languages require notarized translation.",
+        "q3": "Is notarization required?",
+        "a3": "For bachelor's, notarization is not required — originals are sufficient. For master's and doctoral programs, notarized copies of diplomas are required.",
+        "q4": "Can I submit documents online?",
+        "a4": "Yes, documents can be submitted through the egov.kz portal or the university website. In-person submission at the admissions office is also accepted."
+      },
+      "financialTitle": "Financial Questions",
+      "financial": {
+        "q1": "What is the student stipend?",
+        "a1": "Bachelor's students on grants receive 52,372 tenge/month, pedagogical specializations — 84,000 tenge/month. A +15% bonus for excellent grades.",
+        "q2": "Can I transfer from paid to grant?",
+        "a2": "Yes, transfer from paid to grant-funded is possible with available grant spots and excellent academic performance (GPA 3.0 or above).",
+        "q3": "Are there tuition discounts?",
+        "a3": "The university may provide discounts for large families and socially vulnerable categories. Check conditions with the admissions office.",
+        "q4": "Can I pay tuition in installments?",
+        "a4": "Yes, tuition can be paid by semester. Educational loans through partner banks are also available."
+      },
+      "moreTitle": "Didn't find your answer?",
+      "moreText": "Contact the admissions office — we'll answer all your questions.",
+      "ctaContact": "Contact",
+      "ctaConsultation": "Consultation"
+    },
+    "contactPage": {
+      "pageTitle": "Admissions Office — Zhezkazgan University",
+      "pageDescription": "Contact the Zhezkazgan University admissions office",
+      "badge": "Contacts",
+      "title": "Admissions Office",
+      "subtitle": "Contact the Zhezkazgan University admissions office for any admission questions",
+      "phoneTitle": "Phone",
+      "phoneSubtitle": "Call during working hours",
+      "admissions": "Admissions Office",
+      "mobileLabel": "Mobile / WhatsApp",
+      "mainLabel": "Main Phone",
+      "emailTitle": "Email",
+      "emailSubtitle": "We'll respond within 24 hours",
+      "addressTitle": "Address",
+      "addressSubtitle": "Visit us",
+      "hoursTitle": "Working Hours",
+      "hoursSubtitle": "Admissions Office",
+      "weekdays": "Mon — Fri: 9:00 AM — 6:00 PM",
+      "saturday": "Sat: 9:00 AM — 1:00 PM",
+      "sunday": "Sun: Closed",
+      "socialTitle": "Social Media",
+      "socialText": "Follow us on social media to stay updated on news and announcements",
+      "ctaFaq": "FAQ",
+      "ctaApply": "Apply Now"
     }
   },
   "academics": {
