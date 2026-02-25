@@ -198,15 +198,17 @@ export function Header() {
                       onMouseEnter={() => handleMenuEnter(item.id)}
                       onMouseLeave={handleMenuLeave}
                     >
-                      <Link
-                        href={item.href}
-                        prefetch={false}
+                      <button
+                        type="button"
+                        onClick={() => setActiveMenu((prev) => (prev === item.id ? null : item.id))}
                         className={cn(
-                          'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                          'flex cursor-pointer items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                           isActive
                             ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
                             : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
                         )}
+                        aria-expanded={isActive}
+                        aria-haspopup="true"
                       >
                         {t(item.labelKey + '.title')}
                         <ChevronDown
@@ -216,7 +218,7 @@ export function Header() {
                             isActive && 'rotate-180',
                           )}
                         />
-                      </Link>
+                      </button>
                     </div>
                   );
                 })}
