@@ -735,7 +735,365 @@
     "of": "of",
     "ctaTitle": "Start your journey at ZhezU",
     "ctaDesc": "Apply for admission and become part of the university community",
-    "ctaButton": "Apply Now"
+    "ctaButton": "Apply Now",
+    "bachelor": {
+      "pageTitle": "Bachelor Programs — Zhezkazgan University",
+      "pageDescription": "21 bachelor programs at ZhezU",
+      "badge": "Bachelor",
+      "title": "Bachelor Programs",
+      "subtitle": "21 programs across 5 departments — from pedagogy to mining and metallurgy",
+      "years": "years",
+      "lang": {
+        "kk": "Kazakh",
+        "ru": "Russian",
+        "en": "English"
+      },
+      "ctaApply": "Apply Now",
+      "ctaMaster": "Master Programs"
+    },
+    "curriculum": {
+      "pageTitle": "Curriculum — Zhezkazgan University",
+      "pageDescription": "Bachelor curriculum structure at ZhezU",
+      "badge": "Curriculum",
+      "title": "Curriculum Structure",
+      "subtitle": "Bachelor — 240 credits over 4 years using credit technology",
+      "structureTitle": "Discipline Cycles",
+      "cycles": {
+        "general": {
+          "title": "General Education (GED)",
+          "credits": "56 credits",
+          "text": "Philosophy, History of Kazakhstan, foreign languages, computer science, ecology"
+        },
+        "base": {
+          "title": "Core Disciplines (CD)",
+          "credits": "72 credits",
+          "text": "Core professional courses, compulsory and elective components"
+        },
+        "major": {
+          "title": "Major Disciplines (MD)",
+          "credits": "80 credits",
+          "text": "Advanced professional courses, coursework, specialization"
+        },
+        "practice": {
+          "title": "Internship",
+          "credits": "24 credits",
+          "text": "Educational, industrial, and pre-diploma internships at enterprises"
+        },
+        "final": {
+          "title": "Final Assessment",
+          "credits": "8 credits",
+          "text": "State examination and thesis/diploma project defense"
+        }
+      },
+      "featuresTitle": "Features",
+      "feat1": "Credit-based education system following the Bologna Process",
+      "feat2": "Elective discipline choice (up to 40% of curriculum)",
+      "feat3": "Industrial internships at leading regional enterprises",
+      "feat4": "Bilingual education (Kazakh/Russian)",
+      "ctaPrograms": "All Programs",
+      "ctaApply": "Apply Now"
+    },
+    "master": {
+      "pageTitle": "Master Programs — Zhezkazgan University",
+      "pageDescription": "3 scientific-pedagogical master programs at ZhezU",
+      "badge": "Master",
+      "title": "Master Programs",
+      "subtitle": "3 scientific-pedagogical master programs in mining-geological and pedagogical fields",
+      "years": "years",
+      "scientific": "Scientific-Pedagogical",
+      "programs": {
+        "mining": {
+          "title": "Mining Engineering",
+          "text": "Research on underground and open-pit mining technologies of the Zhezkazgan region"
+        },
+        "geology": {
+          "title": "Geology and Mineral Exploration",
+          "text": "Geological mapping, forecasting and assessment of mineral resources"
+        },
+        "pedagogy": {
+          "title": "Pedagogy and Psychology",
+          "text": "Innovative teaching methods, educational management and learning psychology"
+        }
+      },
+      "requirementsTitle": "Admission Requirements",
+      "requirements": {
+        "req1": {
+          "label": "Comprehensive Testing (CT)",
+          "value": "150 max score"
+        },
+        "req2": {
+          "label": "Passing threshold",
+          "value": "75 points"
+        },
+        "req3": {
+          "label": "Foreign language",
+          "value": "Certificate required"
+        },
+        "req4": {
+          "label": "Duration",
+          "value": "2 years"
+        }
+      },
+      "ctaAdmission": "Apply for Master's",
+      "ctaResearch": "Research Programs"
+    },
+    "masterResearch": {
+      "pageTitle": "Master Research — Zhezkazgan University",
+      "pageDescription": "Master's research directions at ZhezU",
+      "badge": "Research",
+      "title": "Master's Research Programs",
+      "subtitle": "Research supervised by the university's leading scientists",
+      "directionsTitle": "Research Directions",
+      "directions": {
+        "mining": {
+          "title": "Mining Engineering",
+          "text": "Development of new ore mining and processing technologies for Zhezkazgan deposits"
+        },
+        "geology": {
+          "title": "Geology",
+          "text": "Geochemical study of Central Kazakhstan mineral resources"
+        },
+        "pedagogy": {
+          "title": "Pedagogy",
+          "text": "Higher education teaching methodology, digital technologies in education"
+        }
+      },
+      "thesisTitle": "Master's Thesis",
+      "thesis": {
+        "format": "Thesis Format",
+        "formatText": "Research dissertation of at least 70 pages with mandatory publication of results",
+        "defense": "Thesis Defense",
+        "defenseText": "Public defense before the state attestation commission, minimum 1 publication required"
+      },
+      "ctaPrograms": "Master Programs",
+      "ctaResearch": "Research at ZhezU"
+    },
+    "departments": {
+      "pageTitle": "Departments — Zhezkazgan University",
+      "pageDescription": "5 departments of ZhezU",
+      "badge": "Departments",
+      "title": "University Departments",
+      "subtitle": "5 departments combining pedagogical, engineering, and economic fields",
+      "head": "Head",
+      "programs": "programs",
+      "ctaPrograms": "All Programs",
+      "ctaFaculty": "Faculty"
+    },
+    "faculty": {
+      "pageTitle": "Faculty — Zhezkazgan University",
+      "pageDescription": "Faculty and researchers at ZhezU",
+      "badge": "Faculty",
+      "title": "Faculty & Staff",
+      "subtitle": "108 faculty members — Doctors of Science, Candidates of Science, PhDs and Masters",
+      "stats": {
+        "total": "Total Faculty",
+        "doctors": "Doctors of Science",
+        "candidates": "Candidates of Science",
+        "phd": "PhD"
+      },
+      "qualTitle": "Qualifications & Development",
+      "quals": {
+        "qual1": {
+          "title": "Professional Development",
+          "text": "Regular faculty training at leading universities in Kazakhstan and abroad"
+        },
+        "qual2": {
+          "title": "International Mobility",
+          "text": "Erasmus+, Mevlana, Fulbright programs for academic exchange"
+        },
+        "qual3": {
+          "title": "Research Activity",
+          "text": "Publications in Web of Science, Scopus, RSCI journals"
+        },
+        "qual4": {
+          "title": "Industry Experience",
+          "text": "Many faculty have practical experience in the mining industry"
+        }
+      },
+      "ctaDepts": "Departments",
+      "ctaCareer": "Careers"
+    },
+    "schedule": {
+      "pageTitle": "Class Schedule — Zhezkazgan University",
+      "pageDescription": "Class schedule and academic semesters at ZhezU",
+      "badge": "Schedule",
+      "title": "Class Schedule",
+      "subtitle": "Academic process organized by semester with credit-based technology",
+      "semesters": {
+        "fall": {
+          "title": "Fall Semester",
+          "dates": "September 1 — December 25",
+          "weeks": "15 academic weeks + exam session"
+        },
+        "spring": {
+          "title": "Spring Semester",
+          "dates": "January 25 — May 25",
+          "weeks": "15 academic weeks + exam session"
+        }
+      },
+      "classesTitle": "Bell Schedule",
+      "slots": {
+        "slot1": {
+          "num": "Period 1",
+          "time": "8:00 — 9:30"
+        },
+        "slot2": {
+          "num": "Period 2",
+          "time": "9:40 — 11:10"
+        },
+        "slot3": {
+          "num": "Period 3",
+          "time": "11:20 — 12:50"
+        },
+        "slot4": {
+          "num": "Period 4",
+          "time": "14:00 — 15:30"
+        },
+        "slot5": {
+          "num": "Period 5",
+          "time": "15:40 — 17:10"
+        },
+        "slot6": {
+          "num": "Period 6",
+          "time": "17:20 — 18:50"
+        }
+      },
+      "ctaExams": "Exam Schedule",
+      "ctaCalendar": "Academic Calendar"
+    },
+    "exams": {
+      "pageTitle": "Exam Schedule — Zhezkazgan University",
+      "pageDescription": "Examination sessions schedule at ZhezU",
+      "badge": "Exams",
+      "title": "Exam Schedule",
+      "subtitle": "Midterm and final assessment for students by semester",
+      "periods": {
+        "midterm1": {
+          "title": "Midterm 1",
+          "dates": "Week 7 of semester",
+          "text": "Written tests, quizzes, lab and practical work defense"
+        },
+        "midterm2": {
+          "title": "Midterm 2",
+          "dates": "Week 14 of semester",
+          "text": "Colloquia, essays, tests on covered material"
+        },
+        "final": {
+          "title": "Final Exam",
+          "dates": "Weeks 16-18 of semester",
+          "text": "Combined exam: testing and/or oral/written examination"
+        }
+      },
+      "gradingTitle": "Grading System",
+      "grading1": "Midterm 1 — up to 30 points",
+      "grading2": "Midterm 2 — up to 30 points",
+      "grading3": "Final exam — up to 40 points. Total 100, passing — 50",
+      "ctaSchedule": "Class Schedule"
+    },
+    "calendar": {
+      "pageTitle": "Academic Calendar — Zhezkazgan University",
+      "pageDescription": "Academic calendar 2025-2026 at ZhezU",
+      "badge": "Calendar",
+      "title": "Academic Calendar",
+      "subtitle": "Key dates for the 2025-2026 academic year",
+      "yearTitle": "2025-2026 Academic Year",
+      "events": {
+        "start": {
+          "date": "September 1",
+          "title": "Academic Year Begins",
+          "text": "Knowledge Day ceremony, fall semester begins"
+        },
+        "midterm1": {
+          "date": "October",
+          "title": "Midterm 1",
+          "text": "First interim assessment for all disciplines"
+        },
+        "winter": {
+          "date": "Dec 25 — Jan 24",
+          "title": "Winter Exams & Break",
+          "text": "Fall semester final exams, winter break"
+        },
+        "spring": {
+          "date": "January 25",
+          "title": "Spring Semester Begins",
+          "text": "Academic process resumes"
+        },
+        "midterm2": {
+          "date": "April",
+          "title": "Midterm 2",
+          "text": "Second interim assessment"
+        },
+        "finals": {
+          "date": "May 25 — June 20",
+          "title": "Summer Exam Session",
+          "text": "Final exams, coursework defense"
+        },
+        "graduation": {
+          "date": "June",
+          "title": "Graduation",
+          "text": "Thesis defense, state exams, diploma ceremony"
+        }
+      },
+      "ctaSchedule": "Class Schedule",
+      "ctaExams": "Exam Schedule"
+    },
+    "library": {
+      "pageTitle": "Library — Zhezkazgan University",
+      "pageDescription": "Scientific library of Zhezkazgan University",
+      "badge": "Library",
+      "title": "Scientific Library",
+      "subtitle": "The university library provides access to scientific literature, electronic resources and databases",
+      "services": {
+        "reading": {
+          "title": "Reading Halls",
+          "text": "Comfortable halls for independent work equipped with computers"
+        },
+        "multimedia": {
+          "title": "Multimedia Hall",
+          "text": "Room 113 — computers with access to electronic resources"
+        },
+        "internet": {
+          "title": "Internet Zone",
+          "text": "Free Wi-Fi for students and faculty in reading halls"
+        },
+        "copies": {
+          "title": "Copying & Printing",
+          "text": "University printing house services for copying and printing materials"
+        }
+      },
+      "infoTitle": "Information",
+      "hours": "Mon-Fri: 9:00 — 18:00, Sat: 9:00 — 14:00",
+      "location": "Main building, 1st floor",
+      "wifi": "Free Wi-Fi in all reading halls",
+      "ctaDigital": "Digital Resources"
+    },
+    "digitalLibrary": {
+      "pageTitle": "Digital Library — Zhezkazgan University",
+      "pageDescription": "Electronic resources and databases of ZhezU library",
+      "badge": "Digital Resources",
+      "title": "Digital Library",
+      "subtitle": "Access to international scientific databases and electronic catalogs",
+      "resourcesTitle": "Available Resources",
+      "resources": {
+        "scopus": {
+          "title": "Scopus",
+          "text": "Largest database of scientific publications — journal articles, conferences, patents"
+        },
+        "webOfScience": {
+          "title": "Web of Science",
+          "text": "International citation database of scientific publications"
+        },
+        "elibrary": {
+          "title": "eLibrary.ru / RSCI",
+          "text": "Russian Science Citation Index — access to full-text articles"
+        },
+        "kazpatent": {
+          "title": "Kazpatent",
+          "text": "Patent database of Republic of Kazakhstan — inventions, utility models, industrial designs"
+        }
+      },
+      "ctaLibrary": "Library"
+    }
   },
   "career": {
     "title": "Career Center",
@@ -1900,6 +2258,273 @@
       "title": "Join Our Team",
       "description": "We are looking for talented students and researchers to work on AI projects.",
       "button": "Contact Us"
+    },
+    "projectsPage": {
+      "pageTitle": "AI Center Projects — Zhezkazgan University",
+      "pageDescription": "Current AI Center projects at Zhezkazgan University",
+      "badge": "Projects",
+      "title": "AI Center Projects",
+      "subtitle": "Innovative AI developments for education, industry and campus management",
+      "statuses": { "active": "Active", "dev": "In Development" },
+      "projects": {
+        "talapker": {
+          "title": "Talapker Guide",
+          "text": "AI assistant for applicants — program selection, document preparation, admission deadlines and stages.",
+          "tag1": "NLP",
+          "tag2": "Chatbot"
+        },
+        "talentPool": {
+          "title": "Talent Pool",
+          "text": "AI-powered matching platform connecting graduate skills with employer requirements.",
+          "tag1": "ML",
+          "tag2": "HR-Tech"
+        },
+        "smartCampus": {
+          "title": "Smart Campus",
+          "text": "IoT campus infrastructure management: energy monitoring, climate control, security systems.",
+          "tag1": "IoT",
+          "tag2": "Automation"
+        },
+        "miningAI": {
+          "title": "Mining AI",
+          "text": "AI solutions for the Ulytau region mining industry: prediction, optimization, workplace safety.",
+          "tag1": "Deep Learning",
+          "tag2": "Industry"
+        }
+      },
+      "ctaShowcase": "Project Showcase"
+    },
+    "showcase": {
+      "pageTitle": "Project Showcase — AI Center ZhezU",
+      "pageDescription": "Best completed projects from Zhezkazgan University AI Center",
+      "badge": "Showcase",
+      "title": "Project Showcase",
+      "subtitle": "Best completed works and achievements of our AI team",
+      "items": {
+        "item1": {
+          "date": "2025",
+          "category": "NLP",
+          "title": "Scientific Publication Analysis System",
+          "text": "Automated analysis and classification of university research papers, key result extraction and report generation.",
+          "tech1": "Python",
+          "tech2": "Transformers",
+          "tech3": "FastAPI"
+        },
+        "item2": {
+          "date": "2024",
+          "category": "Computer Vision",
+          "title": "Campus Security Monitoring",
+          "text": "Computer vision prototype for real-time detection of anomalies on university campus.",
+          "tech1": "OpenCV",
+          "tech2": "YOLOv8",
+          "tech3": "React"
+        },
+        "item3": {
+          "date": "2024",
+          "category": "Data Science",
+          "title": "Student Performance Prediction",
+          "text": "Academic performance prediction model based on attendance data and interim results analysis.",
+          "tech1": "Scikit-learn",
+          "tech2": "Pandas",
+          "tech3": "Streamlit"
+        }
+      },
+      "ctaProjects": "All Projects"
+    },
+    "talapker": {
+      "pageTitle": "Talapker Guide — AI Center ZhezU",
+      "pageDescription": "Talapker Guide — AI assistant for Zhezkazgan University applicants",
+      "badge": "AI Agent",
+      "title": "Talapker Guide",
+      "subtitle": "Intelligent assistant for applicants. Program selection, document preparation, admission deadlines.",
+      "featuresTitle": "Features",
+      "features": {
+        "programs": {
+          "title": "Program Selection",
+          "text": "Analysis of applicant interests for recommending the best program from 21 available options."
+        },
+        "documents": {
+          "title": "Document Assistance",
+          "text": "Complete list of required documents, application forms, and requirements."
+        },
+        "deadlines": {
+          "title": "Deadlines & Stages",
+          "text": "Up-to-date information on document submission dates, UNT schedule, and enrollment."
+        },
+        "chat": {
+          "title": "Chat Consultation",
+          "text": "Answers to admission questions in Kazakh, Russian, and English."
+        }
+      },
+      "howTitle": "How It Works",
+      "how": {
+        "step1": {
+          "title": "Describe Your Interests",
+          "text": "Tell us about your favorite subjects and career goals."
+        },
+        "step2": {
+          "title": "Get Recommendations",
+          "text": "AI will analyze data and suggest suitable programs."
+        },
+        "step3": {
+          "title": "Prepare Documents",
+          "text": "Get a personalized checklist of required documents."
+        }
+      },
+      "ctaAdmission": "To Admission"
+    },
+    "assistant": {
+      "pageTitle": "AI Assistant — AI Center ZhezU",
+      "pageDescription": "AI Assistant for students — schedule, courses, FAQ",
+      "badge": "AI Agent",
+      "title": "AI Assistant",
+      "subtitle": "Smart assistant for students. Schedule, course information, answers to frequently asked questions.",
+      "capabilitiesTitle": "Capabilities",
+      "capabilities": {
+        "schedule": {
+          "title": "Class Schedule",
+          "text": "Current class, exam, and consultation schedules."
+        },
+        "courses": {
+          "title": "Course Information",
+          "text": "Course descriptions, syllabi, reading lists."
+        },
+        "faq": {
+          "title": "FAQ",
+          "text": "Answers about retakes, scholarships, dormitory, documents."
+        },
+        "support": {
+          "title": "Tech Support",
+          "text": "Help with Platonus, Wi-Fi, digital library access."
+        }
+      },
+      "demoTitle": "Try the Assistant",
+      "demoText": "Ask a question and get an instant response in three languages.",
+      "demoButton": "Start Chat",
+      "ctaTalapker": "Talapker Guide"
+    },
+    "aiTools": {
+      "pageTitle": "AI Tools — AI Center ZhezU",
+      "pageDescription": "AI tools at Zhezkazgan University",
+      "badge": "Tools",
+      "title": "AI Tools",
+      "subtitle": "Intelligent tools for students, faculty, and university staff",
+      "tools": {
+        "chatbot": {
+          "title": "AI Chatbot",
+          "text": "Answer questions and navigate university services."
+        },
+        "skills": {
+          "title": "Skills Analyzer",
+          "text": "Competency assessment and development recommendations."
+        },
+        "docs": {
+          "title": "Document Processor",
+          "text": "Processing, classification, and data extraction from documents."
+        },
+        "recommender": {
+          "title": "Recommendation System",
+          "text": "Personalized course and material recommendations."
+        }
+      },
+      "tryButton": "Try It",
+      "ctaApi": "API Documentation"
+    },
+    "apiPage": {
+      "pageTitle": "API — AI Center ZhezU",
+      "pageDescription": "API documentation for the AI Center at Zhezkazgan University",
+      "badge": "API",
+      "title": "API Documentation",
+      "subtitle": "Integrate university AI services into your applications",
+      "info": {
+        "auth": { "title": "Authentication", "text": "API Key in Authorization header" },
+        "docs": { "title": "Documentation", "text": "OpenAPI 3.0 specification" },
+        "rate": { "title": "Rate Limit", "text": "100 requests per minute" }
+      },
+      "endpointsTitle": "Endpoints",
+      "endpoints": {
+        "chat": { "path": "/api/v1/chat", "text": "Send a message to the AI assistant" },
+        "analyze": { "path": "/api/v1/analyze", "text": "Analyze text or document" },
+        "recommend": {
+          "path": "/api/v1/recommend",
+          "text": "Get course and program recommendations"
+        },
+        "extract": { "path": "/api/v1/extract", "text": "Extract structured data from text" }
+      },
+      "ctaTools": "AI Tools"
+    },
+    "labPage": {
+      "pageTitle": "AI Lab — AI Center ZhezU",
+      "pageDescription": "AI research laboratory at Zhezkazgan University",
+      "badge": "Laboratory",
+      "title": "AI Laboratory",
+      "subtitle": "Research laboratory — a place for experiments, learning, and creating AI solutions",
+      "directionsTitle": "Research Directions",
+      "directions": {
+        "nlp": {
+          "title": "Natural Language Processing",
+          "text": "Text classification, generation, and translation in Kazakh, Russian, and English."
+        },
+        "cv": {
+          "title": "Computer Vision",
+          "text": "Object recognition, video analytics for industrial applications."
+        },
+        "data": { "title": "Data Science", "text": "Big data analysis, predictive modeling." },
+        "applied": {
+          "title": "Applied AI",
+          "text": "AI for mining industry, education, and management."
+        }
+      },
+      "equipmentTitle": "Equipment",
+      "equipment": {
+        "gpu": { "title": "GPU Cluster", "text": "NVIDIA RTX for neural network training" },
+        "server": { "title": "Servers", "text": "Dedicated servers for ML experiments" },
+        "storage": { "title": "Storage", "text": "High-speed dataset storage" },
+        "network": { "title": "Network", "text": "High-speed internet connection" }
+      },
+      "ctaJoin": "Join the Laboratory"
+    },
+    "labJoin": {
+      "pageTitle": "Join AI Lab — ZhezU",
+      "pageDescription": "Vacancies and internships at ZhezU AI Lab",
+      "badge": "Hiring",
+      "title": "Join Our Team",
+      "subtitle": "Looking for students and researchers for AI projects",
+      "rolesTitle": "Open Positions",
+      "roles": {
+        "researcher": {
+          "title": "Researcher",
+          "text": "Scientific projects in NLP, CV, Data Science.",
+          "req1": "Master's or PhD student",
+          "req2": "ML framework experience",
+          "req3": "Publications preferred"
+        },
+        "developer": {
+          "title": "Developer",
+          "text": "Building AI applications and services.",
+          "req1": "Python, TypeScript",
+          "req2": "API and database experience",
+          "req3": "Git and CI/CD"
+        },
+        "intern": {
+          "title": "Intern",
+          "text": "Learning and practice under mentor guidance.",
+          "req1": "3rd-4th year student",
+          "req2": "Basic Python knowledge",
+          "req3": "Motivation to learn"
+        }
+      },
+      "processTitle": "Application Process",
+      "process": {
+        "step1": {
+          "title": "Fill Out Application",
+          "text": "Tell us about your skills and AI interests."
+        },
+        "step2": { "title": "Interview", "text": "Experience discussion, small task solving." },
+        "step3": { "title": "Test Project", "text": "Mini-project for 1-2 weeks." },
+        "step4": { "title": "Enrollment", "text": "Welcome to the AI Lab!" }
+      },
+      "ctaContact": "Contact Us"
     }
   },
   "research": {
@@ -1924,15 +2549,623 @@
       "aiDesc": "Artificial intelligence, machine learning and digital transformation"
     },
     "publications": {
-      "title": "Recent Publications"
+      "title": "Recent Publications",
+      "pageTitle": "Scientific Publications — Zhezkazgan University",
+      "pageDescription": "Scientific journals and publications of ZhezU",
+      "badge": "Publications",
+      "subtitle": "The university publishes a scientific journal and conference proceedings",
+      "journalsTitle": "Scientific Journals",
+      "journals": {
+        "vestnik": {
+          "title": "Herald of Zhezkazgan University",
+          "text": "Scientific journal, published twice yearly. Articles in pedagogical, humanitarian, economic and technical sciences",
+          "issn": "ISSN 1680-9262"
+        },
+        "baykonurov": {
+          "title": "Baikonurov Readings",
+          "text": "International conference proceedings on mining and metallurgical sciences",
+          "issn": "Annual collection"
+        },
+        "keleshek": {
+          "title": "Keleshek",
+          "text": "Republican conference proceedings for students and young scientists",
+          "issn": "Annual collection"
+        }
+      },
+      "indexingTitle": "Indexing Databases",
+      "indexing": {
+        "scopus": "Scopus",
+        "wos": "Web of Science",
+        "rinc": "RSCI",
+        "kinc": "KSCI"
+      },
+      "ctaArticles": "Articles & Papers",
+      "ctaResearch": "Research at ZhezU"
+    },
+    "articles": {
+      "pageTitle": "Articles & Papers — Zhezkazgan University",
+      "pageDescription": "Scientific articles and research papers by ZhezU faculty",
+      "badge": "Articles",
+      "title": "Articles & Research Papers",
+      "subtitle": "Main research directions of faculty and master students",
+      "areasTitle": "Research Directions",
+      "areas": {
+        "mining": {
+          "title": "Mining & Geology",
+          "text": "Mining and mineral processing technologies of the Zhezkazgan region"
+        },
+        "metallurgy": {
+          "title": "Metallurgy & Materials",
+          "text": "New technologies in metal and alloy production"
+        },
+        "ecology": {
+          "title": "Zhezkazgan Region Ecology",
+          "text": "Environmental problems of mining regions and solutions"
+        },
+        "pedagogy": {
+          "title": "Pedagogy & Education",
+          "text": "Innovative teaching methods, ethnopedagogy, digital technologies"
+        },
+        "ai": {
+          "title": "IT & Digital Technologies",
+          "text": "Artificial intelligence, automation, digital transformation"
+        }
+      },
+      "ctaJournals": "Scientific Journals"
+    },
+    "conferences": {
+      "pageTitle": "Conferences — Zhezkazgan University",
+      "pageDescription": "Scientific conferences at ZhezU",
+      "badge": "Conferences",
+      "title": "Scientific Conferences",
+      "subtitle": "The university regularly hosts international and national scientific conferences",
+      "conf": {
+        "baykonurov": {
+          "type": "International",
+          "title": "Baikonurov Readings",
+          "text": "International conference on mining and metallurgical sciences",
+          "date": "November 2026",
+          "location": "ZhezU, main building"
+        },
+        "keleshek": {
+          "type": "National",
+          "title": "Keleshek",
+          "text": "Conference for students and young scientists on current scientific problems",
+          "date": "April 2026",
+          "location": "ZhezU, conference hall"
+        },
+        "regional": {
+          "type": "Regional",
+          "title": "Science & Education of Ulytau",
+          "text": "Conference on education and science development in the Ulytau region",
+          "date": "March 2026",
+          "location": "ZhezU"
+        }
+      },
+      "ctaArchive": "Conference Archive",
+      "ctaResearch": "Research at ZhezU"
+    },
+    "confArchive": {
+      "pageTitle": "Conference Archive — Zhezkazgan University",
+      "pageDescription": "Archive of scientific conferences at ZhezU",
+      "badge": "Archive",
+      "title": "Conference Archive",
+      "subtitle": "Materials from past university conferences",
+      "years": {
+        "2025": {
+          "conf1": {
+            "title": "Baikonurov Readings XV",
+            "text": "International conference, 120 papers from 8 countries"
+          },
+          "conf2": {
+            "title": "Keleshek 2025",
+            "text": "85 papers from students and young scientists"
+          }
+        },
+        "2024": {
+          "conf1": {
+            "title": "Baikonurov Readings XIV",
+            "text": "International conference, 105 papers"
+          },
+          "conf2": {
+            "title": "Keleshek 2024",
+            "text": "78 student papers"
+          }
+        },
+        "2023": {
+          "conf1": {
+            "title": "Baikonurov Readings XIII",
+            "text": "International conference, 95 papers"
+          },
+          "conf2": {
+            "title": "Keleshek 2023",
+            "text": "70 student papers"
+          }
+        },
+        "2022": {
+          "conf1": {
+            "title": "Baikonurov Readings XII",
+            "text": "International conference, 88 papers"
+          },
+          "conf2": {
+            "title": "Keleshek 2022",
+            "text": "65 student papers"
+          }
+        }
+      },
+      "ctaUpcoming": "Upcoming Conferences"
     },
     "labs": {
-      "title": "Research Laboratories"
+      "title": "Research Laboratories",
+      "pageTitle": "Research Laboratories — Zhezkazgan University",
+      "pageDescription": "Research and educational laboratories at ZhezU",
+      "badge": "Laboratories",
+      "subtitle": "The university has modern laboratories for research and practical training",
+      "equipment": "Equipment",
+      "labs": {
+        "mining": {
+          "title": "Mining Engineering Lab",
+          "text": "Research on ore mining and processing, mine modeling",
+          "equipment": "Simulation stands, geomechanical equipment"
+        },
+        "metallurgy": {
+          "title": "Metallurgy & Chemistry Lab",
+          "text": "Chemical analysis of ores and metals, metallurgical process research",
+          "equipment": "Spectrometers, furnaces, analytical balances"
+        },
+        "electrical": {
+          "title": "Electrical Engineering Lab",
+          "text": "Study of electrical machines, relay protection and automation",
+          "equipment": "Electrical stands, measurement instruments"
+        },
+        "it": {
+          "title": "Computer Labs & IT Laboratory",
+          "text": "Programming, computer modeling, IT infrastructure",
+          "equipment": "PCs, server equipment, AutoCAD, 1C"
+        }
+      },
+      "ctaEquipment": "Equipment",
+      "ctaResearch": "Research at ZhezU"
+    },
+    "equipment": {
+      "pageTitle": "Research Equipment — Zhezkazgan University",
+      "pageDescription": "Scientific and laboratory equipment at ZhezU",
+      "badge": "Equipment",
+      "title": "Research Equipment",
+      "subtitle": "Equipment for educational and research laboratories",
+      "categories": {
+        "analytical": {
+          "title": "Analytical Equipment",
+          "text": "Spectrometers, chromatographs, analytical balances for chemical analysis"
+        },
+        "mining": {
+          "title": "Mining & Geological Equipment",
+          "text": "Stands for modeling mining processes, geomechanical instruments"
+        },
+        "computing": {
+          "title": "Computing Equipment",
+          "text": "Computer labs, servers, AutoCAD, MATLAB, 1C software"
+        },
+        "general": {
+          "title": "General Lab Equipment",
+          "text": "Microscopes, electrical stands, measurement instruments"
+        }
+      },
+      "ctaLabs": "Laboratories"
+    },
+    "grants": {
+      "pageTitle": "Research Grants — Zhezkazgan University",
+      "pageDescription": "Grant funding for research at ZhezU",
+      "badge": "Grants",
+      "title": "Research Grants",
+      "subtitle": "Grant funding for fundamental and applied research",
+      "typesTitle": "Grant Types",
+      "types": {
+        "mes": {
+          "title": "MES RK Grants",
+          "text": "Grant funding from the Ministry of Education and Science through research project competitions",
+          "funding": "Fundamental and applied research"
+        },
+        "applied": {
+          "title": "Contract Research",
+          "text": "Applied research commissioned by mining and metallurgical enterprises",
+          "funding": "Commissioned studies"
+        },
+        "international": {
+          "title": "International Grants",
+          "text": "Participation in international grant programs with partner universities",
+          "funding": "Erasmus+, DAAD, Fulbright"
+        }
+      },
+      "ctaApply": "Apply for Grant",
+      "ctaResults": "Competition Results"
+    },
+    "grantApply": {
+      "pageTitle": "Apply for Grant — Zhezkazgan University",
+      "pageDescription": "Grant application process at ZhezU",
+      "badge": "Application",
+      "title": "Apply for a Research Grant",
+      "subtitle": "Application procedure through the Center for Science and Innovation",
+      "processTitle": "Application Steps",
+      "steps": {
+        "proposal": {
+          "title": "Prepare Proposal",
+          "text": "Draft a research proposal with rationale, methodology, and budget"
+        },
+        "review": {
+          "title": "Expert Review",
+          "text": "Review by the university's academic council and external experts"
+        },
+        "approval": {
+          "title": "Approval",
+          "text": "Decision by the grantor (MES RK, enterprise, or international fund)"
+        },
+        "reporting": {
+          "title": "Reporting",
+          "text": "Interim and final project reports"
+        }
+      },
+      "docsTitle": "Required Documents",
+      "doc1": "Research proposal in the prescribed format",
+      "doc2": "CVs of the project leader and participants",
+      "doc3": "Project budget estimate",
+      "doc4": "Support letter from the department/institute",
+      "ctaGrants": "All Grants"
+    },
+    "grantResults": {
+      "pageTitle": "Grant Results — Zhezkazgan University",
+      "pageDescription": "Results of research grant competitions",
+      "badge": "Results",
+      "title": "Grant Competition Results",
+      "subtitle": "Projects that received grant funding",
+      "results": {
+        "result1": {
+          "title": "Environmental Problems of Zhezkazgan Region",
+          "amount": "MES RK Grant, 2024-2026",
+          "text": "Research on the impact of mining on the region's ecology"
+        },
+        "result2": {
+          "title": "Innovative Ore Processing Methods",
+          "amount": "Kazakhmys Contract, 2025",
+          "text": "Development of new copper ore processing technologies"
+        },
+        "result3": {
+          "title": "Digital Transformation of Education",
+          "amount": "Erasmus+ KA2, 2024-2027",
+          "text": "International project on digital technologies in education"
+        }
+      },
+      "ctaApply": "Apply for Grant",
+      "ctaGrants": "All Grants"
     },
     "cta": {
       "title": "Interested in Research Collaboration?",
       "description": "Contact us to discuss joint research projects.",
       "button": "Contact Us"
+    }
+  },
+  "life": {
+    "hub": {
+      "pageTitle": "Student Life — Zhezkazgan University",
+      "pageDescription": "Student life, events, sports and dormitories at ZhezU",
+      "badge": "Student Life",
+      "title": "Student Life",
+      "subtitle": "Vibrant campus life — sports, creativity, science and community",
+      "sections": {
+        "news": {
+          "title": "News",
+          "text": "Latest news, events and university announcements"
+        },
+        "events": {
+          "title": "Events",
+          "text": "Conferences, concerts, holidays and student events"
+        },
+        "sports": {
+          "title": "Sports",
+          "text": "Sports sections, competitions and sports infrastructure"
+        },
+        "dormitories": {
+          "title": "Dormitories",
+          "text": "Comfortable housing for out-of-town students"
+        },
+        "clubs": {
+          "title": "Clubs",
+          "text": "Student organizations, creative and scientific groups"
+        }
+      },
+      "viewMore": "Learn More",
+      "ctaApply": "Apply for Admission"
+    },
+    "announcements": {
+      "pageTitle": "Announcements — Zhezkazgan University",
+      "pageDescription": "University announcements and notifications",
+      "badge": "Announcements",
+      "title": "Announcements",
+      "subtitle": "Important notifications for students and faculty",
+      "items": {
+        "ann1": {
+          "date": "February 20, 2026",
+          "title": "Master's Admission Opens",
+          "text": "Admissions office begins accepting documents for 2026-2027 master programs"
+        },
+        "ann2": {
+          "date": "February 15, 2026",
+          "title": "Winter Session Complete",
+          "text": "Exam results available in student portal"
+        },
+        "ann3": {
+          "date": "February 1, 2026",
+          "title": "Best Student of the Year Contest",
+          "text": "Applications open. Deadline: March 1, 2026"
+        },
+        "ann4": {
+          "date": "January 25, 2026",
+          "title": "Spring Semester Begins",
+          "text": "Classes start January 25. Schedule available on the website"
+        }
+      },
+      "ctaNews": "News"
+    },
+    "events": {
+      "pageTitle": "Events — Zhezkazgan University",
+      "pageDescription": "Upcoming events at ZhezU",
+      "badge": "Events",
+      "title": "Upcoming Events",
+      "subtitle": "Conferences, concerts, competitions and student events",
+      "items": {
+        "event1": {
+          "type": "Conference",
+          "title": "Keleshek — Young Scientists Conference",
+          "text": "Republican scientific conference for students and young scientists",
+          "date": "April 15, 2026",
+          "time": "10:00",
+          "place": "Conference hall, main building"
+        },
+        "event2": {
+          "type": "Sports",
+          "title": "ZhezU Spartakiad",
+          "text": "Annual university spartakiad in 4 sports",
+          "date": "March 20, 2026",
+          "time": "9:00",
+          "place": "Sports hall"
+        },
+        "event3": {
+          "type": "Culture",
+          "title": "Nauryz Celebration",
+          "text": "Nauryz holiday — concert, competitions, national cuisine",
+          "date": "March 22, 2026",
+          "time": "12:00",
+          "place": "University square"
+        }
+      },
+      "ctaCalendar": "Events Calendar"
+    },
+    "eventsCalendar": {
+      "pageTitle": "Events Calendar — Zhezkazgan University",
+      "pageDescription": "University events calendar for the academic year",
+      "badge": "Calendar",
+      "title": "Events Calendar",
+      "subtitle": "Major university events for 2025-2026 academic year",
+      "months": {
+        "sep": {
+          "title": "September",
+          "event": "Knowledge Day, freshman orientation"
+        },
+        "oct": {
+          "title": "October",
+          "event": "Teacher's Day, science week"
+        },
+        "nov": {
+          "title": "November",
+          "event": "Baikonurov Readings"
+        },
+        "dec": {
+          "title": "December",
+          "event": "New Year concert, Independence Day"
+        },
+        "feb": {
+          "title": "February",
+          "event": "Valentine's Day, winter spartakiad"
+        },
+        "mar": {
+          "title": "March",
+          "event": "Women's Day, Nauryz holiday"
+        },
+        "apr": {
+          "title": "April",
+          "event": "Keleshek conference, Science Day"
+        },
+        "may": {
+          "title": "May",
+          "event": "Defender's Day, last bell, graduation"
+        }
+      },
+      "ctaEvents": "Upcoming Events"
+    },
+    "sports": {
+      "pageTitle": "Sports — Zhezkazgan University",
+      "pageDescription": "Sports sections and teams at ZhezU",
+      "badge": "Sports",
+      "title": "Sports at ZhezU",
+      "subtitle": "University sports sections and teams — healthy lifestyle and active recreation",
+      "teamsTitle": "Sports Sections",
+      "teams": {
+        "football": {
+          "title": "Football",
+          "text": "Men's and women's teams, regional university championship participation"
+        },
+        "volleyball": {
+          "title": "Volleyball",
+          "text": "Volleyball team, regular training and tournaments"
+        },
+        "basketball": {
+          "title": "Basketball",
+          "text": "Basketball section, inter-university competitions"
+        },
+        "tableTennis": {
+          "title": "Table Tennis",
+          "text": "Table tennis section, open to all students"
+        }
+      },
+      "ctaFacilities": "Sports Facilities"
+    },
+    "facilities": {
+      "pageTitle": "Sports Facilities — Zhezkazgan University",
+      "pageDescription": "Sports infrastructure at ZhezU",
+      "badge": "Facilities",
+      "title": "Sports Facilities",
+      "subtitle": "University sports infrastructure for training and competitions",
+      "items": {
+        "gym": {
+          "title": "Sports Hall",
+          "text": "Universal hall for volleyball, basketball, and futsal"
+        },
+        "field": {
+          "title": "Sports Field",
+          "text": "Outdoor field for football and athletics"
+        },
+        "hall": {
+          "title": "Fitness Room",
+          "text": "Room with fitness and strength training equipment"
+        },
+        "outdoor": {
+          "title": "Recreation Area",
+          "text": "Landscaped area for walks and active recreation"
+        }
+      },
+      "ctaSports": "Sports Sections"
+    },
+    "dormitories": {
+      "pageTitle": "Dormitories — Zhezkazgan University",
+      "pageDescription": "Student dormitories at ZhezU",
+      "badge": "Dormitories",
+      "title": "Student Dormitories",
+      "subtitle": "Comfortable housing for out-of-town students with security and amenities",
+      "infoTitle": "General Information",
+      "info": {
+        "rooms": {
+          "label": "Rooms",
+          "value": "2-3 person rooms"
+        },
+        "cost": {
+          "label": "Cost",
+          "value": "from 5,000 \u20b8/month"
+        },
+        "capacity": {
+          "label": "Capacity",
+          "value": "300 places"
+        },
+        "staff": {
+          "label": "Staff",
+          "value": "Warden, nurse"
+        }
+      },
+      "amenitiesTitle": "Amenities",
+      "amenities": {
+        "internet": {
+          "title": "Internet",
+          "text": "Free Wi-Fi in all rooms and common areas"
+        },
+        "security": {
+          "title": "Security",
+          "text": "24/7 security and access control"
+        },
+        "kitchen": {
+          "title": "Kitchens",
+          "text": "Equipped kitchens on every floor"
+        },
+        "laundry": {
+          "title": "Laundry",
+          "text": "Laundry and drying rooms"
+        }
+      },
+      "ctaApply": "Apply for Dormitory"
+    },
+    "dormApply": {
+      "pageTitle": "Dormitory Application — Zhezkazgan University",
+      "pageDescription": "Apply for dormitory housing at ZhezU",
+      "badge": "Housing",
+      "title": "Apply for Dormitory",
+      "subtitle": "Dormitory housing is provided for out-of-town students for the study period",
+      "docsTitle": "Required Documents",
+      "doc1": "Application addressed to the rector",
+      "doc2": "Copy of ID card",
+      "doc3": "Student enrollment certificate",
+      "doc4": "Medical certificate (form 075/u)",
+      "doc5": "Photos 3\u00d74 (2 pcs.)",
+      "processTitle": "Move-in Process",
+      "steps": {
+        "step1": {
+          "title": "Submit Documents",
+          "text": "Submit the document package to the university office"
+        },
+        "step2": {
+          "title": "Payment",
+          "text": "Pay for housing for the semester via cashier or bank"
+        },
+        "step3": {
+          "title": "Move In",
+          "text": "Get keys from the warden, sign housing agreement"
+        }
+      },
+      "ctaDorm": "About Dormitories"
+    },
+    "clubs": {
+      "pageTitle": "Clubs & Activities — Zhezkazgan University",
+      "pageDescription": "Student clubs and activities at ZhezU",
+      "badge": "Clubs",
+      "title": "Clubs & Activities",
+      "subtitle": "Student organizations for creativity, science and personal development",
+      "clubs": {
+        "debate": {
+          "title": "Debate Club",
+          "text": "Public speaking and argumentation skills in Kazakh, Russian and English"
+        },
+        "art": {
+          "title": "Art Studio",
+          "text": "Drawing, painting and decorative arts"
+        },
+        "music": {
+          "title": "Music Ensemble",
+          "text": "Choir, instrumental groups, concerts and festivals"
+        },
+        "languages": {
+          "title": "Language Club",
+          "text": "English, Turkish and other language practice with native speakers"
+        },
+        "science": {
+          "title": "Student Scientific Society",
+          "text": "Organizing conferences, research projects and olympiads"
+        }
+      },
+      "ctaGov": "Student Government"
+    },
+    "studentGov": {
+      "pageTitle": "Student Government — Zhezkazgan University",
+      "pageDescription": "Student self-governance at ZhezU",
+      "badge": "Self-Governance",
+      "title": "Student Government",
+      "subtitle": "Student Council and the Center for Education and Youth Policy",
+      "areasTitle": "Areas of Work",
+      "areas": {
+        "representation": {
+          "title": "Representation",
+          "text": "Protecting student rights and interests in the academic council and administration"
+        },
+        "events": {
+          "title": "Event Organization",
+          "text": "Organizing holidays, concerts, competitions and volunteer activities"
+        },
+        "welfare": {
+          "title": "Social Support",
+          "text": "Helping students with everyday issues, dormitory allocation"
+        },
+        "community": {
+          "title": "Community Development",
+          "text": "Developing student clubs, mentoring freshmen"
+        }
+      },
+      "ctaClubs": "Clubs & Activities"
     }
   }
 }

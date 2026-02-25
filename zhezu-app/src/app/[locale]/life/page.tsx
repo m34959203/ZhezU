@@ -1,0 +1,78 @@
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+import { Badge } from '@/components/ui/Badge';
+import { Card } from '@/components/ui/Card';
+import { Link } from '@/i18n/navigation';
+import { Button } from '@/components/ui/Button';
+import { ArrowRight, Newspaper, Calendar, Trophy, Home, Users } from 'lucide-react';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'life.hub' });
+  return { title: t('pageTitle'), description: t('pageDescription') };
+}
+
+export default function LifePage() {
+  const t = useTranslations('life.hub');
+
+  const sections = [
+    { key: 'news', icon: <Newspaper size={24} />, href: '/life/news' },
+    { key: 'events', icon: <Calendar size={24} />, href: '/life/events' },
+    { key: 'sports', icon: <Trophy size={24} />, href: '/life/sports' },
+    { key: 'dormitories', icon: <Home size={24} />, href: '/life/dormitories' },
+    { key: 'clubs', icon: <Users size={24} />, href: '/life/clubs' },
+  ];
+
+  return (
+    <div className="flex flex-col">
+      <section className="relative overflow-hidden py-20 lg:py-28">
+        <div className="from-primary/5 to-gold/5 absolute inset-0 bg-gradient-to-br via-transparent" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Badge className="mb-4">{t('badge')}</Badge>
+          <h1 className="font-display mb-4 text-4xl font-bold sm:text-5xl">{t('title')}</h1>
+          <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
+            {t('subtitle')}
+          </p>
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {sections.map((s) => (
+              <Link key={s.key} href={s.href} prefetch={false}>
+                <Card padding="lg" hover className="h-full">
+                  <div className="bg-primary/10 mb-4 flex h-12 w-12 items-center justify-center rounded-lg">
+                    <span className="text-primary">{s.icon}</span>
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold">{t(`sections.${s.key}.title`)}</h3>
+                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                    {t(`sections.${s.key}.text`)}
+                  </p>
+                  <div className="text-primary mt-4 flex items-center gap-1 text-sm font-semibold">
+                    {t('viewMore')} <ArrowRight size={14} />
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
+        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <Link href="/admission/apply">
+            <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+              {t('ctaApply')}
+            </Button>
+          </Link>
+        </div>
+      </section>
+    </div>
+  );
+}
