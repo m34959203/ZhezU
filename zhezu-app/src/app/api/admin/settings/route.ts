@@ -15,12 +15,40 @@ const DEFAULTS: SiteSettings = {
   maintenanceMode: false,
 };
 
+/** Strip secret tokens from response — return only `*Set: boolean` flags */
+function maskIntegrations(settings: SiteSettings): SiteSettings & { integrationsStatus?: object } {
+  const integrations = settings.integrations;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { geminiApiKey, telegramBotToken, instagramAccessToken, ...safeFields } =
+    integrations || {};
+
+  return {
+    ...settings,
+    integrations: {
+      ...safeFields,
+      geminiApiKey: undefined,
+      telegramBotToken: undefined,
+      instagramAccessToken: undefined,
+    },
+    integrationsStatus: {
+      geminiApiKeySet: !!integrations?.geminiApiKey,
+      telegramBotTokenSet: !!integrations?.telegramBotToken,
+      instagramAccessTokenSet: !!integrations?.instagramAccessToken,
+      geminiModel: integrations?.geminiModel || 'gemini-2.0-flash',
+      telegramChatId: integrations?.telegramChatId || '',
+      telegramEnabled: integrations?.telegramEnabled ?? false,
+      instagramPageId: integrations?.instagramPageId || '',
+      instagramEnabled: integrations?.instagramEnabled ?? false,
+    },
+  };
+}
+
 export async function GET() {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const settings = await getSettings<SiteSettings>(FILE, DEFAULTS);
-  return NextResponse.json(settings);
+  return NextResponse.json(maskIntegrations(settings));
 }
 
 export async function PUT(req: Request) {
@@ -29,7 +57,23 @@ export async function PUT(req: Request) {
 
   try {
     const body = await req.json();
-    await saveSettings(FILE, body);
+    const existing = await getSettings<SiteSettings>(FILE, DEFAULTS);
+
+    // Smart merge: only overwrite secrets if a new non-empty value is provided
+    if (body.integrations) {
+      const ei = existing.integrations || {};
+      const bi = body.integrations;
+      body.integrations = {
+        ...ei,
+        ...bi,
+        geminiApiKey: bi.geminiApiKey || ei.geminiApiKey,
+        telegramBotToken: bi.telegramBotToken || ei.telegramBotToken,
+        instagramAccessToken: bi.instagramAccessToken || ei.instagramAccessToken,
+      };
+    }
+
+    const merged = { ...existing, ...body };
+    await saveSettings(FILE, merged);
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
