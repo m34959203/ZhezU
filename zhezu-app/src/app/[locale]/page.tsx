@@ -22,7 +22,9 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useLocale } from 'next-intl';
+import { useEffect, useState } from 'react';
 import type { Locale } from '@/types';
+import type { NewsArticle } from '@/lib/admin/types';
 
 /* ------------------------------------------------------------------ */
 /*  Static Data                                                        */
@@ -83,41 +85,17 @@ const DEPT_COLORS: Record<string, { bg: string; text: string; darkBg: string; da
     },
   };
 
-const NEWS_ITEMS = [
-  {
-    id: 'conference',
-    date: { day: '15', month: 'Oct' },
-    category: 'University Life',
-    readTime: '5 min',
-    title:
-      'International Scientific Conference "Science and Education in the 21st Century" Held at ZhezU',
-    excerpt:
-      'The university hosted over 200 delegates from 15 countries to discuss the future of education and scientific innovation.',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
-    featured: true,
-  },
-  {
-    id: 'hackathon',
-    category: 'Student Life',
-    title: 'ZhezU Students Win National Hackathon',
-    date: { day: '12', month: 'Oct' },
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=200&q=80',
-  },
-  {
-    id: 'robotics',
-    category: 'Research',
-    title: 'Opening of the New Advanced Robotics Lab',
-    date: { day: '08', month: 'Oct' },
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&q=80',
-  },
-  {
-    id: 'alumni',
-    category: 'Alumni',
-    title: 'Alumni Meetup scheduled for next month',
-    date: { day: '01', month: 'Oct' },
-    image: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=200&q=80',
-  },
-];
+const CATEGORY_LABELS: Record<string, string> = {
+  news: 'Новости',
+  announcement: 'Объявления',
+  event: 'События',
+  achievement: 'Достижения',
+  university: 'Университет',
+  science: 'Наука',
+  students: 'Студенты',
+  sport: 'Спорт',
+  culture: 'Культура',
+};
 
 /* ================================================================== */
 /*  HOME PAGE                                                          */
@@ -127,14 +105,24 @@ export default function HomePage() {
   const t = useTranslations('home');
   const tActions = useTranslations('actions');
   const locale = useLocale() as Locale;
+  const [newsItems, setNewsItems] = useState<NewsArticle[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch('/api/public/news?limit=4', { signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : []))
+      .then(setNewsItems)
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
 
   const featuredPrograms = PROGRAMS.filter((p) => Object.keys(PROGRAM_IMAGES).includes(p.id)).slice(
     0,
     4,
   );
 
-  const featured = NEWS_ITEMS.find((n) => n.featured);
-  const sideNews = NEWS_ITEMS.filter((n) => !n.featured);
+  const featured = newsItems[0] ?? null;
+  const sideNews = newsItems.slice(1);
 
   return (
     <div className="flex flex-col">
@@ -400,28 +388,31 @@ export default function HomePage() {
                     className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                     style={{ backgroundImage: `url(${featured.image})` }}
                   />
-                  <div className="dark:bg-surface-dark/90 absolute top-4 left-4 min-w-[60px] rounded-lg bg-white/90 px-4 py-2 text-center backdrop-blur">
-                    <span className="text-text-primary-light dark:text-text-primary-dark block text-xl leading-none font-bold">
-                      {featured.date.day}
-                    </span>
-                    <span className="text-text-secondary-light dark:text-text-secondary-dark block text-xs font-medium uppercase">
-                      {featured.date.month}
-                    </span>
-                  </div>
+                  {(() => {
+                    const d = new Date(featured.createdAt);
+                    return (
+                      <div className="dark:bg-surface-dark/90 absolute top-4 left-4 min-w-[60px] rounded-lg bg-white/90 px-4 py-2 text-center backdrop-blur">
+                        <span className="text-text-primary-light dark:text-text-primary-dark block text-xl leading-none font-bold">
+                          {d.getDate()}
+                        </span>
+                        <span className="text-text-secondary-light dark:text-text-secondary-dark block text-xs font-medium uppercase">
+                          {d.toLocaleString(locale, { month: 'short' })}
+                        </span>
+                      </div>
+                    );
+                  })()}
                 </div>
                 <div className="pr-4">
                   <div className="text-text-secondary-light dark:text-text-secondary-dark mb-2 flex items-center gap-3 text-sm">
-                    <span className="text-gold font-semibold">{featured.category}</span>
-                    <span>&middot;</span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} /> {featured.readTime}
+                    <span className="text-gold font-semibold">
+                      {CATEGORY_LABELS[featured.category] ?? featured.category}
                     </span>
                   </div>
                   <h3 className="text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light mb-3 text-2xl font-bold transition-colors">
-                    {featured.title}
+                    {featured.title[locale]}
                   </h3>
                   <p className="text-text-secondary-light dark:text-text-secondary-dark line-clamp-2">
-                    {featured.excerpt}
+                    {featured.excerpt[locale]}
                   </p>
                 </div>
               </div>
@@ -429,30 +420,33 @@ export default function HomePage() {
 
             {/* Side News List */}
             <div className="flex flex-col gap-6">
-              {sideNews.map((item, i) => (
-                <div
-                  key={item.id}
-                  className={`group flex cursor-pointer gap-4 ${i < sideNews.length - 1 ? 'border-border-light dark:border-border-dark border-b pb-6' : ''}`}
-                >
-                  <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
-                    <div
-                      className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-110"
-                      style={{ backgroundImage: `url(${item.image})` }}
-                    />
+              {sideNews.map((item, i) => {
+                const d = new Date(item.createdAt);
+                return (
+                  <div
+                    key={item.id}
+                    className={`group flex cursor-pointer gap-4 ${i < sideNews.length - 1 ? 'border-border-light dark:border-border-dark border-b pb-6' : ''}`}
+                  >
+                    <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+                      <div
+                        className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-110"
+                        style={{ backgroundImage: `url(${item.image})` }}
+                      />
+                    </div>
+                    <div>
+                      <span className="text-primary dark:text-primary-light mb-1 block text-xs font-bold">
+                        {CATEGORY_LABELS[item.category] ?? item.category}
+                      </span>
+                      <h4 className="text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light mb-1 text-lg leading-tight font-bold transition-colors">
+                        {item.title[locale]}
+                      </h4>
+                      <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
+                        <Calendar size={10} /> {d.toLocaleString(locale, { month: 'short' })} {d.getDate()}, {d.getFullYear()}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-primary dark:text-primary-light mb-1 block text-xs font-bold">
-                      {item.category}
-                    </span>
-                    <h4 className="text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light mb-1 text-lg leading-tight font-bold transition-colors">
-                      {item.title}
-                    </h4>
-                    <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
-                      <Calendar size={10} /> {item.date.month} {item.date.day}, 2025
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           <div className="mt-10 text-center">

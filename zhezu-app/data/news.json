@@ -18,7 +18,7 @@
       "en": "Baikonurov Readings — annual international scientific conference. Papers accepted in: mining, metallurgy, ecology, pedagogy, and AI."
     },
     "category": "event",
-    "image": "",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
     "published": true,
     "pinned": true,
     "author": "Администрация",
@@ -44,11 +44,375 @@
       "en": "Zhezkazgan University opens admission for 2025-2026. 21 bachelor's programs and 3 master's programs are available."
     },
     "category": "announcement",
-    "image": "",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=800&q=80",
     "published": true,
     "pinned": false,
     "author": "Приёмная комиссия",
     "createdAt": "2025-06-15T10:00:00Z",
     "updatedAt": "2025-06-15T10:00:00Z"
+  },
+  {
+    "id": "3",
+    "slug": "new-academic-year-2026",
+    "title": {
+      "kk": "2026-2027 оқу жылының салтанатты ашылуы",
+      "ru": "Торжественное открытие 2026-2027 учебного года",
+      "en": "Grand Opening of 2026-2027 Academic Year"
+    },
+    "excerpt": {
+      "kk": "Жезқазған университетінде жаңа оқу жылы ресми түрде басталды.",
+      "ru": "В Жезказганском университете официально начался новый учебный год.",
+      "en": "The new academic year has officially started at Zhezkazgan University."
+    },
+    "body": {
+      "kk": "Жезқазған университетінде 2026-2027 оқу жылының салтанатты ашылуы өтті. Іс-шараға ректор, профессорлар мен жаңа студенттер қатысты.",
+      "ru": "В Жезказганском университете прошло торжественное открытие 2026-2027 учебного года. В мероприятии приняли участие ректор, преподаватели и новые студенты.",
+      "en": "The grand opening ceremony of the 2026-2027 academic year took place at Zhezkazgan University. The rector, faculty and new students attended the event."
+    },
+    "category": "university",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Пресс-служба",
+    "createdAt": "2026-09-01T09:00:00Z",
+    "updatedAt": "2026-09-01T09:00:00Z"
+  },
+  {
+    "id": "4",
+    "slug": "mining-conference-2026",
+    "title": {
+      "kk": "Тау-кен ісі бойынша халықаралық конференция",
+      "ru": "Международная конференция по горному делу",
+      "en": "International Mining Conference"
+    },
+    "excerpt": {
+      "kk": "Университет тау-кен саласындағы жаңа технологиялар бойынша конференция өткізді.",
+      "ru": "Университет провёл конференцию по новым технологиям в горнодобывающей отрасли.",
+      "en": "The university hosted a conference on new technologies in the mining industry."
+    },
+    "body": {
+      "kk": "Жезқазған университетінде тау-кен саласындағы жаңа технологиялар мен инновациялар бойынша халықаралық конференция өтті.",
+      "ru": "В Жезказганском университете прошла международная конференция по новым технологиям и инновациям в горнодобывающей отрасли.",
+      "en": "An international conference on new technologies and innovations in the mining industry was held at Zhezkazgan University."
+    },
+    "category": "science",
+    "image": "https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Научный отдел",
+    "createdAt": "2026-03-15T10:00:00Z",
+    "updatedAt": "2026-03-15T10:00:00Z"
+  },
+  {
+    "id": "5",
+    "slug": "student-hackathon",
+    "title": {
+      "kk": "AI Hackathon 2026: студенттер жасанды интеллект шешімдерін жасады",
+      "ru": "AI Hackathon 2026: студенты создали решения на основе ИИ",
+      "en": "AI Hackathon 2026: Students Created AI-Based Solutions"
+    },
+    "excerpt": {
+      "kk": "ZhezU студенттері AI хакатонында инновациялық жобалар ұсынды.",
+      "ru": "Студенты ZhezU представили инновационные проекты на AI-хакатоне.",
+      "en": "ZhezU students presented innovative projects at the AI hackathon."
+    },
+    "body": {
+      "kk": "Университеттің AI Орталығы ұйымдастырған хакатонда 15 команда қатысып, жасанды интеллект негізіндегі шешімдерін ұсынды.",
+      "ru": "В хакатоне, организованном AI-Центром университета, приняли участие 15 команд, представивших решения на основе искусственного интеллекта.",
+      "en": "15 teams participated in the hackathon organized by the university AI Center, presenting AI-based solutions."
+    },
+    "category": "students",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "AI-Центр",
+    "createdAt": "2026-02-20T10:00:00Z",
+    "updatedAt": "2026-02-20T10:00:00Z"
+  },
+  {
+    "id": "6",
+    "slug": "volleyball-championship",
+    "title": {
+      "kk": "Университет командасы волейбол чемпионатында жеңімпаз атанды",
+      "ru": "Команда университета стала чемпионом по волейболу",
+      "en": "University Team Wins Volleyball Championship"
+    },
+    "excerpt": {
+      "kk": "ZhezU волейбол командасы облыстық чемпионатта бірінші орынды иеленді.",
+      "ru": "Волейбольная команда ZhezU заняла первое место в областном чемпионате.",
+      "en": "ZhezU volleyball team took first place in the regional championship."
+    },
+    "body": {
+      "kk": "Ұлытау облысының волейбол чемпионатында ZhezU командасы барлық қарсыластарын жеңіп, алтын медальге ие болды.",
+      "ru": "На чемпионате Улытауской области по волейболу команда ZhezU одержала победу над всеми соперниками и завоевала золотую медаль.",
+      "en": "At the Ulytau region volleyball championship, the ZhezU team defeated all opponents and won the gold medal."
+    },
+    "category": "sport",
+    "image": "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Спортивный клуб",
+    "createdAt": "2026-02-10T10:00:00Z",
+    "updatedAt": "2026-02-10T10:00:00Z"
+  },
+  {
+    "id": "7",
+    "slug": "open-doors-day",
+    "title": {
+      "kk": "Ашық есік күні: болашақ студенттерді күтеміз!",
+      "ru": "День открытых дверей: ждём будущих студентов!",
+      "en": "Open Doors Day: We Await Future Students!"
+    },
+    "excerpt": {
+      "kk": "Мамыр айында дәстүрлі Ашық есік күні өтеді.",
+      "ru": "В мае пройдёт традиционный День открытых дверей.",
+      "en": "The traditional Open Doors Day will take place in May."
+    },
+    "body": {
+      "kk": "Жезқазған университеті мамыр айының бірінші аптасында Ашық есік күнін өткізеді. Абитуриенттер мен ата-аналар университет туралы толық ақпарат ала алады.",
+      "ru": "Жезказганский университет проводит День открытых дверей в первую неделю мая. Абитуриенты и родители смогут получить полную информацию об университете.",
+      "en": "Zhezkazgan University holds an Open Doors Day in the first week of May. Applicants and parents can get full information about the university."
+    },
+    "category": "event",
+    "image": "https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Приёмная комиссия",
+    "createdAt": "2026-04-15T10:00:00Z",
+    "updatedAt": "2026-04-15T10:00:00Z"
+  },
+  {
+    "id": "8",
+    "slug": "scholarship-winners",
+    "title": {
+      "kk": "Мемлекеттік грант иегерлері жарияланды",
+      "ru": "Объявлены обладатели государственных грантов",
+      "en": "State Grant Winners Announced"
+    },
+    "excerpt": {
+      "kk": "2026 жылы 45 студент мемлекеттік грантқа ие болды.",
+      "ru": "В 2026 году 45 студентов получили государственные гранты.",
+      "en": "In 2026, 45 students received state grants."
+    },
+    "body": {
+      "kk": "ҚР Білім және ғылым министрлігі 2026 жылғы мемлекеттік грант иегерлерін жариялады. ZhezU студенттерінен 45 адам грант алды.",
+      "ru": "Министерство образования и науки РК объявило обладателей государственных грантов на 2026 год. 45 студентов ZhezU получили гранты.",
+      "en": "The Ministry of Education and Science of Kazakhstan announced state grant winners for 2026. 45 ZhezU students received grants."
+    },
+    "category": "university",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Пресс-служба",
+    "createdAt": "2026-01-25T10:00:00Z",
+    "updatedAt": "2026-01-25T10:00:00Z"
+  },
+  {
+    "id": "9",
+    "slug": "renewable-energy-research",
+    "title": {
+      "kk": "Жаңартылатын энергия саласындағы жаңалық: ZhezU ғалымдары жаңа көз ашты",
+      "ru": "Прорывное исследование: учёные ZhezU открыли новый источник возобновляемой энергии",
+      "en": "Breakthrough: ZhezU Scientists Discover New Renewable Energy Source"
+    },
+    "excerpt": {
+      "kk": "ZhezU зерттеушілері күн панельдерінің тиімділігін 40%-ға арттыруға мүмкіндік беретін нәтижелер жариялады.",
+      "ru": "Группа исследователей ZhezU опубликовала результаты, которые могут повысить эффективность солнечных панелей на 40% благодаря новым наноматериалам.",
+      "en": "ZhezU researchers published results that could increase solar panel efficiency by 40% through new nanomaterials."
+    },
+    "body": {
+      "kk": "ZhezU зерттеушілер тобы жаңа наноматериалдар арқылы күн панельдерінің тиімділігін 40%-ға арттыруға мүмкіндік беретін нәтижелер жариялады.",
+      "ru": "Группа исследователей ZhezU опубликовала результаты, которые могут повысить эффективность солнечных панелей на 40% благодаря новым наноматериалам.",
+      "en": "A team of ZhezU researchers published results that could increase solar panel efficiency by 40% through new nanomaterials."
+    },
+    "category": "science",
+    "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Д-р Ахмет Касымов",
+    "createdAt": "2026-02-25T10:00:00Z",
+    "updatedAt": "2026-02-25T10:00:00Z"
+  },
+  {
+    "id": "10",
+    "slug": "student-council-elections",
+    "title": {
+      "kk": "Студенттік кеңес сайлауы: үміткерлермен танысыңыз",
+      "ru": "Выборы студенческого совета: знакомьтесь с кандидатами и их программами",
+      "en": "Student Council Elections: Meet the Candidates"
+    },
+    "excerpt": {
+      "kk": "Сайлау аптасында біз студенттік кеңеске үміткерлердің негізгі ұсыныстарын қарастырамыз.",
+      "ru": "На неделе выборов мы подробно рассмотрим ключевые предложения трёх основных партий, претендующих на руководство студенческим советом.",
+      "en": "During election week, we take a closer look at the key proposals from three major parties vying for student council leadership."
+    },
+    "body": {
+      "kk": "Студенттік кеңес сайлауы аптасында біз студенттік кеңеске үміткерлердің негізгі ұсыныстарын қарастырамыз.",
+      "ru": "На неделе выборов студенческого совета мы подробно рассмотрим ключевые предложения трёх основных партий, претендующих на руководство студенческим советом.",
+      "en": "During student council election week, we take a detailed look at the key proposals from three major parties vying for student council leadership."
+    },
+    "category": "university",
+    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Сара Ибрагимова",
+    "createdAt": "2026-02-24T10:00:00Z",
+    "updatedAt": "2026-02-24T10:00:00Z"
+  },
+  {
+    "id": "11",
+    "slug": "basketball-regional-final",
+    "title": {
+      "kk": "ZhezU баскетбол командасы аймақтық финалға шықты",
+      "ru": "Баскетбольная команда ZhezU вышла в региональный финал",
+      "en": "ZhezU Basketball Team Reaches Regional Finals"
+    },
+    "excerpt": {
+      "kk": "Қосымша уақыттағы керемет жеңістен кейін ZhezU баскетболшылары он жыл ішінде алғаш рет аймақтық финалға шықты.",
+      "ru": "Одержав захватывающую победу в овертайме, баскетболисты ZhezU впервые за десятилетие пробились в региональный финал.",
+      "en": "After a thrilling overtime victory, ZhezU basketball players reached the regional finals for the first time in a decade."
+    },
+    "body": {
+      "kk": "Қосымша уақыттағы керемет жеңістен кейін ZhezU баскетбол командасы он жыл ішінде алғаш рет аймақтық финалға шықты.",
+      "ru": "Одержав захватывающую победу в овертайме, баскетбольная команда ZhezU впервые за десятилетие пробилась в региональный финал.",
+      "en": "After a thrilling overtime victory, the ZhezU basketball team reached the regional finals for the first time in a decade."
+    },
+    "category": "sport",
+    "image": "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Михаил Ким",
+    "createdAt": "2026-02-23T10:00:00Z",
+    "updatedAt": "2026-02-23T10:00:00Z"
+  },
+  {
+    "id": "12",
+    "slug": "horizons-art-exhibition",
+    "title": {
+      "kk": "«Көкжиектер» жаңа көрмесі кампус галереясында ашылды",
+      "ru": "Новая художественная выставка «Горизонты» открылась в кампусной галерее",
+      "en": "New Art Exhibition 'Horizons' Opens in Campus Gallery"
+    },
+    "excerpt": {
+      "kk": "30-дан астам студент-суретшінің жұмыстары ұсынылды.",
+      "ru": "Представлены работы более 30 студентов-художников. Выставка исследует темы будущих пейзажей и цифровой идентичности.",
+      "en": "Featuring works from over 30 student artists exploring themes of future landscapes and digital identity."
+    },
+    "body": {
+      "kk": "Кампус галереясында «Көкжиектер» көрмесі ашылды. 30-дан астам студент-суретшінің жұмыстары ұсынылды.",
+      "ru": "В кампусной галерее открылась выставка «Горизонты». Представлены работы более 30 студентов-художников.",
+      "en": "The 'Horizons' exhibition opened in the campus gallery. Featuring works from over 30 student artists."
+    },
+    "category": "culture",
+    "image": "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Кафедра искусств",
+    "createdAt": "2026-02-22T10:00:00Z",
+    "updatedAt": "2026-02-22T10:00:00Z"
+  },
+  {
+    "id": "13",
+    "slug": "ai-in-education-lecture",
+    "title": {
+      "kk": "Қонақ дәріс: Білім берудегі жасанды интеллекттің болашағы",
+      "ru": "Гостевая лекция: будущее ИИ в образовании",
+      "en": "Guest Lecture: The Future of AI in Education"
+    },
+    "excerpt": {
+      "kk": "Танымал AI зерттеушісі ZhezU-ге келіп, үлкен тілдік модельдердің оқытуға әсерін талқылады.",
+      "ru": "Известный исследователь ИИ посетил ZhezU, чтобы обсудить влияние больших языковых моделей на обучение.",
+      "en": "A renowned AI researcher visited ZhezU to discuss the impact of large language models on education."
+    },
+    "body": {
+      "kk": "Танымал AI зерттеушісі ZhezU-ге келіп, үлкен тілдік модельдердің оқытуға әсері туралы дәріс оқыды.",
+      "ru": "Известный исследователь ИИ посетил ZhezU, чтобы обсудить влияние больших языковых моделей на обучение.",
+      "en": "A renowned AI researcher visited ZhezU to deliver a lecture on the impact of large language models on education."
+    },
+    "category": "science",
+    "image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Научный факультет",
+    "createdAt": "2026-02-21T10:00:00Z",
+    "updatedAt": "2026-02-21T10:00:00Z"
+  },
+  {
+    "id": "14",
+    "slug": "sustainability-week",
+    "title": {
+      "kk": "Экологиялық тұрақтылық аптасы ағаш отырғызумен басталды",
+      "ru": "Неделя экологической устойчивости стартовала с посадки деревьев",
+      "en": "Sustainability Week Kicks Off with Tree Planting"
+    },
+    "excerpt": {
+      "kk": "Жүздеген студенттер «Жасыл команда» бастамасына қосылып, 500-ден астам ағаш отырғызды.",
+      "ru": "Сотни студентов присоединились к инициативе «Зелёная команда» и высадили более 500 местных деревьев по периметру кампуса.",
+      "en": "Hundreds of students joined the Green Team initiative and planted over 500 native trees around the campus."
+    },
+    "body": {
+      "kk": "«Жасыл команда» бастамасы аясында жүздеген студенттер кампус периметрі бойынша 500-ден астам ағаш отырғызды.",
+      "ru": "Сотни студентов присоединились к инициативе «Зелёная команда» и высадили более 500 местных деревьев по периметру кампуса.",
+      "en": "Hundreds of students joined the Green Team initiative and planted over 500 native trees around the campus perimeter."
+    },
+    "category": "students",
+    "image": "https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Зелёная команда",
+    "createdAt": "2026-02-20T09:00:00Z",
+    "updatedAt": "2026-02-20T09:00:00Z"
+  },
+  {
+    "id": "15",
+    "slug": "alumni-network-europe",
+    "title": {
+      "kk": "ZhezU түлектер желісі Еуропаға кеңейді",
+      "ru": "Сеть выпускников ZhezU расширяется в Европу",
+      "en": "ZhezU Alumni Network Expands to Europe"
+    },
+    "excerpt": {
+      "kk": "ZhezU Түлектер қауымдастығының жаңа бөлімшесі Берлинде ресми түрде ашылды.",
+      "ru": "Новое отделение Ассоциации выпускников ZhezU официально открыто в Берлине.",
+      "en": "A new chapter of the ZhezU Alumni Association officially opened in Berlin."
+    },
+    "body": {
+      "kk": "ZhezU Түлектер қауымдастығының жаңа бөлімшесі Берлинде ресми түрде ашылды. Бұл бөлімше ЕО бойынша түлектерді біріктіреді.",
+      "ru": "Новое отделение Ассоциации выпускников ZhezU официально открыто в Берлине, объединяя выпускников по всему ЕС.",
+      "en": "A new chapter of the ZhezU Alumni Association officially opened in Berlin, connecting graduates across the EU."
+    },
+    "category": "university",
+    "image": "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Ассоциация выпускников",
+    "createdAt": "2026-02-19T10:00:00Z",
+    "updatedAt": "2026-02-19T10:00:00Z"
+  },
+  {
+    "id": "16",
+    "slug": "programming-olympiad-winners",
+    "title": {
+      "kk": "ZhezU студенттері республикалық бағдарламалау олимпиадасында жеңіске жетті",
+      "ru": "Студенты ZhezU победили на республиканской олимпиаде по программированию",
+      "en": "ZhezU Students Win National Programming Olympiad"
+    },
+    "excerpt": {
+      "kk": "АТ факультетінің үш студенттен тұратын команда республикалық олимпиадада бірінші орынды иеленді.",
+      "ru": "Команда из трёх студентов факультета ИТ заняла первое место на республиканской олимпиаде.",
+      "en": "A team of three IT faculty students took first place at the national olympiad."
+    },
+    "body": {
+      "kk": "АТ факультетінің үш студенттен тұратын команда республикалық бағдарламалау олимпиадасында бірінші орынды иеленді.",
+      "ru": "Команда из трёх студентов факультета ИТ заняла первое место на республиканской олимпиаде по программированию, решив все задачи за рекордное время.",
+      "en": "A team of three IT faculty students took first place at the national programming olympiad, solving all problems in record time."
+    },
+    "category": "students",
+    "image": "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+    "published": true,
+    "pinned": false,
+    "author": "Факультет ИТ",
+    "createdAt": "2026-02-18T10:00:00Z",
+    "updatedAt": "2026-02-18T10:00:00Z"
   }
 ]

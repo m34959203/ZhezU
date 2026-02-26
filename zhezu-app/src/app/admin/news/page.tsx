@@ -11,6 +11,11 @@ const CATEGORIES = [
   { value: 'announcement', label: 'Объявления' },
   { value: 'event', label: 'События' },
   { value: 'achievement', label: 'Достижения' },
+  { value: 'university', label: 'Университет' },
+  { value: 'science', label: 'Наука' },
+  { value: 'students', label: 'Студенты' },
+  { value: 'sport', label: 'Спорт' },
+  { value: 'culture', label: 'Культура' },
 ];
 
 const categoryColor: Record<string, string> = {
@@ -18,6 +23,11 @@ const categoryColor: Record<string, string> = {
   announcement: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
   event: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
   achievement: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+  university: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
+  science: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
+  students: 'bg-green-500/10 text-green-400 border-green-500/20',
+  sport: 'bg-orange-500/10 text-orange-400 border-orange-500/20',
+  culture: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
 };
 
 async function fetchNews(signal?: AbortSignal): Promise<NewsArticle[]> {

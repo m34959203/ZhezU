@@ -11,7 +11,16 @@ export interface NewsArticle {
   title: { kk: string; ru: string; en: string };
   excerpt: { kk: string; ru: string; en: string };
   body: { kk: string; ru: string; en: string };
-  category: 'news' | 'announcement' | 'event' | 'achievement';
+  category:
+    | 'news'
+    | 'announcement'
+    | 'event'
+    | 'achievement'
+    | 'university'
+    | 'science'
+    | 'students'
+    | 'sport'
+    | 'culture';
   image: string;
   published: boolean;
   pinned: boolean;
@@ -36,6 +45,9 @@ export interface SiteSettings {
   siteName: string;
   contactEmail: string;
   contactPhone: string;
+  contactPhoneAdmissions?: string;
+  contactPhoneMobile?: string;
+  emailAlt?: string;
   address: { kk: string; ru: string; en: string };
   socialLinks: {
     instagram?: string;

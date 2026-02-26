@@ -1,16 +1,12 @@
 import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { NEWS_ARTICLES } from '@/lib/news-data';
+import { getNewsById } from '@/lib/admin/public-data';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import type { Locale } from '@/types';
-
-export async function generateStaticParams() {
-  return NEWS_ARTICLES.map((article) => ({ id: article.id }));
-}
 
 export async function generateMetadata({
   params,
@@ -18,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }): Promise<Metadata> {
   const { locale, id } = await params;
-  const article = NEWS_ARTICLES.find((a) => a.id === id);
+  const article = await getNewsById(id);
   if (!article) return { title: 'Not Found' };
   const l = locale as Locale;
   return {
@@ -27,12 +23,17 @@ export async function generateMetadata({
   };
 }
 
-export default function NewsDetailPage({ params }: { params: { locale: string; id: string } }) {
-  const article = NEWS_ARTICLES.find((a) => a.id === params.id);
+export default async function NewsDetailPage({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
+  const { locale, id } = await params;
+  const article = await getNewsById(id);
   if (!article) notFound();
 
-  const t = useTranslations('news');
-  const locale = (params.locale || 'ru') as Locale;
+  const t = await getTranslations({ locale, namespace: 'news' });
+  const l = (locale || 'ru') as Locale;
 
   return (
     <div className="flex flex-col">
@@ -59,14 +60,14 @@ export default function NewsDetailPage({ params }: { params: { locale: string; i
           <Badge className="mb-4">{t(`categories.${article.category}`)}</Badge>
 
           <h1 className="font-display mb-4 text-3xl font-bold sm:text-4xl">
-            {article.title[locale]}
+            {article.title[l]}
           </h1>
 
           <div className="text-text-secondary-light dark:text-text-secondary-dark border-border-light dark:border-border-dark mb-8 flex items-center gap-4 border-b pb-8 text-sm">
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
-              {new Date(article.date).toLocaleDateString(
-                locale === 'kk' ? 'kk-KZ' : locale === 'en' ? 'en-US' : 'ru-RU',
+              {new Date(article.createdAt).toLocaleDateString(
+                l === 'kk' ? 'kk-KZ' : l === 'en' ? 'en-US' : 'ru-RU',
                 { year: 'numeric', month: 'long', day: 'numeric' },
               )}
             </span>
@@ -78,7 +79,7 @@ export default function NewsDetailPage({ params }: { params: { locale: string; i
 
           <div className="prose prose-lg dark:prose-invert max-w-none">
             <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed">
-              {article.content[locale]}
+              {article.body[l]}
             </p>
           </div>
 

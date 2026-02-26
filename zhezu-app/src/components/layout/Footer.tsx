@@ -1,14 +1,14 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { GraduationCap, MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
-import { UNIVERSITY } from '@/lib/constants';
-import { SOCIAL_LINKS } from '@/lib/navigation';
+import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import type { SiteSettings } from '@/lib/admin/types';
+import type { Locale } from '@/types';
 
 /* ------------------------------------------------------------------ */
-/*  Social Icon SVGs (same as Header)                                  */
+/*  Social Icon SVGs                                                    */
 /* ------------------------------------------------------------------ */
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -34,10 +34,19 @@ function YouTubeIcon({ className }: { className?: string }) {
   );
 }
 
+function TelegramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+    </svg>
+  );
+}
+
 const SOCIAL_ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
   instagram: InstagramIcon,
   facebook: FacebookIcon,
   youtube: YouTubeIcon,
+  telegram: TelegramIcon,
 };
 
 /* ------------------------------------------------------------------ */
@@ -62,8 +71,14 @@ const STUDENT_LINKS = [
 /* ================================================================== */
 /*  FOOTER                                                             */
 /* ================================================================== */
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   const t = useTranslations('footer');
+  const locale = useLocale() as Locale;
+
+  /* Build social links array from admin settings */
+  const socialLinks = Object.entries(settings.socialLinks)
+    .filter(([, url]) => url)
+    .map(([id, url]) => ({ id, href: url!, label: id.charAt(0).toUpperCase() + id.slice(1) }));
 
   return (
     <footer className="bg-bg-dark text-white">
@@ -115,9 +130,9 @@ export function Footer() {
 
             <p className="mb-6 text-sm leading-relaxed text-white/60">{t('description')}</p>
 
-            {/* Social links */}
+            {/* Social links from admin settings */}
             <div className="flex items-center gap-3">
-              {SOCIAL_LINKS.map((social) => {
+              {socialLinks.map((social) => {
                 const IconComp = SOCIAL_ICON_MAP[social.id];
                 return (
                   <a
@@ -175,7 +190,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Контакты */}
+          {/* Column 4: Контакты (from admin settings) */}
           <div>
             <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
               {t('contacts')}
@@ -184,25 +199,25 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-white/40" />
                 <span className="text-sm leading-relaxed text-white/60">
-                  {UNIVERSITY.address.ru}
+                  {settings.address[locale]}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={16} className="shrink-0 text-white/40" />
                 <a
-                  href={`tel:${UNIVERSITY.phone.replace(/[\s()-]/g, '')}`}
+                  href={`tel:${settings.contactPhone.replace(/[\s()-]/g, '')}`}
                   className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
-                  {UNIVERSITY.phone}
+                  {settings.contactPhone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={16} className="shrink-0 text-white/40" />
                 <a
-                  href={`mailto:${UNIVERSITY.email}`}
+                  href={`mailto:${settings.contactEmail}`}
                   className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
                 >
-                  {UNIVERSITY.email}
+                  {settings.contactEmail}
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -216,7 +231,7 @@ export function Footer() {
         {/* ── Section 3: Bottom Bar ──────────────────────────────── */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-white/40">
-            &copy; 2026 Жезказганский университет им. О.А. Байконурова. Все права защищены.
+            &copy; {new Date().getFullYear()} {settings.siteName}. Все права защищены.
           </p>
           <div className="flex items-center gap-6">
             <Link
