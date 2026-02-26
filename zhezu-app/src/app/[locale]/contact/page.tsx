@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import type { SiteSettings } from '@/lib/admin/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
@@ -97,6 +98,16 @@ const OPENING_HOURS = [
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch('/api/public/settings', { signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setSettings)
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
 
   const {
     register,
@@ -190,9 +201,7 @@ export default function ContactPage() {
                       Адрес
                     </h3>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
-                      пр. Алашахана, 1Б,
-                      <br />
-                      г. Жезказган, Казахстан
+                      {settings?.address?.ru ?? 'пр. Алашахана, 1Б, г. Жезказган, Казахстан'}
                     </p>
                   </div>
                 </div>
@@ -207,12 +216,14 @@ export default function ContactPage() {
                       Телефон
                     </h3>
                     <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex flex-col gap-1 text-sm">
-                      <a href="tel:+77102744392" className="hover:text-primary transition-colors">
-                        +7 (7102) 74-43-92
+                      <a href={`tel:${(settings?.contactPhone ?? '+7 (7102) 73-60-15').replace(/[\s()-]/g, '')}`} className="hover:text-primary transition-colors">
+                        {settings?.contactPhone ?? '+7 (7102) 73-60-15'}
                       </a>
-                      <a href="tel:+77102745024" className="hover:text-primary transition-colors">
-                        +7 (7102) 74-50-24
-                      </a>
+                      {settings?.contactPhoneAdmissions && (
+                        <a href={`tel:${settings.contactPhoneAdmissions.replace(/[\s()-]/g, '')}`} className="hover:text-primary transition-colors">
+                          {settings.contactPhoneAdmissions}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -227,10 +238,10 @@ export default function ContactPage() {
                       Email
                     </h3>
                     <a
-                      href="mailto:info@zhezu.edu.kz"
+                      href={`mailto:${settings?.contactEmail ?? 'univer@zhezu.edu.kz'}`}
                       className="hover:text-primary text-text-secondary-light dark:text-text-secondary-dark mt-1 block text-sm transition-colors"
                     >
-                      info@zhezu.edu.kz
+                      {settings?.contactEmail ?? 'univer@zhezu.edu.kz'}
                     </a>
                   </div>
                 </div>

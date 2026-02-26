@@ -10,6 +10,11 @@ const CATEGORIES = [
   { value: 'announcement', label: 'Объявление' },
   { value: 'event', label: 'Событие' },
   { value: 'achievement', label: 'Достижение' },
+  { value: 'university', label: 'Университет' },
+  { value: 'science', label: 'Наука' },
+  { value: 'students', label: 'Студенты' },
+  { value: 'sport', label: 'Спорт' },
+  { value: 'culture', label: 'Культура' },
 ];
 
 const LOCALES: { code: ContentLocale; label: string }[] = [
