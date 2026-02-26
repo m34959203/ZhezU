@@ -1,0 +1,54 @@
+[
+  {
+    "id": "1",
+    "slug": "baykonurov-readings-2025",
+    "title": {
+      "kk": "Байқоңыров оқулары — 2025 халықаралық конференция",
+      "ru": "Байконуровские чтения — 2025 международная конференция",
+      "en": "Baikonurov Readings — 2025 International Conference"
+    },
+    "excerpt": {
+      "kk": "Жезқазған университеті дәстүрлі халықаралық ғылыми-тәжірибелік конференцияға шақырады.",
+      "ru": "Жезказганский университет приглашает на традиционную международную научно-практическую конференцию.",
+      "en": "Zhezkazgan University invites you to the traditional international scientific conference."
+    },
+    "body": {
+      "kk": "Байқоңыров оқулары — жыл сайын өтетін халықаралық ғылыми-тәжірибелік конференция. Тау-кен ісі, металлургия, экология, педагогика және AI бағыттары бойынша баяндамалар қабылданады.",
+      "ru": "Байконуровские чтения — ежегодная международная научно-практическая конференция. Принимаются доклады по направлениям: горное дело, металлургия, экология, педагогика и AI.",
+      "en": "Baikonurov Readings — annual international scientific conference. Papers accepted in: mining, metallurgy, ecology, pedagogy, and AI."
+    },
+    "category": "event",
+    "image": "",
+    "published": true,
+    "pinned": true,
+    "author": "Администрация",
+    "createdAt": "2025-10-01T09:00:00Z",
+    "updatedAt": "2025-10-01T09:00:00Z"
+  },
+  {
+    "id": "2",
+    "slug": "admission-2025-2026",
+    "title": {
+      "kk": "2025-2026 оқу жылына қабылдау басталды",
+      "ru": "Начат приём документов на 2025-2026 учебный год",
+      "en": "Admission for 2025-2026 academic year is now open"
+    },
+    "excerpt": {
+      "kk": "21 бакалавриат және 3 магистратура бағдарламасына құжат қабылдау басталды.",
+      "ru": "Открыт приём документов на 21 программу бакалавриата и 3 программы магистратуры.",
+      "en": "Applications are now accepted for 21 bachelor's and 3 master's programs."
+    },
+    "body": {
+      "kk": "Жезқазған университеті 2025-2026 оқу жылына құжат қабылдауды бастайды. 21 бакалавриат бағдарламасы мен 3 магистратура бағдарламасы бойынша оқуға түсуге болады.",
+      "ru": "Жезказганский университет начинает приём документов на 2025-2026 учебный год. Доступны 21 программа бакалавриата и 3 программы магистратуры.",
+      "en": "Zhezkazgan University opens admission for 2025-2026. 21 bachelor's programs and 3 master's programs are available."
+    },
+    "category": "announcement",
+    "image": "",
+    "published": true,
+    "pinned": false,
+    "author": "Приёмная комиссия",
+    "createdAt": "2025-06-15T10:00:00Z",
+    "updatedAt": "2025-06-15T10:00:00Z"
+  }
+]

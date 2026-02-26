@@ -1,0 +1,23 @@
+{
+  "siteName": "Жезказганский университет им. О.А. Байконурова",
+  "contactEmail": "info@zhezu.edu.kz",
+  "contactPhone": "+7 7102 123456",
+  "address": {
+    "kk": "100600, Қарағанды облысы, Жезқазған қ., Байқоңыров к-сі, 29",
+    "ru": "100600, Карагандинская область, г. Жезказган, ул. Байконурова, 29",
+    "en": "29 Baikonurov St., Zhezkazgan, Karaganda Region, 100600, Kazakhstan"
+  },
+  "socialLinks": {
+    "instagram": "https://instagram.com/zhezu_official",
+    "telegram": "https://t.me/zhezu_edu",
+    "youtube": "",
+    "facebook": ""
+  },
+  "admissionOpen": true,
+  "maintenanceMode": false,
+  "announcement": {
+    "kk": "",
+    "ru": "",
+    "en": ""
+  }
+}
