@@ -1,7 +1,7 @@
 # Дорожная карта проекта ZhezU
 
-**Версия:** 1.0
-**Дата:** 23 февраля 2026
+**Версия:** 2.0
+**Дата:** 26 февраля 2026
 **Проект:** Новая цифровая платформа Жезказганского университета им. О.А. Байконурова
 **Целевой сайт:** https://zhezu.edu.kz/
 **Горизонт планирования:** 40 недель (10 месяцев)
@@ -35,46 +35,45 @@ ZhezU -- единая цифровая экосистема Жезказганс
 - **Talapker** -- система геймификации жизненного цикла студента (20 уровней, 28 квестов, 12 значков, лидерборд);
 - **AI-Центр** -- полноценный раздел навигации верхнего уровня (по модели MIT Innovation), включающий AI-проекты, AI-агентов, AI-приложения, AI-инструменты и AI-лабораторию.
 
-### 1.2 Текущее состояние проекта
+### 1.2 Текущее состояние проекта (обновлено 26.02.2026)
 
-По результатам аудита (февраль 2026) текущий сайт zhezu.edu.kz оценен на **3.6 из 10** и скомпрометирован (размещён мошеннический гемблинг-контент). Параллельно создан новый фронтенд на современном стеке.
+По результатам аудита (февраль 2026) текущий сайт zhezu.edu.kz оценен на **3.6 из 10** и скомпрометирован. Параллельно создан новый фронтенд на современном стеке. **Проект значительно продвинулся с момента первоначального аудита.**
 
-**Что уже реализовано:**
+**Что реализовано (актуальное состояние):**
 
 | Категория | Детали |
 |-----------|--------|
-| Фреймворк | Next.js 16.1.6 (App Router) + React 19.2.3 + TypeScript 5 |
-| Стили | Tailwind CSS 4 (build-time компиляция, не CDN) |
-| i18n | next-intl 4.8, 3 локали (kk/ru/en), ~350 ключей на язык, 12 namespace-ов |
-| Темы | next-themes -- тёмная/светлая тема с определением системных настроек |
-| Страницы (8) | Home, Admission, Academics, Career, Contact, Skill Map, Talent Pool, Profile [id] |
-| Компоненты (16) | 4 UI (Button, Card, Badge, Input), 5 layout (Header, Footer, MobileMenu, LanguageSwitcher, ThemeToggle), 5 talent (SkillMap, StudentCard, RadarChart, ProgressBar, CircularProgress), ThemeProvider, StudentProfileView |
-| Данные | 22 программы, 5 кафедр, 20 уровней lifecycle, 28 квестов, 12 значков, 13 достижений, 8 профилей |
-| API | GET /api/health (health check) |
-| Инфраструктура | Dockerfile (Node 22 Alpine, multi-stage), Railway config (healthcheck, restart policy) |
-| Анимации | Framer Motion 12 (минимальное использование) |
-| Зависимости (установлены, не используются) | react-hook-form, zod, zustand |
-| Код | 5 509 строк, 41 файл |
+| Фреймворк | Next.js 16.x (App Router) + React 19.x + TypeScript 5 |
+| Стили | Tailwind CSS 4 (build-time компиляция) |
+| i18n | next-intl 4.x, 3 локали (kk/ru/en), **22 namespace-а**, ~1000+ ключей на язык |
+| Темы | next-themes — тёмная/светлая тема с определением системных настроек |
+| Публичные страницы (**78**) | Home, University (14), Admission (15), Academics (13), Research (11), AI-Center (9), Life (12), Career, Contact, Talent Pool, Skill Map |
+| Админ-панель (**7 страниц**) | Dashboard, Login, News CRUD, Settings, Translations, Pages |
+| Компоненты (**30**) | 11 UI, 5 layout, 4 cards, 5 talent, 2 admin, 1 search, 1 provider, 1 root |
+| API (**10 эндпоинтов**) | 6 admin (auth, session, news CRUD, settings, translations), 2 public (news, settings), health, contact |
+| CMS | JSON-based файловое хранилище (data/news.json, data/settings.json) |
+| Аутентификация (admin) | HMAC-SHA256 токены, httpOnly cookies |
+| SEO | hreflang-теги, мета-теги, OG-теги на всех страницах |
+| Мегаменю | 6 разделов верхнего уровня с подменю |
+| Данные | 22 программы, 5 кафедр, 16 seed-новостей (9 категорий), настройки сайта |
+| Инфраструктура | Dockerfile (Node 22 Alpine, multi-stage), Railway config |
+| Анимации | Framer Motion 12 |
 
-**Что полностью отсутствует:**
+**Что ещё предстоит:**
 
 | Категория | Статус |
 |-----------|--------|
-| Backend / CMS | Нет. Все данные захардкожены в lib/*.ts |
-| База данных | Нет (PostgreSQL, Redis -- не настроены) |
-| Аутентификация | Нет (NextAuth.js не установлен) |
-| Тестирование | Нет (Vitest, Playwright -- не установлены, 0 тестов) |
+| Headless CMS (Strapi/Payload) | Не развёрнут (используется JSON-based хранилище) |
+| База данных | Нет (PostgreSQL, Redis — не настроены) |
+| Аутентификация пользователей | Нет (NextAuth.js не установлен) |
+| Тестирование | Нет (0 тестов) |
 | CI/CD | Нет (GitHub Actions не настроен) |
-| Линтинг | Частично (ESLint есть, Prettier -- только конфиг в плане) |
-| SEO | Нет (sitemap.xml, robots.txt, hreflang, JSON-LD, OG-теги отсутствуют) |
-| Мегаменю | Нет (текущий Header -- 5 плоских ссылок) |
-| Поиск | Нет (Meilisearch не интегрирован) |
-| Формы | Нет (react-hook-form установлен, но 0 импортов) |
+| Полнотекстовый поиск | Нет (Meilisearch не интегрирован) |
 | Storybook | Нет |
 | Мониторинг | Нет (Sentry не настроен) |
 | PWA | Нет (next-pwa/Serwist не установлен) |
-| Error/Loading states | Нет (error.tsx, loading.tsx отсутствуют) |
-| Структурные страницы | Нет: About, Research, AI-Center, Life, News, Blog, Events, Alumni, Admin, Portal |
+| Личный кабинет студента | Нет |
+| AI-чатбот | Нет |
 
 ### 1.3 Объём работ: что можно ускорить
 
@@ -822,5 +821,5 @@ ZhezU -- единая цифровая экосистема Жезказганс
 ---
 
 *Документ подготовлен: 23 февраля 2026 г.*
-*Версия: 1.0*
-*Следующий пересмотр: по итогам Фазы 0 (неделя 3)*
+*Обновлено: 26 февраля 2026 г.*
+*Версия: 2.0*
