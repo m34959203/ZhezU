@@ -1,16 +1,10 @@
 import { NextResponse } from 'next/server';
 import { getSession } from '@/lib/admin/auth';
+import { getTelegramConfig } from '@/lib/admin/gemini';
 import { getAll } from '@/lib/admin/storage';
 import type { NewsArticle } from '@/lib/admin/types';
 
 const NEWS_FILE = 'news.json';
-
-function getTelegramConfig() {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!botToken || !chatId) return null;
-  return { botToken, chatId };
-}
 
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '').trim();
@@ -41,10 +35,10 @@ export async function POST(req: Request) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  const config = getTelegramConfig();
+  const config = await getTelegramConfig();
   if (!config) {
     return NextResponse.json(
-      { error: 'Telegram не настроен. Добавьте TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID.' },
+      { error: 'Telegram не настроен. Укажите токен бота и Chat ID в Настройки → Интеграции.' },
       { status: 400 },
     );
   }
@@ -61,7 +55,6 @@ export async function POST(req: Request) {
 
     const text = formatTelegramPost(article, lang as 'kk' | 'ru');
 
-    // Send photo with caption if image exists, otherwise send text message
     let telegramUrl: string;
     let body: Record<string, unknown>;
 
@@ -107,11 +100,10 @@ export async function POST(req: Request) {
   }
 }
 
-/* GET — check if Telegram is configured */
 export async function GET() {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-  const config = getTelegramConfig();
+  const config = await getTelegramConfig();
   return NextResponse.json({ configured: !!config });
 }

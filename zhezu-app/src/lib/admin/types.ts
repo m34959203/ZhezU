@@ -58,6 +58,13 @@ export interface SiteSettings {
   admissionOpen: boolean;
   maintenanceMode: boolean;
   announcement?: { kk: string; ru: string; en: string };
+  integrations?: {
+    geminiApiKey?: string;
+    telegramBotToken?: string;
+    telegramChatId?: string;
+    instagramAccessToken?: string;
+    instagramPageId?: string;
+  };
 }
 
 export interface DashboardStats {

@@ -1,7 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Save, Loader2, Globe, Phone, Mail, MapPin, Shield } from 'lucide-react';
+import {
+  Save,
+  Loader2,
+  Globe,
+  Phone,
+  Mail,
+  MapPin,
+  Shield,
+  Sparkles,
+  Send,
+  Camera,
+  Eye,
+  EyeOff,
+} from 'lucide-react';
 import type { SiteSettings, ContentLocale } from '@/lib/admin/types';
 
 const DEFAULT_SETTINGS: SiteSettings = {
@@ -27,6 +40,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
+  const [showTokens, setShowTokens] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const controller = new AbortController();
@@ -259,6 +273,171 @@ export default function SettingsPage() {
           placeholder="Текст объявления. Оставьте пустым чтобы скрыть баннер."
           className="w-full resize-none rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
         />
+      </section>
+
+      {/* Integrations */}
+      <section className="rounded-xl border border-purple-200 bg-white p-6 dark:border-purple-500/20 dark:bg-slate-900">
+        <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <Sparkles size={18} className="text-purple-500" />
+          Интеграции (AI и соцсети)
+        </h3>
+        <p className="mb-4 text-xs text-slate-400">
+          Токены хранятся в settings.json на сервере. Для работы AI-функций нужен Gemini API ключ.
+        </p>
+
+        <div className="space-y-5">
+          {/* Gemini */}
+          <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-purple-600 dark:text-purple-400">
+              <Sparkles size={14} />
+              Google Gemini (AI)
+            </h4>
+            <div>
+              <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                API Key
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type={showTokens.gemini ? 'text' : 'password'}
+                  value={settings.integrations?.geminiApiKey ?? ''}
+                  onChange={(e) =>
+                    setSettings((s) => ({
+                      ...s,
+                      integrations: { ...s.integrations, geminiApiKey: e.target.value },
+                    }))
+                  }
+                  placeholder="AIza..."
+                  className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowTokens((s) => ({ ...s, gemini: !s.gemini }))}
+                  className="rounded-lg border border-slate-200 px-3 text-slate-400 hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                >
+                  {showTokens.gemini ? <EyeOff size={14} /> : <Eye size={14} />}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Telegram */}
+          <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400">
+              <Send size={14} />
+              Telegram
+            </h4>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Bot Token
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type={showTokens.telegram ? 'text' : 'password'}
+                    value={settings.integrations?.telegramBotToken ?? ''}
+                    onChange={(e) =>
+                      setSettings((s) => ({
+                        ...s,
+                        integrations: {
+                          ...s.integrations,
+                          telegramBotToken: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="123456:ABC-DEF..."
+                    className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowTokens((s) => ({ ...s, telegram: !s.telegram }))}
+                    className="rounded-lg border border-slate-200 px-3 text-slate-400 hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                  >
+                    {showTokens.telegram ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Chat ID / @channel
+                </label>
+                <input
+                  type="text"
+                  value={settings.integrations?.telegramChatId ?? ''}
+                  onChange={(e) =>
+                    setSettings((s) => ({
+                      ...s,
+                      integrations: {
+                        ...s.integrations,
+                        telegramChatId: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="@zhezu_news или -100..."
+                  className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Instagram */}
+          <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-pink-600 dark:text-pink-400">
+              <Camera size={14} />
+              Instagram (Graph API)
+            </h4>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Access Token
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type={showTokens.instagram ? 'text' : 'password'}
+                    value={settings.integrations?.instagramAccessToken ?? ''}
+                    onChange={(e) =>
+                      setSettings((s) => ({
+                        ...s,
+                        integrations: {
+                          ...s.integrations,
+                          instagramAccessToken: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="EAAx..."
+                    className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowTokens((s) => ({ ...s, instagram: !s.instagram }))}
+                    className="rounded-lg border border-slate-200 px-3 text-slate-400 hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                  >
+                    {showTokens.instagram ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Instagram Business Page ID
+                </label>
+                <input
+                  type="text"
+                  value={settings.integrations?.instagramPageId ?? ''}
+                  onChange={(e) =>
+                    setSettings((s) => ({
+                      ...s,
+                      integrations: {
+                        ...s.integrations,
+                        instagramPageId: e.target.value,
+                      },
+                    }))
+                  }
+                  placeholder="17841..."
+                  className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

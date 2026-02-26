@@ -13,6 +13,7 @@ import {
   Languages,
   Sparkles,
   Send,
+  Camera,
   X,
   ChevronDown,
   ChevronUp,
@@ -94,8 +95,10 @@ export default function NewsEditorPage() {
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   const [publishing, setPublishing] = useState(false);
+  const [publishingIg, setPublishingIg] = useState(false);
   const [publishResult, setPublishResult] = useState<string | null>(null);
   const [telegramConfigured, setTelegramConfigured] = useState<boolean | null>(null);
+  const [instagramConfigured, setInstagramConfigured] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (isNew) return;
@@ -110,12 +113,18 @@ export default function NewsEditorPage() {
     return () => controller.abort();
   }, [id, isNew]);
 
-  /* Check Telegram config on mount */
+  /* Check social media config on mount */
   useEffect(() => {
     fetch('/api/admin/social/telegram')
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (data) setTelegramConfigured(data.configured);
+      })
+      .catch(() => {});
+    fetch('/api/admin/social/instagram')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data) setInstagramConfigured(data.configured);
       })
       .catch(() => {});
   }, []);
@@ -254,6 +263,31 @@ export default function NewsEditorPage() {
     }
   }, [id]);
 
+  /* ─── Social: Instagram ─── */
+  const handlePublishInstagram = useCallback(async () => {
+    if (!confirm('Опубликовать в Instagram?')) return;
+    setPublishingIg(true);
+    setPublishResult(null);
+    try {
+      const res = await fetch('/api/admin/social/instagram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId: id, lang: 'ru' }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishResult(`Ошибка: ${data.error}`);
+      } else {
+        setPublishResult('Опубликовано в Instagram!');
+        setTimeout(() => setPublishResult(null), 3000);
+      }
+    } catch {
+      setPublishResult('Ошибка подключения');
+    } finally {
+      setPublishingIg(false);
+    }
+  }, [id]);
+
   function applySuggestion(field: 'title' | 'excerpt', value: string) {
     setArticle((prev) => ({
       ...prev,
@@ -382,6 +416,18 @@ export default function NewsEditorPage() {
           >
             {publishing ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
             {publishing ? 'Отправка...' : 'Telegram'}
+          </button>
+        )}
+        {/* Instagram Publish */}
+        {!isNew && instagramConfigured && (
+          <button
+            type="button"
+            onClick={handlePublishInstagram}
+            disabled={publishingIg}
+            className="flex items-center gap-1.5 rounded-lg border border-pink-200 bg-white px-3 py-1.5 text-xs font-medium text-pink-700 transition-colors hover:bg-pink-50 disabled:opacity-50 dark:border-pink-500/30 dark:bg-slate-800 dark:text-pink-300 dark:hover:bg-slate-700"
+          >
+            {publishingIg ? <Loader2 size={12} className="animate-spin" /> : <Camera size={12} />}
+            {publishingIg ? 'Отправка...' : 'Instagram'}
           </button>
         )}
         {publishResult && (
