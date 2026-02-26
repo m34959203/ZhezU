@@ -42,14 +42,16 @@ export default function NewsEditorPage() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    if (!isNew) {
-      fetch(`/api/admin/news/${id}`)
-        .then((r) => (r.ok ? r.json() : null))
-        .then((data) => {
-          if (data) setArticle(data);
-        })
-        .finally(() => setLoading(false));
-    }
+    if (isNew) return;
+    const controller = new AbortController();
+    fetch(`/api/admin/news/${id}`, { signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data) setArticle(data);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+    return () => controller.abort();
   }, [id, isNew]);
 
   function setLocField(field: 'title' | 'excerpt' | 'body', value: string) {

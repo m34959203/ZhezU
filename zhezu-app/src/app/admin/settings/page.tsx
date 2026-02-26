@@ -29,10 +29,13 @@ export default function SettingsPage() {
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
 
   useEffect(() => {
-    fetch('/api/admin/settings')
+    const controller = new AbortController();
+    fetch('/api/admin/settings', { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : DEFAULT_SETTINGS))
       .then(setSettings)
+      .catch(() => {})
       .finally(() => setLoading(false));
+    return () => controller.abort();
   }, []);
 
   async function handleSave() {

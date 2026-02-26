@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import Link from 'next/link';
 import { Plus, Search, Trash2, Edit3, Eye, EyeOff, Pin, Clock, Loader2 } from 'lucide-react';
 import type { NewsArticle } from '@/lib/admin/types';
@@ -20,23 +20,28 @@ const categoryColor: Record<string, string> = {
   achievement: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
 };
 
+async function fetchNews(signal?: AbortSignal): Promise<NewsArticle[]> {
+  const res = await fetch('/api/admin/news', { signal });
+  if (!res.ok) return [];
+  return res.json();
+}
+
 export default function AdminNewsPage() {
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
   const [deleting, setDeleting] = useState<string | null>(null);
-
-  async function loadNews() {
-    setLoading(true);
-    const res = await fetch('/api/admin/news');
-    if (res.ok) setNews(await res.json());
-    setLoading(false);
-  }
+  const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => {
-    loadNews();
-  }, []);
+    const controller = new AbortController();
+    fetchNews(controller.signal)
+      .then(setNews)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+    return () => controller.abort();
+  }, [refreshKey]);
 
   async function togglePublish(article: NewsArticle) {
     await fetch(`/api/admin/news/${article.id}`, {
@@ -44,7 +49,7 @@ export default function AdminNewsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ published: !article.published }),
     });
-    loadNews();
+    refresh();
   }
 
   async function togglePin(article: NewsArticle) {
@@ -53,14 +58,14 @@ export default function AdminNewsPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ pinned: !article.pinned }),
     });
-    loadNews();
+    refresh();
   }
 
   async function handleDelete(id: string) {
     if (!confirm('Удалить публикацию?')) return;
     setDeleting(id);
     await fetch(`/api/admin/news/${id}`, { method: 'DELETE' });
-    loadNews();
+    refresh();
     setDeleting(null);
   }
 
