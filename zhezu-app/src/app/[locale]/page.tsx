@@ -441,7 +441,8 @@ export default function HomePage() {
                         {item.title[locale]}
                       </h4>
                       <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
-                        <Calendar size={10} /> {d.toLocaleString(locale, { month: 'short' })} {d.getDate()}, {d.getFullYear()}
+                        <Calendar size={10} /> {d.toLocaleString(locale, { month: 'short' })}{' '}
+                        {d.getDate()}, {d.getFullYear()}
                       </span>
                     </div>
                   </div>

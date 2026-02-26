@@ -1,7 +1,7 @@
 # План разработки мультиязычного кроссплатформенного приложения ZhezU
 
-**Версия:** 1.1
-**Дата:** 8 февраля 2026
+**Версия:** 2.0
+**Дата:** 26 февраля 2026
 **Проект:** Разработка нового сайта Жезказганского университета имени О.А. Байконурова
 
 > **Целевой сайт:** https://zhezu.edu.kz/
@@ -61,7 +61,7 @@ Error:           #EF4444
 - Mono: JetBrains Mono (код, данные)
 
 ### Backend-архитектор
-**На текущем этапе:** статический фронтенд с заглушками API-вызовов. Архитектура подготовлена для подключения headless CMS (Strapi/Payload) и REST/GraphQL API.
+**На текущем этапе:** JSON-based CMS реализована (файловое хранилище `data/*.json`). Админ-панель с HMAC-SHA256 аутентификацией. 10 API-эндпоинтов (6 admin + 2 public + 2 general). Архитектура подготовлена для миграции на headless CMS (Strapi/Payload) и PostgreSQL.
 
 ### DevOps-инженер
 **Инфраструктура:**
@@ -276,42 +276,56 @@ zhezu-app/
 
 ## 6. Фазы разработки
 
-### Фаза 1 — Фундамент (текущая)
+### Фаза 1 — Фундамент (завершена)
 - [x] Инициализация Next.js + TypeScript + Tailwind
 - [x] Настройка дизайн-токенов и палитры
-- [x] Система i18n (kk/ru/en)
-- [x] Dark/light тема
-- [x] Базовые UI-компоненты (Button, Card, Input, Badge)
-- [x] Layout: Header, Footer, MobileMenu
+- [x] Система i18n (kk/ru/en) — 22 namespace-а переводов
+- [x] Dark/light тема (next-themes с определением системных настроек)
+- [x] Базовые UI-компоненты (11 шт.: Button, Card, Input, Badge, Select, Tabs, Accordion, Breadcrumb, Pagination, Skeleton, Toast)
+- [x] Layout: Header с мега-меню (6 разделов), Footer, MobileMenu, LanguageSwitcher, ThemeToggle
 - [x] Главная страница
 - [x] Страница приёмной комиссии
 - [x] Каталог программ
 - [x] Страница контактов
 - [x] Карьерный центр
-- [x] PWA-конфигурация
+- [x] Карточные компоненты (NewsCard, EventCard, ProgramCard, StatCard)
+- [x] SearchOverlay — глобальный поиск
 
-### Фаза 2 — Студенческие сервисы (следующая)
+### Фаза 2 — Расширение контента (завершена)
+- [x] Раздел «Университет» (14 страниц: about, leadership, rector, administration, mission, accreditation, partners, rankings, senate, documents)
+- [x] Раздел «Поступление» расширен (15 страниц: bachelor, master, doctorate, apply, documents, scholarships, deadlines, exams, faq, status, consultation, contact)
+- [x] Раздел «Образование» расширен (13 страниц: bachelor, master, departments, faculty, library, schedule, calendar, curriculum, exams)
+- [x] Раздел «Наука» (11 страниц: publications, conferences, labs, grants, equipment, articles)
+- [x] Раздел «AI-Центр» (9 страниц: projects, agents, tools, lab, api, showcase)
+- [x] Раздел «Студенческая жизнь» (12 страниц: news, events, sports, dormitories, clubs, student-government, announcements)
+- [x] SEO: hreflang-теги, мета-теги, OG-теги на всех страницах
+
+### Фаза 3 — Административный интерфейс (завершена)
+- [x] Админ-панель с авторизацией (HMAC-SHA256 токены, httpOnly cookies)
+- [x] CRUD управление новостями (9 категорий: news, announcement, event, achievement, university, science, students, sport, culture)
+- [x] Редактор настроек сайта (контакты, соцсети, адрес, объявления)
+- [x] Редактор переводов (kk/ru/en)
+- [x] Менеджер страниц
+- [x] Публичные API (/api/public/news, /api/public/settings)
+- [x] Привязка всех публичных страниц к админ-данным (Footer, новости, контакты)
+- [x] JSON-based файловое хранилище (data/news.json, data/settings.json)
+- [x] 16 seed-новостей на 3 языках
+
+### Фаза 4 — Студенческие сервисы (планируется)
 - [ ] Личный кабинет студента
 - [ ] Профиль для работодателей
-- [ ] Блог и события
+- [ ] Блог и события (live mode)
 - [ ] Система чата куратор-студент
-- [ ] Видеозвонки (WebRTC интеграция)
 
-### Фаза 3 — Административный интерфейс
-- [ ] Админ-дашборд
-- [ ] CMS редактор контента
-- [ ] Управление пользователями
-- [ ] Аналитика и статистика
-
-### Фаза 4 — AI-сервисы
+### Фаза 5 — AI-сервисы (планируется)
 - [ ] AI Career Path Predictor
 - [ ] AI Tools Directory
 - [ ] AI-ассистент для абитуриентов
 
-### Фаза 5 — Backend и интеграции
-- [ ] Headless CMS (Strapi / Payload)
+### Фаза 6 — Backend и интеграции (планируется)
+- [ ] Headless CMS (Strapi / Payload) — миграция с JSON-хранилища
 - [ ] REST/GraphQL API
-- [ ] Аутентификация (NextAuth.js)
+- [ ] Аутентификация пользователей (NextAuth.js)
 - [ ] База данных (PostgreSQL)
 - [ ] Интеграция с АИС университета
 

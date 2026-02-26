@@ -216,11 +216,17 @@ export default function ContactPage() {
                       Телефон
                     </h3>
                     <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex flex-col gap-1 text-sm">
-                      <a href={`tel:${(settings?.contactPhone ?? '+7 (7102) 73-60-15').replace(/[\s()-]/g, '')}`} className="hover:text-primary transition-colors">
+                      <a
+                        href={`tel:${(settings?.contactPhone ?? '+7 (7102) 73-60-15').replace(/[\s()-]/g, '')}`}
+                        className="hover:text-primary transition-colors"
+                      >
                         {settings?.contactPhone ?? '+7 (7102) 73-60-15'}
                       </a>
                       {settings?.contactPhoneAdmissions && (
-                        <a href={`tel:${settings.contactPhoneAdmissions.replace(/[\s()-]/g, '')}`} className="hover:text-primary transition-colors">
+                        <a
+                          href={`tel:${settings.contactPhoneAdmissions.replace(/[\s()-]/g, '')}`}
+                          className="hover:text-primary transition-colors"
+                        >
                           {settings.contactPhoneAdmissions}
                         </a>
                       )}
