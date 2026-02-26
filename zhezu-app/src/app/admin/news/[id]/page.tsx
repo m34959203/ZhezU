@@ -1,8 +1,25 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { Save, ArrowLeft, Loader2, Eye, EyeOff, Pin, Trash2 } from 'lucide-react';
+import {
+  Save,
+  ArrowLeft,
+  Loader2,
+  Eye,
+  EyeOff,
+  Pin,
+  Trash2,
+  Languages,
+  Sparkles,
+  Send,
+  X,
+  ChevronDown,
+  ChevronUp,
+  Check,
+  AlertTriangle,
+  Info,
+} from 'lucide-react';
 import type { NewsArticle, ContentLocale } from '@/lib/admin/types';
 
 const CATEGORIES = [
@@ -23,7 +40,28 @@ const LOCALES: { code: ContentLocale; label: string }[] = [
   { code: 'en', label: 'EN' },
 ];
 
+const LANG_LABELS: Record<ContentLocale, string> = {
+  kk: 'Казахский',
+  ru: 'Русский',
+  en: 'Английский',
+};
+
 const emptyLocalized = { kk: '', ru: '', en: '' };
+
+interface AISuggestion {
+  field: string;
+  severity: 'high' | 'medium' | 'low';
+  text: string;
+}
+
+interface AIAnalysis {
+  score: number;
+  summary: string;
+  strengths: string[];
+  suggestions: AISuggestion[];
+  improvedTitle?: string;
+  improvedExcerpt?: string;
+}
 
 export default function NewsEditorPage() {
   const { id } = useParams<{ id: string }>();
@@ -46,6 +84,19 @@ export default function NewsEditorPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  /* ─── AI States ─── */
+  const [translating, setTranslating] = useState(false);
+  const [translateTarget, setTranslateTarget] = useState<ContentLocale | null>(null);
+  const [translateDropdown, setTranslateDropdown] = useState(false);
+
+  const [analyzing, setAnalyzing] = useState(false);
+  const [analysis, setAnalysis] = useState<AIAnalysis | null>(null);
+  const [showAnalysis, setShowAnalysis] = useState(false);
+
+  const [publishing, setPublishing] = useState(false);
+  const [publishResult, setPublishResult] = useState<string | null>(null);
+  const [telegramConfigured, setTelegramConfigured] = useState<boolean | null>(null);
+
   useEffect(() => {
     if (isNew) return;
     const controller = new AbortController();
@@ -58,6 +109,16 @@ export default function NewsEditorPage() {
       .finally(() => setLoading(false));
     return () => controller.abort();
   }, [id, isNew]);
+
+  /* Check Telegram config on mount */
+  useEffect(() => {
+    fetch('/api/admin/social/telegram')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (data) setTelegramConfigured(data.configured);
+      })
+      .catch(() => {});
+  }, []);
 
   function setLocField(field: 'title' | 'excerpt' | 'body', value: string) {
     setArticle((prev) => ({
@@ -96,6 +157,110 @@ export default function NewsEditorPage() {
     router.push('/admin/news');
   }
 
+  /* ─── AI: Translation ─── */
+  const handleTranslate = useCallback(
+    async (targetLang: ContentLocale) => {
+      setTranslateDropdown(false);
+      setTranslating(true);
+      setTranslateTarget(targetLang);
+      try {
+        const res = await fetch('/api/admin/ai/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            title: article.title[activeLang],
+            excerpt: article.excerpt[activeLang],
+            body: article.body[activeLang],
+            sourceLang: activeLang,
+            targetLang,
+          }),
+        });
+        if (!res.ok) {
+          const err = await res.json();
+          alert(`Ошибка перевода: ${err.error}`);
+          return;
+        }
+        const data = await res.json();
+        setArticle((prev) => ({
+          ...prev,
+          title: { ...prev.title, [targetLang]: data.title },
+          excerpt: { ...prev.excerpt, [targetLang]: data.excerpt },
+          body: { ...prev.body, [targetLang]: data.body },
+        }));
+      } catch {
+        alert('Не удалось выполнить перевод');
+      } finally {
+        setTranslating(false);
+        setTranslateTarget(null);
+      }
+    },
+    [activeLang, article],
+  );
+
+  /* ─── AI: Analysis ─── */
+  const handleAnalyze = useCallback(async () => {
+    setAnalyzing(true);
+    setShowAnalysis(true);
+    setAnalysis(null);
+    try {
+      const res = await fetch('/api/admin/ai/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: article.title[activeLang],
+          excerpt: article.excerpt[activeLang],
+          body: article.body[activeLang],
+          category: article.category,
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        alert(`Ошибка анализа: ${err.error}`);
+        setShowAnalysis(false);
+        return;
+      }
+      const data: AIAnalysis = await res.json();
+      setAnalysis(data);
+    } catch {
+      alert('Не удалось выполнить анализ');
+      setShowAnalysis(false);
+    } finally {
+      setAnalyzing(false);
+    }
+  }, [activeLang, article]);
+
+  /* ─── Social: Telegram ─── */
+  const handlePublishTelegram = useCallback(async () => {
+    if (!confirm('Опубликовать в Telegram-канал?')) return;
+    setPublishing(true);
+    setPublishResult(null);
+    try {
+      const res = await fetch('/api/admin/social/telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId: id, lang: 'ru' }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPublishResult(`Ошибка: ${data.error}`);
+      } else {
+        setPublishResult('Опубликовано в Telegram!');
+        setTimeout(() => setPublishResult(null), 3000);
+      }
+    } catch {
+      setPublishResult('Ошибка подключения');
+    } finally {
+      setPublishing(false);
+    }
+  }, [id]);
+
+  function applySuggestion(field: 'title' | 'excerpt', value: string) {
+    setArticle((prev) => ({
+      ...prev,
+      [field]: { ...prev[field], [activeLang]: value },
+    }));
+  }
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-32">
@@ -103,6 +268,9 @@ export default function NewsEditorPage() {
       </div>
     );
   }
+
+  const otherLocales = LOCALES.filter((l) => l.code !== activeLang);
+  const hasContent = article.title[activeLang].length > 0 || article.body[activeLang].length > 0;
 
   return (
     <div className="mx-auto max-w-4xl space-y-6">
@@ -138,6 +306,229 @@ export default function NewsEditorPage() {
           </button>
         </div>
       </div>
+
+      {/* AI Toolbar */}
+      <div className="flex flex-wrap items-center gap-2 rounded-xl border border-purple-200 bg-purple-50/50 p-3 dark:border-purple-500/20 dark:bg-purple-500/5">
+        <span className="mr-1 flex items-center gap-1.5 text-xs font-semibold text-purple-600 uppercase dark:text-purple-400">
+          <Sparkles size={14} />
+          AI
+        </span>
+
+        {/* Translate Dropdown */}
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setTranslateDropdown(!translateDropdown)}
+            disabled={translating || !hasContent}
+            className="flex items-center gap-1.5 rounded-lg border border-purple-200 bg-white px-3 py-1.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-50 disabled:opacity-50 dark:border-purple-500/30 dark:bg-slate-800 dark:text-purple-300 dark:hover:bg-slate-700"
+          >
+            {translating ? <Loader2 size={12} className="animate-spin" /> : <Languages size={12} />}
+            {translating
+              ? `${LANG_LABELS[activeLang]} -> ${translateTarget ? LANG_LABELS[translateTarget] : '...'}...`
+              : `Перевести с ${activeLang.toUpperCase()}`}
+            {!translating &&
+              (translateDropdown ? <ChevronUp size={10} /> : <ChevronDown size={10} />)}
+          </button>
+          {translateDropdown && (
+            <div className="absolute top-full left-0 z-10 mt-1 rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+              {otherLocales.map((loc) => (
+                <button
+                  key={loc.code}
+                  type="button"
+                  onClick={() => handleTranslate(loc.code)}
+                  className="flex w-full items-center gap-2 px-4 py-2 text-left text-xs hover:bg-purple-50 dark:hover:bg-slate-700"
+                >
+                  <Languages size={12} className="text-purple-500" />
+                  <span>
+                    {activeLang.toUpperCase()} -&gt; {loc.label} ({LANG_LABELS[loc.code]})
+                  </span>
+                </button>
+              ))}
+              <div className="my-1 border-t border-slate-100 dark:border-slate-700" />
+              <button
+                type="button"
+                onClick={async () => {
+                  for (const loc of otherLocales) {
+                    await handleTranslate(loc.code);
+                  }
+                }}
+                className="flex w-full items-center gap-2 px-4 py-2 text-left text-xs font-medium text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-slate-700"
+              >
+                <Languages size={12} />
+                Перевести на все языки
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Analyze */}
+        <button
+          type="button"
+          onClick={handleAnalyze}
+          disabled={analyzing || !hasContent}
+          className="flex items-center gap-1.5 rounded-lg border border-purple-200 bg-white px-3 py-1.5 text-xs font-medium text-purple-700 transition-colors hover:bg-purple-50 disabled:opacity-50 dark:border-purple-500/30 dark:bg-slate-800 dark:text-purple-300 dark:hover:bg-slate-700"
+        >
+          {analyzing ? <Loader2 size={12} className="animate-spin" /> : <Sparkles size={12} />}
+          {analyzing ? 'Анализ...' : 'AI-анализ'}
+        </button>
+
+        {/* Telegram Publish */}
+        {!isNew && telegramConfigured && (
+          <button
+            type="button"
+            onClick={handlePublishTelegram}
+            disabled={publishing}
+            className="flex items-center gap-1.5 rounded-lg border border-blue-200 bg-white px-3 py-1.5 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-50 disabled:opacity-50 dark:border-blue-500/30 dark:bg-slate-800 dark:text-blue-300 dark:hover:bg-slate-700"
+          >
+            {publishing ? <Loader2 size={12} className="animate-spin" /> : <Send size={12} />}
+            {publishing ? 'Отправка...' : 'Telegram'}
+          </button>
+        )}
+        {publishResult && (
+          <span
+            className={`text-xs font-medium ${publishResult.startsWith('Ошибка') ? 'text-red-500' : 'text-green-500'}`}
+          >
+            {publishResult}
+          </span>
+        )}
+      </div>
+
+      {/* AI Analysis Panel */}
+      {showAnalysis && (
+        <div className="rounded-xl border border-purple-200 bg-white dark:border-purple-500/20 dark:bg-slate-900">
+          <div className="flex items-center justify-between border-b border-purple-100 px-4 py-3 dark:border-purple-500/10">
+            <div className="flex items-center gap-2">
+              <Sparkles size={16} className="text-purple-500" />
+              <span className="text-sm font-semibold text-slate-800 dark:text-white">
+                AI-редактор
+              </span>
+              {analysis && (
+                <span
+                  className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                    analysis.score >= 80
+                      ? 'bg-green-100 text-green-700 dark:bg-green-500/20 dark:text-green-400'
+                      : analysis.score >= 50
+                        ? 'bg-amber-100 text-amber-700 dark:bg-amber-500/20 dark:text-amber-400'
+                        : 'bg-red-100 text-red-700 dark:bg-red-500/20 dark:text-red-400'
+                  }`}
+                >
+                  {analysis.score}/100
+                </span>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowAnalysis(false)}
+              className="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+            >
+              <X size={16} />
+            </button>
+          </div>
+          <div className="p-4">
+            {analyzing ? (
+              <div className="flex items-center justify-center gap-2 py-8">
+                <Loader2 size={20} className="animate-spin text-purple-500" />
+                <span className="text-sm text-slate-500">Анализируем статью...</span>
+              </div>
+            ) : analysis ? (
+              <div className="space-y-4">
+                <p className="text-sm text-slate-600 dark:text-slate-400">{analysis.summary}</p>
+
+                {/* Strengths */}
+                {analysis.strengths.length > 0 && (
+                  <div>
+                    <h4 className="mb-1.5 flex items-center gap-1 text-xs font-semibold text-green-600 uppercase dark:text-green-400">
+                      <Check size={12} />
+                      Сильные стороны
+                    </h4>
+                    <ul className="space-y-1">
+                      {analysis.strengths.map((s, i) => (
+                        <li key={i} className="text-xs text-slate-600 dark:text-slate-400">
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Suggestions */}
+                {analysis.suggestions.length > 0 && (
+                  <div>
+                    <h4 className="mb-1.5 flex items-center gap-1 text-xs font-semibold text-amber-600 uppercase dark:text-amber-400">
+                      <AlertTriangle size={12} />
+                      Рекомендации
+                    </h4>
+                    <ul className="space-y-2">
+                      {analysis.suggestions.map((s, i) => (
+                        <li key={i} className="flex items-start gap-2 text-xs">
+                          <span
+                            className={`mt-0.5 inline-block h-2 w-2 shrink-0 rounded-full ${
+                              s.severity === 'high'
+                                ? 'bg-red-500'
+                                : s.severity === 'medium'
+                                  ? 'bg-amber-500'
+                                  : 'bg-blue-500'
+                            }`}
+                          />
+                          <span className="text-slate-600 dark:text-slate-400">
+                            <span className="font-medium text-slate-800 dark:text-slate-200">
+                              {s.field === 'title'
+                                ? 'Заголовок'
+                                : s.field === 'excerpt'
+                                  ? 'Описание'
+                                  : 'Текст'}
+                              :
+                            </span>{' '}
+                            {s.text}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Apply improved versions */}
+                {(analysis.improvedTitle || analysis.improvedExcerpt) && (
+                  <div className="border-t border-slate-100 pt-3 dark:border-slate-800">
+                    <h4 className="mb-2 flex items-center gap-1 text-xs font-semibold text-purple-600 uppercase dark:text-purple-400">
+                      <Info size={12} />
+                      Предложенные улучшения
+                    </h4>
+                    {analysis.improvedTitle && (
+                      <div className="mb-2 flex items-center gap-2">
+                        <span className="flex-1 rounded border border-slate-100 bg-slate-50 px-3 py-1.5 text-xs dark:border-slate-700 dark:bg-slate-800">
+                          {analysis.improvedTitle}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => applySuggestion('title', analysis.improvedTitle!)}
+                          className="shrink-0 rounded bg-purple-600 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-purple-700"
+                        >
+                          Заголовок
+                        </button>
+                      </div>
+                    )}
+                    {analysis.improvedExcerpt && (
+                      <div className="flex items-center gap-2">
+                        <span className="flex-1 rounded border border-slate-100 bg-slate-50 px-3 py-1.5 text-xs dark:border-slate-700 dark:bg-slate-800">
+                          {analysis.improvedExcerpt}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => applySuggestion('excerpt', analysis.improvedExcerpt!)}
+                          className="shrink-0 rounded bg-purple-600 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-purple-700"
+                        >
+                          Описание
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ) : null}
+          </div>
+        </div>
+      )}
 
       {/* Editor */}
       <div className="space-y-6 rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
