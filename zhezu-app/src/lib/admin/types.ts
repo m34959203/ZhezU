@@ -60,10 +60,13 @@ export interface SiteSettings {
   announcement?: { kk: string; ru: string; en: string };
   integrations?: {
     geminiApiKey?: string;
+    geminiModel?: string;
     telegramBotToken?: string;
     telegramChatId?: string;
+    telegramEnabled?: boolean;
     instagramAccessToken?: string;
     instagramPageId?: string;
+    instagramEnabled?: boolean;
   };
 }
 

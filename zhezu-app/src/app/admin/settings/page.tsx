@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
   Save,
   Loader2,
@@ -14,6 +14,9 @@ import {
   Camera,
   Eye,
   EyeOff,
+  CheckCircle2,
+  XCircle,
+  Zap,
 } from 'lucide-react';
 import type { SiteSettings, ContentLocale } from '@/lib/admin/types';
 
@@ -34,19 +37,50 @@ const LOCALES: { code: ContentLocale; label: string }[] = [
   { code: 'en', label: 'EN' },
 ];
 
+const GEMINI_MODELS = [
+  { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash (рекомендуется)' },
+  { value: 'gemini-2.0-flash-lite', label: 'Gemini 2.0 Flash Lite (быстрее)' },
+  { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
+  { value: 'gemini-1.5-pro', label: 'Gemini 1.5 Pro (умнее)' },
+];
+
+interface IntegrationsStatus {
+  geminiApiKeySet: boolean;
+  telegramBotTokenSet: boolean;
+  instagramAccessTokenSet: boolean;
+  geminiModel: string;
+  telegramChatId: string;
+  telegramEnabled: boolean;
+  instagramPageId: string;
+  instagramEnabled: boolean;
+}
+
+interface ValidationResult {
+  ok: boolean;
+  message: string;
+}
+
 export default function SettingsPage() {
   const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
+  const [status, setStatus] = useState<IntegrationsStatus | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
   const [showTokens, setShowTokens] = useState<Record<string, boolean>>({});
+  const [validating, setValidating] = useState<Record<string, boolean>>({});
+  const [validationResults, setValidationResults] = useState<Record<string, ValidationResult>>({});
 
   useEffect(() => {
     const controller = new AbortController();
     fetch('/api/admin/settings', { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : DEFAULT_SETTINGS))
-      .then(setSettings)
+      .then((data) => {
+        if (data.integrationsStatus) {
+          setStatus(data.integrationsStatus);
+        }
+        setSettings(data);
+      })
       .catch(() => {})
       .finally(() => setLoading(false));
     return () => controller.abort();
@@ -63,6 +97,22 @@ export default function SettingsPage() {
       });
       if (res.ok) {
         setSaved(true);
+        // Clear token inputs after save (they're stored server-side)
+        setSettings((s) => ({
+          ...s,
+          integrations: {
+            ...s.integrations,
+            geminiApiKey: undefined,
+            telegramBotToken: undefined,
+            instagramAccessToken: undefined,
+          },
+        }));
+        // Refresh status
+        const refreshRes = await fetch('/api/admin/settings');
+        if (refreshRes.ok) {
+          const refreshData = await refreshRes.json();
+          if (refreshData.integrationsStatus) setStatus(refreshData.integrationsStatus);
+        }
         setTimeout(() => setSaved(false), 2000);
       }
     } finally {
@@ -70,11 +120,76 @@ export default function SettingsPage() {
     }
   }
 
+  const handleValidate = useCallback(async (service: string) => {
+    setValidating((v) => ({ ...v, [service]: true }));
+    setValidationResults((v) => ({ ...v, [service]: undefined as unknown as ValidationResult }));
+    try {
+      const res = await fetch('/api/admin/ai/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ service }),
+      });
+      const data = await res.json();
+      setValidationResults((v) => ({ ...v, [service]: data }));
+    } catch {
+      setValidationResults((v) => ({
+        ...v,
+        [service]: { ok: false, message: 'Ошибка подключения' },
+      }));
+    } finally {
+      setValidating((v) => ({ ...v, [service]: false }));
+    }
+  }, []);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-32">
         <Loader2 size={24} className="animate-spin text-blue-500" />
       </div>
+    );
+  }
+
+  const inputCls =
+    'w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white';
+  const monoInputCls =
+    'flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white';
+
+  function StatusDot({ isSet }: { isSet: boolean }) {
+    return (
+      <span
+        className={`inline-block h-2 w-2 rounded-full ${isSet ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-600'}`}
+        title={isSet ? 'Настроено' : 'Не задано'}
+      />
+    );
+  }
+
+  function ValidationBadge({ result }: { result?: ValidationResult }) {
+    if (!result) return null;
+    return (
+      <span
+        className={`flex items-center gap-1 text-xs font-medium ${result.ok ? 'text-green-600 dark:text-green-400' : 'text-red-500'}`}
+      >
+        {result.ok ? <CheckCircle2 size={12} /> : <XCircle size={12} />}
+        {result.message}
+      </span>
+    );
+  }
+
+  function Toggle({ enabled, onChange }: { enabled: boolean; onChange: (v: boolean) => void }) {
+    return (
+      <button
+        type="button"
+        onClick={() => onChange(!enabled)}
+        className={`relative h-6 w-11 rounded-full transition-colors ${
+          enabled ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-600'
+        }`}
+      >
+        <span
+          className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
+            enabled ? 'translate-x-5' : ''
+          }`}
+        />
+      </button>
     );
   }
 
@@ -108,7 +223,7 @@ export default function SettingsPage() {
               type="text"
               value={settings.siteName}
               onChange={(e) => setSettings((s) => ({ ...s, siteName: e.target.value }))}
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              className={inputCls}
             />
           </div>
         </div>
@@ -129,7 +244,7 @@ export default function SettingsPage() {
               type="email"
               value={settings.contactEmail}
               onChange={(e) => setSettings((s) => ({ ...s, contactEmail: e.target.value }))}
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              className={inputCls}
             />
           </div>
           <div>
@@ -140,12 +255,10 @@ export default function SettingsPage() {
               type="text"
               value={settings.contactPhone}
               onChange={(e) => setSettings((s) => ({ ...s, contactPhone: e.target.value }))}
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              className={inputCls}
             />
           </div>
         </div>
-
-        {/* Address - multilingual */}
         <div className="mt-4">
           <div className="mb-1.5 flex items-center justify-between">
             <label className="flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-300">
@@ -177,14 +290,14 @@ export default function SettingsPage() {
                 address: { ...s.address, [activeLang]: e.target.value },
               }))
             }
-            className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+            className={inputCls}
           />
         </div>
       </section>
 
       {/* Social Links */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="mb-4 font-bold text-slate-900 dark:text-white">Соцсети</h3>
+        <h3 className="mb-4 font-bold text-slate-900 dark:text-white">Соцсети (ссылки)</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           {(['instagram', 'telegram', 'youtube', 'facebook'] as const).map((key) => (
             <div key={key}>
@@ -201,7 +314,7 @@ export default function SettingsPage() {
                   }))
                 }
                 placeholder={`https://${key}.com/...`}
-                className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className={inputCls}
               />
             </div>
           ))}
@@ -235,19 +348,10 @@ export default function SettingsPage() {
                 <p className="text-sm font-medium text-slate-900 dark:text-white">{toggle.label}</p>
                 <p className="text-xs text-slate-400">{toggle.desc}</p>
               </div>
-              <button
-                type="button"
-                onClick={() => setSettings((s) => ({ ...s, [toggle.key]: !s[toggle.key] }))}
-                className={`relative h-6 w-11 rounded-full transition-colors ${
-                  settings[toggle.key] ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-600'
-                }`}
-              >
-                <span
-                  className={`absolute top-0.5 left-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
-                    settings[toggle.key] ? 'translate-x-5' : ''
-                  }`}
-                />
-              </button>
+              <Toggle
+                enabled={settings[toggle.key]}
+                onChange={(v) => setSettings((s) => ({ ...s, [toggle.key]: v }))}
+              />
             </div>
           ))}
         </div>
@@ -275,61 +379,135 @@ export default function SettingsPage() {
         />
       </section>
 
-      {/* Integrations */}
+      {/* ═══════ INTEGRATIONS ═══════ */}
       <section className="rounded-xl border border-purple-200 bg-white p-6 dark:border-purple-500/20 dark:bg-slate-900">
         <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
           <Sparkles size={18} className="text-purple-500" />
           Интеграции (AI и соцсети)
         </h3>
-        <p className="mb-4 text-xs text-slate-400">
-          Токены хранятся в settings.json на сервере. Для работы AI-функций нужен Gemini API ключ.
+        <p className="mb-5 text-xs text-slate-400">
+          Секреты не возвращаются с сервера после сохранения. Введите новый токен, чтобы обновить.
         </p>
 
         <div className="space-y-5">
-          {/* Gemini */}
+          {/* ── Gemini ── */}
           <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
-            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-purple-600 dark:text-purple-400">
-              <Sparkles size={14} />
-              Google Gemini (AI)
-            </h4>
-            <div>
-              <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                API Key
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type={showTokens.gemini ? 'text' : 'password'}
-                  value={settings.integrations?.geminiApiKey ?? ''}
+            <div className="mb-3 flex items-center justify-between">
+              <h4 className="flex items-center gap-1.5 text-sm font-semibold text-purple-600 dark:text-purple-400">
+                <Sparkles size={14} />
+                Google Gemini (AI)
+                <StatusDot isSet={!!status?.geminiApiKeySet} />
+              </h4>
+              <button
+                type="button"
+                onClick={() => handleValidate('gemini')}
+                disabled={validating.gemini || !status?.geminiApiKeySet}
+                className="flex items-center gap-1 rounded-md border border-purple-200 px-2.5 py-1 text-[11px] font-medium text-purple-600 transition-colors hover:bg-purple-50 disabled:opacity-40 dark:border-purple-500/30 dark:text-purple-400 dark:hover:bg-purple-500/10"
+              >
+                {validating.gemini ? (
+                  <Loader2 size={10} className="animate-spin" />
+                ) : (
+                  <Zap size={10} />
+                )}
+                Проверить
+              </button>
+            </div>
+            <ValidationBadge result={validationResults.gemini} />
+
+            <div className="mt-2 grid gap-3 sm:grid-cols-2">
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  API Key {status?.geminiApiKeySet && '(задан)'}
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type={showTokens.gemini ? 'text' : 'password'}
+                    value={settings.integrations?.geminiApiKey ?? ''}
+                    onChange={(e) =>
+                      setSettings((s) => ({
+                        ...s,
+                        integrations: { ...s.integrations, geminiApiKey: e.target.value },
+                      }))
+                    }
+                    placeholder={status?.geminiApiKeySet ? '••••••••' : 'AIza...'}
+                    className={monoInputCls}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowTokens((s) => ({ ...s, gemini: !s.gemini }))}
+                    className="rounded-lg border border-slate-200 px-3 text-slate-400 hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                  >
+                    {showTokens.gemini ? <EyeOff size={14} /> : <Eye size={14} />}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Модель
+                </label>
+                <select
+                  value={
+                    settings.integrations?.geminiModel || status?.geminiModel || 'gemini-2.0-flash'
+                  }
                   onChange={(e) =>
                     setSettings((s) => ({
                       ...s,
-                      integrations: { ...s.integrations, geminiApiKey: e.target.value },
+                      integrations: { ...s.integrations, geminiModel: e.target.value },
                     }))
                   }
-                  placeholder="AIza..."
-                  className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowTokens((s) => ({ ...s, gemini: !s.gemini }))}
-                  className="rounded-lg border border-slate-200 px-3 text-slate-400 hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                  className={inputCls}
                 >
-                  {showTokens.gemini ? <EyeOff size={14} /> : <Eye size={14} />}
-                </button>
+                  {GEMINI_MODELS.map((m) => (
+                    <option key={m.value} value={m.value}>
+                      {m.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
 
-          {/* Telegram */}
+          {/* ── Telegram ── */}
           <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
-            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400">
-              <Send size={14} />
-              Telegram
-            </h4>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="mb-3 flex items-center justify-between">
+              <h4 className="flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400">
+                <Send size={14} />
+                Telegram
+                <StatusDot isSet={!!status?.telegramBotTokenSet} />
+              </h4>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleValidate('telegram')}
+                  disabled={validating.telegram || !status?.telegramBotTokenSet}
+                  className="flex items-center gap-1 rounded-md border border-blue-200 px-2.5 py-1 text-[11px] font-medium text-blue-600 transition-colors hover:bg-blue-50 disabled:opacity-40 dark:border-blue-500/30 dark:text-blue-400 dark:hover:bg-blue-500/10"
+                >
+                  {validating.telegram ? (
+                    <Loader2 size={10} className="animate-spin" />
+                  ) : (
+                    <Zap size={10} />
+                  )}
+                  Проверить
+                </button>
+                <Toggle
+                  enabled={
+                    settings.integrations?.telegramEnabled ?? status?.telegramEnabled ?? false
+                  }
+                  onChange={(v) =>
+                    setSettings((s) => ({
+                      ...s,
+                      integrations: { ...s.integrations, telegramEnabled: v },
+                    }))
+                  }
+                />
+              </div>
+            </div>
+            <ValidationBadge result={validationResults.telegram} />
+
+            <div className="mt-2 grid gap-3 sm:grid-cols-2">
               <div>
                 <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Bot Token
+                  Bot Token {status?.telegramBotTokenSet && '(задан)'}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -338,14 +516,11 @@ export default function SettingsPage() {
                     onChange={(e) =>
                       setSettings((s) => ({
                         ...s,
-                        integrations: {
-                          ...s.integrations,
-                          telegramBotToken: e.target.value,
-                        },
+                        integrations: { ...s.integrations, telegramBotToken: e.target.value },
                       }))
                     }
-                    placeholder="123456:ABC-DEF..."
-                    className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                    placeholder={status?.telegramBotTokenSet ? '••••••••' : '123456:ABC-DEF...'}
+                    className={monoInputCls}
                   />
                   <button
                     type="button"
@@ -362,33 +537,61 @@ export default function SettingsPage() {
                 </label>
                 <input
                   type="text"
-                  value={settings.integrations?.telegramChatId ?? ''}
+                  value={settings.integrations?.telegramChatId ?? status?.telegramChatId ?? ''}
                   onChange={(e) =>
                     setSettings((s) => ({
                       ...s,
-                      integrations: {
-                        ...s.integrations,
-                        telegramChatId: e.target.value,
-                      },
+                      integrations: { ...s.integrations, telegramChatId: e.target.value },
                     }))
                   }
                   placeholder="@zhezu_news или -100..."
-                  className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className={inputCls + ' font-mono'}
                 />
               </div>
             </div>
           </div>
 
-          {/* Instagram */}
+          {/* ── Instagram ── */}
           <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
-            <h4 className="mb-3 flex items-center gap-1.5 text-sm font-semibold text-pink-600 dark:text-pink-400">
-              <Camera size={14} />
-              Instagram (Graph API)
-            </h4>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="mb-3 flex items-center justify-between">
+              <h4 className="flex items-center gap-1.5 text-sm font-semibold text-pink-600 dark:text-pink-400">
+                <Camera size={14} />
+                Instagram (Graph API)
+                <StatusDot isSet={!!status?.instagramAccessTokenSet} />
+              </h4>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => handleValidate('instagram')}
+                  disabled={validating.instagram || !status?.instagramAccessTokenSet}
+                  className="flex items-center gap-1 rounded-md border border-pink-200 px-2.5 py-1 text-[11px] font-medium text-pink-600 transition-colors hover:bg-pink-50 disabled:opacity-40 dark:border-pink-500/30 dark:text-pink-400 dark:hover:bg-pink-500/10"
+                >
+                  {validating.instagram ? (
+                    <Loader2 size={10} className="animate-spin" />
+                  ) : (
+                    <Zap size={10} />
+                  )}
+                  Проверить
+                </button>
+                <Toggle
+                  enabled={
+                    settings.integrations?.instagramEnabled ?? status?.instagramEnabled ?? false
+                  }
+                  onChange={(v) =>
+                    setSettings((s) => ({
+                      ...s,
+                      integrations: { ...s.integrations, instagramEnabled: v },
+                    }))
+                  }
+                />
+              </div>
+            </div>
+            <ValidationBadge result={validationResults.instagram} />
+
+            <div className="mt-2 grid gap-3 sm:grid-cols-2">
               <div>
                 <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Access Token
+                  Access Token {status?.instagramAccessTokenSet && '(задан)'}
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -403,8 +606,8 @@ export default function SettingsPage() {
                         },
                       }))
                     }
-                    placeholder="EAAx..."
-                    className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                    placeholder={status?.instagramAccessTokenSet ? '••••••••' : 'EAAx...'}
+                    className={monoInputCls}
                   />
                   <button
                     type="button"
@@ -417,22 +620,19 @@ export default function SettingsPage() {
               </div>
               <div>
                 <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Instagram Business Page ID
+                  Business Page ID
                 </label>
                 <input
                   type="text"
-                  value={settings.integrations?.instagramPageId ?? ''}
+                  value={settings.integrations?.instagramPageId ?? status?.instagramPageId ?? ''}
                   onChange={(e) =>
                     setSettings((s) => ({
                       ...s,
-                      integrations: {
-                        ...s.integrations,
-                        instagramPageId: e.target.value,
-                      },
+                      integrations: { ...s.integrations, instagramPageId: e.target.value },
                     }))
                   }
                   placeholder="17841..."
-                  className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                  className={inputCls + ' font-mono'}
                 />
               </div>
             </div>

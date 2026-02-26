@@ -3,7 +3,7 @@
 import { getSettings } from './storage';
 import type { SiteSettings } from './types';
 
-const GEMINI_MODEL = 'gemini-2.0-flash';
+const DEFAULT_MODEL = 'gemini-2.0-flash';
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 const SETTINGS_DEFAULTS: SiteSettings = {
@@ -16,11 +16,13 @@ const SETTINGS_DEFAULTS: SiteSettings = {
   maintenanceMode: false,
 };
 
-async function getApiKey(): Promise<string> {
+async function getGeminiConfig(): Promise<{ apiKey: string; model: string }> {
   const settings = await getSettings<SiteSettings>('settings.json', SETTINGS_DEFAULTS);
-  const key = settings.integrations?.geminiApiKey || process.env.GEMINI_API_KEY;
-  if (!key) throw new Error('Gemini API ключ не настроен. Укажите его в Настройки → Интеграции.');
-  return key;
+  const apiKey = settings.integrations?.geminiApiKey || process.env.GEMINI_API_KEY;
+  if (!apiKey)
+    throw new Error('Gemini API ключ не настроен. Укажите его в Настройки → Интеграции.');
+  const model = settings.integrations?.geminiModel || DEFAULT_MODEL;
+  return { apiKey, model };
 }
 
 export async function getTelegramConfig(): Promise<{
@@ -58,8 +60,8 @@ export async function callGemini(
   prompt: string,
   options?: { temperature?: number; maxTokens?: number },
 ): Promise<string> {
-  const apiKey = await getApiKey();
-  const url = `${API_BASE}/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
+  const config = await getGeminiConfig();
+  const url = `${API_BASE}/${config.model}:generateContent?key=${config.apiKey}`;
   const temperature = options?.temperature ?? 0.3;
   const maxOutputTokens = options?.maxTokens ?? 8192;
 
