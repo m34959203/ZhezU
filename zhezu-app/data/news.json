@@ -53,11 +53,11 @@
   },
   {
     "id": "3",
-    "slug": "new-academic-year-2026",
+    "slug": "new-academic-year-2025",
     "title": {
-      "kk": "2026-2027 оқу жылының салтанатты ашылуы",
-      "ru": "Торжественное открытие 2026-2027 учебного года",
-      "en": "Grand Opening of 2026-2027 Academic Year"
+      "kk": "2025-2026 оқу жылының салтанатты ашылуы",
+      "ru": "Торжественное открытие 2025-2026 учебного года",
+      "en": "Grand Opening of 2025-2026 Academic Year"
     },
     "excerpt": {
       "kk": "Жезқазған университетінде жаңа оқу жылы ресми түрде басталды.",
@@ -65,17 +65,17 @@
       "en": "The new academic year has officially started at Zhezkazgan University."
     },
     "body": {
-      "kk": "Жезқазған университетінде 2026-2027 оқу жылының салтанатты ашылуы өтті. Іс-шараға ректор, профессорлар мен жаңа студенттер қатысты.",
-      "ru": "В Жезказганском университете прошло торжественное открытие 2026-2027 учебного года. В мероприятии приняли участие ректор, преподаватели и новые студенты.",
-      "en": "The grand opening ceremony of the 2026-2027 academic year took place at Zhezkazgan University. The rector, faculty and new students attended the event."
+      "kk": "Жезқазған университетінде 2025-2026 оқу жылының салтанатты ашылуы өтті. Іс-шараға ректор, профессорлар мен жаңа студенттер қатысты.",
+      "ru": "В Жезказганском университете прошло торжественное открытие 2025-2026 учебного года. В мероприятии приняли участие ректор, преподаватели и новые студенты.",
+      "en": "The grand opening ceremony of the 2025-2026 academic year took place at Zhezkazgan University. The rector, faculty and new students attended the event."
     },
     "category": "university",
     "image": "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=800&q=80",
     "published": true,
     "pinned": false,
     "author": "Пресс-служба",
-    "createdAt": "2026-09-01T09:00:00Z",
-    "updatedAt": "2026-09-01T09:00:00Z"
+    "createdAt": "2025-09-01T09:00:00Z",
+    "updatedAt": "2025-09-01T09:00:00Z"
   },
   {
     "id": "4",
@@ -100,8 +100,8 @@
     "published": true,
     "pinned": false,
     "author": "Научный отдел",
-    "createdAt": "2026-03-15T10:00:00Z",
-    "updatedAt": "2026-03-15T10:00:00Z"
+    "createdAt": "2026-02-15T10:00:00Z",
+    "updatedAt": "2026-02-15T10:00:00Z"
   },
   {
     "id": "5",
@@ -178,8 +178,8 @@
     "published": true,
     "pinned": false,
     "author": "Приёмная комиссия",
-    "createdAt": "2026-04-15T10:00:00Z",
-    "updatedAt": "2026-04-15T10:00:00Z"
+    "createdAt": "2026-02-05T10:00:00Z",
+    "updatedAt": "2026-02-05T10:00:00Z"
   },
   {
     "id": "8",
