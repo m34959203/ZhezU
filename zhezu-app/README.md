@@ -4,17 +4,17 @@
 
 ## Технологический стек
 
-| Технология | Версия | Назначение |
-|-----------|--------|-----------|
-| Next.js (App Router) | 16.x | SSR/SSG, React Server Components |
-| React | 19.x | UI library |
-| TypeScript | 5.x | Статическая типизация |
-| Tailwind CSS | 4.x | Утилитарные стили, дизайн-токены |
-| next-intl | 4.x | i18n: маршрутизация, переводы (kk/ru/en) |
-| next-themes | 0.4.x | Dark/Light тема |
-| Framer Motion | 12.x | Анимации |
-| Lucide React | latest | SVG-иконки |
-| pnpm | 9.x | Пакетный менеджер |
+| Технология           | Версия | Назначение                               |
+| -------------------- | ------ | ---------------------------------------- |
+| Next.js (App Router) | 16.x   | SSR/SSG, React Server Components         |
+| React                | 19.x   | UI library                               |
+| TypeScript           | 5.x    | Статическая типизация                    |
+| Tailwind CSS         | 4.x    | Утилитарные стили, дизайн-токены         |
+| next-intl            | 4.x    | i18n: маршрутизация, переводы (kk/ru/en) |
+| next-themes          | 0.4.x  | Dark/Light тема                          |
+| Framer Motion        | 12.x   | Анимации                                 |
+| Lucide React         | latest | SVG-иконки                               |
+| pnpm                 | 9.x    | Пакетный менеджер                        |
 
 ## Быстрый старт
 
@@ -109,14 +109,15 @@ src/
 - `data/settings.json` — настройки сайта
 
 Публичные страницы получают данные двумя способами:
+
 - **Server Components:** прямой импорт из `lib/admin/public-data.ts`
 - **Client Components:** fetch из `/api/public/news` и `/api/public/settings`
 
 ## Переменные окружения
 
-| Переменная | Описание | Обязательная |
-|-----------|----------|:------------:|
-| `ADMIN_SECRET` | Пароль для входа в админ-панель | Да |
+| Переменная     | Описание                        | Обязательная |
+| -------------- | ------------------------------- | :----------: |
+| `ADMIN_SECRET` | Пароль для входа в админ-панель |      Да      |
 
 ## Интернационализация
 

@@ -59,9 +59,7 @@ export default async function NewsDetailPage({
 
           <Badge className="mb-4">{t(`categories.${article.category}`)}</Badge>
 
-          <h1 className="font-display mb-4 text-3xl font-bold sm:text-4xl">
-            {article.title[l]}
-          </h1>
+          <h1 className="font-display mb-4 text-3xl font-bold sm:text-4xl">{article.title[l]}</h1>
 
           <div className="text-text-secondary-light dark:text-text-secondary-dark border-border-light dark:border-border-dark mb-8 flex items-center gap-4 border-b pb-8 text-sm">
             <span className="flex items-center gap-1.5">

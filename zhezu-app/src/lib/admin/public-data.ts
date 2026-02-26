@@ -39,9 +39,7 @@ export async function getNewsById(id: string): Promise<NewsArticle | null> {
   return all.find((a) => a.id === id && a.published) ?? null;
 }
 
-export async function getNewsByCategory(
-  category: string,
-): Promise<NewsArticle[]> {
+export async function getNewsByCategory(category: string): Promise<NewsArticle[]> {
   const all = await getPublishedNews();
   return all.filter((a) => a.category === category);
 }
