@@ -18,7 +18,8 @@
       "kk": "Президент-Ректор, т.ғ.д., профессор",
       "ru": "Президент-Ректор, д.т.н., профессор",
       "en": "President-Rector, D.Sc., Professor"
-    }
+    },
+    "photo": "/rector1-682x1024.jpg"
   },
   "proRectors": [
     {
@@ -31,7 +32,8 @@
         "kk": "Академиялық мәселелер жөніндегі проректор, т.ғ.к., доцент",
         "ru": "Проректор по академическим вопросам, к.т.н., доцент",
         "en": "Pro-Rector for Academic Affairs, Ph.D., Associate Professor"
-      }
+      },
+      "photo": "/WhatsApp_Image_2024-01-23_at_11.39.00_1-682x1024.jpeg"
     },
     {
       "name": {
@@ -43,7 +45,8 @@
         "kk": "Ғылым және стратегиялық даму жөніндегі проректор",
         "ru": "Проректор по науке и стратегическому развитию",
         "en": "Pro-Rector for Science and Strategic Development"
-      }
+      },
+      "photo": ""
     }
   ],
   "stats": {
