@@ -8,7 +8,8 @@ import TextAlign from '@tiptap/extension-text-align';
 import LinkExtension from '@tiptap/extension-link';
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
-import { useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import ImageUploadModal from './ImageUploadModal';
 import {
   Bold,
   Italic,
@@ -124,13 +125,15 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
     }
   }, [editor]);
 
-  const addImage = useCallback(() => {
-    if (!editor) return;
-    const url = prompt('Введите URL изображения:');
-    if (url) {
+  const [imageModalOpen, setImageModalOpen] = useState(false);
+
+  const insertImage = useCallback(
+    (url: string) => {
+      if (!editor) return;
       editor.chain().focus().setImage({ src: url }).run();
-    }
-  }, [editor]);
+    },
+    [editor],
+  );
 
   if (!editor) return null;
 
@@ -292,7 +295,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
             <Unlink size={15} />
           </ToolbarButton>
         )}
-        <ToolbarButton onClick={addImage} title="Вставить изображение">
+        <ToolbarButton onClick={() => setImageModalOpen(true)} title="Вставить изображение">
           <ImageIcon size={15} />
         </ToolbarButton>
 
@@ -371,6 +374,13 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
 
       {/* Editor Content */}
       <EditorContent editor={editor} />
+
+      {/* Image Upload Modal */}
+      <ImageUploadModal
+        open={imageModalOpen}
+        onClose={() => setImageModalOpen(false)}
+        onInsert={insertImage}
+      />
     </div>
   );
 }
