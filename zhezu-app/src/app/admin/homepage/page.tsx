@@ -123,7 +123,8 @@ export default function HomepageDataPage() {
           Статистика на главной
         </h3>
         <p className="mb-4 text-xs text-slate-400">
-          Выберите какие показатели отображать на баннере. Значения берутся из раздела «Университет».
+          Выберите какие показатели отображать на баннере. Значения берутся из раздела
+          «Университет».
         </p>
         <div className="space-y-2">
           {data.stats.map((statKey, i) => (
