@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
@@ -23,9 +22,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function RectorPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('university.rector');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function RectorPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: rawLocale } = await params;
+  const locale = (rawLocale || 'ru') as Locale;
+  const t = await getTranslations({ locale, namespace: 'university.rector' });
   const universityData = await getUniversityData();
 
   return (

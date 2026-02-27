@@ -8,7 +8,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { organizationJsonLd, generateHreflangLinks } from '@/lib/seo';
 import { getSiteSettings, getContactPageData } from '@/lib/admin/public-data';
-import { getMenuData } from '@/lib/navigation';
+import { getMenuData } from '@/lib/navigation-server';
 import '../globals.css';
 
 export async function generateMetadata({
