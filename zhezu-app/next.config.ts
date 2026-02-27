@@ -5,7 +5,6 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  outputFileTracingRoot: '/var/www/vhosts/zhezu.kz/new.zhezu.kz/zhezu-app',
   images: {
     remotePatterns: [
       {
