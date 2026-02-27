@@ -18,11 +18,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default async function ContactPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   const t = await getTranslations('admission.contactPage');
   const locale = (localeParam || 'ru') as Locale;

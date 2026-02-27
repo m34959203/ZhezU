@@ -67,11 +67,7 @@ const MASTER_PROGRAMS = [
   },
 ];
 
-export default async function MasterPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function MasterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   const t = await getTranslations('admission.master');
   const locale = (localeParam || 'ru') as Locale;

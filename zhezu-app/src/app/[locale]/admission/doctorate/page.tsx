@@ -19,11 +19,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function DoctoratePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function DoctoratePage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   const t = await getTranslations('admission.doctorate');
 
