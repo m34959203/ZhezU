@@ -9,7 +9,6 @@ const TITLE_MAP: Record<string, string> = {
   '/admin': 'Дашборд',
   '/admin/news': 'Управление публикациями',
   '/admin/menu': 'Управление меню',
-  '/admin/pages': 'Страницы сайта',
   '/admin/settings': 'Настройки сайта',
 };
 
