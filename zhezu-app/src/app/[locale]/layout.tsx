@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { organizationJsonLd, generateHreflangLinks } from '@/lib/seo';
-import { getSiteSettings } from '@/lib/admin/public-data';
+import { getSiteSettings, getContactPageData } from '@/lib/admin/public-data';
 import { getMenuData } from '@/lib/navigation';
 import '../globals.css';
 
@@ -45,6 +45,7 @@ export default async function LocaleLayout({
 
   const siteSettings = await getSiteSettings();
   const menuData = await getMenuData();
+  const contactData = await getContactPageData();
   const orgJsonLd = organizationJsonLd();
   const hreflangLinks = generateHreflangLinks('/');
 
@@ -82,6 +83,7 @@ export default async function LocaleLayout({
               settings={siteSettings}
               footerNav={menuData.footerNav}
               footerStudents={menuData.footerStudents}
+              workingHoursShort={contactData.workingHoursShort}
             />
           </NextIntlClientProvider>
         </ThemeProvider>

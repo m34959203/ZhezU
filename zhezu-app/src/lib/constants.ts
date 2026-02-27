@@ -744,3 +744,12 @@ export const NAV_ITEMS = [
   { href: '/career', key: 'career' },
   { href: '/contact', key: 'contact' },
 ] as const;
+
+/**
+ * NOTE: All data above serves as compile-time fallback.
+ * At runtime, the same data is loaded from data/university.json
+ * managed via the admin panel at /admin/university.
+ *
+ * Frontend components fetch from /api/public/university.
+ * Server components can use getUniversityData() from lib/admin/public-data.
+ */

@@ -94,3 +94,102 @@ export interface PageContent {
   lastEdited: string;
   editedBy: string;
 }
+
+/* ─── Localized string helper ─── */
+export interface LocalizedString {
+  kk: string;
+  ru: string;
+  en: string;
+}
+
+/* ─── University Data ─── */
+export interface UniversityData {
+  name: LocalizedString;
+  shortName: string;
+  founded: number;
+  type: string;
+  website: string;
+  rector: {
+    name: LocalizedString;
+    title: LocalizedString;
+  };
+  proRectors: Array<{
+    name: LocalizedString;
+    title: LocalizedString;
+  }>;
+  stats: {
+    students: number;
+    programs: number;
+    masterPrograms: number;
+    employmentRate: number;
+    yearsOfExperience: number;
+    faculty: number;
+    doctorsOfScience: number;
+    candidatesOfScience: number;
+    phd: number;
+  };
+  departments: Array<{
+    id: string;
+    name: LocalizedString;
+    shortName: LocalizedString;
+    color: string;
+    icon: string;
+  }>;
+  departmentHeads: Record<
+    string,
+    { name: LocalizedString; title: LocalizedString }
+  >;
+  programs: Array<{
+    id: string;
+    code: string;
+    department: string;
+    degree: 'bachelor' | 'master' | 'doctorate';
+    credits: number;
+    duration: number;
+    languages: string[];
+    name: LocalizedString;
+    description: LocalizedString;
+  }>;
+  adminCenters: Array<{
+    name: LocalizedString;
+    icon: string;
+  }>;
+  serviceUnits: Array<{
+    name: LocalizedString;
+  }>;
+}
+
+/* ─── Contact Page Data ─── */
+export interface ContactDepartment {
+  icon: string;
+  title: string;
+  email: string;
+  phone: string;
+  color: string;
+  bg: string;
+}
+
+export interface OpeningHoursEntry {
+  day: string;
+  hours: string;
+  closed: boolean;
+}
+
+export interface ContactPageData {
+  departments: ContactDepartment[];
+  subjectLabels: Record<string, string>;
+  openingHours: OpeningHoursEntry[];
+  workingHoursShort: string;
+  googleMapsQuery: string;
+}
+
+/* ─── Homepage Data ─── */
+export interface HomepageData {
+  heroTitle: string;
+  stats: Array<{
+    key: string;
+    value: string;
+  }>;
+  programImages: Record<string, string>;
+  categoryLabels: Record<string, string>;
+}

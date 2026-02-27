@@ -76,10 +76,12 @@ export function Footer({
   settings,
   footerNav,
   footerStudents,
+  workingHoursShort,
 }: {
   settings: SiteSettings;
   footerNav?: FooterLink[];
   footerStudents?: FooterLink[];
+  workingHoursShort?: string;
 }) {
   const t = useTranslations('footer');
   const locale = useLocale() as Locale;
@@ -234,7 +236,7 @@ export function Footer({
               </li>
               <li className="flex items-center gap-3">
                 <Clock size={16} className="shrink-0 text-white/40" />
-                <span className="text-sm text-white/60">Пн-Пт: 09:00 — 18:00</span>
+                <span className="text-sm text-white/60">{workingHoursShort || 'Пн-Пт: 09:00 — 18:00'}</span>
               </li>
             </ul>
           </div>

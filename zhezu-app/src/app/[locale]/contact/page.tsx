@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import type { SiteSettings } from '@/lib/admin/types';
+import type { SiteSettings, ContactPageData } from '@/lib/admin/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
@@ -40,56 +40,35 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 /* ------------------------------------------------------------------ */
-/*  Data                                                                */
+/*  Fallback Data                                                       */
 /* ------------------------------------------------------------------ */
 
-const DEPARTMENTS = [
-  {
-    icon: GraduationCap,
-    title: 'Приёмная комиссия',
-    email: 'admissions@zhezu.edu.kz',
-    phone: '+7 (7102) 74-00-11',
-    color: 'text-blue-600 dark:text-blue-400',
-    bg: 'bg-blue-50 dark:bg-blue-900/20',
-  },
-  {
-    icon: Building2,
-    title: 'Учебный отдел',
-    email: 'academic@zhezu.edu.kz',
-    phone: '+7 (7102) 74-00-12',
-    color: 'text-emerald-600 dark:text-emerald-400',
-    bg: 'bg-emerald-50 dark:bg-emerald-900/20',
-  },
-  {
-    icon: Users,
-    title: 'Студенческий сервис',
-    email: 'students@zhezu.edu.kz',
-    phone: '+7 (7102) 74-00-13',
-    color: 'text-purple-600 dark:text-purple-400',
-    bg: 'bg-purple-50 dark:bg-purple-900/20',
-  },
-  {
-    icon: Monitor,
-    title: 'IT-поддержка',
-    email: 'support@zhezu.edu.kz',
-    phone: '+7 (7102) 74-00-22',
-    color: 'text-orange-600 dark:text-orange-400',
-    bg: 'bg-orange-50 dark:bg-orange-900/20',
-  },
+const FALLBACK_DEPARTMENTS = [
+  { icon: 'GraduationCap', title: 'Приёмная комиссия', email: 'admissions@zhezu.edu.kz', phone: '+7 (7102) 74-00-11', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20' },
+  { icon: 'Building2', title: 'Учебный отдел', email: 'academic@zhezu.edu.kz', phone: '+7 (7102) 74-00-12', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
+  { icon: 'Users', title: 'Студенческий сервис', email: 'students@zhezu.edu.kz', phone: '+7 (7102) 74-00-13', color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-900/20' },
+  { icon: 'Monitor', title: 'IT-поддержка', email: 'support@zhezu.edu.kz', phone: '+7 (7102) 74-00-22', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20' },
 ];
 
-const SUBJECT_LABELS: Record<string, string> = {
+const FALLBACK_SUBJECT_LABELS: Record<string, string> = {
   admission: 'Поступление',
   academic: 'Учебные программы',
   technical: 'Техническая поддержка',
   other: 'Другое',
 };
 
-const OPENING_HOURS = [
+const FALLBACK_OPENING_HOURS = [
   { day: 'Пн - Пт', hours: '09:00 - 18:00', closed: false },
   { day: 'Суббота', hours: '10:00 - 14:00', closed: false },
   { day: 'Воскресенье', hours: 'Закрыто', closed: true },
 ];
+
+const ICON_MAP: Record<string, typeof GraduationCap> = {
+  GraduationCap,
+  Building2,
+  Users,
+  Monitor,
+};
 
 /* ------------------------------------------------------------------ */
 /*  Component                                                          */
@@ -99,15 +78,32 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const [contactData, setContactData] = useState<ContactPageData | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/public/settings', { signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then(setSettings)
+    Promise.all([
+      fetch('/api/public/settings', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
+      fetch('/api/public/contact', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
+    ])
+      .then(([s, c]) => {
+        if (s) setSettings(s);
+        if (c) setContactData(c);
+      })
       .catch(() => {});
     return () => controller.abort();
   }, []);
+
+  const DEPARTMENTS = contactData?.departments && contactData.departments.length > 0
+    ? contactData.departments
+    : FALLBACK_DEPARTMENTS;
+  const SUBJECT_LABELS = contactData?.subjectLabels && Object.keys(contactData.subjectLabels).length > 0
+    ? contactData.subjectLabels
+    : FALLBACK_SUBJECT_LABELS;
+  const OPENING_HOURS = contactData?.openingHours && contactData.openingHours.length > 0
+    ? contactData.openingHours
+    : FALLBACK_OPENING_HOURS;
+  const googleMapsQuery = contactData?.googleMapsQuery || 'Zhezkazgan+University';
 
   const {
     register,
@@ -170,7 +166,7 @@ export default function ContactPage() {
           </div>
           {/* Google Maps link */}
           <a
-            href="https://maps.google.com/?q=Zhezkazgan+University"
+            href={`https://maps.google.com/?q=${googleMapsQuery}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-surface-light text-text-primary-light hover:bg-bg-light dark:bg-surface-dark dark:text-text-primary-dark dark:hover:bg-bg-dark absolute right-4 bottom-4 flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium shadow-md transition-colors"
@@ -296,12 +292,14 @@ export default function ContactPage() {
                 Отделы
               </h2>
               <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark rounded-xl border p-1">
-                {DEPARTMENTS.map((dept, idx) => (
+                {DEPARTMENTS.map((dept, idx) => {
+                  const IconComp = (typeof dept.icon === 'string' ? ICON_MAP[dept.icon] : dept.icon) || Building2;
+                  return (
                   <div key={dept.title}>
                     <div className="group hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer rounded-lg p-3 transition-colors">
                       <div className="flex items-start gap-3">
                         <div className={`shrink-0 rounded-lg p-1.5 ${dept.bg}`}>
-                          <dept.icon size={16} className={dept.color} />
+                          <IconComp size={16} className={dept.color} />
                         </div>
                         <div className="min-w-0">
                           <h4 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">
@@ -320,7 +318,8 @@ export default function ContactPage() {
                       <div className="bg-border-light dark:bg-border-dark mx-3 h-px" />
                     )}
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
