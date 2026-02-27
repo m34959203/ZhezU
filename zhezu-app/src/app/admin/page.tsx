@@ -2,7 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Newspaper, Globe, FileEdit, TrendingUp, Clock, ArrowRight, Plus, Eye } from 'lucide-react';
+import {
+  Newspaper,
+  Globe,
+  TrendingUp,
+  Clock,
+  ArrowRight,
+  Plus,
+  Eye,
+  Building2,
+} from 'lucide-react';
 import type { NewsArticle } from '@/lib/admin/types';
 
 interface StatCard {
@@ -47,15 +56,15 @@ export default function AdminDashboard() {
       change: 'kk / ru / en',
       icon: <Globe size={20} />,
       color: 'bg-emerald-500/10 text-emerald-500',
-      href: '/admin/translations',
+      href: '/admin/settings',
     },
     {
-      label: 'Разделов сайта',
-      value: '6',
-      change: '~50 страниц',
-      icon: <FileEdit size={20} />,
+      label: 'Университет',
+      value: '—',
+      change: 'Данные вуза',
+      icon: <Building2 size={20} />,
       color: 'bg-purple-500/10 text-purple-500',
-      href: '/admin/pages',
+      href: '/admin/university',
     },
     {
       label: 'Посещений',
@@ -198,9 +207,9 @@ export default function AdminDashboard() {
             color: 'from-blue-500 to-blue-700',
           },
           {
-            title: 'Редактор переводов',
-            desc: 'Изменение текстов на всех 3 языках сайта',
-            href: '/admin/translations',
+            title: 'Данные университета',
+            desc: 'Статистика, кафедры, программы обучения',
+            href: '/admin/university',
             color: 'from-emerald-500 to-emerald-700',
           },
           {
