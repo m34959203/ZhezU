@@ -358,4 +358,3 @@ export function buildSocialLinks(socialLinks?: Record<string, string | undefined
     }));
   return links.length > 0 ? links : SOCIAL_LINKS;
 }
-
