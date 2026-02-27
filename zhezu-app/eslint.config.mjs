@@ -27,6 +27,10 @@ const eslintConfig = defineConfig([
     'build/**',
     'next-env.d.ts',
     'coverage/**',
+    // CJS entry point for Plesk
+    'server.js',
+    // Drizzle migrations
+    'drizzle/**',
   ]),
 ]);
 

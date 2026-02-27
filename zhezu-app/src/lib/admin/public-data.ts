@@ -1,9 +1,10 @@
 /**
- * Public data access layer — reads from admin JSON stores.
- * Used by server components and API routes.
+ * Public data access layer — reads from MariaDB.
+ * Used by server components and public API routes.
  */
-import { readFile } from 'fs/promises';
-import path from 'path';
+import { eq, and, desc } from 'drizzle-orm';
+import { db } from '@/lib/db';
+import { news, settings } from '@/lib/db/schema';
 import type {
   NewsArticle,
   SiteSettings,
@@ -13,42 +14,89 @@ import type {
   ResolvedHomepageStat,
 } from './types';
 
-const DATA_DIR = path.join(process.cwd(), 'data');
+/* ─── Helpers ─── */
 
-async function readJson<T>(filename: string, fallback: T): Promise<T> {
+function rowToArticle(row: typeof news.$inferSelect): NewsArticle {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    excerpt: row.excerpt,
+    body: row.body,
+    category: row.category as NewsArticle['category'],
+    image: row.image || '',
+    published: row.published,
+    pinned: row.pinned,
+    author: row.author,
+    socialPublished: row.socialPublished ?? undefined,
+    createdAt: row.createdAt.toISOString(),
+    updatedAt: row.updatedAt.toISOString(),
+  };
+}
+
+async function getSetting<T>(key: string, defaults: T): Promise<T> {
   try {
-    const raw = await readFile(path.join(DATA_DIR, filename), 'utf-8');
-    return JSON.parse(raw) as T;
+    const [row] = await db.select().from(settings).where(eq(settings.key, key)).limit(1);
+    if (!row) return defaults;
+    return row.value as T;
   } catch {
-    return fallback;
+    // DB unavailable (e.g. during build) — return defaults
+    return defaults;
   }
 }
 
 /* ─── News ─── */
 
 export async function getPublishedNews(): Promise<NewsArticle[]> {
-  const all = await readJson<NewsArticle[]>('news.json', []);
-  return all
-    .filter((a) => a.published)
-    .sort((a, b) => {
-      if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    });
+  try {
+    const rows = await db
+      .select()
+      .from(news)
+      .where(eq(news.published, true))
+      .orderBy(desc(news.pinned), desc(news.createdAt));
+    return rows.map(rowToArticle);
+  } catch {
+    return [];
+  }
 }
 
 export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
-  const all = await readJson<NewsArticle[]>('news.json', []);
-  return all.find((a) => a.slug === slug && a.published) ?? null;
+  try {
+    const [row] = await db
+      .select()
+      .from(news)
+      .where(and(eq(news.slug, slug), eq(news.published, true)))
+      .limit(1);
+    return row ? rowToArticle(row) : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getNewsById(id: string): Promise<NewsArticle | null> {
-  const all = await readJson<NewsArticle[]>('news.json', []);
-  return all.find((a) => a.id === id && a.published) ?? null;
+  try {
+    const [row] = await db
+      .select()
+      .from(news)
+      .where(and(eq(news.id, id), eq(news.published, true)))
+      .limit(1);
+    return row ? rowToArticle(row) : null;
+  } catch {
+    return null;
+  }
 }
 
 export async function getNewsByCategory(category: string): Promise<NewsArticle[]> {
-  const all = await getPublishedNews();
-  return all.filter((a) => a.category === category);
+  try {
+    const rows = await db
+      .select()
+      .from(news)
+      .where(and(eq(news.published, true), eq(news.category, category)))
+      .orderBy(desc(news.pinned), desc(news.createdAt));
+    return rows.map(rowToArticle);
+  } catch {
+    return [];
+  }
 }
 
 /* ─── Settings ─── */
@@ -68,7 +116,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
 };
 
 export async function getSiteSettings(): Promise<SiteSettings> {
-  return readJson<SiteSettings>('settings.json', DEFAULT_SETTINGS);
+  return getSetting<SiteSettings>('settings', DEFAULT_SETTINGS);
 }
 
 /* ─── University Data ─── */
@@ -100,7 +148,7 @@ const DEFAULT_UNIVERSITY: UniversityData = {
 };
 
 export async function getUniversityData(): Promise<UniversityData> {
-  return readJson<UniversityData>('university.json', DEFAULT_UNIVERSITY);
+  return getSetting<UniversityData>('university', DEFAULT_UNIVERSITY);
 }
 
 /* ─── Contact Page Data ─── */
@@ -114,7 +162,7 @@ const DEFAULT_CONTACT: ContactPageData = {
 };
 
 export async function getContactPageData(): Promise<ContactPageData> {
-  return readJson<ContactPageData>('contact.json', DEFAULT_CONTACT);
+  return getSetting<ContactPageData>('contact', DEFAULT_CONTACT);
 }
 
 /* ─── Homepage Data ─── */
@@ -127,11 +175,11 @@ const DEFAULT_HOMEPAGE: HomepageData = {
 };
 
 export async function getHomepageData(): Promise<HomepageData> {
-  return readJson<HomepageData>('homepage.json', DEFAULT_HOMEPAGE);
+  return getSetting<HomepageData>('homepage', DEFAULT_HOMEPAGE);
 }
 
 /**
- * Maps homepage stat keys → display values from university.json.
+ * Maps homepage stat keys → display values from university data.
  * Single source of truth for all statistics.
  */
 const STAT_KEY_MAP: Record<string, (s: UniversityData['stats']) => string> = {
@@ -143,10 +191,6 @@ const STAT_KEY_MAP: Record<string, (s: UniversityData['stats']) => string> = {
   masters: (s) => `${s.masterPrograms}`,
 };
 
-/**
- * Resolves homepage stat keys into display-ready {key, value} pairs
- * using university.json as the single source of truth.
- */
 export async function getResolvedHomepageStats(): Promise<ResolvedHomepageStat[]> {
   const [homepage, university] = await Promise.all([getHomepageData(), getUniversityData()]);
   return homepage.stats
