@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { organizationJsonLd, generateHreflangLinks } from '@/lib/seo';
 import { getSiteSettings } from '@/lib/admin/public-data';
+import { getMenuData } from '@/lib/navigation';
 import '../globals.css';
 
 export async function generateMetadata({
@@ -43,6 +44,7 @@ export default async function LocaleLayout({
   const messages = (await import(`@/i18n/messages/${locale}.json`)).default;
 
   const siteSettings = await getSiteSettings();
+  const menuData = await getMenuData();
   const orgJsonLd = organizationJsonLd();
   const hreflangLinks = generateHreflangLinks('/');
 
@@ -72,11 +74,15 @@ export default async function LocaleLayout({
             >
               Skip to main content
             </a>
-            <Header />
+            <Header navItems={menuData.navigation} />
             <main id="main-content" className="flex-1">
               {children}
             </main>
-            <Footer settings={siteSettings} />
+            <Footer
+              settings={siteSettings}
+              footerNav={menuData.footerNav}
+              footerStudents={menuData.footerStudents}
+            />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

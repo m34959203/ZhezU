@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSession } from '@/lib/admin/auth';
 import { getAll, create } from '@/lib/admin/storage';
+import { autoPublishToSocial } from '@/lib/admin/auto-publish';
 import type { NewsArticle } from '@/lib/admin/types';
 
 const FILE = 'news.json';
@@ -35,7 +36,14 @@ export async function POST(req: Request) {
       updatedAt: now,
     };
     await create(FILE, article);
-    return NextResponse.json(article, { status: 201 });
+
+    // Auto-publish to social media if article is published immediately
+    let autoPublishResult = null;
+    if (article.published) {
+      autoPublishResult = await autoPublishToSocial(article.id).catch(() => null);
+    }
+
+    return NextResponse.json({ ...article, autoPublishResult }, { status: 201 });
   } catch {
     return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
   }

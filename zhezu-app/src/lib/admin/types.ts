@@ -27,6 +27,10 @@ export interface NewsArticle {
   author: string;
   createdAt: string;
   updatedAt: string;
+  socialPublished?: {
+    telegram?: boolean;
+    instagram?: boolean;
+  };
 }
 
 export interface SiteEvent {
@@ -67,6 +71,7 @@ export interface SiteSettings {
     instagramAccessToken?: string;
     instagramPageId?: string;
     instagramEnabled?: boolean;
+    autoPublishSocial?: boolean;
   };
 }
 

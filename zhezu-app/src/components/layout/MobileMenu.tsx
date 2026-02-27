@@ -10,6 +10,7 @@ import { ThemeToggle } from './ThemeToggle';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Button } from '@/components/ui/Button';
 import { NAVIGATION_ITEMS, AUDIENCE_LINKS, UTILITY_CONTACTS } from '@/lib/navigation';
+import type { NavItem } from '@/lib/navigation';
 
 /* ------------------------------------------------------------------ */
 /*  Accordion Item                                                     */
@@ -19,7 +20,7 @@ function AccordionNavItem({
   isExpanded,
   onToggle,
 }: {
-  item: (typeof NAVIGATION_ITEMS)[number];
+  item: NavItem;
   isExpanded: boolean;
   onToggle: () => void;
 }) {
@@ -101,11 +102,13 @@ function AccordionNavItem({
 /* ================================================================== */
 /*  MOBILE MENU                                                        */
 /* ================================================================== */
-export function MobileMenu() {
+export function MobileMenu({ navItems }: { navItems?: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const t = useTranslations('megaNav');
   const pathname = usePathname();
+
+  const items = navItems && navItems.length > 0 ? navItems : NAVIGATION_ITEMS;
 
   /* Close on route change (state-during-render pattern) */
   const [prevPathname, setPrevPathname] = useState(pathname);
@@ -213,7 +216,7 @@ export function MobileMenu() {
 
                   {/* Navigation accordion */}
                   <nav aria-label="Mobile navigation">
-                    {NAVIGATION_ITEMS.map((item) => (
+                    {items.map((item) => (
                       <AccordionNavItem
                         key={item.id}
                         item={item}
