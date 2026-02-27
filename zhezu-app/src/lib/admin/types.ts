@@ -185,10 +185,14 @@ export interface ContactPageData {
 /* ─── Homepage Data ─── */
 export interface HomepageData {
   heroTitle: string;
-  stats: Array<{
-    key: string;
-    value: string;
-  }>;
+  /** Keys referencing UniversityData.stats (e.g. "students", "programs") */
+  stats: string[];
   programImages: Record<string, string>;
   categoryLabels: Record<string, string>;
+}
+
+/** Resolved stat ready for display on the public homepage */
+export interface ResolvedHomepageStat {
+  key: string;
+  value: string;
 }

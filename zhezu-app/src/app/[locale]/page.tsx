@@ -26,7 +26,12 @@ import {
 import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import type { Locale } from '@/types';
-import type { NewsArticle, HomepageData, UniversityData } from '@/lib/admin/types';
+import type {
+  NewsArticle,
+  HomepageData,
+  UniversityData,
+  ResolvedHomepageStat,
+} from '@/lib/admin/types';
 
 /* ------------------------------------------------------------------ */
 /*  Fallback Data (overridden by admin panel at runtime)                */
@@ -115,7 +120,9 @@ export default function HomePage() {
   const tActions = useTranslations('actions');
   const locale = useLocale() as Locale;
   const [newsItems, setNewsItems] = useState<NewsArticle[]>([]);
-  const [homepageData, setHomepageData] = useState<HomepageData | null>(null);
+  const [homepageData, setHomepageData] = useState<
+    (HomepageData & { resolvedStats?: ResolvedHomepageStat[] }) | null
+  >(null);
   const [uniData, setUniData] = useState<UniversityData | null>(null);
 
   useEffect(() => {
@@ -145,7 +152,9 @@ export default function HomePage() {
       ? homepageData.programImages
       : FALLBACK_PROGRAM_IMAGES;
   const heroStats =
-    homepageData?.stats && homepageData.stats.length > 0 ? homepageData.stats : FALLBACK_STATS;
+    homepageData?.resolvedStats && homepageData.resolvedStats.length > 0
+      ? homepageData.resolvedStats
+      : FALLBACK_STATS;
   const CATEGORY_LABELS =
     homepageData?.categoryLabels && Object.keys(homepageData.categoryLabels).length > 0
       ? homepageData.categoryLabels

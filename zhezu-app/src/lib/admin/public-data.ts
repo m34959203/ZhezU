@@ -10,6 +10,7 @@ import type {
   UniversityData,
   ContactPageData,
   HomepageData,
+  ResolvedHomepageStat,
 } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -120,11 +121,38 @@ export async function getContactPageData(): Promise<ContactPageData> {
 
 const DEFAULT_HOMEPAGE: HomepageData = {
   heroTitle: 'Жезказганский университет',
-  stats: [],
+  stats: ['students', 'programs', 'employment', 'years'],
   programImages: {},
   categoryLabels: {},
 };
 
 export async function getHomepageData(): Promise<HomepageData> {
   return readJson<HomepageData>('homepage.json', DEFAULT_HOMEPAGE);
+}
+
+/**
+ * Maps homepage stat keys → display values from university.json.
+ * Single source of truth for all statistics.
+ */
+const STAT_KEY_MAP: Record<string, (s: UniversityData['stats']) => string> = {
+  students: (s) => `${s.students}+`,
+  programs: (s) => `${s.programs}+`,
+  employment: (s) => `${s.employmentRate}%`,
+  years: (s) => `${s.yearsOfExperience}+`,
+  faculty: (s) => `${s.faculty}+`,
+  masters: (s) => `${s.masterPrograms}`,
+};
+
+/**
+ * Resolves homepage stat keys into display-ready {key, value} pairs
+ * using university.json as the single source of truth.
+ */
+export async function getResolvedHomepageStats(): Promise<ResolvedHomepageStat[]> {
+  const [homepage, university] = await Promise.all([getHomepageData(), getUniversityData()]);
+  return homepage.stats
+    .filter((key) => key in STAT_KEY_MAP)
+    .map((key) => ({
+      key,
+      value: STAT_KEY_MAP[key](university.stats),
+    }));
 }
