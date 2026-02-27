@@ -427,7 +427,7 @@ export default function UniversityDataPage() {
                     className={inputCls}
                   />
                 </div>
-                <div className="mt-2 grid gap-3 sm:grid-cols-2">
+                <div className="mt-2 grid gap-3 sm:grid-cols-3">
                   <div>
                     <label className="mb-1 block text-xs text-slate-500">Кафедра</label>
                     <select
@@ -460,6 +460,19 @@ export default function UniversityDataPage() {
                       <option value="master">Магистратура</option>
                       <option value="doctorate">Докторантура</option>
                     </select>
+                  </div>
+                  <div>
+                    <label className="mb-1 block text-xs text-slate-500">Срок обучения (лет)</label>
+                    <input
+                      type="number"
+                      value={prog.duration}
+                      onChange={(e) => {
+                        const updated = [...data.programs];
+                        updated[i] = { ...prog, duration: Number(e.target.value) };
+                        setData({ ...data, programs: updated });
+                      }}
+                      className={inputCls}
+                    />
                   </div>
                 </div>
               </div>
