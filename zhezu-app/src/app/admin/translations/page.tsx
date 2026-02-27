@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { Save, Loader2, Search, ChevronRight, Globe } from 'lucide-react';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { Save, Loader2, Search, ChevronRight, Globe, Languages, Check, X } from 'lucide-react';
 import type { ContentLocale } from '@/lib/admin/types';
 
 const LOCALES: { code: ContentLocale; label: string; flag: string }[] = [
@@ -62,6 +62,25 @@ export default function TranslationsPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [search, setSearch] = useState('');
+  const [translating, setTranslating] = useState(false);
+  const [translateFrom, setTranslateFrom] = useState<ContentLocale | null>(null);
+  const [translateResult, setTranslateResult] = useState<{
+    ok: boolean;
+    message: string;
+  } | null>(null);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        if (translateFrom === locale) setTranslateFrom(null);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [translateFrom, locale]);
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -96,6 +115,66 @@ export default function TranslationsPage() {
       }
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function handleTranslate(srcLocale: ContentLocale) {
+    setTranslating(true);
+    setTranslateFrom(srcLocale);
+    setTranslateResult(null);
+    try {
+      // Load source locale data for the same namespace
+      const srcRes = await fetch(
+        `/api/admin/translations?locale=${srcLocale}&namespace=${namespace}`,
+      );
+      if (!srcRes.ok) throw new Error('Не удалось загрузить исходные переводы');
+      const srcRaw = await srcRes.json();
+      const srcFlat = flattenObject(srcRaw as Record<string, unknown>);
+
+      // Only translate keys that have source values
+      const keysToTranslate: Record<string, string> = {};
+      for (const [key, value] of Object.entries(srcFlat)) {
+        if (value.trim()) {
+          keysToTranslate[key] = value;
+        }
+      }
+
+      if (Object.keys(keysToTranslate).length === 0) {
+        setTranslateResult({ ok: false, message: 'Нет текста для перевода в исходном языке' });
+        return;
+      }
+
+      const res = await fetch('/api/admin/ai/translate-keys', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          keys: keysToTranslate,
+          sourceLang: srcLocale,
+          targetLang: locale,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Ошибка перевода');
+      }
+
+      const { translations } = await res.json();
+      setData((prev) => ({ ...prev, ...translations }));
+      setTranslateResult({
+        ok: true,
+        message: `Переведено ${Object.keys(translations).length} ключей`,
+      });
+      setTimeout(() => setTranslateResult(null), 4000);
+    } catch (err) {
+      setTranslateResult({
+        ok: false,
+        message: err instanceof Error ? err.message : 'Ошибка перевода',
+      });
+      setTimeout(() => setTranslateResult(null), 4000);
+    } finally {
+      setTranslating(false);
+      setTranslateFrom(null);
     }
   }
 
@@ -138,6 +217,52 @@ export default function TranslationsPage() {
             className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pr-4 pl-10 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
           />
         </div>
+
+        {/* Auto-translate dropdown */}
+        <div className="relative" ref={dropdownRef}>
+          <button
+            type="button"
+            disabled={translating}
+            onClick={() => setTranslateFrom(translateFrom ? null : locale)}
+            className="flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-purple-700 disabled:opacity-50"
+          >
+            {translating ? <Loader2 size={14} className="animate-spin" /> : <Languages size={14} />}
+            Автоперевод
+          </button>
+          {translateFrom === locale && !translating && (
+            <div className="absolute top-full right-0 z-50 mt-1 min-w-[200px] rounded-lg border border-slate-200 bg-white py-1 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+              <div className="px-3 py-1.5 text-xs font-medium text-slate-400">Перевести из:</div>
+              {LOCALES.filter((l) => l.code !== locale).map((src) => (
+                <button
+                  key={src.code}
+                  type="button"
+                  onClick={() => {
+                    setTranslateFrom(null);
+                    handleTranslate(src.code);
+                  }}
+                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+                >
+                  <span>{src.flag}</span>
+                  {src.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Translate result badge */}
+        {translateResult && (
+          <div
+            className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium ${
+              translateResult.ok
+                ? 'bg-green-50 text-green-700 dark:bg-green-500/10 dark:text-green-400'
+                : 'bg-red-50 text-red-700 dark:bg-red-500/10 dark:text-red-400'
+            }`}
+          >
+            {translateResult.ok ? <Check size={12} /> : <X size={12} />}
+            {translateResult.message}
+          </div>
+        )}
 
         <button
           type="button"
@@ -183,7 +308,14 @@ export default function TranslationsPage() {
             </div>
           </div>
 
-          {loading ? (
+          {translating ? (
+            <div className="flex flex-col items-center justify-center gap-3 py-16">
+              <Loader2 size={24} className="animate-spin text-purple-500" />
+              <span className="text-sm text-purple-600 dark:text-purple-400">
+                Переводим с {LOCALES.find((l) => l.code === translateFrom)?.label || '...'}...
+              </span>
+            </div>
+          ) : loading ? (
             <div className="flex items-center justify-center py-16">
               <Loader2 size={24} className="animate-spin text-blue-500" />
             </div>
