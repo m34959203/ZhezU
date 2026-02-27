@@ -123,19 +123,19 @@ export default function HomepageDataPage() {
           Статистика на главной
         </h3>
         <p className="mb-4 text-xs text-slate-400">
-          Цифры, которые отображаются на баннере главной страницы
+          Выберите какие показатели отображать на баннере. Значения берутся из раздела «Университет».
         </p>
         <div className="space-y-2">
-          {data.stats.map((stat, i) => (
+          {data.stats.map((statKey, i) => (
             <div key={i} className="flex items-center gap-3">
               <select
-                value={stat.key}
+                value={statKey}
                 onChange={(e) => {
                   const updated = [...data.stats];
-                  updated[i] = { ...stat, key: e.target.value };
+                  updated[i] = e.target.value;
                   setData({ ...data, stats: updated });
                 }}
-                className={inputCls + ' max-w-[220px]'}
+                className={inputCls}
               >
                 <option value="">— Выберите —</option>
                 {STAT_OPTIONS.map((opt) => (
@@ -144,17 +144,6 @@ export default function HomepageDataPage() {
                   </option>
                 ))}
               </select>
-              <input
-                type="text"
-                value={stat.value}
-                onChange={(e) => {
-                  const updated = [...data.stats];
-                  updated[i] = { ...stat, value: e.target.value };
-                  setData({ ...data, stats: updated });
-                }}
-                placeholder="Значение (1370+, 87%...)"
-                className={inputCls}
-              />
               <button
                 type="button"
                 onClick={() =>
@@ -166,13 +155,15 @@ export default function HomepageDataPage() {
               </button>
             </div>
           ))}
-          <button
-            type="button"
-            onClick={() => setData({ ...data, stats: [...data.stats, { key: '', value: '' }] })}
-            className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600"
-          >
-            <Plus size={12} /> Добавить показатель
-          </button>
+          {data.stats.length < STAT_OPTIONS.length && (
+            <button
+              type="button"
+              onClick={() => setData({ ...data, stats: [...data.stats, ''] })}
+              className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600"
+            >
+              <Plus size={12} /> Добавить показатель
+            </button>
+          )}
         </div>
       </section>
 

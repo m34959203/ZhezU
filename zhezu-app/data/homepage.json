@@ -1,11 +1,6 @@
 {
   "heroTitle": "Жезказганский университет",
-  "stats": [
-    { "key": "students", "value": "1370+" },
-    { "key": "programs", "value": "24+" },
-    { "key": "employment", "value": "87%" },
-    { "key": "years", "value": "65+" }
-  ],
+  "stats": ["students", "programs", "employment", "years"],
   "programImages": {
     "mining": "https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=600&q=80",
     "foreign-languages": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=600&q=80",

@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getHomepageData } from '@/lib/admin/public-data';
+import { getHomepageData, getResolvedHomepageStats } from '@/lib/admin/public-data';
 
 export async function GET() {
-  const data = await getHomepageData();
-  return NextResponse.json(data);
+  const [data, resolvedStats] = await Promise.all([
+    getHomepageData(),
+    getResolvedHomepageStats(),
+  ]);
+  return NextResponse.json({ ...data, resolvedStats });
 }
