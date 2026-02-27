@@ -4,7 +4,7 @@
  */
 import { readFile } from 'fs/promises';
 import path from 'path';
-import type { NewsArticle, SiteSettings } from './types';
+import type { NewsArticle, SiteSettings, UniversityData, ContactPageData, HomepageData } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -62,4 +62,53 @@ const DEFAULT_SETTINGS: SiteSettings = {
 
 export async function getSiteSettings(): Promise<SiteSettings> {
   return readJson<SiteSettings>('settings.json', DEFAULT_SETTINGS);
+}
+
+/* ─── University Data ─── */
+
+const DEFAULT_UNIVERSITY: UniversityData = {
+  name: { kk: '', ru: 'Жезказганский университет', en: 'Zhezkazgan University' },
+  shortName: 'ZhezU',
+  founded: 1961,
+  type: 'private',
+  website: 'https://zhezu.edu.kz',
+  rector: { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' } },
+  proRectors: [],
+  stats: { students: 0, programs: 0, masterPrograms: 0, employmentRate: 0, yearsOfExperience: 0, faculty: 0, doctorsOfScience: 0, candidatesOfScience: 0, phd: 0 },
+  departments: [],
+  departmentHeads: {},
+  programs: [],
+  adminCenters: [],
+  serviceUnits: [],
+};
+
+export async function getUniversityData(): Promise<UniversityData> {
+  return readJson<UniversityData>('university.json', DEFAULT_UNIVERSITY);
+}
+
+/* ─── Contact Page Data ─── */
+
+const DEFAULT_CONTACT: ContactPageData = {
+  departments: [],
+  subjectLabels: {},
+  openingHours: [],
+  workingHoursShort: 'Пн-Пт: 09:00 — 18:00',
+  googleMapsQuery: 'Zhezkazgan+University',
+};
+
+export async function getContactPageData(): Promise<ContactPageData> {
+  return readJson<ContactPageData>('contact.json', DEFAULT_CONTACT);
+}
+
+/* ─── Homepage Data ─── */
+
+const DEFAULT_HOMEPAGE: HomepageData = {
+  heroTitle: 'Жезказганский университет',
+  stats: [],
+  programImages: {},
+  categoryLabels: {},
+};
+
+export async function getHomepageData(): Promise<HomepageData> {
+  return readJson<HomepageData>('homepage.json', DEFAULT_HOMEPAGE);
 }

@@ -317,16 +317,46 @@ export const AUDIENCE_LINKS: AudienceLink[] = [
   { id: 'employers', labelKey: 'audience.employers', href: '/talent-pool' },
 ];
 
+/* Fallback contacts — overridden by settings from admin panel at runtime */
 export const UTILITY_CONTACTS = {
   phone: { label: '+7 7102 123456', href: 'tel:+77102123456' },
   email: { label: 'info@zhezu.edu.kz', href: 'mailto:info@zhezu.edu.kz' },
 };
 
+/* Fallback social — overridden by settings from admin panel at runtime */
 export const SOCIAL_LINKS = [
   { id: 'instagram', href: 'https://instagram.com/zhezu_university', label: 'Instagram' },
   { id: 'facebook', href: 'https://facebook.com/zhezu.university', label: 'Facebook' },
   { id: 'youtube', href: 'https://youtube.com/@zhezu_university', label: 'YouTube' },
 ];
+
+/**
+ * Build utility contacts from admin settings (used at render time).
+ */
+export function buildUtilityContacts(settings?: { contactPhone?: string; contactEmail?: string }) {
+  if (!settings) return UTILITY_CONTACTS;
+  const phone = settings.contactPhone || UTILITY_CONTACTS.phone.label;
+  const email = settings.contactEmail || UTILITY_CONTACTS.email.label;
+  return {
+    phone: { label: phone, href: `tel:${phone.replace(/[\s()-]/g, '')}` },
+    email: { label: email, href: `mailto:${email}` },
+  };
+}
+
+/**
+ * Build social links from admin settings.
+ */
+export function buildSocialLinks(socialLinks?: Record<string, string | undefined>) {
+  if (!socialLinks) return SOCIAL_LINKS;
+  const links = Object.entries(socialLinks)
+    .filter(([, url]) => url)
+    .map(([id, url]) => ({
+      id,
+      href: url!,
+      label: id.charAt(0).toUpperCase() + id.slice(1),
+    }));
+  return links.length > 0 ? links : SOCIAL_LINKS;
+}
 
 /* ─── Server-side loader: reads menu from data/menu.json ─── */
 export async function getMenuData(): Promise<MenuData> {

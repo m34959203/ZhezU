@@ -11,12 +11,18 @@ import {
   LogOut,
   GraduationCap,
   Menu,
+  Building2,
+  Phone,
+  Home,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Дашборд', icon: LayoutDashboard },
   { href: '/admin/news', label: 'Публикации', icon: Newspaper },
   { href: '/admin/menu', label: 'Управление меню', icon: Menu },
+  { href: '/admin/university', label: 'Университет', icon: Building2 },
+  { href: '/admin/homepage', label: 'Главная страница', icon: Home },
+  { href: '/admin/contact', label: 'Контакты', icon: Phone },
   { href: '/admin/translations', label: 'Переводы', icon: Languages },
   { href: '/admin/pages', label: 'Контент страниц', icon: FileEdit },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },
