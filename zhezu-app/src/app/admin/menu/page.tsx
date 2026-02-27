@@ -48,6 +48,126 @@ interface MenuData {
   footerStudents: FooterLink[];
 }
 
+/* ─── i18n key → Russian label ─── */
+const LABELS: Record<string, string> = {
+  university: 'Университет',
+  admission: 'Поступление',
+  education: 'Образование',
+  research: 'Наука',
+  aiCenter: 'AI-Центр',
+  life: 'Жизнь',
+  newSection: 'Новый раздел',
+  // university submenu
+  'university.about': 'О вузе',
+  'university.aboutHistory': 'История университета',
+  'university.aboutMission': 'Миссия и ценности',
+  'university.aboutCampus': 'Кампус и инфраструктура',
+  'university.leadership': 'Руководство',
+  'university.leadershipRector': 'Ректор',
+  'university.leadershipAdmin': 'Администрация',
+  'university.leadershipSenate': 'Учёный совет',
+  'university.accreditation': 'Аккредитация',
+  'university.accreditationNational': 'Национальная аккредитация',
+  'university.accreditationInternational': 'Международная аккредитация',
+  'university.accreditationRankings': 'Рейтинги',
+  'university.partners': 'Партнёры',
+  'university.partnersCorporate': 'Корпоративные партнёры',
+  'university.partnersInternational': 'Международные партнёры',
+  'university.documents': 'Документы',
+  'university.documentsCharter': 'Устав университета',
+  'university.documentsLicenses': 'Лицензии',
+  'university.documentsReports': 'Отчёты',
+  // admission submenu
+  'admission.programs': 'Программы',
+  'admission.programsBachelor': 'Бакалавриат',
+  'admission.programsMaster': 'Магистратура',
+  'admission.programsDoctorate': 'Докторантура',
+  'admission.requirements': 'Требования',
+  'admission.requirementsDocs': 'Необходимые документы',
+  'admission.requirementsExams': 'Вступительные экзамены',
+  'admission.requirementsDeadlines': 'Сроки подачи',
+  'admission.apply': 'Подать заявку',
+  'admission.applyOnline': 'Онлайн-заявка',
+  'admission.applyStatus': 'Статус заявки',
+  'admission.applyConsultation': 'Консультация',
+  'admission.scholarships': 'Стипендии',
+  'admission.scholarshipsState': 'Государственные гранты',
+  'admission.scholarshipsUniversity': 'Стипендии университета',
+  'admission.faq': 'FAQ',
+  'admission.faqGeneral': 'Частые вопросы',
+  'admission.faqContact': 'Связаться с приёмной комиссией',
+  // education submenu
+  'education.bachelor': 'Бакалавриат',
+  'education.bachelorPrograms': 'Программы бакалавриата',
+  'education.bachelorCurriculum': 'Учебные планы',
+  'education.master': 'Магистратура',
+  'education.masterPrograms': 'Программы магистратуры',
+  'education.masterResearch': 'Исследовательские программы',
+  'education.departments': 'Кафедры',
+  'education.departmentsList': 'Все кафедры',
+  'education.departmentsFaculty': 'Профессорско-преподавательский состав',
+  'education.schedule': 'Расписание',
+  'education.scheduleClasses': 'Расписание занятий',
+  'education.scheduleExams': 'Расписание экзаменов',
+  'education.scheduleCalendar': 'Академический календарь',
+  'education.library': 'Библиотека',
+  'education.libraryCatalog': 'Каталог библиотеки',
+  'education.libraryDigital': 'Электронная библиотека',
+  // research submenu
+  'research.publications': 'Публикации',
+  'research.publicationsJournals': 'Научные журналы',
+  'research.publicationsArticles': 'Статьи и работы',
+  'research.conferences': 'Конференции',
+  'research.conferencesUpcoming': 'Предстоящие конференции',
+  'research.conferencesArchive': 'Архив конференций',
+  'research.labs': 'Лаборатории',
+  'research.labsList': 'Научные лаборатории',
+  'research.labsEquipment': 'Оборудование',
+  'research.grants': 'Гранты',
+  'research.grantsCurrent': 'Текущие гранты',
+  'research.grantsApply': 'Подать заявку на грант',
+  'research.grantsResults': 'Результаты конкурсов',
+  // aiCenter submenu
+  'aiCenter.projects': 'Проекты',
+  'aiCenter.projectsCurrent': 'Текущие проекты',
+  'aiCenter.projectsShowcase': 'Витрина проектов',
+  'aiCenter.agents': 'Агенты',
+  'aiCenter.agentsTalapker': 'Talapker Guide',
+  'aiCenter.agentsAssistant': 'AI Ассистент',
+  'aiCenter.apps': 'Приложения',
+  'aiCenter.appsTalentPool': 'Пул талантов',
+  'aiCenter.appsSkillMap': 'Карта навыков',
+  'aiCenter.tools': 'Инструменты',
+  'aiCenter.toolsAI': 'AI Инструменты',
+  'aiCenter.toolsAPI': 'API документация',
+  'aiCenter.lab': 'Лаборатория',
+  'aiCenter.labResearch': 'Исследования',
+  'aiCenter.labJoin': 'Присоединиться',
+  // life submenu
+  'life.news': 'Новости',
+  'life.newsLatest': 'Последние новости',
+  'life.newsAnnouncements': 'Объявления',
+  'life.events': 'События',
+  'life.eventsUpcoming': 'Предстоящие события',
+  'life.eventsCalendar': 'Календарь событий',
+  'life.sports': 'Спорт',
+  'life.sportsTeams': 'Спортивные секции',
+  'life.sportsFacilities': 'Спортивные объекты',
+  'life.dormitories': 'Общежития',
+  'life.dormitoriesInfo': 'Информация об общежитиях',
+  'life.dormitoriesApply': 'Подать заявку на общежитие',
+  'life.organizations': 'Организации',
+  'life.organizationsClubs': 'Клубы и кружки',
+  'life.organizationsStudentGov': 'Студенческое самоуправление',
+  // column defaults
+  newColumn: 'Новая группа',
+  newLink: 'Новая ссылка',
+};
+
+function label(key: string): string {
+  return LABELS[key] ?? key;
+}
+
 const EMPTY_MENU: MenuData = { navigation: [], footerNav: [], footerStudents: [] };
 
 export default function MenuManagerPage() {
@@ -306,7 +426,7 @@ export default function MenuManagerPage() {
               }`}
             >
               {/* Nav item header */}
-              <div className="flex items-center gap-2 p-4">
+              <div className="flex items-center gap-3 p-4">
                 <GripVertical size={16} className="shrink-0 text-slate-300 dark:text-slate-600" />
 
                 <div className="flex shrink-0 gap-1">
@@ -328,21 +448,11 @@ export default function MenuManagerPage() {
                   </button>
                 </div>
 
-                <div className="grid flex-1 grid-cols-2 gap-2">
-                  <input
-                    type="text"
-                    value={item.labelKey}
-                    onChange={(e) => updateNavItem(item.id, { labelKey: e.target.value })}
-                    placeholder="labelKey (i18n ключ)"
-                    className={inputCls}
-                  />
-                  <input
-                    type="text"
-                    value={item.href}
-                    onChange={(e) => updateNavItem(item.id, { href: e.target.value })}
-                    placeholder="/path"
-                    className={inputCls + ' font-mono'}
-                  />
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <span className="text-sm font-semibold text-slate-900 dark:text-white">
+                    {label(item.labelKey)}
+                  </span>
+                  <span className="truncate text-xs text-slate-400">{item.href}</span>
                 </div>
 
                 <button
@@ -378,9 +488,34 @@ export default function MenuManagerPage() {
               {/* Expanded: columns & links */}
               {expandedItem === item.id && (
                 <div className="border-t border-slate-100 p-4 dark:border-slate-800">
+                  {/* Editable section settings */}
+                  <div className="mb-4 grid gap-3 sm:grid-cols-2">
+                    <div>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">Название раздела</label>
+                      <input
+                        type="text"
+                        value={label(item.labelKey)}
+                        readOnly
+                        className={inputCls + ' bg-slate-50 text-slate-500 dark:bg-slate-800/50'}
+                        title="Изменяется через Переводы"
+                      />
+                      <span className="mt-0.5 block text-[10px] text-slate-400">Изменить текст: раздел «Переводы»</span>
+                    </div>
+                    <div>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">Ссылка</label>
+                      <input
+                        type="text"
+                        value={item.href}
+                        onChange={(e) => updateNavItem(item.id, { href: e.target.value })}
+                        placeholder="/page-url"
+                        className={inputCls}
+                      />
+                    </div>
+                  </div>
+
                   <div className="mb-3 flex items-center justify-between">
                     <span className="text-xs font-semibold text-slate-500 uppercase">
-                      Колонки подменю ({item.columns.length})
+                      Группы подменю ({item.columns.length})
                     </span>
                     <button
                       type="button"
@@ -388,7 +523,7 @@ export default function MenuManagerPage() {
                       className="flex items-center gap-1 rounded-lg border border-blue-200 px-2.5 py-1.5 text-xs font-medium text-blue-600 hover:bg-blue-50 dark:border-blue-500/30 dark:text-blue-400 dark:hover:bg-blue-500/10"
                     >
                       <Plus size={12} />
-                      Колонка
+                      Группа
                     </button>
                   </div>
 
@@ -403,15 +538,9 @@ export default function MenuManagerPage() {
                           {/* Column header */}
                           <div className="flex items-center gap-2 px-3 py-2">
                             <FolderOpen size={14} className="shrink-0 text-blue-400" />
-                            <input
-                              type="text"
-                              value={col.titleKey}
-                              onChange={(e) =>
-                                updateColumn(item.id, colIdx, { titleKey: e.target.value })
-                              }
-                              placeholder="titleKey (i18n)"
-                              className={inputCls + ' flex-1 !py-1.5 text-xs'}
-                            />
+                            <span className="flex-1 text-sm font-medium text-slate-700 dark:text-slate-300">
+                              {label(col.titleKey)}
+                            </span>
                             <button
                               type="button"
                               onClick={() =>
@@ -441,17 +570,9 @@ export default function MenuManagerPage() {
                                 {col.links.map((link, linkIdx) => (
                                   <div key={linkIdx} className="flex items-center gap-2">
                                     <Link2 size={12} className="shrink-0 text-slate-300" />
-                                    <input
-                                      type="text"
-                                      value={link.labelKey}
-                                      onChange={(e) =>
-                                        updateLink(item.id, colIdx, linkIdx, {
-                                          labelKey: e.target.value,
-                                        })
-                                      }
-                                      placeholder="labelKey"
-                                      className={inputCls + ' flex-1 !py-1 text-xs'}
-                                    />
+                                    <span className="min-w-[160px] text-xs font-medium text-slate-600 dark:text-slate-400">
+                                      {label(link.labelKey)}
+                                    </span>
                                     <input
                                       type="text"
                                       value={link.href}
@@ -460,8 +581,8 @@ export default function MenuManagerPage() {
                                           href: e.target.value,
                                         })
                                       }
-                                      placeholder="/path"
-                                      className={inputCls + ' w-48 !py-1 font-mono text-xs'}
+                                      placeholder="/page-url"
+                                      className={inputCls + ' flex-1 !py-1 text-xs'}
                                     />
                                     <button
                                       type="button"
@@ -542,8 +663,8 @@ export default function MenuManagerPage() {
                     type="text"
                     value={link.href}
                     onChange={(e) => updateFooterLink(activeTab, idx, { href: e.target.value })}
-                    placeholder="/path"
-                    className={inputCls + ' w-56 font-mono'}
+                    placeholder="/page-url"
+                    className={inputCls + ' w-56'}
                   />
                   <button
                     type="button"
