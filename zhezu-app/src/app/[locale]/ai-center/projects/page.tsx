@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Bot, Users, Building2, Mountain, ExternalLink } from 'lucide-react';
+import { ArrowRight, Bot, Users, Building2, Mountain } from 'lucide-react';
 
 export async function generateMetadata({
   params,

@@ -293,9 +293,7 @@ export default function MenuManagerPage() {
     if (!confirm('Удалить раздел меню и все его подменю?')) return;
     setMenu((prev) => ({
       ...prev,
-      navigation: prev.navigation
-        .filter((n) => n.id !== id)
-        .map((n, i) => ({ ...n, order: i })),
+      navigation: prev.navigation.filter((n) => n.id !== id).map((n, i) => ({ ...n, order: i })),
     }));
     if (expandedItem === id) setExpandedItem(null);
   }
@@ -336,14 +334,6 @@ export default function MenuManagerPage() {
     if (!item) return;
     updateNavItem(navId, {
       columns: item.columns.filter((_, i) => i !== colIdx),
-    });
-  }
-
-  function updateColumn(navId: string, colIdx: number, patch: Partial<MenuColumn>) {
-    const item = menu.navigation.find((n) => n.id === navId);
-    if (!item) return;
-    updateNavItem(navId, {
-      columns: item.columns.map((c, i) => (i === colIdx ? { ...c, ...patch } : c)),
     });
   }
 
@@ -550,7 +540,9 @@ export default function MenuManagerPage() {
                   {/* Editable section settings */}
                   <div className="mb-4 grid gap-3 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-500">Название раздела</label>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">
+                        Название раздела
+                      </label>
                       <input
                         type="text"
                         value={label(item.labelKey)}
@@ -558,10 +550,14 @@ export default function MenuManagerPage() {
                         className={inputCls + ' bg-slate-50 text-slate-500 dark:bg-slate-800/50'}
                         title="Изменяется через Переводы"
                       />
-                      <span className="mt-0.5 block text-[10px] text-slate-400">Изменить текст: раздел «Переводы»</span>
+                      <span className="mt-0.5 block text-[10px] text-slate-400">
+                        Изменить текст: раздел «Переводы»
+                      </span>
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-500">Ссылка</label>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">
+                        Ссылка
+                      </label>
                       <input
                         type="text"
                         value={item.href}
@@ -690,7 +686,7 @@ export default function MenuManagerPage() {
             <h3 className="mb-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
               {activeTab === 'footerNav' ? 'Навигация в футере' : 'Ссылки для студентов'}
             </h3>
-            <div className="mb-2 flex items-center gap-2 px-8 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+            <div className="mb-2 flex items-center gap-2 px-8 text-[10px] font-semibold tracking-wide text-slate-400 uppercase">
               <span className="flex-1">Название</span>
               <span className="w-56">Страница</span>
               <span className="w-8" />
@@ -724,7 +720,9 @@ export default function MenuManagerPage() {
                     className={inputCls + ' flex-1'}
                   />
                   <select
-                    value={PAGE_OPTIONS.some((p) => p.href === link.href) ? link.href : '__custom__'}
+                    value={
+                      PAGE_OPTIONS.some((p) => p.href === link.href) ? link.href : '__custom__'
+                    }
                     onChange={(e) => {
                       if (e.target.value !== '__custom__') {
                         updateFooterLink(activeTab, idx, { href: e.target.value });

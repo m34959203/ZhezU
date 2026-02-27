@@ -7,7 +7,6 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import {
-  User,
   Scale,
   GraduationCap,
   Award,

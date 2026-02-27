@@ -662,20 +662,86 @@
     }
   ],
   "adminCenters": [
-    { "name": { "kk": "Оқу-әдістемелік орталық", "ru": "Учебно-методический центр", "en": "Academic and Methodological Center" }, "icon": "BookOpen" },
-    { "name": { "kk": "Ғылым және инновациялар орталығы", "ru": "Центр науки и инноваций", "en": "Center for Science and Innovation" }, "icon": "Lightbulb" },
-    { "name": { "kk": "Жоспарлау, аккредиттеу және сапаны бағалау орталығы", "ru": "Центр планирования, аккредитации и оценки качества", "en": "Center for Planning, Accreditation and Quality Assessment" }, "icon": "ClipboardCheck" },
-    { "name": { "kk": "АТ дамыту және цифрлық университет орталығы", "ru": "Центр развития ИТ и цифрового университета", "en": "IT Development and Digital University Center" }, "icon": "Monitor" },
-    { "name": { "kk": "Кадрларды қайта даярлау, маркетинг және ЖОО алды білім беру орталығы", "ru": "Центр переподготовки кадров, маркетинга и довузовского образования", "en": "Center for Retraining, Marketing and Pre-University Education" }, "icon": "Users" },
-    { "name": { "kk": "Тәрбие және жастар саясаты орталығы", "ru": "Центр воспитания и молодёжной политики", "en": "Center for Education and Youth Policy" }, "icon": "Heart" }
+    {
+      "name": {
+        "kk": "Оқу-әдістемелік орталық",
+        "ru": "Учебно-методический центр",
+        "en": "Academic and Methodological Center"
+      },
+      "icon": "BookOpen"
+    },
+    {
+      "name": {
+        "kk": "Ғылым және инновациялар орталығы",
+        "ru": "Центр науки и инноваций",
+        "en": "Center for Science and Innovation"
+      },
+      "icon": "Lightbulb"
+    },
+    {
+      "name": {
+        "kk": "Жоспарлау, аккредиттеу және сапаны бағалау орталығы",
+        "ru": "Центр планирования, аккредитации и оценки качества",
+        "en": "Center for Planning, Accreditation and Quality Assessment"
+      },
+      "icon": "ClipboardCheck"
+    },
+    {
+      "name": {
+        "kk": "АТ дамыту және цифрлық университет орталығы",
+        "ru": "Центр развития ИТ и цифрового университета",
+        "en": "IT Development and Digital University Center"
+      },
+      "icon": "Monitor"
+    },
+    {
+      "name": {
+        "kk": "Кадрларды қайта даярлау, маркетинг және ЖОО алды білім беру орталығы",
+        "ru": "Центр переподготовки кадров, маркетинга и довузовского образования",
+        "en": "Center for Retraining, Marketing and Pre-University Education"
+      },
+      "icon": "Users"
+    },
+    {
+      "name": {
+        "kk": "Тәрбие және жастар саясаты орталығы",
+        "ru": "Центр воспитания и молодёжной политики",
+        "en": "Center for Education and Youth Policy"
+      },
+      "icon": "Heart"
+    }
   ],
   "serviceUnits": [
     { "name": { "kk": "Кеңсе", "ru": "Канцелярия", "en": "Chancellery" } },
     { "name": { "kk": "Тіркеуші офисі", "ru": "Офис регистратора", "en": "Registrar Office" } },
-    { "name": { "kk": "Қаржы-экономикалық қызмет", "ru": "Финансово-экономическая служба", "en": "Financial and Economic Service" } },
-    { "name": { "kk": "Персоналды басқару бөлімі", "ru": "Отдел управления персоналом", "en": "Human Resources Department" } },
-    { "name": { "kk": "ЖОО-дан кейінгі білім беру бөлімі", "ru": "Отдел послевузовского образования", "en": "Postgraduate Education Department" } },
+    {
+      "name": {
+        "kk": "Қаржы-экономикалық қызмет",
+        "ru": "Финансово-экономическая служба",
+        "en": "Financial and Economic Service"
+      }
+    },
+    {
+      "name": {
+        "kk": "Персоналды басқару бөлімі",
+        "ru": "Отдел управления персоналом",
+        "en": "Human Resources Department"
+      }
+    },
+    {
+      "name": {
+        "kk": "ЖОО-дан кейінгі білім беру бөлімі",
+        "ru": "Отдел послевузовского образования",
+        "en": "Postgraduate Education Department"
+      }
+    },
     { "name": { "kk": "«Мансап» бөлімі", "ru": "Отдел «Карьера»", "en": "Career Department" } },
-    { "name": { "kk": "Сервистік қызмет көрсету бөлімі", "ru": "Отдел сервисного обслуживания", "en": "Service Department" } }
+    {
+      "name": {
+        "kk": "Сервистік қызмет көрсету бөлімі",
+        "ru": "Отдел сервисного обслуживания",
+        "en": "Service Department"
+      }
+    }
   ]
 }

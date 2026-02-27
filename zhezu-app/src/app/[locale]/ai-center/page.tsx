@@ -3,14 +3,11 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import {
   ArrowRight,
   Play,
   Brain,
-  Bot,
   Eye,
   BarChart3,
   ExternalLink,
@@ -21,11 +18,6 @@ import {
   Code2,
   Database,
   FlaskConical,
-  Cpu,
-  Sparkles,
-  Users,
-  Briefcase,
-  GraduationCap,
 } from 'lucide-react';
 
 const TABS = ['projects', 'agents', 'apps', 'tools', 'lab'] as const;

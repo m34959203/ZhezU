@@ -3,7 +3,10 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { PROGRAMS as FALLBACK_PROGRAMS, DEPARTMENTS as FALLBACK_DEPARTMENTS } from '@/lib/constants';
+import {
+  PROGRAMS as FALLBACK_PROGRAMS,
+  DEPARTMENTS as FALLBACK_DEPARTMENTS,
+} from '@/lib/constants';
 import {
   ArrowRight,
   BookOpen,
@@ -18,7 +21,6 @@ import {
   Mountain,
   Landmark,
   Calendar,
-  Clock,
   Sparkles,
 } from 'lucide-react';
 import { useLocale } from 'next-intl';
@@ -119,9 +121,15 @@ export default function HomePage() {
   useEffect(() => {
     const controller = new AbortController();
     Promise.all([
-      fetch('/api/public/news?limit=4', { signal: controller.signal }).then((r) => (r.ok ? r.json() : [])),
-      fetch('/api/public/homepage', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
-      fetch('/api/public/university', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
+      fetch('/api/public/news?limit=4', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : [],
+      ),
+      fetch('/api/public/homepage', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
+      fetch('/api/public/university', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
     ])
       .then(([news, hp, uni]) => {
         setNewsItems(news);
@@ -132,19 +140,24 @@ export default function HomePage() {
     return () => controller.abort();
   }, []);
 
-  const PROGRAM_IMAGES = homepageData?.programImages && Object.keys(homepageData.programImages).length > 0
-    ? homepageData.programImages
-    : FALLBACK_PROGRAM_IMAGES;
-  const heroStats = homepageData?.stats && homepageData.stats.length > 0
-    ? homepageData.stats
-    : FALLBACK_STATS;
-  const CATEGORY_LABELS = homepageData?.categoryLabels && Object.keys(homepageData.categoryLabels).length > 0
-    ? homepageData.categoryLabels
-    : FALLBACK_CATEGORY_LABELS;
+  const PROGRAM_IMAGES =
+    homepageData?.programImages && Object.keys(homepageData.programImages).length > 0
+      ? homepageData.programImages
+      : FALLBACK_PROGRAM_IMAGES;
+  const heroStats =
+    homepageData?.stats && homepageData.stats.length > 0 ? homepageData.stats : FALLBACK_STATS;
+  const CATEGORY_LABELS =
+    homepageData?.categoryLabels && Object.keys(homepageData.categoryLabels).length > 0
+      ? homepageData.categoryLabels
+      : FALLBACK_CATEGORY_LABELS;
   const heroTitle = homepageData?.heroTitle || 'Жезказганский университет';
 
-  const PROGRAMS = uniData?.programs && uniData.programs.length > 0 ? uniData.programs : FALLBACK_PROGRAMS;
-  const DEPARTMENTS = uniData?.departments && uniData.departments.length > 0 ? uniData.departments : FALLBACK_DEPARTMENTS;
+  const PROGRAMS =
+    uniData?.programs && uniData.programs.length > 0 ? uniData.programs : FALLBACK_PROGRAMS;
+  const DEPARTMENTS =
+    uniData?.departments && uniData.departments.length > 0
+      ? uniData.departments
+      : FALLBACK_DEPARTMENTS;
 
   const featuredPrograms = PROGRAMS.filter((p) => Object.keys(PROGRAM_IMAGES).includes(p.id)).slice(
     0,
@@ -223,16 +236,28 @@ export default function HomePage() {
                     years: Award,
                   };
                   const STAT_STYLES: Record<string, { color: string; bg: string }> = {
-                    students: { color: 'text-primary dark:text-primary-light', bg: 'bg-primary/8 dark:bg-primary-light/10' },
-                    programs: { color: 'text-gold dark:text-gold-light', bg: 'bg-gold/8 dark:bg-gold/10' },
+                    students: {
+                      color: 'text-primary dark:text-primary-light',
+                      bg: 'bg-primary/8 dark:bg-primary-light/10',
+                    },
+                    programs: {
+                      color: 'text-gold dark:text-gold-light',
+                      bg: 'bg-gold/8 dark:bg-gold/10',
+                    },
                     employment: { color: 'text-success', bg: 'bg-success/8 dark:bg-success/10' },
-                    years: { color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-600/8 dark:bg-purple-400/10' },
+                    years: {
+                      color: 'text-purple-600 dark:text-purple-400',
+                      bg: 'bg-purple-600/8 dark:bg-purple-400/10',
+                    },
                   };
                   return heroStats.map((s) => ({
                     value: s.value,
                     label: t(`stats.${s.key}`),
                     icon: STAT_ICONS[s.key] || Users,
-                    ...(STAT_STYLES[s.key] || { color: 'text-primary dark:text-primary-light', bg: 'bg-primary/8 dark:bg-primary-light/10' }),
+                    ...(STAT_STYLES[s.key] || {
+                      color: 'text-primary dark:text-primary-light',
+                      bg: 'bg-primary/8 dark:bg-primary-light/10',
+                    }),
                   }));
                 })().map((stat) => (
                   <div

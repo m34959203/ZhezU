@@ -135,10 +135,7 @@ export interface UniversityData {
     color: string;
     icon: string;
   }>;
-  departmentHeads: Record<
-    string,
-    { name: LocalizedString; title: LocalizedString }
-  >;
+  departmentHeads: Record<string, { name: LocalizedString; title: LocalizedString }>;
   programs: Array<{
     id: string;
     code: string;

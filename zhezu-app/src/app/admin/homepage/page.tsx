@@ -1,7 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Save, Loader2, Home, BarChart3, Image, Tag, Plus, Trash2 } from 'lucide-react';
+import {
+  Save,
+  Loader2,
+  Home,
+  BarChart3,
+  Image as ImageIcon,
+  Tag,
+  Plus,
+  Trash2,
+} from 'lucide-react';
 import type { HomepageData } from '@/lib/admin/types';
 
 const STAT_OPTIONS: { key: string; label: string }[] = [
@@ -148,7 +157,9 @@ export default function HomepageDataPage() {
               />
               <button
                 type="button"
-                onClick={() => setData({ ...data, stats: data.stats.filter((_, idx) => idx !== i) })}
+                onClick={() =>
+                  setData({ ...data, stats: data.stats.filter((_, idx) => idx !== i) })
+                }
                 className="shrink-0 text-red-400 hover:text-red-600"
               >
                 <Trash2 size={14} />
@@ -157,9 +168,7 @@ export default function HomepageDataPage() {
           ))}
           <button
             type="button"
-            onClick={() =>
-              setData({ ...data, stats: [...data.stats, { key: '', value: '' }] })
-            }
+            onClick={() => setData({ ...data, stats: [...data.stats, { key: '', value: '' }] })}
             className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600"
           >
             <Plus size={12} /> Добавить показатель
@@ -170,7 +179,7 @@ export default function HomepageDataPage() {
       {/* Program Images */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
         <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
-          <Image size={18} className="text-purple-500" />
+          <ImageIcon size={18} className="text-purple-500" />
           Изображения программ
         </h3>
         <p className="mb-4 text-xs text-slate-400">
@@ -206,7 +215,7 @@ export default function HomepageDataPage() {
               <button
                 type="button"
                 onClick={() => {
-                  const { [key]: _, ...rest } = data.programImages;
+                  const { [key]: _removed, ...rest } = data.programImages;
                   setData({ ...data, programImages: rest });
                 }}
                 className="shrink-0 text-red-400 hover:text-red-600"

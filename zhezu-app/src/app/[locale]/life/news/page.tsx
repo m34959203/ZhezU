@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
-import { Calendar, User, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, User, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/types';

@@ -16,8 +16,6 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
-import type { Locale } from '@/types';
-
 export async function generateMetadata({
   params,
 }: {
@@ -28,7 +26,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function ApplyPage({ params }: { params: { locale: string } }) {
+export default function ApplyPage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.apply');
 
   const steps = [

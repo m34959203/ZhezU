@@ -6,8 +6,6 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { FileText, CheckCircle, ArrowRight, AlertCircle, GraduationCap, Award } from 'lucide-react';
-import type { Locale } from '@/types';
-
 export async function generateMetadata({
   params,
 }: {
@@ -18,7 +16,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function DocumentsPage({ params }: { params: { locale: string } }) {
+export default function DocumentsPage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.documents');
 
   const levels = [

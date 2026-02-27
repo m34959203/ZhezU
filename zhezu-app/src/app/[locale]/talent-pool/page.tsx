@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
@@ -25,14 +24,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import type { Locale } from '@/types';
-import {
-  APPLICANTS,
-  QUESTS,
-  BADGES,
-  LEVELS,
-  getLevelInfo,
-  getXpProgress,
-} from '@/lib/talapker-data';
+import { APPLICANTS, QUESTS, BADGES, LEVELS, getLevelInfo } from '@/lib/talapker-data';
 import { DEPARTMENTS } from '@/lib/constants';
 
 const CATEGORY_ICONS: Record<string, LucideIcon> = {

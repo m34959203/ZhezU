@@ -1,13 +1,11 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { UNIVERSITY } from '@/lib/constants';
 import { Badge } from '@/components/ui/Badge';
 import { Accordion } from '@/components/ui/Accordion';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Phone, Mail } from 'lucide-react';
-import type { Locale } from '@/types';
+import { ArrowRight } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -19,7 +17,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function FaqPage({ params }: { params: { locale: string } }) {
+export default function FaqPage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.faqPage');
 
   const generalFaq = Array.from({ length: 8 }, (_, i) => ({

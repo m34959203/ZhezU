@@ -87,7 +87,12 @@ export default function ContactDataPage() {
                 <span className="text-xs font-medium text-slate-400">Отдел {i + 1}</span>
                 <button
                   type="button"
-                  onClick={() => setData({ ...data, departments: data.departments.filter((_, idx) => idx !== i) })}
+                  onClick={() =>
+                    setData({
+                      ...data,
+                      departments: data.departments.filter((_, idx) => idx !== i),
+                    })
+                  }
                   className="text-red-400 hover:text-red-600"
                 >
                   <Trash2 size={14} />
@@ -192,7 +197,7 @@ export default function ContactDataPage() {
                 placeholder="Часы"
                 className={inputCls}
               />
-              <label className="flex items-center gap-1 text-xs text-slate-500 whitespace-nowrap">
+              <label className="flex items-center gap-1 text-xs whitespace-nowrap text-slate-500">
                 <input
                   type="checkbox"
                   checked={entry.closed}
@@ -207,7 +212,12 @@ export default function ContactDataPage() {
               </label>
               <button
                 type="button"
-                onClick={() => setData({ ...data, openingHours: data.openingHours.filter((_, idx) => idx !== i) })}
+                onClick={() =>
+                  setData({
+                    ...data,
+                    openingHours: data.openingHours.filter((_, idx) => idx !== i),
+                  })
+                }
                 className="shrink-0 text-red-400 hover:text-red-600"
               >
                 <Trash2 size={14} />

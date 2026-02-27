@@ -133,7 +133,9 @@ export default function UniversityDataPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">Данные университета</h2>
-          <p className="text-sm text-slate-500">Управление основными данными, кафедрами и программами</p>
+          <p className="text-sm text-slate-500">
+            Управление основными данными, кафедрами и программами
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <LangTabs />
@@ -151,7 +153,12 @@ export default function UniversityDataPage() {
 
       {/* General Info */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="general" icon={<Building2 size={18} />} title="Основная информация" color="text-blue-500" />
+        <SectionHeader
+          id="general"
+          icon={<Building2 size={18} />}
+          title="Основная информация"
+          color="text-blue-500"
+        />
         {openSections.general && (
           <div className="mt-4 space-y-4">
             <div>
@@ -161,22 +168,45 @@ export default function UniversityDataPage() {
               <input
                 type="text"
                 value={data.name[activeLang]}
-                onChange={(e) => setData({ ...data, name: { ...data.name, [activeLang]: e.target.value } })}
+                onChange={(e) =>
+                  setData({ ...data, name: { ...data.name, [activeLang]: e.target.value } })
+                }
                 className={inputCls}
               />
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">Краткое название</label>
-                <input type="text" value={data.shortName} onChange={(e) => setData({ ...data, shortName: e.target.value })} className={inputCls} />
+                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  Краткое название
+                </label>
+                <input
+                  type="text"
+                  value={data.shortName}
+                  onChange={(e) => setData({ ...data, shortName: e.target.value })}
+                  className={inputCls}
+                />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">Год основания</label>
-                <input type="number" value={data.founded} onChange={(e) => setData({ ...data, founded: Number(e.target.value) })} className={inputCls} />
+                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  Год основания
+                </label>
+                <input
+                  type="number"
+                  value={data.founded}
+                  onChange={(e) => setData({ ...data, founded: Number(e.target.value) })}
+                  className={inputCls}
+                />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">Веб-сайт</label>
-                <input type="url" value={data.website} onChange={(e) => setData({ ...data, website: e.target.value })} className={inputCls} />
+                <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                  Веб-сайт
+                </label>
+                <input
+                  type="url"
+                  value={data.website}
+                  onChange={(e) => setData({ ...data, website: e.target.value })}
+                  className={inputCls}
+                />
               </div>
             </div>
           </div>
@@ -185,27 +215,54 @@ export default function UniversityDataPage() {
 
       {/* Rector & Pro-Rectors */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="rector" icon={<GraduationCap size={18} />} title="Руководство" color="text-purple-500" />
+        <SectionHeader
+          id="rector"
+          icon={<GraduationCap size={18} />}
+          title="Руководство"
+          color="text-purple-500"
+        />
         {openSections.rector && (
           <div className="mt-4 space-y-6">
             <div>
-              <h4 className="mb-3 text-sm font-semibold text-slate-600 dark:text-slate-400">Ректор</h4>
+              <h4 className="mb-3 text-sm font-semibold text-slate-600 dark:text-slate-400">
+                Ректор
+              </h4>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">ФИО ({activeLang.toUpperCase()})</label>
+                  <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                    ФИО ({activeLang.toUpperCase()})
+                  </label>
                   <input
                     type="text"
                     value={data.rector.name[activeLang]}
-                    onChange={(e) => setData({ ...data, rector: { ...data.rector, name: { ...data.rector.name, [activeLang]: e.target.value } } })}
+                    onChange={(e) =>
+                      setData({
+                        ...data,
+                        rector: {
+                          ...data.rector,
+                          name: { ...data.rector.name, [activeLang]: e.target.value },
+                        },
+                      })
+                    }
                     className={inputCls}
                   />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">Должность ({activeLang.toUpperCase()})</label>
+                  <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                    Должность ({activeLang.toUpperCase()})
+                  </label>
                   <input
                     type="text"
                     value={data.rector.title[activeLang]}
-                    onChange={(e) => setData({ ...data, rector: { ...data.rector, title: { ...data.rector.title, [activeLang]: e.target.value } } })}
+                    onChange={(e) =>
+                      setData({
+                        ...data,
+                        rector: {
+                          ...data.rector,
+                          title: { ...data.rector.title, [activeLang]: e.target.value },
+                        },
+                      })
+                    }
                     className={inputCls}
                   />
                 </div>
@@ -214,13 +271,18 @@ export default function UniversityDataPage() {
 
             <div>
               <div className="mb-3 flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400">Проректоры</h4>
+                <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400">
+                  Проректоры
+                </h4>
                 <button
                   type="button"
                   onClick={() =>
                     setData({
                       ...data,
-                      proRectors: [...data.proRectors, { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' } }],
+                      proRectors: [
+                        ...data.proRectors,
+                        { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' } },
+                      ],
                     })
                   }
                   className="flex items-center gap-1 rounded-md bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-600 hover:bg-blue-100 dark:bg-blue-600/10 dark:text-blue-400"
@@ -229,12 +291,20 @@ export default function UniversityDataPage() {
                 </button>
               </div>
               {data.proRectors.map((pr, i) => (
-                <div key={i} className="mb-3 rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+                <div
+                  key={i}
+                  className="mb-3 rounded-lg border border-slate-100 p-4 dark:border-slate-800"
+                >
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-xs font-medium text-slate-400">Проректор {i + 1}</span>
                     <button
                       type="button"
-                      onClick={() => setData({ ...data, proRectors: data.proRectors.filter((_, idx) => idx !== i) })}
+                      onClick={() =>
+                        setData({
+                          ...data,
+                          proRectors: data.proRectors.filter((_, idx) => idx !== i),
+                        })
+                      }
                       className="text-red-400 hover:text-red-600"
                     >
                       <Trash2 size={14} />
@@ -258,7 +328,10 @@ export default function UniversityDataPage() {
                       value={pr.title[activeLang]}
                       onChange={(e) => {
                         const updated = [...data.proRectors];
-                        updated[i] = { ...pr, title: { ...pr.title, [activeLang]: e.target.value } };
+                        updated[i] = {
+                          ...pr,
+                          title: { ...pr.title, [activeLang]: e.target.value },
+                        };
                         setData({ ...data, proRectors: updated });
                       }}
                       className={inputCls}
@@ -273,26 +346,37 @@ export default function UniversityDataPage() {
 
       {/* Statistics */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="stats" icon={<Users size={18} />} title="Статистика" color="text-emerald-500" />
+        <SectionHeader
+          id="stats"
+          icon={<Users size={18} />}
+          title="Статистика"
+          color="text-emerald-500"
+        />
         {openSections.stats && (
           <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {([
-              ['students', 'Студентов'],
-              ['programs', 'Бакалавр. программ'],
-              ['masterPrograms', 'Магистр. программ'],
-              ['employmentRate', 'Трудоустройство (%)'],
-              ['yearsOfExperience', 'Лет опыта'],
-              ['faculty', 'Преподавателей'],
-              ['doctorsOfScience', 'Докторов наук'],
-              ['candidatesOfScience', 'Кандидатов наук'],
-              ['phd', 'PhD'],
-            ] as const).map(([key, label]) => (
+            {(
+              [
+                ['students', 'Студентов'],
+                ['programs', 'Бакалавр. программ'],
+                ['masterPrograms', 'Магистр. программ'],
+                ['employmentRate', 'Трудоустройство (%)'],
+                ['yearsOfExperience', 'Лет опыта'],
+                ['faculty', 'Преподавателей'],
+                ['doctorsOfScience', 'Докторов наук'],
+                ['candidatesOfScience', 'Кандидатов наук'],
+                ['phd', 'PhD'],
+              ] as const
+            ).map(([key, label]) => (
               <div key={key}>
-                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">{label}</label>
+                <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  {label}
+                </label>
                 <input
                   type="number"
                   value={data.stats[key]}
-                  onChange={(e) => setData({ ...data, stats: { ...data.stats, [key]: Number(e.target.value) } })}
+                  onChange={(e) =>
+                    setData({ ...data, stats: { ...data.stats, [key]: Number(e.target.value) } })
+                  }
                   className={inputCls}
                 />
               </div>
@@ -303,16 +387,29 @@ export default function UniversityDataPage() {
 
       {/* Departments */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="departments" icon={<BookOpen size={18} />} title={`Кафедры (${data.departments.length})`} color="text-amber-500" />
+        <SectionHeader
+          id="departments"
+          icon={<BookOpen size={18} />}
+          title={`Кафедры (${data.departments.length})`}
+          color="text-amber-500"
+        />
         {openSections.departments && (
           <div className="mt-4 space-y-3">
             {data.departments.map((dept, i) => (
-              <div key={dept.id || i} className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+              <div
+                key={dept.id || i}
+                className="rounded-lg border border-slate-100 p-4 dark:border-slate-800"
+              >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-slate-400">Кафедра {i + 1}</span>
                   <button
                     type="button"
-                    onClick={() => setData({ ...data, departments: data.departments.filter((_, idx) => idx !== i) })}
+                    onClick={() =>
+                      setData({
+                        ...data,
+                        departments: data.departments.filter((_, idx) => idx !== i),
+                      })
+                    }
                     className="text-red-400 hover:text-red-600"
                   >
                     <Trash2 size={14} />
@@ -320,26 +417,36 @@ export default function UniversityDataPage() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-xs text-slate-500">Полное название ({activeLang.toUpperCase()})</label>
+                    <label className="mb-1 block text-xs text-slate-500">
+                      Полное название ({activeLang.toUpperCase()})
+                    </label>
                     <input
                       type="text"
                       value={dept.name[activeLang]}
                       onChange={(e) => {
                         const updated = [...data.departments];
-                        updated[i] = { ...dept, name: { ...dept.name, [activeLang]: e.target.value } };
+                        updated[i] = {
+                          ...dept,
+                          name: { ...dept.name, [activeLang]: e.target.value },
+                        };
                         setData({ ...data, departments: updated });
                       }}
                       className={inputCls}
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs text-slate-500">Краткое ({activeLang.toUpperCase()})</label>
+                    <label className="mb-1 block text-xs text-slate-500">
+                      Краткое ({activeLang.toUpperCase()})
+                    </label>
                     <input
                       type="text"
                       value={dept.shortName[activeLang]}
                       onChange={(e) => {
                         const updated = [...data.departments];
-                        updated[i] = { ...dept, shortName: { ...dept.shortName, [activeLang]: e.target.value } };
+                        updated[i] = {
+                          ...dept,
+                          shortName: { ...dept.shortName, [activeLang]: e.target.value },
+                        };
                         setData({ ...data, departments: updated });
                       }}
                       className={inputCls}
@@ -355,7 +462,13 @@ export default function UniversityDataPage() {
                   ...data,
                   departments: [
                     ...data.departments,
-                    { id: `dept-${Date.now()}`, name: { kk: '', ru: '', en: '' }, shortName: { kk: '', ru: '', en: '' }, color: '#3B82F6', icon: 'BookOpen' },
+                    {
+                      id: `dept-${Date.now()}`,
+                      name: { kk: '', ru: '', en: '' },
+                      shortName: { kk: '', ru: '', en: '' },
+                      color: '#3B82F6',
+                      icon: 'BookOpen',
+                    },
                   ],
                 })
               }
@@ -369,18 +482,28 @@ export default function UniversityDataPage() {
 
       {/* Programs */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="programs" icon={<GraduationCap size={18} />} title={`Программы (${data.programs.length})`} color="text-blue-500" />
+        <SectionHeader
+          id="programs"
+          icon={<GraduationCap size={18} />}
+          title={`Программы (${data.programs.length})`}
+          color="text-blue-500"
+        />
         {openSections.programs && (
           <div className="mt-4 space-y-3">
             {data.programs.map((prog, i) => (
-              <div key={prog.id || i} className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
+              <div
+                key={prog.id || i}
+                className="rounded-lg border border-slate-100 p-4 dark:border-slate-800"
+              >
                 <div className="mb-2 flex items-center justify-between">
                   <span className="rounded bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-600 dark:bg-blue-600/10 dark:text-blue-400">
                     {prog.code || 'Новая'}
                   </span>
                   <button
                     type="button"
-                    onClick={() => setData({ ...data, programs: data.programs.filter((_, idx) => idx !== i) })}
+                    onClick={() =>
+                      setData({ ...data, programs: data.programs.filter((_, idx) => idx !== i) })
+                    }
                     className="text-red-400 hover:text-red-600"
                   >
                     <Trash2 size={14} />
@@ -388,13 +511,18 @@ export default function UniversityDataPage() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1 block text-xs text-slate-500">Название ({activeLang.toUpperCase()})</label>
+                    <label className="mb-1 block text-xs text-slate-500">
+                      Название ({activeLang.toUpperCase()})
+                    </label>
                     <input
                       type="text"
                       value={prog.name[activeLang]}
                       onChange={(e) => {
                         const updated = [...data.programs];
-                        updated[i] = { ...prog, name: { ...prog.name, [activeLang]: e.target.value } };
+                        updated[i] = {
+                          ...prog,
+                          name: { ...prog.name, [activeLang]: e.target.value },
+                        };
                         setData({ ...data, programs: updated });
                       }}
                       className={inputCls}
@@ -415,13 +543,18 @@ export default function UniversityDataPage() {
                   </div>
                 </div>
                 <div className="mt-2">
-                  <label className="mb-1 block text-xs text-slate-500">Описание ({activeLang.toUpperCase()})</label>
+                  <label className="mb-1 block text-xs text-slate-500">
+                    Описание ({activeLang.toUpperCase()})
+                  </label>
                   <input
                     type="text"
                     value={prog.description[activeLang]}
                     onChange={(e) => {
                       const updated = [...data.programs];
-                      updated[i] = { ...prog, description: { ...prog.description, [activeLang]: e.target.value } };
+                      updated[i] = {
+                        ...prog,
+                        description: { ...prog.description, [activeLang]: e.target.value },
+                      };
                       setData({ ...data, programs: updated });
                     }}
                     className={inputCls}
@@ -441,7 +574,9 @@ export default function UniversityDataPage() {
                     >
                       <option value="">—</option>
                       {data.departments.map((d) => (
-                        <option key={d.id} value={d.id}>{d.shortName.ru || d.id}</option>
+                        <option key={d.id} value={d.id}>
+                          {d.shortName.ru || d.id}
+                        </option>
                       ))}
                     </select>
                   </div>
@@ -451,7 +586,10 @@ export default function UniversityDataPage() {
                       value={prog.degree}
                       onChange={(e) => {
                         const updated = [...data.programs];
-                        updated[i] = { ...prog, degree: e.target.value as 'bachelor' | 'master' | 'doctorate' };
+                        updated[i] = {
+                          ...prog,
+                          degree: e.target.value as 'bachelor' | 'master' | 'doctorate',
+                        };
                         setData({ ...data, programs: updated });
                       }}
                       className={inputCls}
@@ -508,7 +646,12 @@ export default function UniversityDataPage() {
 
       {/* Admin Centers & Service Units */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <SectionHeader id="centers" icon={<Building2 size={18} />} title="Центры и службы" color="text-teal-500" />
+        <SectionHeader
+          id="centers"
+          icon={<Building2 size={18} />}
+          title="Центры и службы"
+          color="text-teal-500"
+        />
         {openSections.centers && (
           <div className="mt-4 space-y-6">
             <div>
@@ -522,14 +665,22 @@ export default function UniversityDataPage() {
                     value={center.name[activeLang]}
                     onChange={(e) => {
                       const updated = [...data.adminCenters];
-                      updated[i] = { ...center, name: { ...center.name, [activeLang]: e.target.value } };
+                      updated[i] = {
+                        ...center,
+                        name: { ...center.name, [activeLang]: e.target.value },
+                      };
                       setData({ ...data, adminCenters: updated });
                     }}
                     className={inputCls}
                   />
                   <button
                     type="button"
-                    onClick={() => setData({ ...data, adminCenters: data.adminCenters.filter((_, idx) => idx !== i) })}
+                    onClick={() =>
+                      setData({
+                        ...data,
+                        adminCenters: data.adminCenters.filter((_, idx) => idx !== i),
+                      })
+                    }
                     className="shrink-0 text-red-400 hover:text-red-600"
                   >
                     <Trash2 size={14} />
@@ -541,7 +692,10 @@ export default function UniversityDataPage() {
                 onClick={() =>
                   setData({
                     ...data,
-                    adminCenters: [...data.adminCenters, { name: { kk: '', ru: '', en: '' }, icon: 'Building2' }],
+                    adminCenters: [
+                      ...data.adminCenters,
+                      { name: { kk: '', ru: '', en: '' }, icon: 'Building2' },
+                    ],
                   })
                 }
                 className="mt-1 flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600"
@@ -561,14 +715,22 @@ export default function UniversityDataPage() {
                     value={unit.name[activeLang]}
                     onChange={(e) => {
                       const updated = [...data.serviceUnits];
-                      updated[i] = { ...unit, name: { ...unit.name, [activeLang]: e.target.value } };
+                      updated[i] = {
+                        ...unit,
+                        name: { ...unit.name, [activeLang]: e.target.value },
+                      };
                       setData({ ...data, serviceUnits: updated });
                     }}
                     className={inputCls}
                   />
                   <button
                     type="button"
-                    onClick={() => setData({ ...data, serviceUnits: data.serviceUnits.filter((_, idx) => idx !== i) })}
+                    onClick={() =>
+                      setData({
+                        ...data,
+                        serviceUnits: data.serviceUnits.filter((_, idx) => idx !== i),
+                      })
+                    }
                     className="shrink-0 text-red-400 hover:text-red-600"
                   >
                     <Trash2 size={14} />

@@ -6,16 +6,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import {
-  GraduationCap,
-  Clock,
-  BookOpen,
-  ArrowRight,
-  CheckCircle,
-  Award,
-  FileText,
-  Globe,
-} from 'lucide-react';
+import { Clock, BookOpen, ArrowRight, CheckCircle, Award, FileText } from 'lucide-react';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({

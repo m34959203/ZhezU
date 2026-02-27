@@ -44,10 +44,38 @@ type ContactFormData = z.infer<typeof contactSchema>;
 /* ------------------------------------------------------------------ */
 
 const FALLBACK_DEPARTMENTS = [
-  { icon: 'GraduationCap', title: 'Приёмная комиссия', email: 'admissions@zhezu.edu.kz', phone: '+7 (7102) 74-00-11', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/20' },
-  { icon: 'Building2', title: 'Учебный отдел', email: 'academic@zhezu.edu.kz', phone: '+7 (7102) 74-00-12', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-900/20' },
-  { icon: 'Users', title: 'Студенческий сервис', email: 'students@zhezu.edu.kz', phone: '+7 (7102) 74-00-13', color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-900/20' },
-  { icon: 'Monitor', title: 'IT-поддержка', email: 'support@zhezu.edu.kz', phone: '+7 (7102) 74-00-22', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-900/20' },
+  {
+    icon: 'GraduationCap',
+    title: 'Приёмная комиссия',
+    email: 'admissions@zhezu.edu.kz',
+    phone: '+7 (7102) 74-00-11',
+    color: 'text-blue-600 dark:text-blue-400',
+    bg: 'bg-blue-50 dark:bg-blue-900/20',
+  },
+  {
+    icon: 'Building2',
+    title: 'Учебный отдел',
+    email: 'academic@zhezu.edu.kz',
+    phone: '+7 (7102) 74-00-12',
+    color: 'text-emerald-600 dark:text-emerald-400',
+    bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+  },
+  {
+    icon: 'Users',
+    title: 'Студенческий сервис',
+    email: 'students@zhezu.edu.kz',
+    phone: '+7 (7102) 74-00-13',
+    color: 'text-purple-600 dark:text-purple-400',
+    bg: 'bg-purple-50 dark:bg-purple-900/20',
+  },
+  {
+    icon: 'Monitor',
+    title: 'IT-поддержка',
+    email: 'support@zhezu.edu.kz',
+    phone: '+7 (7102) 74-00-22',
+    color: 'text-orange-600 dark:text-orange-400',
+    bg: 'bg-orange-50 dark:bg-orange-900/20',
+  },
 ];
 
 const FALLBACK_SUBJECT_LABELS: Record<string, string> = {
@@ -83,8 +111,12 @@ export default function ContactPage() {
   useEffect(() => {
     const controller = new AbortController();
     Promise.all([
-      fetch('/api/public/settings', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
-      fetch('/api/public/contact', { signal: controller.signal }).then((r) => (r.ok ? r.json() : null)),
+      fetch('/api/public/settings', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
+      fetch('/api/public/contact', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
     ])
       .then(([s, c]) => {
         if (s) setSettings(s);
@@ -94,15 +126,18 @@ export default function ContactPage() {
     return () => controller.abort();
   }, []);
 
-  const DEPARTMENTS = contactData?.departments && contactData.departments.length > 0
-    ? contactData.departments
-    : FALLBACK_DEPARTMENTS;
-  const SUBJECT_LABELS = contactData?.subjectLabels && Object.keys(contactData.subjectLabels).length > 0
-    ? contactData.subjectLabels
-    : FALLBACK_SUBJECT_LABELS;
-  const OPENING_HOURS = contactData?.openingHours && contactData.openingHours.length > 0
-    ? contactData.openingHours
-    : FALLBACK_OPENING_HOURS;
+  const DEPARTMENTS =
+    contactData?.departments && contactData.departments.length > 0
+      ? contactData.departments
+      : FALLBACK_DEPARTMENTS;
+  const SUBJECT_LABELS =
+    contactData?.subjectLabels && Object.keys(contactData.subjectLabels).length > 0
+      ? contactData.subjectLabels
+      : FALLBACK_SUBJECT_LABELS;
+  const OPENING_HOURS =
+    contactData?.openingHours && contactData.openingHours.length > 0
+      ? contactData.openingHours
+      : FALLBACK_OPENING_HOURS;
   const googleMapsQuery = contactData?.googleMapsQuery || 'Zhezkazgan+University';
 
   const {
@@ -293,31 +328,32 @@ export default function ContactPage() {
               </h2>
               <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark rounded-xl border p-1">
                 {DEPARTMENTS.map((dept, idx) => {
-                  const IconComp = (typeof dept.icon === 'string' ? ICON_MAP[dept.icon] : dept.icon) || Building2;
+                  const IconComp =
+                    (typeof dept.icon === 'string' ? ICON_MAP[dept.icon] : dept.icon) || Building2;
                   return (
-                  <div key={dept.title}>
-                    <div className="group hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer rounded-lg p-3 transition-colors">
-                      <div className="flex items-start gap-3">
-                        <div className={`shrink-0 rounded-lg p-1.5 ${dept.bg}`}>
-                          <IconComp size={16} className={dept.color} />
-                        </div>
-                        <div className="min-w-0">
-                          <h4 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">
-                            {dept.title}
-                          </h4>
-                          <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-xs">
-                            {dept.email}
-                          </p>
-                          <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
-                            {dept.phone}
-                          </p>
+                    <div key={dept.title}>
+                      <div className="group hover:bg-surface-light dark:hover:bg-surface-dark cursor-pointer rounded-lg p-3 transition-colors">
+                        <div className="flex items-start gap-3">
+                          <div className={`shrink-0 rounded-lg p-1.5 ${dept.bg}`}>
+                            <IconComp size={16} className={dept.color} />
+                          </div>
+                          <div className="min-w-0">
+                            <h4 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark text-sm font-semibold">
+                              {dept.title}
+                            </h4>
+                            <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-xs">
+                              {dept.email}
+                            </p>
+                            <p className="text-text-secondary-light dark:text-text-secondary-dark text-xs">
+                              {dept.phone}
+                            </p>
+                          </div>
                         </div>
                       </div>
+                      {idx < DEPARTMENTS.length - 1 && (
+                        <div className="bg-border-light dark:bg-border-dark mx-3 h-px" />
+                      )}
                     </div>
-                    {idx < DEPARTMENTS.length - 1 && (
-                      <div className="bg-border-light dark:bg-border-dark mx-3 h-px" />
-                    )}
-                  </div>
                   );
                 })}
               </div>

@@ -15,10 +15,6 @@ import {
   FileText,
   GraduationCap,
   Building2,
-  Globe,
-  ScrollText,
-  ShieldCheck,
-  Trophy,
 } from 'lucide-react';
 
 export async function generateMetadata({

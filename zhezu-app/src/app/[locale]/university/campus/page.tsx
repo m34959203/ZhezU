@@ -31,12 +31,32 @@ export default function CampusPage() {
   const t = useTranslations('university.campus');
 
   const facilities = [
-    { key: 'academic', icon: Building2, color: 'text-primary dark:text-primary-light', bg: 'bg-primary/10 dark:bg-primary-light/10' },
+    {
+      key: 'academic',
+      icon: Building2,
+      color: 'text-primary dark:text-primary-light',
+      bg: 'bg-primary/10 dark:bg-primary-light/10',
+    },
     { key: 'library', icon: BookOpen, color: 'text-gold', bg: 'bg-gold/10' },
-    { key: 'labs', icon: FlaskConical, color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-600/10 dark:bg-purple-400/10' },
+    {
+      key: 'labs',
+      icon: FlaskConical,
+      color: 'text-purple-600 dark:text-purple-400',
+      bg: 'bg-purple-600/10 dark:bg-purple-400/10',
+    },
     { key: 'sports', icon: Dumbbell, color: 'text-success', bg: 'bg-success/10' },
-    { key: 'dining', icon: Utensils, color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-600/10 dark:bg-orange-400/10' },
-    { key: 'digital', icon: Wifi, color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-600/10 dark:bg-blue-400/10' },
+    {
+      key: 'dining',
+      icon: Utensils,
+      color: 'text-orange-600 dark:text-orange-400',
+      bg: 'bg-orange-600/10 dark:bg-orange-400/10',
+    },
+    {
+      key: 'digital',
+      icon: Wifi,
+      color: 'text-blue-600 dark:text-blue-400',
+      bg: 'bg-blue-600/10 dark:bg-blue-400/10',
+    },
   ];
 
   return (
@@ -83,17 +103,23 @@ export default function CampusPage() {
       {/* Facilities */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display mb-3 text-center text-3xl font-bold">{t('facilitiesTitle')}</h2>
+          <h2 className="font-display mb-3 text-center text-3xl font-bold">
+            {t('facilitiesTitle')}
+          </h2>
           <p className="text-text-secondary-light dark:text-text-secondary-dark mx-auto mb-10 max-w-2xl text-center">
             {t('facilitiesSubtitle')}
           </p>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {facilities.map((f) => (
               <Card key={f.key} padding="lg" hover>
-                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${f.bg}`}>
+                <div
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${f.bg}`}
+                >
                   <f.icon size={24} className={f.color} />
                 </div>
-                <h3 className="font-display mb-2 text-lg font-semibold">{t(`facilities.${f.key}.title`)}</h3>
+                <h3 className="font-display mb-2 text-lg font-semibold">
+                  {t(`facilities.${f.key}.title`)}
+                </h3>
                 <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
                   {t(`facilities.${f.key}.text`)}
                 </p>

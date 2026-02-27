@@ -5,15 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import {
-  ArrowRight,
-  Bot,
-  MessageSquare,
-  GraduationCap,
-  FileText,
-  Clock,
-  CheckCircle,
-} from 'lucide-react';
+import { ArrowRight, Bot, MessageSquare, GraduationCap, FileText, Clock } from 'lucide-react';
 
 export async function generateMetadata({
   params,

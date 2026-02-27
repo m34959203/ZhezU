@@ -5,8 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { Calendar, ArrowRight, Clock, AlertCircle } from 'lucide-react';
-import type { Locale } from '@/types';
+import { Calendar, ArrowRight, AlertCircle } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -18,7 +17,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function DeadlinesPage({ params }: { params: { locale: string } }) {
+export default function DeadlinesPage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.deadlines');
 
   const bachelorTimeline = [
@@ -63,7 +62,7 @@ export default function DeadlinesPage({ params }: { params: { locale: string } }
           <h2 className="font-display mb-8 text-2xl font-bold">{t('bachelorTitle')}</h2>
           <div className="relative space-y-0">
             <div className="bg-primary/20 absolute top-0 bottom-0 left-5 w-0.5" />
-            {bachelorTimeline.map((item, i) => (
+            {bachelorTimeline.map((item, _i) => (
               <div key={item.key} className="relative flex items-start gap-6 pb-8 last:pb-0">
                 <div className="bg-primary relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white shadow-md">
                   <Calendar size={16} />

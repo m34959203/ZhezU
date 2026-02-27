@@ -4,7 +4,13 @@
  */
 import { readFile } from 'fs/promises';
 import path from 'path';
-import type { NewsArticle, SiteSettings, UniversityData, ContactPageData, HomepageData } from './types';
+import type {
+  NewsArticle,
+  SiteSettings,
+  UniversityData,
+  ContactPageData,
+  HomepageData,
+} from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
 
@@ -74,7 +80,17 @@ const DEFAULT_UNIVERSITY: UniversityData = {
   website: 'https://zhezu.edu.kz',
   rector: { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' } },
   proRectors: [],
-  stats: { students: 0, programs: 0, masterPrograms: 0, employmentRate: 0, yearsOfExperience: 0, faculty: 0, doctorsOfScience: 0, candidatesOfScience: 0, phd: 0 },
+  stats: {
+    students: 0,
+    programs: 0,
+    masterPrograms: 0,
+    employmentRate: 0,
+    yearsOfExperience: 0,
+    faculty: 0,
+    doctorsOfScience: 0,
+    candidatesOfScience: 0,
+    phd: 0,
+  },
   departments: [],
   departmentHeads: {},
   programs: [],

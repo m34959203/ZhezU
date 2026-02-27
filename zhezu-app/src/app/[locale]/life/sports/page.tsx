@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Trophy, Users } from 'lucide-react';
+import { ArrowRight, Trophy } from 'lucide-react';
 
 export async function generateMetadata({
   params,
