@@ -39,6 +39,7 @@ function maskIntegrations(settings: SiteSettings): SiteSettings & { integrations
       telegramEnabled: integrations?.telegramEnabled ?? false,
       instagramPageId: integrations?.instagramPageId || '',
       instagramEnabled: integrations?.instagramEnabled ?? false,
+      autoPublishSocial: integrations?.autoPublishSocial ?? false,
     },
   };
 }

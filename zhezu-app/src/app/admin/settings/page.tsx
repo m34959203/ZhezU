@@ -53,6 +53,7 @@ interface IntegrationsStatus {
   telegramEnabled: boolean;
   instagramPageId: string;
   instagramEnabled: boolean;
+  autoPublishSocial: boolean;
 }
 
 interface ValidationResult {
@@ -390,6 +391,31 @@ export default function SettingsPage() {
         </p>
 
         <div className="space-y-5">
+          {/* ── Auto-publish toggle ── */}
+          <div className="flex items-center justify-between rounded-lg border border-green-100 bg-green-50/50 p-4 dark:border-green-500/20 dark:bg-green-500/5">
+            <div>
+              <p className="flex items-center gap-1.5 text-sm font-semibold text-green-700 dark:text-green-400">
+                <Zap size={14} />
+                Автопубликация в соцсети
+              </p>
+              <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                Автоматически публиковать новости в Telegram и Instagram при переводе из черновика в
+                опубликованное
+              </p>
+            </div>
+            <Toggle
+              enabled={
+                settings.integrations?.autoPublishSocial ?? status?.autoPublishSocial ?? false
+              }
+              onChange={(v) =>
+                setSettings((s) => ({
+                  ...s,
+                  integrations: { ...s.integrations, autoPublishSocial: v },
+                }))
+              }
+            />
+          </div>
+
           {/* ── Gemini ── */}
           <div className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
             <div className="mb-3 flex items-center justify-between">

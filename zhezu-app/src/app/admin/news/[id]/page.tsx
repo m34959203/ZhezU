@@ -99,6 +99,10 @@ export default function NewsEditorPage() {
   const [publishResult, setPublishResult] = useState<string | null>(null);
   const [telegramConfigured, setTelegramConfigured] = useState<boolean | null>(null);
   const [instagramConfigured, setInstagramConfigured] = useState<boolean | null>(null);
+  const [socialPublished, setSocialPublished] = useState<{
+    telegram?: boolean;
+    instagram?: boolean;
+  }>({});
 
   useEffect(() => {
     if (isNew) return;
@@ -106,7 +110,10 @@ export default function NewsEditorPage() {
     fetch(`/api/admin/news/${id}`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        if (data) setArticle(data);
+        if (data) {
+          setArticle(data);
+          if (data.socialPublished) setSocialPublished(data.socialPublished);
+        }
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -148,11 +155,29 @@ export default function NewsEditorPage() {
         body: JSON.stringify(article),
       });
       if (res.ok) {
+        const data = await res.json();
         setSaved(true);
         if (isNew) {
-          const created = await res.json();
-          router.replace(`/admin/news/${created.id}`);
+          router.replace(`/admin/news/${data.id}`);
         }
+
+        // Show auto-publish results
+        if (data.autoPublishResult) {
+          const results: string[] = [];
+          if (data.autoPublishResult.telegram?.ok) results.push('Telegram');
+          if (data.autoPublishResult.instagram?.ok) results.push('Instagram');
+          if (results.length > 0) {
+            setPublishResult(`Автопубликация: ${results.join(', ')}`);
+            setSocialPublished((prev) => ({
+              ...prev,
+              ...(data.autoPublishResult.telegram?.ok ? { telegram: true } : {}),
+              ...(data.autoPublishResult.instagram?.ok ? { instagram: true } : {}),
+            }));
+            setTimeout(() => setPublishResult(null), 5000);
+          }
+        }
+
+        if (data.socialPublished) setSocialPublished(data.socialPublished);
         setTimeout(() => setSaved(false), 2000);
       }
     } finally {
@@ -436,6 +461,24 @@ export default function NewsEditorPage() {
           >
             {publishResult}
           </span>
+        )}
+        {/* Social published badges */}
+        {!isNew && (socialPublished.telegram || socialPublished.instagram) && (
+          <div className="ml-auto flex items-center gap-1.5">
+            <span className="text-[10px] text-slate-400 uppercase">Опубликовано:</span>
+            {socialPublished.telegram && (
+              <span className="flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-medium text-blue-600 dark:bg-blue-500/20 dark:text-blue-400">
+                <Send size={8} />
+                TG
+              </span>
+            )}
+            {socialPublished.instagram && (
+              <span className="flex items-center gap-1 rounded-full bg-pink-100 px-2 py-0.5 text-[10px] font-medium text-pink-600 dark:bg-pink-500/20 dark:text-pink-400">
+                <Camera size={8} />
+                IG
+              </span>
+            )}
+          </div>
         )}
       </div>
 
