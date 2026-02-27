@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
@@ -30,9 +29,14 @@ export async function generateMetadata({
   };
 }
 
-export default function AcademicCouncilPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('university.academicCouncil');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function AcademicCouncilPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const t = await getTranslations('university.academicCouncil');
+  const locale = (localeParam || 'ru') as Locale;
 
   const functions = [
     { key: 'strategy', icon: <Scale size={20} /> },

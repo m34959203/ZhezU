@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
@@ -68,9 +67,14 @@ const MASTER_PROGRAMS = [
   },
 ];
 
-export default function MasterPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('admission.master');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function MasterPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const t = await getTranslations('admission.master');
+  const locale = (localeParam || 'ru') as Locale;
 
   return (
     <div className="flex flex-col">

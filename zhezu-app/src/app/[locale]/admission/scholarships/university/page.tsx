@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
@@ -17,8 +16,13 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function UniversityScholarshipsPage({ _params }: { _params: { locale: string } }) {
-  const t = useTranslations('admission.uniScholarships');
+export default async function UniversityScholarshipsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  await params;
+  const t = await getTranslations('admission.uniScholarships');
 
   const scholarships = [
     { key: 'state', icon: <Award size={24} /> },

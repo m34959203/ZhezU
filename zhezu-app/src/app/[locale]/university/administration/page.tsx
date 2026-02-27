@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import {
@@ -51,9 +50,14 @@ export async function generateMetadata({
   };
 }
 
-export default function AdministrationPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('university.administration');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function AdministrationPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const t = await getTranslations('university.administration');
+  const locale = (localeParam || 'ru') as Locale;
 
   return (
     <div className="flex flex-col">

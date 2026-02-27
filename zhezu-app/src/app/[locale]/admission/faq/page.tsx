@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
@@ -17,8 +16,13 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function FaqPage({ params: _params }: { params: { locale: string } }) {
-  const t = useTranslations('admission.faqPage');
+export default async function FaqPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  await params;
+  const t = await getTranslations('admission.faqPage');
 
   const generalFaq = Array.from({ length: 8 }, (_, i) => ({
     id: `faq-${i + 1}`,
