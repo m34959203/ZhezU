@@ -126,7 +126,7 @@ export default function UniversityDataPage() {
               <button
                 type="button"
                 onClick={() => onChange('')}
-                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white shadow hover:bg-red-600"
+                className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white shadow hover:bg-red-600"
               >
                 <X size={10} />
               </button>
@@ -137,13 +137,14 @@ export default function UniversityDataPage() {
             </div>
           )}
           <label className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
-            {uploading ? (
-              <Loader2 size={14} className="animate-spin" />
-            ) : (
-              <Upload size={14} />
-            )}
+            {uploading ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
             {uploading ? 'Загрузка...' : 'Загрузить фото'}
-            <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFile} className="hidden" />
+            <input
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={handleFile}
+              className="hidden"
+            />
           </label>
         </div>
       </div>
@@ -367,7 +368,11 @@ export default function UniversityDataPage() {
                       ...data,
                       proRectors: [
                         ...data.proRectors,
-                        { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' }, photo: '' },
+                        {
+                          name: { kk: '', ru: '', en: '' },
+                          title: { kk: '', ru: '', en: '' },
+                          photo: '',
+                        },
                       ],
                     })
                   }
