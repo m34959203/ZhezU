@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import {
   Save,
@@ -22,6 +22,8 @@ import {
   Info,
 } from 'lucide-react';
 import type { NewsArticle, ContentLocale } from '@/lib/admin/types';
+
+const RichTextEditor = lazy(() => import('@/components/admin/RichTextEditor'));
 
 const CATEGORIES = [
   { value: 'news', label: 'Новость' },
@@ -712,13 +714,19 @@ export default function NewsEditorPage() {
           <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
             Текст публикации ({activeLang.toUpperCase()})
           </label>
-          <textarea
-            value={article.body[activeLang]}
-            onChange={(e) => setLocField('body', e.target.value)}
-            rows={12}
-            placeholder="Полный текст публикации. Поддерживается Markdown."
-            className="w-full resize-y rounded-lg border border-slate-200 bg-white px-4 py-3 font-mono text-sm leading-relaxed focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-          />
+          <Suspense
+            fallback={
+              <div className="flex h-[300px] items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700">
+                <Loader2 size={20} className="animate-spin text-slate-400" />
+              </div>
+            }
+          >
+            <RichTextEditor
+              value={article.body[activeLang]}
+              onChange={(html) => setLocField('body', html)}
+              placeholder="Начните писать текст публикации..."
+            />
+          </Suspense>
         </div>
 
         {/* Author & Image */}
