@@ -319,15 +319,16 @@ export const AUDIENCE_LINKS: AudienceLink[] = [
 
 /* Fallback contacts — overridden by settings from admin panel at runtime */
 export const UTILITY_CONTACTS = {
-  phone: { label: '+7 7102 123456', href: 'tel:+77102123456' },
-  email: { label: 'info@zhezu.edu.kz', href: 'mailto:info@zhezu.edu.kz' },
+  phone: { label: '+7 (7102) 73-60-15', href: 'tel:+77102736015' },
+  email: { label: 'univer@zhezu.edu.kz', href: 'mailto:univer@zhezu.edu.kz' },
 };
 
 /* Fallback social — overridden by settings from admin panel at runtime */
 export const SOCIAL_LINKS = [
-  { id: 'instagram', href: 'https://instagram.com/zhezu_university', label: 'Instagram' },
-  { id: 'facebook', href: 'https://facebook.com/zhezu.university', label: 'Facebook' },
+  { id: 'instagram', href: 'https://instagram.com/zhezkazganuniversity', label: 'Instagram' },
+  { id: 'facebook', href: 'https://facebook.com/ZhezUniver', label: 'Facebook' },
   { id: 'youtube', href: 'https://youtube.com/@zhezu_university', label: 'YouTube' },
+  { id: 'telegram', href: 'https://t.me/zhezu_edu', label: 'Telegram' },
 ];
 
 /**

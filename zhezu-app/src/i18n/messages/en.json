@@ -2002,6 +2002,92 @@
       "ctaInternational": "International Partners",
       "ctaCareer": "Graduate Careers"
     },
+    "campus": {
+      "pageTitle": "Campus — Zhezkazgan University",
+      "pageDescription": "Campus and infrastructure of O.A. Baikonurov Zhezkazgan University",
+      "badge": "Campus",
+      "title": "Our Campus",
+      "subtitle": "Modern infrastructure for study, research and student life in the heart of Zhezkazgan",
+      "aboutTitle": "About the Campus",
+      "aboutP1": "The campus of Zhezkazgan University is located on Alashakhan Avenue — one of the central streets of the city. The university grounds include academic buildings, laboratories, a library, a sports complex and recreation areas.",
+      "aboutP2": "The university constantly modernizes its infrastructure: renovated classrooms, computer labs and laboratories, high-speed Wi-Fi across the entire campus.",
+      "location": "1B Alashakhan Ave., Zhezkazgan, Ulytau Region",
+      "facilitiesTitle": "Facilities",
+      "facilitiesSubtitle": "Everything you need for comfortable study and a fulfilling student life",
+      "facilities": {
+        "academic": {
+          "title": "Academic Buildings",
+          "text": "Modern classrooms equipped with multimedia equipment and climate control systems"
+        },
+        "library": {
+          "title": "Scientific Library",
+          "text": "Collection of over 100,000 publications, electronic databases and reading rooms with Wi-Fi"
+        },
+        "labs": {
+          "title": "Laboratories",
+          "text": "Specialized laboratories for mining, metallurgy, chemistry, physics and IT"
+        },
+        "sports": {
+          "title": "Sports Complex",
+          "text": "Gymnasium, fitness center, outdoor courts for team sports"
+        },
+        "dining": {
+          "title": "Dining & Cafes",
+          "text": "Affordable dining hall and cafes on campus"
+        },
+        "digital": {
+          "title": "Digital Environment",
+          "text": "High-speed Wi-Fi, computer labs, access to electronic educational resources"
+        }
+      },
+      "greenTitle": "Green Campus",
+      "greenText": "The university implements a campus greening program. Students and faculty regularly participate in environmental initiatives, planting trees and shrubs across the campus."
+    },
+    "internationalPartners": {
+      "pageTitle": "International Partners — Zhezkazgan University",
+      "pageDescription": "International cooperation of Zhezkazgan University with universities and organizations worldwide",
+      "badge": "International Cooperation",
+      "title": "International Partners",
+      "subtitle": "Zhezkazgan University develops partnerships with leading foreign universities and organizations",
+      "aboutTitle": "About International Cooperation",
+      "aboutP1": "International activity is one of the strategic priorities of the university. We cooperate with universities in Europe, Asia and CIS countries in education and science.",
+      "aboutP2": "Partnership agreements allow our students to participate in academic mobility programs, and faculty members — in joint research projects.",
+      "directionsTitle": "Areas of Cooperation",
+      "directionsSubtitle": "Key forms of international interaction",
+      "directions": {
+        "exchange": {
+          "title": "Academic Mobility",
+          "text": "Student and faculty exchange with partner universities through Erasmus+ and bilateral agreements"
+        },
+        "research": {
+          "title": "Joint Research",
+          "text": "Participation in international research projects, joint publications and conferences"
+        },
+        "dual": {
+          "title": "Dual Degrees",
+          "text": "Programs allowing students to obtain diplomas from two universities upon graduation"
+        },
+        "grants": {
+          "title": "International Grants",
+          "text": "Participation in Erasmus+, DAAD, Fulbright and other funding programs"
+        }
+      },
+      "stats": {
+        "countries": {
+          "value": "10+",
+          "label": "Partner Countries"
+        },
+        "universities": {
+          "value": "15+",
+          "label": "Partner Universities"
+        },
+        "programs": {
+          "value": "5+",
+          "label": "Exchange Programs"
+        }
+      },
+      "ctaBack": "All Partners"
+    },
     "charter": {
       "pageTitle": "University Charter — Zhezkazgan University",
       "pageDescription": "Charter of O.A. Baikonurov Zhezkazgan University — the main founding document of the university",
@@ -3166,6 +3252,101 @@
         }
       },
       "ctaClubs": "Clubs & Activities"
+    }
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy — Zhezkazgan University",
+    "pageDescription": "Personal data processing and protection policy of Zhezkazgan University",
+    "badge": "Document",
+    "title": "Privacy Policy",
+    "subtitle": "This policy describes how O.A. Baikonurov Zhezkazgan University collects, uses and protects personal data on its website",
+    "sections": {
+      "collection": {
+        "title": "Data Collection",
+        "text": "We collect personal data that you voluntarily provide through contact forms, admission applications and newsletter subscriptions: name, email address, phone number and other contact information."
+      },
+      "usage": {
+        "title": "Data Usage",
+        "text": "Collected data is used to process inquiries, inform about events and educational programs, and to improve the website experience."
+      },
+      "storage": {
+        "title": "Data Storage",
+        "text": "Personal data is stored on secure servers and is accessible only to authorized university personnel. Retention periods are determined by processing purposes and legal requirements of the Republic of Kazakhstan."
+      },
+      "sharing": {
+        "title": "Data Sharing",
+        "text": "We do not share personal data with third parties without your consent, except as required by the legislation of the Republic of Kazakhstan."
+      },
+      "rights": {
+        "title": "Your Rights",
+        "text": "You have the right to request access to your personal data, its correction or deletion, and to withdraw consent. Please contact us at univer@zhezu.edu.kz."
+      },
+      "cookies": {
+        "title": "Cookies",
+        "text": "The website uses cookies to ensure proper functionality, analyze traffic and personalize content. You can manage cookie settings in your browser."
+      },
+      "changes": {
+        "title": "Policy Changes",
+        "text": "The university reserves the right to modify this policy. The current version is always available on this page."
+      }
+    },
+    "lastUpdated": "Last updated: February 2026"
+  },
+  "siteMap": {
+    "pageTitle": "Site Map — Zhezkazgan University",
+    "pageDescription": "Complete site map of Zhezkazgan University — navigate all sections",
+    "badge": "Navigation",
+    "title": "Site Map",
+    "subtitle": "Complete list of pages and sections for easy navigation",
+    "sections": {
+      "university": "University",
+      "admission": "Admission",
+      "academics": "Academics",
+      "research": "Research",
+      "aiCenter": "AI Center",
+      "life": "Student Life",
+      "other": "Other"
+    },
+    "links": {
+      "about": "About",
+      "mission": "Mission & Values",
+      "campus": "Campus",
+      "rector": "Rector",
+      "administration": "Administration",
+      "senate": "Senate",
+      "accreditation": "Accreditation",
+      "rankings": "Rankings",
+      "partners": "Partners",
+      "documents": "Documents",
+      "bachelor": "Bachelor's Programs",
+      "master": "Master's Programs",
+      "doctorate": "Doctoral Programs",
+      "deadlines": "Deadlines",
+      "apply": "Apply",
+      "scholarships": "Scholarships",
+      "faq": "FAQ",
+      "departments": "Departments",
+      "faculty": "Faculty",
+      "schedule": "Schedule",
+      "calendar": "Academic Calendar",
+      "library": "Library",
+      "publications": "Publications",
+      "conferences": "Conferences",
+      "labs": "Laboratories",
+      "grants": "Grants",
+      "projects": "Projects",
+      "agents": "AI Agents",
+      "tools": "AI Tools",
+      "lab": "AI Lab",
+      "news": "News",
+      "events": "Events",
+      "sports": "Sports",
+      "dormitories": "Dormitories",
+      "clubs": "Clubs & Activities",
+      "contact": "Contact",
+      "career": "Career",
+      "talentPool": "Talent Pool",
+      "privacy": "Privacy"
     }
   }
 }

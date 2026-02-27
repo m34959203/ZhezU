@@ -602,6 +602,63 @@
         "ru": "Проектирование, возведение и эксплуатация зданий и сооружений.",
         "en": "Design, construction and operation of buildings and structures."
       }
+    },
+    {
+      "id": "master-mining",
+      "code": "7M07203",
+      "department": "mining-metallurgy-science",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Тау-кен ісі",
+        "ru": "Горное дело",
+        "en": "Mining Engineering"
+      },
+      "description": {
+        "kk": "Тау-кен өндірісін басқару, кен орындарын игерудің заманауи технологиялары, ғылыми зерттеулер.",
+        "ru": "Управление горным производством, современные технологии разработки месторождений, научные исследования.",
+        "en": "Mining production management, modern deposit development technologies, scientific research."
+      }
+    },
+    {
+      "id": "master-metallurgy",
+      "code": "7M07206",
+      "department": "mining-metallurgy-science",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Металлургия",
+        "ru": "Металлургия",
+        "en": "Metallurgy"
+      },
+      "description": {
+        "kk": "Металлургиялық процестерді зерттеу, жаңа қорытпаларды әзірлеу, өндірістік технологияларды оңтайландыру.",
+        "ru": "Исследование металлургических процессов, разработка новых сплавов, оптимизация производственных технологий.",
+        "en": "Research of metallurgical processes, development of new alloys, optimization of production technologies."
+      }
+    },
+    {
+      "id": "master-pedagogy",
+      "code": "7M01301",
+      "department": "pedagogy-philology",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Педагогика және психология",
+        "ru": "Педагогика и психология",
+        "en": "Pedagogy and Psychology"
+      },
+      "description": {
+        "kk": "Білім беру жүйесін басқару, оқытудың заманауи әдістемелері, педагогикалық зерттеулер.",
+        "ru": "Управление образовательными системами, современные методики обучения, педагогические исследования.",
+        "en": "Educational systems management, modern teaching methodologies, pedagogical research."
+      }
     }
   ],
   "adminCenters": [

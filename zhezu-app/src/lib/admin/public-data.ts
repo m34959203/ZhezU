@@ -48,12 +48,12 @@ export async function getNewsByCategory(category: string): Promise<NewsArticle[]
 
 const DEFAULT_SETTINGS: SiteSettings = {
   siteName: 'Жезказганский университет им. О.А. Байконурова',
-  contactEmail: 'info@zhezu.edu.kz',
-  contactPhone: '+7 7102 123456',
+  contactEmail: 'univer@zhezu.edu.kz',
+  contactPhone: '+7 (7102) 73-60-15',
   address: {
-    kk: '100600, Қарағанды облысы, Жезқазған қ., Байқоңыров к-сі, 29',
-    ru: '100600, Карагандинская область, г. Жезказган, ул. Байконурова, 29',
-    en: '29 Baikonurov St., Zhezkazgan, Karaganda Region, 100600, Kazakhstan',
+    kk: 'Ұлытау облысы, Жезқазған қ., Алашахан даңғылы, 1Б',
+    ru: 'Ұлытау область, г. Жезказган, пр. Алашахана, 1Б',
+    en: '1B Alashakhan Ave., Zhezkazgan, Ulytau Region',
   },
   socialLinks: {},
   admissionOpen: true,
