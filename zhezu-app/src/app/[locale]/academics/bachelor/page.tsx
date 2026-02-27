@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
@@ -19,9 +18,14 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function BachelorProgramsPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('academics.bachelor');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function BachelorProgramsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const t = await getTranslations('academics.bachelor');
+  const locale = (localeParam || 'ru') as Locale;
   const bachelorPrograms = PROGRAMS.filter((p) => p.degree === 'bachelor');
 
   const grouped = DEPARTMENTS.map((dept) => ({

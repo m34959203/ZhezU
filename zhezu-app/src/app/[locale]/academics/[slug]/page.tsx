@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 import { Card } from '@/components/ui/Card';
@@ -40,16 +40,17 @@ export async function generateMetadata({
   };
 }
 
-export default function ProgramDetailPage({
+export default async function ProgramDetailPage({
   params,
 }: {
-  params: { locale: string; slug: string };
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const program = PROGRAMS.find((p) => p.id === params.slug);
+  const { locale: localeParam, slug } = await params;
+  const program = PROGRAMS.find((p) => p.id === slug);
   if (!program) notFound();
 
-  const t = useTranslations('programs');
-  const locale = (params.locale || 'ru') as Locale;
+  const t = await getTranslations('programs');
+  const locale = (localeParam || 'ru') as Locale;
   const department = DEPARTMENTS.find((d) => d.id === program.department);
 
   const degreeLabel = {
