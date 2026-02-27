@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
-import { ArrowRight, BookOpen, Clock, Globe } from 'lucide-react';
+import { ArrowRight, Clock, Globe } from 'lucide-react';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({

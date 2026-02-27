@@ -5,8 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { FileText, ArrowRight, BookOpen, Award, GraduationCap } from 'lucide-react';
-import type { Locale } from '@/types';
+import { FileText, ArrowRight, Award, GraduationCap } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -18,7 +17,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function ExamsPage({ params }: { params: { locale: string } }) {
+export default function ExamsPage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.exams');
 
   const entSubjects = [

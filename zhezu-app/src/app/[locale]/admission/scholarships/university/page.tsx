@@ -5,8 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { Award, ArrowRight, Star, TrendingUp, BookOpen, Globe } from 'lucide-react';
-import type { Locale } from '@/types';
+import { Award, ArrowRight, Star, TrendingUp, Globe } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -18,7 +17,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function UniversityScholarshipsPage({ params }: { params: { locale: string } }) {
+export default function UniversityScholarshipsPage({ _params }: { _params: { locale: string } }) {
   const t = useTranslations('admission.uniScholarships');
 
   const scholarships = [

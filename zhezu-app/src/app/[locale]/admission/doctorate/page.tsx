@@ -5,18 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import {
-  GraduationCap,
-  Clock,
-  BookOpen,
-  ArrowRight,
-  CheckCircle,
-  Award,
-  FileText,
-  Globe,
-  Briefcase,
-} from 'lucide-react';
-import type { Locale } from '@/types';
+import { Clock, ArrowRight, CheckCircle, Briefcase } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -31,9 +20,8 @@ export async function generateMetadata({
   };
 }
 
-export default function DoctoratePage({ params }: { params: { locale: string } }) {
+export default function DoctoratePage({ params: _params }: { params: { locale: string } }) {
   const t = useTranslations('admission.doctorate');
-  const locale = (params.locale || 'ru') as Locale;
 
   const examStructure = [
     { key: 'interview', points: '30' },

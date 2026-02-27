@@ -4,7 +4,6 @@ import { useState, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
-import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Pagination } from '@/components/ui/Pagination';
 import { Link } from '@/i18n/navigation';

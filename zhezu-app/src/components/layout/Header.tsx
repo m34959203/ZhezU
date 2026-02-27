@@ -16,13 +16,7 @@ import type { NavItem } from '@/lib/navigation';
 /* ------------------------------------------------------------------ */
 /*  Mega Menu Panel                                                    */
 /* ------------------------------------------------------------------ */
-function MegaMenuPanel({
-  item,
-  isOpen,
-}: {
-  item: NavItem;
-  isOpen: boolean;
-}) {
+function MegaMenuPanel({ item, isOpen }: { item: NavItem; isOpen: boolean }) {
   const t = useTranslations('megaNav');
 
   return (

@@ -602,23 +602,146 @@
         "ru": "Проектирование, возведение и эксплуатация зданий и сооружений.",
         "en": "Design, construction and operation of buildings and structures."
       }
+    },
+    {
+      "id": "master-mining",
+      "code": "7M07203",
+      "department": "mining-metallurgy-science",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Тау-кен ісі",
+        "ru": "Горное дело",
+        "en": "Mining Engineering"
+      },
+      "description": {
+        "kk": "Тау-кен өндірісін басқару, кен орындарын игерудің заманауи технологиялары, ғылыми зерттеулер.",
+        "ru": "Управление горным производством, современные технологии разработки месторождений, научные исследования.",
+        "en": "Mining production management, modern deposit development technologies, scientific research."
+      }
+    },
+    {
+      "id": "master-metallurgy",
+      "code": "7M07206",
+      "department": "mining-metallurgy-science",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Металлургия",
+        "ru": "Металлургия",
+        "en": "Metallurgy"
+      },
+      "description": {
+        "kk": "Металлургиялық процестерді зерттеу, жаңа қорытпаларды әзірлеу, өндірістік технологияларды оңтайландыру.",
+        "ru": "Исследование металлургических процессов, разработка новых сплавов, оптимизация производственных технологий.",
+        "en": "Research of metallurgical processes, development of new alloys, optimization of production technologies."
+      }
+    },
+    {
+      "id": "master-pedagogy",
+      "code": "7M01301",
+      "department": "pedagogy-philology",
+      "degree": "master",
+      "credits": 120,
+      "duration": 2,
+      "languages": ["kk", "ru"],
+      "name": {
+        "kk": "Педагогика және психология",
+        "ru": "Педагогика и психология",
+        "en": "Pedagogy and Psychology"
+      },
+      "description": {
+        "kk": "Білім беру жүйесін басқару, оқытудың заманауи әдістемелері, педагогикалық зерттеулер.",
+        "ru": "Управление образовательными системами, современные методики обучения, педагогические исследования.",
+        "en": "Educational systems management, modern teaching methodologies, pedagogical research."
+      }
     }
   ],
   "adminCenters": [
-    { "name": { "kk": "Оқу-әдістемелік орталық", "ru": "Учебно-методический центр", "en": "Academic and Methodological Center" }, "icon": "BookOpen" },
-    { "name": { "kk": "Ғылым және инновациялар орталығы", "ru": "Центр науки и инноваций", "en": "Center for Science and Innovation" }, "icon": "Lightbulb" },
-    { "name": { "kk": "Жоспарлау, аккредиттеу және сапаны бағалау орталығы", "ru": "Центр планирования, аккредитации и оценки качества", "en": "Center for Planning, Accreditation and Quality Assessment" }, "icon": "ClipboardCheck" },
-    { "name": { "kk": "АТ дамыту және цифрлық университет орталығы", "ru": "Центр развития ИТ и цифрового университета", "en": "IT Development and Digital University Center" }, "icon": "Monitor" },
-    { "name": { "kk": "Кадрларды қайта даярлау, маркетинг және ЖОО алды білім беру орталығы", "ru": "Центр переподготовки кадров, маркетинга и довузовского образования", "en": "Center for Retraining, Marketing and Pre-University Education" }, "icon": "Users" },
-    { "name": { "kk": "Тәрбие және жастар саясаты орталығы", "ru": "Центр воспитания и молодёжной политики", "en": "Center for Education and Youth Policy" }, "icon": "Heart" }
+    {
+      "name": {
+        "kk": "Оқу-әдістемелік орталық",
+        "ru": "Учебно-методический центр",
+        "en": "Academic and Methodological Center"
+      },
+      "icon": "BookOpen"
+    },
+    {
+      "name": {
+        "kk": "Ғылым және инновациялар орталығы",
+        "ru": "Центр науки и инноваций",
+        "en": "Center for Science and Innovation"
+      },
+      "icon": "Lightbulb"
+    },
+    {
+      "name": {
+        "kk": "Жоспарлау, аккредиттеу және сапаны бағалау орталығы",
+        "ru": "Центр планирования, аккредитации и оценки качества",
+        "en": "Center for Planning, Accreditation and Quality Assessment"
+      },
+      "icon": "ClipboardCheck"
+    },
+    {
+      "name": {
+        "kk": "АТ дамыту және цифрлық университет орталығы",
+        "ru": "Центр развития ИТ и цифрового университета",
+        "en": "IT Development and Digital University Center"
+      },
+      "icon": "Monitor"
+    },
+    {
+      "name": {
+        "kk": "Кадрларды қайта даярлау, маркетинг және ЖОО алды білім беру орталығы",
+        "ru": "Центр переподготовки кадров, маркетинга и довузовского образования",
+        "en": "Center for Retraining, Marketing and Pre-University Education"
+      },
+      "icon": "Users"
+    },
+    {
+      "name": {
+        "kk": "Тәрбие және жастар саясаты орталығы",
+        "ru": "Центр воспитания и молодёжной политики",
+        "en": "Center for Education and Youth Policy"
+      },
+      "icon": "Heart"
+    }
   ],
   "serviceUnits": [
     { "name": { "kk": "Кеңсе", "ru": "Канцелярия", "en": "Chancellery" } },
     { "name": { "kk": "Тіркеуші офисі", "ru": "Офис регистратора", "en": "Registrar Office" } },
-    { "name": { "kk": "Қаржы-экономикалық қызмет", "ru": "Финансово-экономическая служба", "en": "Financial and Economic Service" } },
-    { "name": { "kk": "Персоналды басқару бөлімі", "ru": "Отдел управления персоналом", "en": "Human Resources Department" } },
-    { "name": { "kk": "ЖОО-дан кейінгі білім беру бөлімі", "ru": "Отдел послевузовского образования", "en": "Postgraduate Education Department" } },
+    {
+      "name": {
+        "kk": "Қаржы-экономикалық қызмет",
+        "ru": "Финансово-экономическая служба",
+        "en": "Financial and Economic Service"
+      }
+    },
+    {
+      "name": {
+        "kk": "Персоналды басқару бөлімі",
+        "ru": "Отдел управления персоналом",
+        "en": "Human Resources Department"
+      }
+    },
+    {
+      "name": {
+        "kk": "ЖОО-дан кейінгі білім беру бөлімі",
+        "ru": "Отдел послевузовского образования",
+        "en": "Postgraduate Education Department"
+      }
+    },
     { "name": { "kk": "«Мансап» бөлімі", "ru": "Отдел «Карьера»", "en": "Career Department" } },
-    { "name": { "kk": "Сервистік қызмет көрсету бөлімі", "ru": "Отдел сервисного обслуживания", "en": "Service Department" } }
+    {
+      "name": {
+        "kk": "Сервистік қызмет көрсету бөлімі",
+        "ru": "Отдел сервисного обслуживания",
+        "en": "Service Department"
+      }
+    }
   ]
 }

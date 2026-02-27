@@ -13,7 +13,6 @@ import {
   BookOpen,
   ArrowRight,
   CheckCircle,
-  Users,
   Award,
 } from 'lucide-react';
 import type { Locale } from '@/types';
@@ -36,8 +35,6 @@ export default function BachelorPage({ params }: { params: { locale: string } })
   const locale = (params.locale || 'ru') as Locale;
 
   const bachelorPrograms = PROGRAMS.filter((p) => p.degree === 'bachelor');
-  const departmentMap = new Map(DEPARTMENTS.map((d) => [d.id, d]));
-
   const grouped = DEPARTMENTS.map((dept) => ({
     department: dept,
     programs: bachelorPrograms.filter((p) => p.department === dept.id),

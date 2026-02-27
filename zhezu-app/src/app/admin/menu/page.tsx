@@ -168,6 +168,65 @@ function label(key: string): string {
   return LABELS[key] ?? key;
 }
 
+const PAGE_OPTIONS: { href: string; label: string }[] = [
+  { href: '/', label: 'Главная' },
+  { href: '/university', label: 'Университет' },
+  { href: '/university/about', label: 'Университет → О вузе' },
+  { href: '/university/mission', label: 'Университет → Миссия' },
+  { href: '/university/campus', label: 'Университет → Кампус' },
+  { href: '/university/rector', label: 'Университет → Ректор' },
+  { href: '/university/administration', label: 'Университет → Администрация' },
+  { href: '/university/senate', label: 'Университет → Учёный совет' },
+  { href: '/university/accreditation', label: 'Университет → Аккредитация' },
+  { href: '/university/rankings', label: 'Университет → Рейтинги' },
+  { href: '/university/partners', label: 'Университет → Партнёры' },
+  { href: '/university/documents/charter', label: 'Документы → Устав' },
+  { href: '/university/documents/licenses', label: 'Документы → Лицензии' },
+  { href: '/university/documents/reports', label: 'Документы → Отчёты' },
+  { href: '/admission', label: 'Поступление' },
+  { href: '/admission/bachelor', label: 'Поступление → Бакалавриат' },
+  { href: '/admission/master', label: 'Поступление → Магистратура' },
+  { href: '/admission/doctorate', label: 'Поступление → Докторантура' },
+  { href: '/admission/documents', label: 'Поступление → Документы' },
+  { href: '/admission/exams', label: 'Поступление → Экзамены' },
+  { href: '/admission/deadlines', label: 'Поступление → Сроки подачи' },
+  { href: '/admission/apply', label: 'Поступление → Онлайн-заявка' },
+  { href: '/admission/scholarships', label: 'Поступление → Стипендии' },
+  { href: '/admission/faq', label: 'Поступление → FAQ' },
+  { href: '/academics', label: 'Образование' },
+  { href: '/academics/bachelor', label: 'Образование → Бакалавриат' },
+  { href: '/academics/master', label: 'Образование → Магистратура' },
+  { href: '/academics/departments', label: 'Образование → Кафедры' },
+  { href: '/academics/faculty', label: 'Образование → Преподаватели' },
+  { href: '/academics/schedule', label: 'Образование → Расписание' },
+  { href: '/academics/schedule/exams', label: 'Образование → Расписание экзаменов' },
+  { href: '/academics/calendar', label: 'Образование → Академический календарь' },
+  { href: '/academics/library', label: 'Образование → Библиотека' },
+  { href: '/academics/library/digital', label: 'Образование → Электронная библиотека' },
+  { href: '/research', label: 'Наука' },
+  { href: '/research/publications', label: 'Наука → Публикации' },
+  { href: '/research/conferences', label: 'Наука → Конференции' },
+  { href: '/research/labs', label: 'Наука → Лаборатории' },
+  { href: '/research/grants', label: 'Наука → Гранты' },
+  { href: '/ai-center', label: 'AI-Центр' },
+  { href: '/ai-center/projects', label: 'AI-Центр → Проекты' },
+  { href: '/ai-center/agents/talapker', label: 'AI-Центр → Talapker Guide' },
+  { href: '/ai-center/tools', label: 'AI-Центр → Инструменты' },
+  { href: '/ai-center/lab', label: 'AI-Центр → Лаборатория' },
+  { href: '/talent-pool', label: 'Пул талантов' },
+  { href: '/skill-map', label: 'Карта навыков' },
+  { href: '/life', label: 'Жизнь' },
+  { href: '/life/news', label: 'Жизнь → Новости' },
+  { href: '/life/announcements', label: 'Жизнь → Объявления' },
+  { href: '/life/events', label: 'Жизнь → События' },
+  { href: '/life/sports', label: 'Жизнь → Спорт' },
+  { href: '/life/sports/facilities', label: 'Жизнь → Спортивные объекты' },
+  { href: '/life/dormitories', label: 'Жизнь → Общежития' },
+  { href: '/life/clubs', label: 'Жизнь → Клубы и кружки' },
+  { href: '/life/student-government', label: 'Жизнь → Студ. самоуправление' },
+  { href: '/contact', label: 'Контакты' },
+];
+
 const EMPTY_MENU: MenuData = { navigation: [], footerNav: [], footerStudents: [] };
 
 export default function MenuManagerPage() {
@@ -234,9 +293,7 @@ export default function MenuManagerPage() {
     if (!confirm('Удалить раздел меню и все его подменю?')) return;
     setMenu((prev) => ({
       ...prev,
-      navigation: prev.navigation
-        .filter((n) => n.id !== id)
-        .map((n, i) => ({ ...n, order: i })),
+      navigation: prev.navigation.filter((n) => n.id !== id).map((n, i) => ({ ...n, order: i })),
     }));
     if (expandedItem === id) setExpandedItem(null);
   }
@@ -277,14 +334,6 @@ export default function MenuManagerPage() {
     if (!item) return;
     updateNavItem(navId, {
       columns: item.columns.filter((_, i) => i !== colIdx),
-    });
-  }
-
-  function updateColumn(navId: string, colIdx: number, patch: Partial<MenuColumn>) {
-    const item = menu.navigation.find((n) => n.id === navId);
-    if (!item) return;
-    updateNavItem(navId, {
-      columns: item.columns.map((c, i) => (i === colIdx ? { ...c, ...patch } : c)),
     });
   }
 
@@ -491,7 +540,9 @@ export default function MenuManagerPage() {
                   {/* Editable section settings */}
                   <div className="mb-4 grid gap-3 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-500">Название раздела</label>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">
+                        Название раздела
+                      </label>
                       <input
                         type="text"
                         value={label(item.labelKey)}
@@ -499,10 +550,14 @@ export default function MenuManagerPage() {
                         className={inputCls + ' bg-slate-50 text-slate-500 dark:bg-slate-800/50'}
                         title="Изменяется через Переводы"
                       />
-                      <span className="mt-0.5 block text-[10px] text-slate-400">Изменить текст: раздел «Переводы»</span>
+                      <span className="mt-0.5 block text-[10px] text-slate-400">
+                        Изменить текст: раздел «Переводы»
+                      </span>
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-500">Ссылка</label>
+                      <label className="mb-1 block text-xs font-medium text-slate-500">
+                        Ссылка
+                      </label>
                       <input
                         type="text"
                         value={item.href}
@@ -631,6 +686,11 @@ export default function MenuManagerPage() {
             <h3 className="mb-4 text-sm font-semibold text-slate-700 dark:text-slate-300">
               {activeTab === 'footerNav' ? 'Навигация в футере' : 'Ссылки для студентов'}
             </h3>
+            <div className="mb-2 flex items-center gap-2 px-8 text-[10px] font-semibold tracking-wide text-slate-400 uppercase">
+              <span className="flex-1">Название</span>
+              <span className="w-56">Страница</span>
+              <span className="w-8" />
+            </div>
             <div className="space-y-2">
               {menu[activeTab].map((link, idx) => (
                 <div key={idx} className="flex items-center gap-2">
@@ -656,16 +716,29 @@ export default function MenuManagerPage() {
                     type="text"
                     value={link.label}
                     onChange={(e) => updateFooterLink(activeTab, idx, { label: e.target.value })}
-                    placeholder="Название"
+                    placeholder="Название ссылки"
                     className={inputCls + ' flex-1'}
                   />
-                  <input
-                    type="text"
-                    value={link.href}
-                    onChange={(e) => updateFooterLink(activeTab, idx, { href: e.target.value })}
-                    placeholder="/page-url"
+                  <select
+                    value={
+                      PAGE_OPTIONS.some((p) => p.href === link.href) ? link.href : '__custom__'
+                    }
+                    onChange={(e) => {
+                      if (e.target.value !== '__custom__') {
+                        updateFooterLink(activeTab, idx, { href: e.target.value });
+                      }
+                    }}
                     className={inputCls + ' w-56'}
-                  />
+                  >
+                    {PAGE_OPTIONS.map((p) => (
+                      <option key={p.href} value={p.href}>
+                        {p.label}
+                      </option>
+                    ))}
+                    {!PAGE_OPTIONS.some((p) => p.href === link.href) && (
+                      <option value="__custom__">{link.href}</option>
+                    )}
+                  </select>
                   <button
                     type="button"
                     onClick={() => removeFooterLink(activeTab, idx)}

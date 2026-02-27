@@ -11,8 +11,6 @@ import {
   CheckCircle2,
   Sparkles,
   Trophy,
-  Medal,
-  TrendingUp,
   Briefcase,
   FileText,
   Download,
@@ -21,21 +19,14 @@ import {
   ExternalLink,
   Shield,
   Code,
-  Users,
   Award,
   BookOpen,
   Target,
-  Globe,
-  Building2,
 } from 'lucide-react';
 import type { Locale } from '@/types';
-import type { StudentProfile, Achievement, LifecycleQuest } from '@/lib/student-lifecycle';
-import {
-  LIFECYCLE_LEVELS,
-  getLifecycleLevel,
-  calculateProfileCompleteness,
-} from '@/lib/student-lifecycle';
-import { ACHIEVEMENTS, ALL_QUESTS, ALL_PROFILES } from '@/lib/lifecycle-data';
+import type { StudentProfile } from '@/lib/student-lifecycle';
+import { getLifecycleLevel, calculateProfileCompleteness } from '@/lib/student-lifecycle';
+import { ACHIEVEMENTS, ALL_PROFILES } from '@/lib/lifecycle-data';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -77,7 +68,7 @@ function SkillRadarChart({ data, size = 200 }: RadarChartProps) {
   };
 
   const points = labels.map((l) => getPoint(l.angle, data[l.key]));
-  const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') + ' Z';
+  const _pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ') + ' Z';
 
   // Grid circles
   const gridLevels = [25, 50, 75, 100];
@@ -166,9 +157,9 @@ export function StudentProfileView({ profile }: Props) {
   const t = useTranslations('talent');
   const tNav = useTranslations('nav');
 
-  const level = getLifecycleLevel(profile.gamification.xp, profile.stage);
+  const _level = getLifecycleLevel(profile.gamification.xp, profile.stage);
   const program = PROGRAMS.find((p) => p.code === profile.education.program);
-  const department = DEPARTMENTS.find((d) => d.id === profile.education.department);
+  const _department = DEPARTMENTS.find((d) => d.id === profile.education.department);
   const completeness = calculateProfileCompleteness(profile);
 
   // Get earned achievements
