@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
@@ -17,8 +16,13 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function ExamsPage({ params: _params }: { params: { locale: string } }) {
-  const t = useTranslations('admission.exams');
+export default async function ExamsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  await params;
+  const t = await getTranslations('admission.exams');
 
   const entSubjects = [
     { key: 'history', questions: 20, points: 20, threshold: 5 },

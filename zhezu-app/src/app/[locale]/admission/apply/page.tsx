@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
@@ -26,8 +25,13 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function ApplyPage({ params: _params }: { params: { locale: string } }) {
-  const t = useTranslations('admission.apply');
+export default async function ApplyPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  await params;
+  const t = await getTranslations('admission.apply');
 
   const steps = [
     { key: 'step1', icon: <FileText size={24} /> },

@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
@@ -19,9 +18,14 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default function ConsultationPage({ params }: { params: { locale: string } }) {
-  const t = useTranslations('admission.consultation');
-  const locale = (params.locale || 'ru') as Locale;
+export default async function ConsultationPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale: localeParam } = await params;
+  const t = await getTranslations('admission.consultation');
+  const locale = (localeParam || 'ru') as Locale;
 
   const services = ['service1', 'service2', 'service3', 'service4', 'service5'];
 
