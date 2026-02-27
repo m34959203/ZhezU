@@ -1,6 +1,7 @@
 'use client';
 
 import { useEditor, EditorContent } from '@tiptap/react';
+import { BubbleMenu } from '@tiptap/react/menus';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
@@ -305,6 +306,68 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
           <RemoveFormatting size={15} />
         </ToolbarButton>
       </div>
+
+      {/* Bubble Menu — appears on text selection */}
+      <BubbleMenu
+        editor={editor}
+        className="flex items-center gap-0.5 rounded-lg border border-slate-200 bg-white px-1.5 py-1 shadow-lg dark:border-slate-600 dark:bg-slate-800"
+      >
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          active={editor.isActive('bold')}
+          title="Жирный"
+        >
+          <Bold size={14} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          active={editor.isActive('italic')}
+          title="Курсив"
+        >
+          <Italic size={14} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          active={editor.isActive('underline')}
+          title="Подчёркнутый"
+        >
+          <UnderlineIcon size={14} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          active={editor.isActive('strike')}
+          title="Зачёркнутый"
+        >
+          <Strikethrough size={14} />
+        </ToolbarButton>
+        <div className="mx-0.5 h-5 w-px bg-slate-200 dark:bg-slate-600" />
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          active={editor.isActive('heading', { level: 2 })}
+          title="Заголовок"
+        >
+          <Heading2 size={14} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          active={editor.isActive('blockquote')}
+          title="Цитата"
+        >
+          <Quote size={14} />
+        </ToolbarButton>
+        <div className="mx-0.5 h-5 w-px bg-slate-200 dark:bg-slate-600" />
+        <ToolbarButton onClick={addLink} active={editor.isActive('link')} title="Ссылка">
+          <LinkIcon size={14} />
+        </ToolbarButton>
+        {editor.isActive('link') && (
+          <ToolbarButton
+            onClick={() => editor.chain().focus().unsetLink().run()}
+            title="Убрать ссылку"
+          >
+            <Unlink size={14} />
+          </ToolbarButton>
+        )}
+      </BubbleMenu>
 
       {/* Editor Content */}
       <EditorContent editor={editor} />
