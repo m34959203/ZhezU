@@ -25,11 +25,7 @@ export async function generateMetadata({
   return { title: t('pageTitle'), description: t('pageDescription') };
 }
 
-export default async function ApplyPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function ApplyPage({ params }: { params: Promise<{ locale: string }> }) {
   await params;
   const t = await getTranslations('admission.apply');
 

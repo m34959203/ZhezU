@@ -29,11 +29,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function BachelorPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function BachelorPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   const t = await getTranslations('admission.bachelor');
   const locale = (localeParam || 'ru') as Locale;

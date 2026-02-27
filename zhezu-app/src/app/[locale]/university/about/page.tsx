@@ -28,11 +28,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: localeParam } = await params;
   const t = await getTranslations('university');
   const locale = (localeParam || 'ru') as Locale;
