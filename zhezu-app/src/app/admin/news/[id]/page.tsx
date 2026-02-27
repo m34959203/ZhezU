@@ -22,6 +22,7 @@ import {
   Info,
 } from 'lucide-react';
 import type { NewsArticle, ContentLocale } from '@/lib/admin/types';
+import { slugify } from '@/lib/utils';
 
 const RichTextEditor = lazy(() => import('@/components/admin/RichTextEditor'));
 
@@ -83,6 +84,7 @@ export default function NewsEditorPage() {
     author: 'Администратор',
   });
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
+  const [slugTouched, setSlugTouched] = useState(!isNew);
   const [loading, setLoading] = useState(!isNew);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -139,10 +141,14 @@ export default function NewsEditorPage() {
   }, []);
 
   function setLocField(field: 'title' | 'excerpt' | 'body', value: string) {
-    setArticle((prev) => ({
-      ...prev,
-      [field]: { ...prev[field], [activeLang]: value },
-    }));
+    setArticle((prev) => {
+      const updated = { ...prev, [field]: { ...prev[field], [activeLang]: value } };
+      // Auto-generate slug from title when it hasn't been manually edited
+      if (field === 'title' && !slugTouched) {
+        updated.slug = slugify(value);
+      }
+      return updated;
+    });
   }
 
   async function handleSave() {
@@ -661,16 +667,36 @@ export default function NewsEditorPage() {
         {/* Slug & Meta */}
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Slug (URL)
+            <label className="mb-1.5 flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300">
+              <span>Slug (URL)</span>
+              {slugTouched && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSlugTouched(false);
+                    setArticle((prev) => ({
+                      ...prev,
+                      slug: slugify(prev.title[activeLang]),
+                    }));
+                  }}
+                  className="text-xs font-normal text-blue-500 hover:text-blue-700"
+                >
+                  Сгенерировать из заголовка
+                </button>
+              )}
             </label>
-            <input
-              type="text"
-              value={article.slug}
-              onChange={(e) => setArticle((prev) => ({ ...prev, slug: e.target.value }))}
-              placeholder="my-article-slug"
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-            />
+            <div className="relative">
+              <input
+                type="text"
+                value={article.slug}
+                onChange={(e) => {
+                  setSlugTouched(true);
+                  setArticle((prev) => ({ ...prev, slug: e.target.value }));
+                }}
+                placeholder="auto-generated-slug"
+                className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 font-mono text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              />
+            </div>
           </div>
           <div>
             <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
