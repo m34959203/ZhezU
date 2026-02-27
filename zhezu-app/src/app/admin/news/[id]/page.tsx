@@ -20,11 +20,13 @@ import {
   Check,
   AlertTriangle,
   Info,
+  Upload,
 } from 'lucide-react';
 import type { NewsArticle, ContentLocale } from '@/lib/admin/types';
 import { slugify } from '@/lib/utils';
 
 const RichTextEditor = lazy(() => import('@/components/admin/RichTextEditor'));
+const ImageUploadModal = lazy(() => import('@/components/admin/ImageUploadModal'));
 
 const CATEGORIES = [
   { value: 'news', label: 'Новость' },
@@ -65,6 +67,7 @@ interface AIAnalysis {
   suggestions: AISuggestion[];
   improvedTitle?: string;
   improvedExcerpt?: string;
+  improvedBody?: string;
 }
 
 export default function NewsEditorPage() {
@@ -321,7 +324,9 @@ export default function NewsEditorPage() {
     }
   }, [id]);
 
-  function applySuggestion(field: 'title' | 'excerpt', value: string) {
+  const [coverModalOpen, setCoverModalOpen] = useState(false);
+
+  function applySuggestion(field: 'title' | 'excerpt' | 'body', value: string) {
     setArticle((prev) => ({
       ...prev,
       [field]: { ...prev[field], [activeLang]: value },
@@ -585,7 +590,7 @@ export default function NewsEditorPage() {
                 )}
 
                 {/* Apply improved versions */}
-                {(analysis.improvedTitle || analysis.improvedExcerpt) && (
+                {(analysis.improvedTitle || analysis.improvedExcerpt || analysis.improvedBody) && (
                   <div className="border-t border-slate-100 pt-3 dark:border-slate-800">
                     <h4 className="mb-2 flex items-center gap-1 text-xs font-semibold text-purple-600 uppercase dark:text-purple-400">
                       <Info size={12} />
@@ -606,7 +611,7 @@ export default function NewsEditorPage() {
                       </div>
                     )}
                     {analysis.improvedExcerpt && (
-                      <div className="flex items-center gap-2">
+                      <div className="mb-2 flex items-center gap-2">
                         <span className="flex-1 rounded border border-slate-100 bg-slate-50 px-3 py-1.5 text-xs dark:border-slate-700 dark:bg-slate-800">
                           {analysis.improvedExcerpt}
                         </span>
@@ -616,6 +621,20 @@ export default function NewsEditorPage() {
                           className="shrink-0 rounded bg-purple-600 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-purple-700"
                         >
                           Описание
+                        </button>
+                      </div>
+                    )}
+                    {analysis.improvedBody && (
+                      <div className="flex items-start gap-2">
+                        <span className="flex-1 rounded border border-slate-100 bg-slate-50 px-3 py-1.5 text-xs leading-relaxed dark:border-slate-700 dark:bg-slate-800">
+                          <span dangerouslySetInnerHTML={{ __html: analysis.improvedBody }} />
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => applySuggestion('body', analysis.improvedBody!)}
+                          className="shrink-0 rounded bg-purple-600 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-purple-700"
+                        >
+                          Текст
                         </button>
                       </div>
                     )}
@@ -755,31 +774,65 @@ export default function NewsEditorPage() {
           </Suspense>
         </div>
 
-        {/* Author & Image */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Автор
-            </label>
-            <input
-              type="text"
-              value={article.author}
-              onChange={(e) => setArticle((prev) => ({ ...prev, author: e.target.value }))}
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+        {/* Cover Image */}
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Обложка
+          </label>
+          {article.image ? (
+            <div className="group relative inline-block">
+              <img
+                src={article.image}
+                alt="Обложка"
+                className="h-40 max-w-full rounded-lg border border-slate-200 object-cover dark:border-slate-700"
+              />
+              <div className="absolute inset-0 flex items-center justify-center gap-2 rounded-lg bg-black/0 opacity-0 transition-all group-hover:bg-black/40 group-hover:opacity-100">
+                <button
+                  type="button"
+                  onClick={() => setCoverModalOpen(true)}
+                  className="rounded-lg bg-white/90 px-3 py-1.5 text-xs font-medium text-slate-700 shadow hover:bg-white"
+                >
+                  Заменить
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setArticle((prev) => ({ ...prev, image: '' }))}
+                  className="rounded-lg bg-red-500/90 px-3 py-1.5 text-xs font-medium text-white shadow hover:bg-red-600"
+                >
+                  Удалить
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setCoverModalOpen(true)}
+              className="flex items-center gap-2 rounded-lg border-2 border-dashed border-slate-300 px-6 py-4 text-sm text-slate-500 transition-colors hover:border-blue-400 hover:text-blue-600 dark:border-slate-600 dark:text-slate-400 dark:hover:border-blue-500 dark:hover:text-blue-400"
+            >
+              <Upload size={18} />
+              Загрузить обложку
+            </button>
+          )}
+          <Suspense fallback={null}>
+            <ImageUploadModal
+              open={coverModalOpen}
+              onClose={() => setCoverModalOpen(false)}
+              onInsert={(url) => setArticle((prev) => ({ ...prev, image: url }))}
             />
-          </div>
-          <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-              Изображение (URL)
-            </label>
-            <input
-              type="text"
-              value={article.image}
-              onChange={(e) => setArticle((prev) => ({ ...prev, image: e.target.value }))}
-              placeholder="https://..."
-              className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-            />
-          </div>
+          </Suspense>
+        </div>
+
+        {/* Author */}
+        <div className="max-w-sm">
+          <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Автор
+          </label>
+          <input
+            type="text"
+            value={article.author}
+            onChange={(e) => setArticle((prev) => ({ ...prev, author: e.target.value }))}
+            className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+          />
         </div>
 
         {/* Flags */}
