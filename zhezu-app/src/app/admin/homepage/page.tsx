@@ -10,8 +10,9 @@ import {
   Tag,
   Plus,
   Trash2,
+  Upload,
 } from 'lucide-react';
-import type { HomepageData } from '@/lib/admin/types';
+import type { HomepageData, UniversityData } from '@/lib/admin/types';
 
 const STAT_OPTIONS: { key: string; label: string }[] = [
   { key: 'students', label: 'Количество студентов' },
@@ -34,17 +35,41 @@ const CATEGORY_NAMES: Record<string, string> = {
   culture: 'Культура',
 };
 
+async function uploadFile(file: File): Promise<string | null> {
+  const form = new FormData();
+  form.append('file', file);
+  try {
+    const res = await fetch('/api/admin/upload', { method: 'POST', body: form });
+    if (!res.ok) return null;
+    const { url } = await res.json();
+    return url as string;
+  } catch {
+    return null;
+  }
+}
+
 export default function HomepageDataPage() {
   const [data, setData] = useState<HomepageData | null>(null);
+  const [programs, setPrograms] = useState<UniversityData['programs']>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/admin/homepage', { signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then(setData)
+    Promise.all([
+      fetch('/api/admin/homepage', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
+      fetch('/api/public/university', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
+    ])
+      .then(([hp, uni]) => {
+        if (hp) setData(hp);
+        if (uni?.programs) setPrograms(uni.programs);
+      })
       .catch(() => {})
       .finally(() => setLoading(false));
     return () => controller.abort();
@@ -177,43 +202,96 @@ export default function HomepageDataPage() {
         <p className="mb-4 text-xs text-slate-400">
           Программы, которые будут показаны на главной странице с фотографией
         </p>
-        <div className="space-y-2">
+        <div className="space-y-3">
           {Object.entries(data.programImages).map(([key, url]) => (
-            <div key={key} className="flex items-center gap-3">
-              <input
-                type="text"
-                value={key}
-                onChange={(e) => {
-                  const newImages = { ...data.programImages };
-                  delete newImages[key];
-                  newImages[e.target.value] = url;
-                  setData({ ...data, programImages: newImages });
-                }}
-                placeholder="Название программы (mining, construction...)"
-                className={inputCls + ' max-w-[250px]'}
-              />
-              <input
-                type="url"
-                value={url}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    programImages: { ...data.programImages, [key]: e.target.value },
-                  })
-                }
-                placeholder="Ссылка на изображение"
-                className={inputCls}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  const { [key]: _removed, ...rest } = data.programImages;
-                  setData({ ...data, programImages: rest });
-                }}
-                className="shrink-0 text-red-400 hover:text-red-600"
-              >
-                <Trash2 size={14} />
-              </button>
+            <div
+              key={key}
+              className="flex flex-col gap-2 rounded-lg border border-slate-100 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-800/50"
+            >
+              <div className="flex items-center gap-3">
+                <select
+                  value={key}
+                  onChange={(e) => {
+                    const newImages = { ...data.programImages };
+                    delete newImages[key];
+                    newImages[e.target.value] = url;
+                    setData({ ...data, programImages: newImages });
+                  }}
+                  className={inputCls + ' max-w-[280px]'}
+                >
+                  <option value="">— Выберите программу —</option>
+                  {programs.map((p) => (
+                    <option
+                      key={p.id}
+                      value={p.id}
+                      disabled={p.id !== key && p.id in data.programImages}
+                    >
+                      {p.name.ru}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const { [key]: _removed, ...rest } = data.programImages;
+                    setData({ ...data, programImages: rest });
+                  }}
+                  className="shrink-0 text-red-400 hover:text-red-600"
+                >
+                  <Trash2 size={14} />
+                </button>
+              </div>
+              <div className="flex items-center gap-3">
+                {url && (
+                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={url} alt="" className="h-full w-full object-cover" />
+                  </div>
+                )}
+                <input
+                  type="url"
+                  value={url}
+                  onChange={(e) =>
+                    setData({
+                      ...data,
+                      programImages: { ...data.programImages, [key]: e.target.value },
+                    })
+                  }
+                  placeholder="Ссылка на изображение"
+                  className={inputCls}
+                />
+                <label className="flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+                  {uploading === key ? (
+                    <Loader2 size={14} className="animate-spin" />
+                  ) : (
+                    <Upload size={14} />
+                  )}
+                  {uploading === key ? 'Загрузка...' : 'Загрузить'}
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file) return;
+                      setUploading(key);
+                      const uploadedUrl = await uploadFile(file);
+                      if (uploadedUrl) {
+                        setData((prev) =>
+                          prev
+                            ? {
+                                ...prev,
+                                programImages: { ...prev.programImages, [key]: uploadedUrl },
+                              }
+                            : prev,
+                        );
+                      }
+                      setUploading(null);
+                      e.target.value = '';
+                    }}
+                  />
+                </label>
+              </div>
             </div>
           ))}
           <button
@@ -226,7 +304,7 @@ export default function HomepageDataPage() {
             }
             className="flex items-center gap-1 text-xs font-medium text-blue-500 hover:text-blue-600"
           >
-            <Plus size={12} /> Добавить изображение
+            <Plus size={12} /> Добавить программу
           </button>
         </div>
       </section>
