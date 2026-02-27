@@ -4,6 +4,27 @@ import { useEffect, useState } from 'react';
 import { Save, Loader2, Home, BarChart3, Image, Tag, Plus, Trash2 } from 'lucide-react';
 import type { HomepageData } from '@/lib/admin/types';
 
+const STAT_OPTIONS: { key: string; label: string }[] = [
+  { key: 'students', label: 'Количество студентов' },
+  { key: 'programs', label: 'Программы обучения' },
+  { key: 'employment', label: 'Трудоустройство' },
+  { key: 'years', label: 'Годы опыта' },
+  { key: 'faculty', label: 'Преподаватели' },
+  { key: 'masters', label: 'Магистерские программы' },
+];
+
+const CATEGORY_NAMES: Record<string, string> = {
+  news: 'Новости',
+  announcement: 'Объявления',
+  event: 'События',
+  achievement: 'Достижения',
+  university: 'Университет',
+  science: 'Наука',
+  students: 'Студенты',
+  sport: 'Спорт',
+  culture: 'Культура',
+};
+
 export default function HomepageDataPage() {
   const [data, setData] = useState<HomepageData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -75,7 +96,7 @@ export default function HomepageDataPage() {
         </h3>
         <div>
           <label className="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
-            Заголовок (большой текст)
+            Заголовок (большой текст на главной)
           </label>
           <input
             type="text"
@@ -88,27 +109,32 @@ export default function HomepageDataPage() {
 
       {/* Stats */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+        <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
           <BarChart3 size={18} className="text-emerald-500" />
           Статистика на главной
         </h3>
         <p className="mb-4 text-xs text-slate-400">
-          Ключ (key) привязан к переводу в i18n: home.stats.students, home.stats.programs и т.д.
+          Цифры, которые отображаются на баннере главной страницы
         </p>
         <div className="space-y-2">
           {data.stats.map((stat, i) => (
             <div key={i} className="flex items-center gap-3">
-              <input
-                type="text"
+              <select
                 value={stat.key}
                 onChange={(e) => {
                   const updated = [...data.stats];
                   updated[i] = { ...stat, key: e.target.value };
                   setData({ ...data, stats: updated });
                 }}
-                placeholder="Ключ (students, programs...)"
-                className={inputCls + ' max-w-[200px] font-mono'}
-              />
+                className={inputCls + ' max-w-[220px]'}
+              >
+                <option value="">— Выберите —</option>
+                {STAT_OPTIONS.map((opt) => (
+                  <option key={opt.key} value={opt.key}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
                 value={stat.value}
@@ -143,12 +169,12 @@ export default function HomepageDataPage() {
 
       {/* Program Images */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+        <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
           <Image size={18} className="text-purple-500" />
           Изображения программ
         </h3>
         <p className="mb-4 text-xs text-slate-400">
-          ID программы → URL изображения. Программы с указанным изображением будут показаны на главной.
+          Программы, которые будут показаны на главной странице с фотографией
         </p>
         <div className="space-y-2">
           {Object.entries(data.programImages).map(([key, url]) => (
@@ -162,8 +188,8 @@ export default function HomepageDataPage() {
                   newImages[e.target.value] = url;
                   setData({ ...data, programImages: newImages });
                 }}
-                placeholder="ID программы"
-                className={inputCls + ' max-w-[200px] font-mono'}
+                placeholder="Название программы (mining, construction...)"
+                className={inputCls + ' max-w-[250px]'}
               />
               <input
                 type="url"
@@ -174,7 +200,7 @@ export default function HomepageDataPage() {
                     programImages: { ...data.programImages, [key]: e.target.value },
                   })
                 }
-                placeholder="URL изображения"
+                placeholder="Ссылка на изображение"
                 className={inputCls}
               />
               <button
@@ -206,14 +232,19 @@ export default function HomepageDataPage() {
 
       {/* Category Labels */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="mb-4 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+        <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
           <Tag size={18} className="text-amber-500" />
           Метки категорий новостей
         </h3>
+        <p className="mb-4 text-xs text-slate-400">
+          Текст, который отображается на карточках новостей для каждой категории
+        </p>
         <div className="space-y-2">
           {Object.entries(data.categoryLabels).map(([key, label]) => (
             <div key={key} className="flex items-center gap-3">
-              <span className="min-w-[120px] text-xs font-mono text-slate-400">{key}</span>
+              <span className="min-w-[120px] text-sm text-slate-500">
+                {CATEGORY_NAMES[key] ?? key}
+              </span>
               <input
                 type="text"
                 value={label}

@@ -309,26 +309,14 @@ export default function UniversityDataPage() {
             {data.departments.map((dept, i) => (
               <div key={dept.id || i} className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-medium text-slate-400">ID: {dept.id}</span>
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="color"
-                      value={dept.color}
-                      onChange={(e) => {
-                        const updated = [...data.departments];
-                        updated[i] = { ...dept, color: e.target.value };
-                        setData({ ...data, departments: updated });
-                      }}
-                      className="h-6 w-6 cursor-pointer rounded border-0"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setData({ ...data, departments: data.departments.filter((_, idx) => idx !== i) })}
-                      className="text-red-400 hover:text-red-600"
-                    >
-                      <Trash2 size={14} />
-                    </button>
-                  </div>
+                  <span className="text-xs font-medium text-slate-400">Кафедра {i + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => setData({ ...data, departments: data.departments.filter((_, idx) => idx !== i) })}
+                    className="text-red-400 hover:text-red-600"
+                  >
+                    <Trash2 size={14} />
+                  </button>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div>

@@ -1,8 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Save, Loader2, Phone, Clock, Plus, Trash2 } from 'lucide-react';
+import { Save, Loader2, Phone, Clock, Plus, Trash2, Mail } from 'lucide-react';
 import type { ContactPageData } from '@/lib/admin/types';
+
+const SUBJECT_LABELS: Record<string, string> = {
+  admission: 'Поступление',
+  academic: 'Учебные программы',
+  technical: 'Техническая поддержка',
+  other: 'Другое',
+};
 
 export default function ContactDataPage() {
   const [data, setData] = useState<ContactPageData | null>(null);
@@ -86,7 +93,7 @@ export default function ContactDataPage() {
                   <Trash2 size={14} />
                 </button>
               </div>
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-3">
                 <div>
                   <label className="mb-1 block text-xs text-slate-500">Название</label>
                   <input
@@ -121,19 +128,6 @@ export default function ContactDataPage() {
                     onChange={(e) => {
                       const updated = [...data.departments];
                       updated[i] = { ...dept, phone: e.target.value };
-                      setData({ ...data, departments: updated });
-                    }}
-                    className={inputCls}
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 block text-xs text-slate-500">Иконка (lucide)</label>
-                  <input
-                    type="text"
-                    value={dept.icon}
-                    onChange={(e) => {
-                      const updated = [...data.departments];
-                      updated[i] = { ...dept, icon: e.target.value };
                       setData({ ...data, departments: updated });
                     }}
                     className={inputCls}
@@ -249,11 +243,19 @@ export default function ContactDataPage() {
 
       {/* Subject Labels */}
       <section className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-        <h3 className="mb-4 font-bold text-slate-900 dark:text-white">Темы обращений</h3>
+        <h3 className="mb-2 flex items-center gap-2 font-bold text-slate-900 dark:text-white">
+          <Mail size={18} className="text-amber-500" />
+          Темы обращений
+        </h3>
+        <p className="mb-4 text-xs text-slate-400">
+          Текст, который увидит посетитель при выборе темы в форме обратной связи
+        </p>
         <div className="space-y-2">
           {Object.entries(data.subjectLabels).map(([key, label]) => (
             <div key={key} className="flex items-center gap-3">
-              <span className="min-w-[100px] text-xs font-mono text-slate-400">{key}</span>
+              <span className="min-w-[140px] text-sm text-slate-500">
+                {SUBJECT_LABELS[key] ?? key}
+              </span>
               <input
                 type="text"
                 value={label}
@@ -265,16 +267,6 @@ export default function ContactDataPage() {
                 }
                 className={inputCls}
               />
-              <button
-                type="button"
-                onClick={() => {
-                  const { [key]: _, ...rest } = data.subjectLabels;
-                  setData({ ...data, subjectLabels: rest });
-                }}
-                className="shrink-0 text-red-400 hover:text-red-600"
-              >
-                <Trash2 size={14} />
-              </button>
             </div>
           ))}
         </div>
