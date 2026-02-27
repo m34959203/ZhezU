@@ -5,8 +5,7 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   Newspaper,
-  Languages,
-  FileEdit,
+  Map,
   Settings,
   LogOut,
   GraduationCap,
@@ -23,8 +22,7 @@ const NAV_ITEMS = [
   { href: '/admin/university', label: 'Университет', icon: Building2 },
   { href: '/admin/homepage', label: 'Главная страница', icon: Home },
   { href: '/admin/contact', label: 'Контакты', icon: Phone },
-  { href: '/admin/translations', label: 'Переводы', icon: Languages },
-  { href: '/admin/pages', label: 'Контент страниц', icon: FileEdit },
+  { href: '/admin/pages', label: 'Страницы сайта', icon: Map },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },
 ];
 

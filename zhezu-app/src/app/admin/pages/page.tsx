@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import {
-  FileEdit,
   ChevronRight,
   ExternalLink,
   GraduationCap,
@@ -12,13 +11,22 @@ import {
   Brain,
   Heart,
   BookOpen,
+  Settings,
 } from 'lucide-react';
+
+interface PageEntry {
+  path: string;
+  label: string;
+  description: string;
+  /** Link to admin editor if one exists for this page */
+  adminHref?: string;
+}
 
 interface PageSection {
   title: string;
   icon: React.ReactNode;
   color: string;
-  pages: { path: string; namespace: string; label: string }[];
+  pages: PageEntry[];
 }
 
 const SECTIONS: PageSection[] = [
@@ -27,23 +35,54 @@ const SECTIONS: PageSection[] = [
     icon: <Building2 size={18} />,
     color: 'text-blue-500 bg-blue-500/10',
     pages: [
-      { path: '/university', namespace: 'university.hub', label: 'О вузе — хаб' },
-      { path: '/university/about', namespace: 'university.about', label: 'История' },
-      { path: '/university/mission', namespace: 'university.mission', label: 'Миссия' },
-      { path: '/university/rector', namespace: 'university.rector', label: 'Ректор' },
+      {
+        path: '/university',
+        label: 'О вузе',
+        description: 'Главная страница раздела с общей информацией',
+        adminHref: '/admin/university',
+      },
+      {
+        path: '/university/about',
+        label: 'История',
+        description: 'История университета, хронология ключевых событий',
+      },
+      {
+        path: '/university/mission',
+        label: 'Миссия и видение',
+        description: 'Миссия, ценности и стратегические цели вуза',
+      },
+      {
+        path: '/university/rector',
+        label: 'Ректор',
+        description: 'Обращение ректора, биография и фото',
+        adminHref: '/admin/university',
+      },
       {
         path: '/university/administration',
-        namespace: 'university.administration',
         label: 'Администрация',
+        description: 'Проректоры и руководство университета',
+        adminHref: '/admin/university',
       },
-      { path: '/university/senate', namespace: 'university.senate', label: 'Сенат' },
+      {
+        path: '/university/senate',
+        label: 'Сенат',
+        description: 'Состав и деятельность Сената',
+      },
       {
         path: '/university/accreditation',
-        namespace: 'university.accreditation',
         label: 'Аккредитация',
+        description: 'Документы об аккредитации и лицензии',
       },
-      { path: '/university/rankings', namespace: 'university.rankings', label: 'Рейтинги' },
-      { path: '/university/partners', namespace: 'university.partners', label: 'Партнёры' },
+      {
+        path: '/university/rankings',
+        label: 'Рейтинги',
+        description: 'Позиции университета в рейтингах',
+      },
+      {
+        path: '/university/partners',
+        label: 'Партнёры',
+        description: 'Партнёрские организации и международные связи',
+      },
     ],
   },
   {
@@ -51,12 +90,38 @@ const SECTIONS: PageSection[] = [
     icon: <GraduationCap size={18} />,
     color: 'text-emerald-500 bg-emerald-500/10',
     pages: [
-      { path: '/admission', namespace: 'admission', label: 'Хаб поступления' },
-      { path: '/admission/programs', namespace: 'admission.programs', label: 'Программы' },
-      { path: '/admission/requirements', namespace: 'admission.requirements', label: 'Требования' },
-      { path: '/admission/apply', namespace: 'admission.apply', label: 'Подать заявку' },
-      { path: '/admission/scholarships', namespace: 'admission.scholarships', label: 'Стипендии' },
-      { path: '/admission/contact', namespace: 'admission.contact', label: 'FAQ и контакты' },
+      {
+        path: '/admission',
+        label: 'Главная поступления',
+        description: 'Общая информация для абитуриентов',
+      },
+      {
+        path: '/admission/programs',
+        label: 'Программы обучения',
+        description: 'Перечень специальностей бакалавриата и магистратуры',
+        adminHref: '/admin/university',
+      },
+      {
+        path: '/admission/requirements',
+        label: 'Требования',
+        description: 'Необходимые документы и условия поступления',
+      },
+      {
+        path: '/admission/apply',
+        label: 'Подать заявку',
+        description: 'Форма подачи заявления',
+      },
+      {
+        path: '/admission/scholarships',
+        label: 'Стипендии и гранты',
+        description: 'Информация о стипендиальных программах',
+      },
+      {
+        path: '/admission/contact',
+        label: 'FAQ и контакты',
+        description: 'Ответы на вопросы и контакты приёмной комиссии',
+        adminHref: '/admin/contact',
+      },
     ],
   },
   {
@@ -64,12 +129,39 @@ const SECTIONS: PageSection[] = [
     icon: <BookOpen size={18} />,
     color: 'text-purple-500 bg-purple-500/10',
     pages: [
-      { path: '/academics/bachelor', namespace: 'academics.bachelor', label: 'Бакалавриат' },
-      { path: '/academics/master', namespace: 'academics.master', label: 'Магистратура' },
-      { path: '/academics/departments', namespace: 'academics.departments', label: 'Кафедры' },
-      { path: '/academics/faculty', namespace: 'academics.faculty', label: 'ППС' },
-      { path: '/academics/schedule', namespace: 'academics.schedule', label: 'Расписание' },
-      { path: '/academics/library', namespace: 'academics.library', label: 'Библиотека' },
+      {
+        path: '/academics/bachelor',
+        label: 'Бакалавриат',
+        description: 'Программы бакалавриата, учебные планы',
+        adminHref: '/admin/university',
+      },
+      {
+        path: '/academics/master',
+        label: 'Магистратура',
+        description: 'Программы магистратуры',
+        adminHref: '/admin/university',
+      },
+      {
+        path: '/academics/departments',
+        label: 'Кафедры',
+        description: 'Список кафедр и их описание',
+        adminHref: '/admin/university',
+      },
+      {
+        path: '/academics/faculty',
+        label: 'Профессорско-преподавательский состав',
+        description: 'Статистика и информация о ППС',
+      },
+      {
+        path: '/academics/schedule',
+        label: 'Расписание',
+        description: 'Расписание занятий',
+      },
+      {
+        path: '/academics/library',
+        label: 'Библиотека',
+        description: 'Информация о библиотечных ресурсах',
+      },
     ],
   },
   {
@@ -77,10 +169,26 @@ const SECTIONS: PageSection[] = [
     icon: <Microscope size={18} />,
     color: 'text-amber-500 bg-amber-500/10',
     pages: [
-      { path: '/research/publications', namespace: 'research.publications', label: 'Публикации' },
-      { path: '/research/conferences', namespace: 'research.conferences', label: 'Конференции' },
-      { path: '/research/labs', namespace: 'research.labs', label: 'Лаборатории' },
-      { path: '/research/grants', namespace: 'research.grants', label: 'Гранты' },
+      {
+        path: '/research/publications',
+        label: 'Публикации',
+        description: 'Научные публикации сотрудников',
+      },
+      {
+        path: '/research/conferences',
+        label: 'Конференции',
+        description: 'Научные конференции и мероприятия',
+      },
+      {
+        path: '/research/labs',
+        label: 'Лаборатории',
+        description: 'Научно-исследовательские лаборатории',
+      },
+      {
+        path: '/research/grants',
+        label: 'Гранты',
+        description: 'Грантовые проекты и возможности',
+      },
     ],
   },
   {
@@ -88,11 +196,31 @@ const SECTIONS: PageSection[] = [
     icon: <Brain size={18} />,
     color: 'text-cyan-500 bg-cyan-500/10',
     pages: [
-      { path: '/ai-center', namespace: 'aiCenter', label: 'Главная AI' },
-      { path: '/ai-center/projects', namespace: 'aiCenter.projectsPage', label: 'Проекты' },
-      { path: '/ai-center/agents/talapker', namespace: 'aiCenter.talapker', label: 'Talapker' },
-      { path: '/ai-center/tools', namespace: 'aiCenter.aiTools', label: 'AI-инструменты' },
-      { path: '/ai-center/lab', namespace: 'aiCenter.labPage', label: 'Лаборатория' },
+      {
+        path: '/ai-center',
+        label: 'Главная AI-Центра',
+        description: 'Обзор деятельности центра искусственного интеллекта',
+      },
+      {
+        path: '/ai-center/projects',
+        label: 'Проекты',
+        description: 'AI-проекты университета',
+      },
+      {
+        path: '/ai-center/agents/talapker',
+        label: 'Talapker',
+        description: 'AI-помощник для абитуриентов',
+      },
+      {
+        path: '/ai-center/tools',
+        label: 'AI-инструменты',
+        description: 'Инструменты на основе ИИ',
+      },
+      {
+        path: '/ai-center/lab',
+        label: 'Лаборатория',
+        description: 'AI-лаборатория университета',
+      },
     ],
   },
   {
@@ -100,11 +228,31 @@ const SECTIONS: PageSection[] = [
     icon: <Heart size={18} />,
     color: 'text-rose-500 bg-rose-500/10',
     pages: [
-      { path: '/life', namespace: 'life.hub', label: 'Хаб' },
-      { path: '/life/events', namespace: 'life.events', label: 'События' },
-      { path: '/life/sports', namespace: 'life.sports', label: 'Спорт' },
-      { path: '/life/dormitories', namespace: 'life.dormitories', label: 'Общежития' },
-      { path: '/life/clubs', namespace: 'life.clubs', label: 'Клубы' },
+      {
+        path: '/life',
+        label: 'Студенческая жизнь',
+        description: 'Обзор студенческой жизни',
+      },
+      {
+        path: '/life/events',
+        label: 'События',
+        description: 'Мероприятия и события в университете',
+      },
+      {
+        path: '/life/sports',
+        label: 'Спорт',
+        description: 'Спортивные секции и достижения',
+      },
+      {
+        path: '/life/dormitories',
+        label: 'Общежития',
+        description: 'Информация о проживании для студентов',
+      },
+      {
+        path: '/life/clubs',
+        label: 'Клубы и кружки',
+        description: 'Студенческие организации и клубы по интересам',
+      },
     ],
   },
 ];
@@ -115,11 +263,7 @@ export default function PagesManagerPage() {
   return (
     <div className="space-y-6">
       <p className="text-sm text-slate-500 dark:text-slate-400">
-        Выберите страницу для редактирования контента. Для изменения текстов перейдите в{' '}
-        <Link href="/admin/translations" className="text-blue-500 hover:underline">
-          Редактор переводов
-        </Link>
-        .
+        Обзор всех страниц сайта. Нажмите на ссылку, чтобы посмотреть страницу.
       </p>
 
       <div className="space-y-3">
@@ -159,18 +303,18 @@ export default function PagesManagerPage() {
                         <p className="text-sm font-medium text-slate-900 dark:text-white">
                           {page.label}
                         </p>
-                        <p className="truncate font-mono text-xs text-slate-400">
-                          {page.namespace}
-                        </p>
+                        <p className="text-xs text-slate-400">{page.description}</p>
                       </div>
                       <div className="ml-4 flex items-center gap-2">
-                        <Link
-                          href={`/admin/translations?ns=${page.namespace}`}
-                          className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-500 dark:hover:bg-blue-500/10"
-                          title="Редактировать переводы"
-                        >
-                          <FileEdit size={14} />
-                        </Link>
+                        {page.adminHref && (
+                          <Link
+                            href={page.adminHref}
+                            className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-500 dark:hover:bg-blue-500/10"
+                            title="Редактировать данные"
+                          >
+                            <Settings size={14} />
+                          </Link>
+                        )}
                         <Link
                           href={`/ru${page.path}`}
                           target="_blank"
