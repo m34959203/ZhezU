@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import type { SiteSettings } from '@/lib/admin/types';
+import type { FooterLink } from '@/lib/navigation';
 import type { Locale } from '@/types';
 
 /* ------------------------------------------------------------------ */
@@ -71,9 +72,20 @@ const STUDENT_LINKS = [
 /* ================================================================== */
 /*  FOOTER                                                             */
 /* ================================================================== */
-export function Footer({ settings }: { settings: SiteSettings }) {
+export function Footer({
+  settings,
+  footerNav,
+  footerStudents,
+}: {
+  settings: SiteSettings;
+  footerNav?: FooterLink[];
+  footerStudents?: FooterLink[];
+}) {
   const t = useTranslations('footer');
   const locale = useLocale() as Locale;
+
+  const navLinks = footerNav && footerNav.length > 0 ? footerNav : NAV_LINKS;
+  const studentLinks = footerStudents && footerStudents.length > 0 ? footerStudents : STUDENT_LINKS;
 
   /* Build social links array from admin settings */
   const socialLinks = Object.entries(settings.socialLinks)
@@ -156,7 +168,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               Навигация
             </h3>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
@@ -176,7 +188,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               Студентам
             </h3>
             <ul className="space-y-3">
-              {STUDENT_LINKS.map((link) => (
+              {studentLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

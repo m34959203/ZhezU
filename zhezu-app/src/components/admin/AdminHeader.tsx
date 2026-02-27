@@ -8,6 +8,7 @@ import { useTheme } from 'next-themes';
 const TITLE_MAP: Record<string, string> = {
   '/admin': 'Дашборд',
   '/admin/news': 'Управление публикациями',
+  '/admin/menu': 'Управление меню',
   '/admin/translations': 'Редактор переводов',
   '/admin/pages': 'Контент страниц',
   '/admin/settings': 'Настройки сайта',

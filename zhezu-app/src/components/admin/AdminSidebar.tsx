@@ -10,11 +10,13 @@ import {
   Settings,
   LogOut,
   GraduationCap,
+  Menu,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Дашборд', icon: LayoutDashboard },
   { href: '/admin/news', label: 'Публикации', icon: Newspaper },
+  { href: '/admin/menu', label: 'Управление меню', icon: Menu },
   { href: '/admin/translations', label: 'Переводы', icon: Languages },
   { href: '/admin/pages', label: 'Контент страниц', icon: FileEdit },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },

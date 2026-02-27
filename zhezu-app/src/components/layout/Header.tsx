@@ -11,6 +11,7 @@ import { MobileMenu } from './MobileMenu';
 import { SearchOverlay } from '@/components/search/SearchOverlay';
 import { Button } from '@/components/ui/Button';
 import { NAVIGATION_ITEMS } from '@/lib/navigation';
+import type { NavItem } from '@/lib/navigation';
 
 /* ------------------------------------------------------------------ */
 /*  Mega Menu Panel                                                    */
@@ -19,7 +20,7 @@ function MegaMenuPanel({
   item,
   isOpen,
 }: {
-  item: (typeof NAVIGATION_ITEMS)[number];
+  item: NavItem;
   isOpen: boolean;
 }) {
   const t = useTranslations('megaNav');
@@ -115,9 +116,11 @@ function MegaMenuPanel({
 /* ================================================================== */
 /*  MAIN HEADER — Single clean nav bar                                 */
 /* ================================================================== */
-export function Header() {
+export function Header({ navItems }: { navItems?: NavItem[] }) {
   const t = useTranslations('megaNav');
   const pathname = usePathname();
+
+  const items = navItems && navItems.length > 0 ? navItems : NAVIGATION_ITEMS;
 
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -189,7 +192,7 @@ export function Header() {
 
               {/* Desktop mega-menu triggers */}
               <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Main navigation">
-                {NAVIGATION_ITEMS.map((item) => {
+                {items.map((item) => {
                   const isActive = activeMenu === item.id;
                   return (
                     <div
@@ -246,13 +249,13 @@ export function Header() {
                     {t('apply')}
                   </Button>
                 </Link>
-                <MobileMenu />
+                <MobileMenu navItems={items} />
               </div>
             </div>
           </div>
 
           {/* Mega-menu dropdown panels (anchored to primary nav) */}
-          {NAVIGATION_ITEMS.map((item) => (
+          {items.map((item) => (
             <div key={item.id} onMouseEnter={handlePanelEnter} onMouseLeave={handlePanelLeave}>
               <MegaMenuPanel item={item} isOpen={activeMenu === item.id} />
             </div>
