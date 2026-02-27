@@ -375,12 +375,9 @@ export default function UniversityDataPage() {
             {data.programs.map((prog, i) => (
               <div key={prog.id || i} className="rounded-lg border border-slate-100 p-4 dark:border-slate-800">
                 <div className="mb-2 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="rounded bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-600 dark:bg-blue-600/10 dark:text-blue-400">
-                      {prog.code}
-                    </span>
-                    <span className="text-xs text-slate-400">{prog.degree}</span>
-                  </div>
+                  <span className="rounded bg-blue-50 px-2 py-0.5 text-xs font-bold text-blue-600 dark:bg-blue-600/10 dark:text-blue-400">
+                    {prog.code || 'Новая'}
+                  </span>
                   <button
                     type="button"
                     onClick={() => setData({ ...data, programs: data.programs.filter((_, idx) => idx !== i) })}
@@ -430,7 +427,7 @@ export default function UniversityDataPage() {
                     className={inputCls}
                   />
                 </div>
-                <div className="mt-2 grid gap-3 sm:grid-cols-4">
+                <div className="mt-2 grid gap-3 sm:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-xs text-slate-500">Кафедра</label>
                     <select
@@ -449,7 +446,7 @@ export default function UniversityDataPage() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs text-slate-500">Степень</label>
+                    <label className="mb-1 block text-xs text-slate-500">Уровень</label>
                     <select
                       value={prog.degree}
                       onChange={(e) => {
@@ -459,36 +456,10 @@ export default function UniversityDataPage() {
                       }}
                       className={inputCls}
                     >
-                      <option value="bachelor">Бакалавр</option>
-                      <option value="master">Магистр</option>
+                      <option value="bachelor">Бакалавриат</option>
+                      <option value="master">Магистратура</option>
                       <option value="doctorate">Докторантура</option>
                     </select>
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-xs text-slate-500">Кредиты</label>
-                    <input
-                      type="number"
-                      value={prog.credits}
-                      onChange={(e) => {
-                        const updated = [...data.programs];
-                        updated[i] = { ...prog, credits: Number(e.target.value) };
-                        setData({ ...data, programs: updated });
-                      }}
-                      className={inputCls}
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-1 block text-xs text-slate-500">Срок (лет)</label>
-                    <input
-                      type="number"
-                      value={prog.duration}
-                      onChange={(e) => {
-                        const updated = [...data.programs];
-                        updated[i] = { ...prog, duration: Number(e.target.value) };
-                        setData({ ...data, programs: updated });
-                      }}
-                      className={inputCls}
-                    />
                   </div>
                 </div>
               </div>
