@@ -38,10 +38,10 @@ const LOCALES: { code: ContentLocale; label: string }[] = [
 ];
 
 const GEMINI_MODELS = [
-  { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash (рекомендуется)' },
-  { value: 'gemini-2.0-flash-lite', label: 'Gemini 2.0 Flash Lite (быстрее)' },
-  { value: 'gemini-1.5-flash', label: 'Gemini 1.5 Flash' },
-  { value: 'gemini-1.5-pro', label: 'Gemini 1.5 Pro (умнее)' },
+  { value: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash (рекомендуется)' },
+  { value: 'gemini-2.5-flash-lite', label: 'Gemini 2.5 Flash Lite (быстрее/дешевле)' },
+  { value: 'gemini-2.5-pro', label: 'Gemini 2.5 Pro (умнее)' },
+  { value: 'gemini-2.0-flash', label: 'Gemini 2.0 Flash (устаревшая)' },
 ];
 
 interface IntegrationsStatus {
@@ -447,7 +447,7 @@ export default function SettingsPage() {
                 </label>
                 <select
                   value={
-                    settings.integrations?.geminiModel || status?.geminiModel || 'gemini-2.0-flash'
+                    settings.integrations?.geminiModel || status?.geminiModel || 'gemini-2.5-flash'
                   }
                   onChange={(e) =>
                     setSettings((s) => ({

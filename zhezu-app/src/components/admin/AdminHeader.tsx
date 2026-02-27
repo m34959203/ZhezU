@@ -1,9 +1,9 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useSyncExternalStore } from 'react';
 import { Bell, Search, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { useSyncExternalStore } from 'react';
 
 const TITLE_MAP: Record<string, string> = {
   '/admin': 'Дашборд',
@@ -13,13 +13,13 @@ const TITLE_MAP: Record<string, string> = {
   '/admin/settings': 'Настройки сайта',
 };
 
-const emptySubscribe = () => () => {};
+const subscribe = () => () => {};
 
 export default function AdminHeader() {
   const pathname = usePathname();
   const { setTheme, resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(
-    emptySubscribe,
+    subscribe,
     () => true,
     () => false,
   );
@@ -48,16 +48,22 @@ export default function AdminHeader() {
           <Bell size={18} />
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-blue-500" />
         </button>
-        {mounted && (
-          <button
-            type="button"
-            onClick={() => setTheme(isDark ? 'light' : 'dark')}
-            className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-white"
-            aria-label={isDark ? 'Светлая тема' : 'Тёмная тема'}
-          >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-white"
+          aria-label={isDark ? 'Светлая тема' : 'Тёмная тема'}
+        >
+          {mounted ? (
+            isDark ? (
+              <Sun size={18} />
+            ) : (
+              <Moon size={18} />
+            )
+          ) : (
+            <div className="h-[18px] w-[18px]" />
+          )}
+        </button>
         <div className="ml-2 flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
           A
         </div>

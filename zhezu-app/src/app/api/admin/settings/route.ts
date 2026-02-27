@@ -34,7 +34,7 @@ function maskIntegrations(settings: SiteSettings): SiteSettings & { integrations
       geminiApiKeySet: !!integrations?.geminiApiKey,
       telegramBotTokenSet: !!integrations?.telegramBotToken,
       instagramAccessTokenSet: !!integrations?.instagramAccessToken,
-      geminiModel: integrations?.geminiModel || 'gemini-2.0-flash',
+      geminiModel: integrations?.geminiModel || 'gemini-2.5-flash',
       telegramChatId: integrations?.telegramChatId || '',
       telegramEnabled: integrations?.telegramEnabled ?? false,
       instagramPageId: integrations?.instagramPageId || '',
