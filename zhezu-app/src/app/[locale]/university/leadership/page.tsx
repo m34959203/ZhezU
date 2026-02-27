@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
+import { getUniversityData } from '@/lib/admin/public-data';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { User, Mail, Phone } from 'lucide-react';
@@ -20,9 +21,10 @@ export async function generateMetadata({
   };
 }
 
-export default function LeadershipPage({ params }: { params: { locale: string } }) {
+export default async function LeadershipPage({ params }: { params: { locale: string } }) {
   const t = useTranslations('university');
   const locale = (params.locale || 'ru') as Locale;
+  const universityData = await getUniversityData();
 
   return (
     <div className="flex flex-col">
@@ -46,8 +48,21 @@ export default function LeadershipPage({ params }: { params: { locale: string } 
           <div className="mx-auto max-w-4xl">
             <Card padding="lg" hover>
               <div className="flex flex-col items-center gap-8 md:flex-row">
-                <div className="from-primary/20 to-gold/20 flex h-48 w-48 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br">
-                  <User size={64} className="text-primary dark:text-primary-light" />
+                <div className="h-48 w-48 shrink-0 overflow-hidden rounded-2xl">
+                  {universityData.rector.photo ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={universityData.rector.photo}
+                      alt={UNIVERSITY.rector.name[locale]}
+                      width={192}
+                      height={192}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="from-primary/20 to-gold/20 flex h-full w-full items-center justify-center bg-gradient-to-br">
+                      <User size={64} className="text-primary dark:text-primary-light" />
+                    </div>
+                  )}
                 </div>
                 <div className="flex-1 text-center md:text-left">
                   <Badge variant="primary" className="mb-3">
@@ -89,19 +104,35 @@ export default function LeadershipPage({ params }: { params: { locale: string } 
             {t('leadership.proRectors.title')}
           </h2>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-            {UNIVERSITY.proRectors.map((pr, index) => (
-              <Card key={index} padding="lg" hover>
-                <div className="flex flex-col items-center text-center">
-                  <div className="from-primary/10 to-gold/10 mb-4 flex h-24 w-24 items-center justify-center rounded-xl bg-gradient-to-br">
-                    <User size={36} className="text-primary dark:text-primary-light" />
+            {UNIVERSITY.proRectors.map((pr, index) => {
+              const photo = universityData.proRectors[index]?.photo;
+              return (
+                <Card key={index} padding="lg" hover>
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-4 h-24 w-24 overflow-hidden rounded-xl">
+                      {photo ? (
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img
+                          src={photo}
+                          alt={pr.name[locale]}
+                          width={96}
+                          height={96}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="from-primary/10 to-gold/10 flex h-full w-full items-center justify-center bg-gradient-to-br">
+                          <User size={36} className="text-primary dark:text-primary-light" />
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="font-display mb-2 text-xl font-semibold">{pr.name[locale]}</h3>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
+                      {pr.title[locale]}
+                    </p>
                   </div>
-                  <h3 className="font-display mb-2 text-xl font-semibold">{pr.name[locale]}</h3>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                    {pr.title[locale]}
-                  </p>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

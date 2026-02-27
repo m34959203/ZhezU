@@ -12,6 +12,9 @@ import {
   Trash2,
   ChevronDown,
   ChevronRight,
+  Upload,
+  X,
+  User,
 } from 'lucide-react';
 import type { UniversityData, ContentLocale } from '@/lib/admin/types';
 
@@ -72,6 +75,77 @@ export default function UniversityDataPage() {
     return (
       <div className="flex items-center justify-center py-32">
         <Loader2 size={24} className="animate-spin text-blue-500" />
+      </div>
+    );
+  }
+
+  async function uploadPhoto(file: File): Promise<string | null> {
+    const form = new FormData();
+    form.append('file', file);
+    try {
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: form });
+      if (!res.ok) return null;
+      const { url } = await res.json();
+      return url as string;
+    } catch {
+      return null;
+    }
+  }
+
+  function PhotoUpload({
+    value,
+    onChange,
+    label,
+  }: {
+    value?: string;
+    onChange: (url: string) => void;
+    label: string;
+  }) {
+    const [uploading, setUploading] = useState(false);
+
+    async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      setUploading(true);
+      const url = await uploadPhoto(file);
+      if (url) onChange(url);
+      setUploading(false);
+      e.target.value = '';
+    }
+
+    return (
+      <div>
+        <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
+          {label}
+        </label>
+        <div className="flex items-center gap-3">
+          {value ? (
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg border border-slate-200 dark:border-slate-700">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={value} alt={label} className="h-full w-full object-cover" />
+              <button
+                type="button"
+                onClick={() => onChange('')}
+                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white shadow hover:bg-red-600"
+              >
+                <X size={10} />
+              </button>
+            </div>
+          ) : (
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700">
+              <User size={24} className="text-slate-300 dark:text-slate-600" />
+            </div>
+          )}
+          <label className="flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700">
+            {uploading ? (
+              <Loader2 size={14} className="animate-spin" />
+            ) : (
+              <Upload size={14} />
+            )}
+            {uploading ? 'Загрузка...' : 'Загрузить фото'}
+            <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleFile} className="hidden" />
+          </label>
+        </div>
       </div>
     );
   }
@@ -227,6 +301,18 @@ export default function UniversityDataPage() {
               <h4 className="mb-3 text-sm font-semibold text-slate-600 dark:text-slate-400">
                 Ректор
               </h4>
+              <div className="mb-4">
+                <PhotoUpload
+                  value={data.rector.photo}
+                  onChange={(url) =>
+                    setData({
+                      ...data,
+                      rector: { ...data.rector, photo: url },
+                    })
+                  }
+                  label="Фото ректора"
+                />
+              </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
@@ -281,7 +367,7 @@ export default function UniversityDataPage() {
                       ...data,
                       proRectors: [
                         ...data.proRectors,
-                        { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' } },
+                        { name: { kk: '', ru: '', en: '' }, title: { kk: '', ru: '', en: '' }, photo: '' },
                       ],
                     })
                   }
@@ -309,6 +395,17 @@ export default function UniversityDataPage() {
                     >
                       <Trash2 size={14} />
                     </button>
+                  </div>
+                  <div className="mb-3">
+                    <PhotoUpload
+                      value={pr.photo}
+                      onChange={(url) => {
+                        const updated = [...data.proRectors];
+                        updated[i] = { ...pr, photo: url };
+                        setData({ ...data, proRectors: updated });
+                      }}
+                      label="Фото"
+                    />
                   </div>
                   <div className="grid gap-3 sm:grid-cols-2">
                     <input

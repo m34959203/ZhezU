@@ -1,7 +1,7 @@
 # Техническое задание: Веб-сайт Жезказганского университета (ZhezU)
 
-**Версия:** 2.0
-**Дата:** 26 февраля 2026
+**Версия:** 3.0
+**Дата:** 27 февраля 2026
 **Основа:** ТЗ_Веб-сайт_университета_v1.0 (адаптировано для ZhezU)
 **Заказчик:** АО «Жезказганский университет имени О.А. Байконурова»
 **Целевой сайт:** https://zhezu.edu.kz/
@@ -81,16 +81,16 @@
 
 | ID | Требование | Приоритет | Фаза |
 |----|-----------|:---------:|:----:|
-| FR-001 | Hero-секция с ротацией баннеров (CMS-управляемая) | Must | 2 | Частично |
-| FR-002 | Блок «Университет в цифрах» — 6+ анимированных счётчиков (ISR из CMS) | Must | 2 | Частично |
+| FR-001 | Hero-секция с ротацией баннеров (CMS-управляемая) | Must | 2 | ✅ Частично (Hero есть, CMS-управление homepage через /api/admin/homepage) |
+| FR-002 | Блок «Университет в цифрах» — 6+ анимированных счётчиков (ISR из CMS) | Must | 2 | ✅ Частично (блок статистики есть, данные из admin) |
 | FR-003 | Карусель «Популярные программы» — Top-6 по просмотрам | Must | 2 | — |
-| FR-004 | Лента новостей — 3-4 последних с пагинацией и фильтром по категориям | Must | 2 | ✅ |
-| FR-005 | Блок «Предстоящие события» с интеграцией Google Calendar | Should | 3 | Частично |
+| FR-004 | Лента новостей — 3-4 последних с пагинацией и фильтром по категориям | Must | 2 | ✅ (API + админ-панель + AI-публикация) |
+| FR-005 | Блок «Предстоящие события» с интеграцией Google Calendar | Should | 3 | Частично (страницы есть, нет Google Calendar) |
 | FR-006 | Блок «Отзывы» — карусель отзывов студентов/выпускников | Should | 3 | — |
 | FR-007 | Блок «Партнёры и работодатели» — логотипы с ссылками | Could | 3 | — |
 | FR-008 | Floating CTA «Поступить» — sticky на мобильных | Must | 1 | ✅ |
 | FR-009 | Quick Links для каждой аудитории (абитуриент, студент, преподаватель) | Must | 1 | Частично |
-| FR-010 | SEO: JSON-LD (Organization), OG-теги, hreflang | Must | 1 | Частично (OG + hreflang ✅, JSON-LD —) |
+| FR-010 | SEO: JSON-LD (Organization), OG-теги, hreflang | Must | 1 | ✅ Частично (OG + hreflang + robots.txt + sitemap.xml ✅, JSON-LD —) |
 
 ### 3.2 Каталог программ (FR-011 — FR-020)
 
@@ -152,14 +152,14 @@
 
 | ID | Требование | Приоритет | Фаза |
 |----|-----------|:---------:|:----:|
-| FR-047 | Headless CMS (Strapi 5 или Payload CMS 3) с REST + GraphQL API | Must | 2 | Частично (JSON-based CMS с REST API) |
-| FR-048 | RBAC: роли (Admin, Editor, Author, Reviewer) с гранулярными правами | Must | 2 | Частично (1 роль admin) |
-| FR-049 | Мультиязычный контент (kk/ru/en) с workflow перевода | Must | 2 | ✅ (редактор переводов в админке) |
-| FR-050 | Media library: загрузка, кроп, ресайз, WebP-конвертация, S3 хранение | Must | 2 | — |
+| FR-047 | Headless CMS (Strapi 5 или Payload CMS 3) с REST + GraphQL API | Must | 2 | ✅ Частично (JSON-based CMS с 25 REST API-эндпоинтами, 6 файлов данных) |
+| FR-048 | RBAC: роли (Admin, Editor, Author, Reviewer) с гранулярными правами | Must | 2 | Частично (1 роль admin с HMAC-SHA256) |
+| FR-049 | Мультиязычный контент (kk/ru/en) с workflow перевода | Must | 2 | ✅ (редактор переводов + AI-авто-перевод через Google Gemini) |
+| FR-050 | Media library: загрузка, кроп, ресайз, WebP-конвертация, S3 хранение | Must | 2 | ✅ Частично (загрузка фото через /api/admin/upload, 5MB max, JPEG/PNG/WebP; нет S3) |
 | FR-051 | Preview (draft) → Publish workflow с расписанием публикации | Should | 3 | Частично (draft/published статус) |
 | FR-052 | Версионирование контента (история изменений, откат) | Should | 3 | — |
 | FR-053 | API-кэширование (Redis) с инвалидацией при обновлении контента | Must | 2 | — |
-| FR-054 | Webhook-уведомления при публикации (для ISR revalidation) | Must | 2 | — |
+| FR-054 | Webhook-уведомления при публикации (для ISR revalidation) | Must | 2 | ✅ Частично (авто-публикация в Telegram и Instagram при создании новости) |
 
 ### 3.7 Интернационализация (FR-055 — FR-060)
 
@@ -280,17 +280,17 @@
 
 | Технология | Версия | Назначение |
 |-----------|:------:|-----------|
-| Next.js (App Router) | 16 | SSR/SSG/ISR, React Server Components, Edge Runtime |
-| React | 19 | UI library, Server Components, Suspense |
-| TypeScript | 5 | Строгая типизация |
-| Tailwind CSS | 4 | Utility-first CSS, дизайн-токены |
-| next-intl | 4 | i18n: маршрутизация, перевод, форматирование |
-| next-themes | — | Dark/Light/System theme |
-| Framer Motion | 12 | Анимации, page transitions |
-| Zustand | 5 | Client state management |
-| React Hook Form | 7 | Управление формами |
-| Zod | 4 | Валидация схем (клиент + сервер) |
-| Lucide React | — | SVG-иконки (tree-shakeable) |
+| Next.js (App Router) | 16.1.6 | SSR/SSG/ISR, React Server Components, Edge Runtime |
+| React | 19.2.3 | UI library, Server Components, Suspense |
+| TypeScript | 5.x | Строгая типизация |
+| Tailwind CSS | 4.x | Utility-first CSS, дизайн-токены |
+| next-intl | 4.8.2 | i18n: маршрутизация, перевод, форматирование |
+| next-themes | 0.4.6 | Dark/Light/System theme |
+| Framer Motion | 12.31.1 | Анимации, page transitions |
+| Zustand | 5.0.11 | Client state management |
+| React Hook Form | 7.71.1 | Управление формами |
+| Zod | 4.3.6 | Валидация схем (клиент + сервер) |
+| Lucide React | 0.563.0 | SVG-иконки (tree-shakeable) |
 
 ### 5.2 Backend
 
@@ -449,14 +449,14 @@
 
 | Тип | Инструмент | Покрытие | Запуск | Фаза |
 |-----|-----------|:--------:|--------|:----:|
-| **Unit** | Vitest | ≥ 80% бизнес-логики | Pre-commit + CI | 1 |
-| **Integration** | Vitest + MSW | API endpoints, CMS queries | CI | 2 |
-| **E2E** | Playwright | 20+ критических сценариев | CI (nightly) | 3 |
-| **Visual Regression** | Playwright Screenshots | UI-компоненты, страницы | CI (PR) | 2 |
-| **Accessibility** | axe-core + Lighthouse | WCAG 2.2 AA, все страницы | CI + Manual | 1 |
-| **Performance** | Lighthouse CI | Core Web Vitals (LCP, FID, CLS) | CI (PR) | 2 |
-| **Security** | OWASP ZAP | OWASP Top 10, pen-test | Monthly + CI | 5 |
-| **Load** | k6 | 10K concurrent, 500 RPS | Pre-release | 5 |
+| **Unit** | Vitest 4.0.18 | ≥ 80% бизнес-логики | Pre-commit + CI | 1 | ✅ Настроен (7 тестов, CI) |
+| **Integration** | Vitest + MSW | API endpoints, CMS queries | CI | 2 | — |
+| **E2E** | Playwright 1.58.2 | 20+ критических сценариев | CI (nightly) | 3 | ✅ Настроен (0 тестов) |
+| **Visual Regression** | Playwright Screenshots | UI-компоненты, страницы | CI (PR) | 2 | — |
+| **Accessibility** | axe-core + Lighthouse | WCAG 2.2 AA, все страницы | CI + Manual | 1 | — |
+| **Performance** | Lighthouse CI | Core Web Vitals (LCP, FID, CLS) | CI (PR) | 2 | — |
+| **Security** | OWASP ZAP | OWASP Top 10, pen-test | Monthly + CI | 5 | — |
+| **Load** | k6 | 10K concurrent, 500 RPS | Pre-release | 5 | — |
 
 ### 8.2 Критерии приёмки (Definition of Done)
 
@@ -471,6 +471,24 @@
 ---
 
 ## 9. CI/CD Pipeline
+
+### 9.0 Текущее состояние (реализовано)
+
+CI/CD реализован через **GitHub Actions** (`.github/workflows/ci.yml`):
+
+```
+Push/PR → main
+    ├── Lint Job:       ESLint + Prettier check
+    ├── TypeScript Job: tsc --noEmit
+    ├── Test Job:       Vitest run --coverage
+    └── Build Job:      Next.js build (depends on all above)
+```
+
+- **Node.js:** 22, **pnpm:** 10, **OS:** Ubuntu latest
+- **Concurrency:** cancel-in-progress (для одной ветки)
+- **Build:** только при успехе lint + typecheck + test
+
+### 9.0.1 Целевое состояние (планируемое)
 
 ```
 ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐   ┌────────┐
@@ -576,5 +594,5 @@
 ---
 
 *Документ подготовлен: 23 февраля 2026 г.*
-*Обновлено: 26 февраля 2026 г. — добавлены статусы реализации FR*
-*Версия: 2.0 — адаптировано из ТЗ_Веб-сайт_университета_v1.0.docx*
+*Обновлено: 27 февраля 2026 г. — обновлены версии стека, статусы FR, данные CI/CD*
+*Версия: 3.0 — адаптировано из ТЗ_Веб-сайт_университета_v1.0.docx*

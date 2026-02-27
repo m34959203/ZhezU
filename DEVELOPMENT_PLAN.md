@@ -1,7 +1,7 @@
 # План разработки мультиязычного кроссплатформенного приложения ZhezU
 
-**Версия:** 2.0
-**Дата:** 26 февраля 2026
+**Версия:** 3.0
+**Дата:** 27 февраля 2026
 **Проект:** Разработка нового сайта Жезказганского университета имени О.А. Байконурова
 
 > **Целевой сайт:** https://zhezu.edu.kz/
@@ -61,7 +61,7 @@ Error:           #EF4444
 - Mono: JetBrains Mono (код, данные)
 
 ### Backend-архитектор
-**На текущем этапе:** JSON-based CMS реализована (файловое хранилище `data/*.json`). Админ-панель с HMAC-SHA256 аутентификацией. 10 API-эндпоинтов (6 admin + 2 public + 2 general). Архитектура подготовлена для миграции на headless CMS (Strapi/Payload) и PostgreSQL.
+**На текущем этапе:** JSON-based CMS реализована (файловое хранилище `data/*.json` — 6 файлов: news, settings, menu, homepage, university, contact). Админ-панель с HMAC-SHA256 аутентификацией — 11 страниц, 25 API-эндпоинтов (17 admin + 6 public + 2 general). AI-функции (Google Gemini): авто-перевод, анализ, валидация. Авто-публикация в Telegram и Instagram. Загрузка фото. Архитектура подготовлена для миграции на headless CMS (Strapi/Payload) и PostgreSQL.
 
 ### DevOps-инженер
 **Инфраструктура:**
@@ -88,19 +88,20 @@ Error:           #EF4444
 
 | Слой | Технология | Версия | Назначение |
 |------|-----------|--------|-----------|
-| **Framework** | Next.js | 15.x | SSR/SSG, App Router, middleware |
+| **Framework** | Next.js | 16.1.6 | SSR/SSG, App Router, middleware |
+| **UI** | React | 19.2.3 | Библиотека интерфейсов |
 | **Language** | TypeScript | 5.x | Типизация |
 | **Styling** | Tailwind CSS | 4.x | Утилитарные стили, дизайн-токены |
-| **i18n** | next-intl | 3.x | Маршрутизация и переводы |
-| **Theme** | next-themes | 0.4.x | Dark/light переключение |
-| **Icons** | Lucide React | latest | SVG-иконки (замена Material Symbols) |
-| **Forms** | React Hook Form + Zod | latest | Валидация форм |
-| **State** | Zustand | 5.x | Клиентское состояние |
-| **Animation** | Framer Motion | 11.x | Микроанимации |
-| **PWA** | next-pwa / Serwist | latest | Offline, установка |
-| **Linting** | ESLint + Prettier | latest | Качество кода |
-| **Testing** | Vitest + Playwright | latest | Unit + E2E |
-| **Package Manager** | pnpm | 9.x | Быстрый, экономный |
+| **i18n** | next-intl | 4.8.2 | Маршрутизация и переводы |
+| **Theme** | next-themes | 0.4.6 | Dark/light переключение |
+| **Icons** | Lucide React | 0.563.0 | SVG-иконки (замена Material Symbols) |
+| **Forms** | React Hook Form + Zod | 7.71.1 + 4.3.6 | Валидация форм |
+| **State** | Zustand | 5.0.11 | Клиентское состояние |
+| **Animation** | Framer Motion | 12.31.1 | Микроанимации |
+| **Linting** | ESLint + Prettier | 9.x + 3.8.1 | Качество кода |
+| **Testing** | Vitest + Playwright | 4.0.18 + 1.58.2 | Unit + E2E |
+| **CI/CD** | GitHub Actions | — | lint, typecheck, test, build |
+| **Package Manager** | pnpm | 10.x | Быстрый, экономный |
 
 ---
 
@@ -301,15 +302,26 @@ zhezu-app/
 - [x] SEO: hreflang-теги, мета-теги, OG-теги на всех страницах
 
 ### Фаза 3 — Административный интерфейс (завершена)
-- [x] Админ-панель с авторизацией (HMAC-SHA256 токены, httpOnly cookies)
+- [x] Админ-панель с авторизацией (HMAC-SHA256 токены, httpOnly cookies) — **11 страниц**
 - [x] CRUD управление новостями (9 категорий: news, announcement, event, achievement, university, science, students, sport, culture)
 - [x] Редактор настроек сайта (контакты, соцсети, адрес, объявления)
-- [x] Редактор переводов (kk/ru/en)
+- [x] Редактор переводов (kk/ru/en) с AI-авто-переводом
 - [x] Менеджер страниц
-- [x] Публичные API (/api/public/news, /api/public/settings)
-- [x] Привязка всех публичных страниц к админ-данным (Footer, новости, контакты)
-- [x] JSON-based файловое хранилище (data/news.json, data/settings.json)
+- [x] Менеджер навигационного меню (add/remove/reorder)
+- [x] Управление данными главной страницы
+- [x] Управление данными университета (ректор, проректоры + загрузка фото)
+- [x] Управление контактной информацией
+- [x] AI-функции: авто-перевод, анализ контента, валидация (Google Gemini 2.5)
+- [x] Авто-публикация в соцсети (Telegram, Instagram)
+- [x] Загрузка фотографий (upload API)
+- [x] Публичные API — **6 эндпоинтов** (news, settings, menu, homepage, university, contact)
+- [x] Привязка всех публичных страниц к админ-данным
+- [x] JSON-based файловое хранилище — **6 файлов** (news, settings, menu, homepage, university, contact)
 - [x] 16 seed-новостей на 3 языках
+- [x] CI/CD Pipeline (GitHub Actions: lint, typecheck, test, build)
+- [x] Unit-тесты (Vitest 4.0 + React Testing Library) — 7 тестовых файлов
+- [x] Тёмная/светлая тема в админ-панели
+- [x] robots.txt и sitemap.xml
 
 ### Фаза 4 — Студенческие сервисы (планируется)
 - [ ] Личный кабинет студента

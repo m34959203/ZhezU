@@ -112,10 +112,12 @@ export interface UniversityData {
   rector: {
     name: LocalizedString;
     title: LocalizedString;
+    photo?: string;
   };
   proRectors: Array<{
     name: LocalizedString;
     title: LocalizedString;
+    photo?: string;
   }>;
   stats: {
     students: number;

@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { UNIVERSITY } from '@/lib/constants';
+import { getUniversityData } from '@/lib/admin/public-data';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
@@ -22,9 +23,10 @@ export async function generateMetadata({
   };
 }
 
-export default function RectorPage({ params }: { params: { locale: string } }) {
+export default async function RectorPage({ params }: { params: { locale: string } }) {
   const t = useTranslations('university.rector');
   const locale = (params.locale || 'ru') as Locale;
+  const universityData = await getUniversityData();
 
   return (
     <div className="flex flex-col">
@@ -48,14 +50,20 @@ export default function RectorPage({ params }: { params: { locale: string } }) {
               <div className="flex flex-col items-center gap-10 md:flex-row md:items-start">
                 {/* Photo */}
                 <div className="h-64 w-48 shrink-0 overflow-hidden rounded-2xl shadow-lg">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/rector1-682x1024.jpg"
-                    alt={UNIVERSITY.rector.name[locale]}
-                    width={192}
-                    height={256}
-                    className="h-full w-full object-cover"
-                  />
+                  {universityData.rector.photo ? (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src={universityData.rector.photo}
+                      alt={UNIVERSITY.rector.name[locale]}
+                      width={192}
+                      height={256}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="from-primary/10 to-gold/10 flex h-full w-full items-center justify-center bg-gradient-to-br">
+                      <User size={64} className="text-primary/50 dark:text-primary-light/50" />
+                    </div>
+                  )}
                 </div>
 
                 {/* Info */}
@@ -144,8 +152,7 @@ export default function RectorPage({ params }: { params: { locale: string } }) {
           </h2>
           <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
             {UNIVERSITY.proRectors.map((pr, index) => {
-              const photos = ['/WhatsApp_Image_2024-01-23_at_11.39.00_1-682x1024.jpeg', null];
-              const photo = photos[index];
+              const photo = universityData.proRectors[index]?.photo;
               return (
                 <Card key={index} padding="lg" hover>
                   <div className="flex flex-col items-center text-center">
