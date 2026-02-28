@@ -15,7 +15,9 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
+  useSortable,
 } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import {
   Save,
   Loader2,
@@ -42,9 +44,9 @@ import {
   Newspaper,
   Building2,
   Sparkles,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import type {
   HomepageData,
   UniversityData,
@@ -87,7 +89,10 @@ const CATEGORY_NAMES: Record<string, string> = {
   culture: 'Культура',
 };
 
-const BLOCK_TYPE_INFO: Record<BlockType, { label: string; icon: typeof Home; description: string }> = {
+const BLOCK_TYPE_INFO: Record<
+  BlockType,
+  { label: string; icon: typeof Home; description: string }
+> = {
   hero: { label: 'Hero-секция', icon: Home, description: 'Баннер с заголовком и статистикой' },
   programs: { label: 'Программы', icon: BookOpen, description: 'Карусель популярных программ' },
   news: { label: 'Новости', icon: Newspaper, description: 'Блок новостей и событий' },
@@ -115,16 +120,26 @@ function makeId() {
 
 function createDefaultConfig(type: BlockType): BlockConfig {
   switch (type) {
-    case 'hero': return { _type: 'hero' };
-    case 'programs': return { _type: 'programs', maxItems: 4 };
-    case 'news': return { _type: 'news', maxItems: 4 };
-    case 'departments': return { _type: 'departments', columns: 5 };
-    case 'cta': return { _type: 'cta' };
-    case 'text': return { _type: 'text', content: { ...EMPTY_LS }, align: 'left' };
-    case 'image': return { _type: 'image', src: '', alt: '', rounded: true };
-    case 'banner': return { _type: 'banner', title: { ...EMPTY_LS }, overlay: true };
-    case 'html': return { _type: 'html', code: '' };
-    case 'divider': return { _type: 'divider', style: 'line', spacing: 'md' };
+    case 'hero':
+      return { _type: 'hero' };
+    case 'programs':
+      return { _type: 'programs', maxItems: 4 };
+    case 'news':
+      return { _type: 'news', maxItems: 4 };
+    case 'departments':
+      return { _type: 'departments', columns: 5 };
+    case 'cta':
+      return { _type: 'cta' };
+    case 'text':
+      return { _type: 'text', content: { ...EMPTY_LS }, align: 'left' };
+    case 'image':
+      return { _type: 'image', src: '', alt: '', rounded: true };
+    case 'banner':
+      return { _type: 'banner', title: { ...EMPTY_LS }, overlay: true };
+    case 'html':
+      return { _type: 'html', code: '' };
+    case 'divider':
+      return { _type: 'divider', style: 'line', spacing: 'md' };
   }
 }
 
@@ -143,26 +158,32 @@ async function uploadFile(file: File): Promise<string | null> {
   }
 }
 
-/* ─── Sortable Block Item ─── */
+/* ─── Block Item ─── */
 
-function SortableBlockItem({
+function BlockItem({
   block,
+  index,
+  total,
   expanded,
   onToggleExpand,
   onToggleVisibility,
   onRemove,
+  onMoveUp,
+  onMoveDown,
   onUpdateConfig,
   onUpdateSize,
-  programs,
 }: {
   block: PageBlock;
+  index: number;
+  total: number;
   expanded: boolean;
   onToggleExpand: () => void;
   onToggleVisibility: () => void;
   onRemove: () => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
   onUpdateConfig: (config: BlockConfig) => void;
   onUpdateSize: (size: BlockSize) => void;
-  programs: UniversityData['programs'];
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: block.id,
@@ -181,24 +202,47 @@ function SortableBlockItem({
     <div
       ref={setNodeRef}
       style={style}
-      className={`rounded-xl border bg-white dark:bg-slate-900 transition-shadow ${
+      className={`rounded-xl border bg-white transition-shadow dark:bg-slate-900 ${
         isDragging
           ? 'border-blue-400 shadow-xl shadow-blue-500/20'
           : block.visible
             ? 'border-slate-200 dark:border-slate-800'
-            : 'border-dashed border-slate-300 dark:border-slate-700 opacity-60'
+            : 'border-dashed border-slate-300 opacity-60 dark:border-slate-700'
       }`}
     >
       {/* Block Header */}
-      <div className="flex items-center gap-2 px-4 py-3">
-        <button
-          type="button"
-          className="cursor-grab touch-none text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-          {...attributes}
-          {...listeners}
-        >
-          <GripVertical size={18} />
-        </button>
+      <div className="flex items-center gap-1.5 px-3 py-2.5 sm:gap-2 sm:px-4 sm:py-3">
+        {/* Drag handle + Move up/down */}
+        <div className="flex shrink-0 items-center gap-1">
+          <button
+            type="button"
+            className="cursor-grab touch-none text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+            {...attributes}
+            {...listeners}
+          >
+            <GripVertical size={18} />
+          </button>
+          <div className="flex flex-col gap-0.5">
+            <button
+              type="button"
+              disabled={index === 0}
+              onClick={onMoveUp}
+              className="rounded p-0.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 disabled:opacity-30 dark:hover:bg-slate-800"
+              title="Вверх"
+            >
+              <ArrowUp size={12} />
+            </button>
+            <button
+              type="button"
+              disabled={index === total - 1}
+              onClick={onMoveDown}
+              className="rounded p-0.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 disabled:opacity-30 dark:hover:bg-slate-800"
+              title="Вниз"
+            >
+              <ArrowDown size={12} />
+            </button>
+          </div>
+        </div>
 
         <div
           className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
@@ -211,17 +255,23 @@ function SortableBlockItem({
         </div>
 
         <div className="min-w-0 flex-1">
-          <span className="text-sm font-semibold text-slate-900 dark:text-white">{info.label}</span>
-          <span className="ml-2 text-xs text-slate-400">{info.description}</span>
+          <span className="text-sm font-semibold text-slate-900 dark:text-white">
+            {info.label}
+          </span>
+          <span className="ml-2 hidden text-xs text-slate-400 sm:inline">
+            {info.description}
+          </span>
         </div>
 
         <select
           value={block.size}
           onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
-          className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+          className="hidden rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 sm:block dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
         >
           {SIZE_OPTIONS.map((s) => (
-            <option key={s.value} value={s.value}>{s.label}</option>
+            <option key={s.value} value={s.value}>
+              {s.label}
+            </option>
           ))}
         </select>
 
@@ -259,11 +309,24 @@ function SortableBlockItem({
       {/* Block Settings (expanded) */}
       {expanded && (
         <div className="border-t border-slate-100 px-4 py-4 dark:border-slate-800">
-          <BlockConfigEditor
-            block={block}
-            onUpdateConfig={onUpdateConfig}
-            programs={programs}
-          />
+          {/* Size selector for mobile */}
+          <div className="mb-3 sm:hidden">
+            <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
+              Размер
+            </label>
+            <select
+              value={block.size}
+              onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
+              className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+            >
+              {SIZE_OPTIONS.map((s) => (
+                <option key={s.value} value={s.value}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <BlockConfigEditor block={block} onUpdateConfig={onUpdateConfig} />
         </div>
       )}
     </div>
@@ -275,11 +338,9 @@ function SortableBlockItem({
 function BlockConfigEditor({
   block,
   onUpdateConfig,
-  programs: _programs,
 }: {
   block: PageBlock;
   onUpdateConfig: (config: BlockConfig) => void;
-  programs: UniversityData['programs'];
 }) {
   const config = block.config;
   const inputCls =
@@ -289,7 +350,7 @@ function BlockConfigEditor({
     case 'hero':
       return (
         <p className="text-xs text-slate-400">
-          Hero-секция использует настройки заголовка и статистики из раздела выше.
+          Hero-секция использует настройки заголовка и статистики из вкладки «Данные».
         </p>
       );
 
@@ -305,9 +366,7 @@ function BlockConfigEditor({
             min={1}
             max={12}
             value={c.maxItems || 4}
-            onChange={(e) =>
-              onUpdateConfig({ ...c, maxItems: parseInt(e.target.value) || 4 })
-            }
+            onChange={(e) => onUpdateConfig({ ...c, maxItems: parseInt(e.target.value) || 4 })}
             className={inputCls + ' max-w-[120px]'}
           />
         </div>
@@ -326,9 +385,7 @@ function BlockConfigEditor({
             min={1}
             max={12}
             value={c.maxItems || 4}
-            onChange={(e) =>
-              onUpdateConfig({ ...c, maxItems: parseInt(e.target.value) || 4 })
-            }
+            onChange={(e) => onUpdateConfig({ ...c, maxItems: parseInt(e.target.value) || 4 })}
             className={inputCls + ' max-w-[120px]'}
           />
         </div>
@@ -344,9 +401,7 @@ function BlockConfigEditor({
           </label>
           <select
             value={c.columns || 5}
-            onChange={(e) =>
-              onUpdateConfig({ ...c, columns: parseInt(e.target.value) || 5 })
-            }
+            onChange={(e) => onUpdateConfig({ ...c, columns: parseInt(e.target.value) || 5 })}
             className={inputCls + ' max-w-[160px]'}
           >
             <option value={3}>3 колонки</option>
@@ -751,7 +806,9 @@ function AddBlockPanel({ onAdd }: { onAdd: (type: BlockType) => void }) {
 
       {open && (
         <div className="mt-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
-          <p className="mb-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Встроенные секции</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Встроенные секции
+          </p>
           <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
             {builtIn.map((type) => {
               const info = BLOCK_TYPE_INFO[type];
@@ -760,17 +817,24 @@ function AddBlockPanel({ onAdd }: { onAdd: (type: BlockType) => void }) {
                 <button
                   key={type}
                   type="button"
-                  onClick={() => { onAdd(type); setOpen(false); }}
+                  onClick={() => {
+                    onAdd(type);
+                    setOpen(false);
+                  }}
                   className="flex flex-col items-center gap-1.5 rounded-lg border border-slate-100 bg-slate-50 p-3 text-center transition-colors hover:border-blue-300 hover:bg-blue-50 dark:border-slate-800 dark:bg-slate-800/50 dark:hover:border-blue-600 dark:hover:bg-blue-900/20"
                 >
                   <Icon size={20} className="text-blue-500" />
-                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{info.label}</span>
+                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                    {info.label}
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          <p className="mb-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Пользовательские блоки</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Пользовательские блоки
+          </p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
             {custom.map((type) => {
               const info = BLOCK_TYPE_INFO[type];
@@ -779,11 +843,16 @@ function AddBlockPanel({ onAdd }: { onAdd: (type: BlockType) => void }) {
                 <button
                   key={type}
                   type="button"
-                  onClick={() => { onAdd(type); setOpen(false); }}
+                  onClick={() => {
+                    onAdd(type);
+                    setOpen(false);
+                  }}
                   className="flex flex-col items-center gap-1.5 rounded-lg border border-slate-100 bg-slate-50 p-3 text-center transition-colors hover:border-emerald-300 hover:bg-emerald-50 dark:border-slate-800 dark:bg-slate-800/50 dark:hover:border-emerald-600 dark:hover:bg-emerald-900/20"
                 >
                   <Icon size={20} className="text-emerald-500" />
-                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">{info.label}</span>
+                  <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                    {info.label}
+                  </span>
                 </button>
               );
             })}
@@ -842,6 +911,16 @@ export default function HomepageBuilderPage() {
     [data],
   );
 
+  function moveBlock(index: number, direction: -1 | 1) {
+    const newIdx = index + direction;
+    if (newIdx < 0 || newIdx >= blocks.length) return;
+    const updated = [...blocks];
+    const temp = updated[index];
+    updated[index] = updated[newIdx];
+    updated[newIdx] = temp;
+    setBlocks(updated.map((b, i) => ({ ...b, order: i })));
+  }
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
@@ -865,7 +944,11 @@ export default function HomepageBuilderPage() {
   }
 
   function removeBlock(id: string) {
-    setBlocks(blocks.filter((b) => b.id !== id).map((b, i) => ({ ...b, order: i })));
+    setBlocks(
+      blocks
+        .filter((b) => b.id !== id)
+        .map((b, i) => ({ ...b, order: i })),
+    );
     setExpandedBlocks((prev) => {
       const next = new Set(prev);
       next.delete(id);
@@ -1021,17 +1104,20 @@ export default function HomepageBuilderPage() {
                 <div className="space-y-3">
                   {blocks
                     .sort((a, b) => a.order - b.order)
-                    .map((block) => (
-                      <SortableBlockItem
+                    .map((block, index) => (
+                      <BlockItem
                         key={block.id}
                         block={block}
+                        index={index}
+                        total={blocks.length}
                         expanded={expandedBlocks.has(block.id)}
                         onToggleExpand={() => toggleExpand(block.id)}
                         onToggleVisibility={() => toggleVisibility(block.id)}
                         onRemove={() => removeBlock(block.id)}
+                        onMoveUp={() => moveBlock(index, -1)}
+                        onMoveDown={() => moveBlock(index, 1)}
                         onUpdateConfig={(config) => updateBlockConfig(block.id, config)}
                         onUpdateSize={(size) => updateBlockSize(block.id, size)}
-                        programs={programs}
                       />
                     ))}
                 </div>
