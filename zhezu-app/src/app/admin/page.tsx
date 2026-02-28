@@ -12,7 +12,7 @@ import {
   Eye,
   Building2,
 } from 'lucide-react';
-import type { NewsArticle } from '@/lib/admin/types';
+import type { NewsArticle, UniversityData } from '@/lib/admin/types';
 
 interface StatCard {
   label: string;
@@ -25,21 +25,31 @@ interface StatCard {
 
 export default function AdminDashboard() {
   const [news, setNews] = useState<NewsArticle[]>([]);
+  const [university, setUniversity] = useState<UniversityData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/admin/news', { signal: controller.signal })
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) setNews(data);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+
+    Promise.all([
+      fetch('/api/admin/news', { signal: controller.signal })
+        .then((r) => r.json())
+        .then((data) => { if (Array.isArray(data)) setNews(data); })
+        .catch(() => {}),
+      fetch('/api/admin/university', { signal: controller.signal })
+        .then((r) => r.json())
+        .then((data) => { if (data && !data.error) setUniversity(data); })
+        .catch(() => {}),
+    ]).finally(() => setLoading(false));
+
     return () => controller.abort();
   }, []);
 
   const published = news.filter((n) => n.published).length;
+
+  const uniStudents = university?.stats?.students ?? 0;
+  const uniPrograms = university?.stats?.programs ?? 0;
+  const uniDepartments = university?.departments?.length ?? 0;
 
   const stats: StatCard[] = [
     {
@@ -60,8 +70,12 @@ export default function AdminDashboard() {
     },
     {
       label: 'Университет',
-      value: '—',
-      change: 'Данные вуза',
+      value: uniStudents > 0 ? String(uniStudents) : uniDepartments > 0 ? String(uniDepartments) : '—',
+      change: uniStudents > 0
+        ? `${uniPrograms} программ`
+        : uniDepartments > 0
+          ? 'кафедр'
+          : 'Заполните данные',
       icon: <Building2 size={20} />,
       color: 'bg-purple-500/10 text-purple-500',
       href: '/admin/university',
