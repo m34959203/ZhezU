@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       body: body.body || { kk: '', ru: '', en: '' },
       category: body.category || 'news',
       image: body.image || '',
-      published: body.published ?? false,
+      published: body.published ?? true,
       pinned: body.pinned ?? false,
       author: body.author || 'Администратор',
       createdAt: now,

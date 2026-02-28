@@ -42,6 +42,7 @@ export default function AdminNewsPage() {
   const [search, setSearch] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [publishingAll, setPublishingAll] = useState(false);
   const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
 
   useEffect(() => {
@@ -79,6 +80,16 @@ export default function AdminNewsPage() {
     setDeleting(null);
   }
 
+  async function publishAll() {
+    if (!confirm('Опубликовать все черновики?')) return;
+    setPublishingAll(true);
+    await fetch('/api/admin/news/publish-all', { method: 'POST' });
+    refresh();
+    setPublishingAll(false);
+  }
+
+  const hasDrafts = news.some((n) => !n.published);
+
   const filtered = news.filter((n) => {
     const matchSearch = n.title.ru.toLowerCase().includes(search.toLowerCase());
     const matchCategory = !filterCategory || n.category === filterCategory;
@@ -115,6 +126,17 @@ export default function AdminNewsPage() {
             </button>
           ))}
         </div>
+        {hasDrafts && (
+          <button
+            type="button"
+            onClick={publishAll}
+            disabled={publishingAll}
+            className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 disabled:opacity-50 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
+          >
+            {publishingAll ? <Loader2 size={16} className="animate-spin" /> : <Eye size={16} />}
+            Опубликовать все
+          </button>
+        )}
         <Link
           href="/admin/news/new"
           className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
