@@ -10,18 +10,14 @@ import {
 import {
   ArrowRight,
   BookOpen,
-  Briefcase,
-  GraduationCap,
   Users,
   Award,
   TrendingUp,
-  Brain,
   Zap,
   Wrench,
   Mountain,
   Landmark,
   Calendar,
-  Sparkles,
 } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -286,79 +282,6 @@ export default function HomePage() {
                     </p>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════ WHY CHOOSE ZHEZU — Asymmetric Layout ═══════════════════ */}
-      <section className="bg-surface-light dark:bg-surface-dark py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 max-w-2xl">
-            <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
-              {t('features.title')}
-            </h2>
-            <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg">
-              {t('features.subtitle')}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {/* Featured AI Card — spans 2 columns */}
-            <div className="premium-card premium-card-gold group relative overflow-hidden p-8 md:col-span-2 md:p-10">
-              <div className="bg-gold/5 group-hover:bg-gold/10 absolute top-0 right-0 h-40 w-40 rounded-full blur-3xl transition-all" />
-              <div className="relative">
-                <div className="bg-gold/10 dark:bg-gold/20 mb-6 flex h-14 w-14 items-center justify-center rounded-xl">
-                  <Brain size={28} className="text-gold dark:text-gold-light" />
-                </div>
-                <div className="text-gold dark:text-gold-light bg-gold/10 dark:bg-gold/20 mb-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold">
-                  <Sparkles size={12} />
-                  AI-Центр
-                </div>
-                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-3 text-2xl font-bold lg:text-3xl">
-                  {t('features.ai')}
-                </h3>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark mb-6 max-w-lg text-base leading-relaxed lg:text-lg">
-                  {t('features.aiDesc')}
-                </p>
-                <Link
-                  href="/ai-center"
-                  className="text-gold dark:text-gold-light group/link inline-flex items-center gap-1.5 text-sm font-bold"
-                >
-                  {tActions('learnMore')}
-                  <ArrowRight
-                    size={14}
-                    className="transition-transform group-hover/link:translate-x-0.5"
-                  />
-                </Link>
-              </div>
-            </div>
-
-            {/* Two smaller stacked cards */}
-            <div className="flex flex-col gap-6">
-              <div className="premium-card group flex-1 p-6 lg:p-8">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 transition-transform group-hover:scale-110 dark:bg-blue-900/20">
-                  <GraduationCap size={24} className="text-primary dark:text-primary-light" />
-                </div>
-                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-lg font-bold">
-                  {t('features.faculty')}
-                </h3>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
-                  {t('features.facultyDesc')}
-                </p>
-              </div>
-
-              <div className="premium-card group flex-1 p-6 lg:p-8">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-green-50 transition-transform group-hover:scale-110 dark:bg-green-900/20">
-                  <Briefcase size={24} className="text-green-600 dark:text-green-400" />
-                </div>
-                <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-lg font-bold">
-                  {t('features.career')}
-                </h3>
-                <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm leading-relaxed">
-                  {t('features.careerDesc')}
-                </p>
               </div>
             </div>
           </div>
