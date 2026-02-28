@@ -6,6 +6,7 @@ import type {
   UniversityData,
   NewsArticle,
   ResolvedHomepageStat,
+  BlockSpan,
   ProgramsBlockConfig,
   NewsBlockConfig,
   DepartmentsBlockConfig,
@@ -16,6 +17,7 @@ import type {
   HtmlBlockConfig,
   DividerBlockConfig,
 } from '@/lib/admin/types';
+import { BLOCK_SPAN_CLS, BLOCK_SPAN_COLS } from '@/lib/admin/types';
 import HeroBlock from './HeroBlock';
 import ProgramsBlock from './ProgramsBlock';
 import NewsBlock from './NewsBlock';
@@ -34,22 +36,80 @@ interface BlockRendererProps {
   newsItems: NewsArticle[];
 }
 
+/** Group consecutive non-full blocks into grid rows */
+function groupIntoRows(blocks: PageBlock[]): Array<PageBlock | PageBlock[]> {
+  const rows: Array<PageBlock | PageBlock[]> = [];
+  let currentRow: PageBlock[] = [];
+  let currentCols = 0;
+
+  function flushRow() {
+    if (currentRow.length === 1 && (currentRow[0].span || 'full') === 'full') {
+      rows.push(currentRow[0]);
+    } else if (currentRow.length > 0) {
+      rows.push(currentRow);
+    }
+    currentRow = [];
+    currentCols = 0;
+  }
+
+  for (const block of blocks) {
+    const span: BlockSpan = block.span || 'full';
+    if (span === 'full') {
+      flushRow();
+      rows.push(block);
+    } else {
+      const cols = BLOCK_SPAN_COLS[span];
+      if (currentCols + cols > 12) {
+        flushRow();
+      }
+      currentRow.push(block);
+      currentCols += cols;
+      if (currentCols >= 12) {
+        flushRow();
+      }
+    }
+  }
+  flushRow();
+
+  return rows;
+}
+
 export default function BlockRenderer({ blocks, homepageData, uniData, newsItems }: BlockRendererProps) {
   const visibleBlocks = blocks
     .filter((b) => b.visible)
     .sort((a, b) => a.order - b.order);
 
+  const rows = groupIntoRows(visibleBlocks);
+
   return (
     <>
-      {visibleBlocks.map((block) => (
-        <RenderBlock
-          key={block.id}
-          block={block}
-          homepageData={homepageData}
-          uniData={uniData}
-          newsItems={newsItems}
-        />
-      ))}
+      {rows.map((row, i) => {
+        if (Array.isArray(row)) {
+          return (
+            <div key={row.map((b) => b.id).join('-')} className="grid grid-cols-12 gap-0">
+              {row.map((block) => (
+                <div key={block.id} className={BLOCK_SPAN_CLS[block.span || 'full']}>
+                  <RenderBlock
+                    block={block}
+                    homepageData={homepageData}
+                    uniData={uniData}
+                    newsItems={newsItems}
+                  />
+                </div>
+              ))}
+            </div>
+          );
+        }
+        return (
+          <RenderBlock
+            key={row.id}
+            block={row}
+            homepageData={homepageData}
+            uniData={uniData}
+            newsItems={newsItems}
+          />
+        );
+      })}
     </>
   );
 }
