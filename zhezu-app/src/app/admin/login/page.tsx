@@ -35,11 +35,11 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       {/* Background decoration */}
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-0 right-0 -mt-40 -mr-40 h-96 w-96 rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 -mb-40 -ml-40 h-96 w-96 rounded-full bg-indigo-600/10 blur-[120px]" />
+        <div className="absolute top-0 right-0 -mt-40 -mr-40 h-96 w-96 rounded-full bg-blue-400/10 blur-[120px]" />
+        <div className="absolute bottom-0 left-0 -mb-40 -ml-40 h-96 w-96 rounded-full bg-indigo-400/10 blur-[120px]" />
       </div>
 
       <div className="relative w-full max-w-md">
@@ -48,8 +48,8 @@ export default function AdminLoginPage() {
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-500/25">
             <GraduationCap size={32} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Админ-панель</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-bold text-slate-900">Админ-панель</h1>
+          <p className="mt-1 text-sm text-slate-500">
             Жезказганский университет им. О.А. Байконурова
           </p>
         </div>
@@ -57,9 +57,9 @@ export default function AdminLoginPage() {
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-2xl border border-slate-800 bg-slate-900/80 p-8 shadow-2xl backdrop-blur"
+          className="rounded-2xl border border-slate-200 bg-white p-8 shadow-xl"
         >
-          <label className="mb-2 block text-sm font-medium text-slate-300">
+          <label className="mb-2 block text-sm font-medium text-slate-700">
             Пароль администратора
           </label>
           <div className="relative mb-4">
@@ -68,20 +68,20 @@ export default function AdminLoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Введите пароль..."
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 pr-12 text-white placeholder:text-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
+              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 pr-12 text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none"
               autoFocus
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-white"
+              className="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-slate-700"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           </div>
 
           {error && (
-            <div className="mb-4 rounded-lg bg-red-500/10 px-4 py-2.5 text-sm text-red-400">
+            <div className="mb-4 rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-600">
               {error}
             </div>
           )}
@@ -101,10 +101,6 @@ export default function AdminLoginPage() {
             )}
           </button>
         </form>
-
-        <p className="mt-6 text-center text-xs text-slate-500">
-          Установите переменную ADMIN_SECRET в .env
-        </p>
       </div>
     </div>
   );
