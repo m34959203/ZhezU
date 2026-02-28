@@ -7,6 +7,7 @@ import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/types';
 import type { NewsArticle } from '@/lib/admin/types';
+import { formatDateLong, formatDateShort } from '@/lib/format-date';
 
 /* ------------------------------------------------------------------ */
 /*  Constants                                                           */
@@ -97,7 +98,6 @@ export default function NewsPage() {
     return () => controller.abort();
   }, []);
 
-  const dateFmt = locale === 'kk' ? 'kk-KZ' : locale === 'en' ? 'en-US' : 'ru-RU';
   const filtered =
     activeCategory === 'all' ? articles : articles.filter((a) => a.category === activeCategory);
   const featured = articles[0];
@@ -226,11 +226,7 @@ export default function NewsPage() {
                         &bull;
                       </span>
                       <span className="text-text-secondary-light dark:text-text-secondary-dark">
-                        {new Date(featured.createdAt).toLocaleDateString(dateFmt, {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
+                        {formatDateLong(featured.createdAt, locale)}
                       </span>
                     </div>
                     <h2 className="text-text-primary-light dark:text-text-primary-dark mt-4 text-2xl font-bold tracking-tight lg:text-3xl">
@@ -287,11 +283,7 @@ export default function NewsPage() {
                         {renderCategoryBadge(article.category)}
                         <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1">
                           <Calendar size={12} />
-                          {new Date(article.createdAt).toLocaleDateString(dateFmt, {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                          })}
+                          {formatDateShort(article.createdAt, locale)}
                         </span>
                       </div>
                       <h3 className="group-hover:text-primary dark:group-hover:text-primary-light text-text-primary-light dark:text-text-primary-dark mt-3 text-lg leading-tight font-bold transition-colors">

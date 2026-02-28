@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import type { NewsArticle } from '@/lib/news-data';
 import type { Locale } from '@/types';
 import Image from 'next/image';
+import { formatDateLong } from '@/lib/format-date';
 
 interface NewsCardProps {
   article: NewsArticle;
@@ -29,13 +30,7 @@ const CATEGORY_LABELS: Record<string, Record<Locale, string>> = {
 };
 
 function formatDate(dateStr: string, locale: Locale): string {
-  const date = new Date(dateStr);
-  const localeMap: Record<Locale, string> = { kk: 'kk-KZ', ru: 'ru-RU', en: 'en-US' };
-  return date.toLocaleDateString(localeMap[locale], {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  return formatDateLong(dateStr, locale);
 }
 
 export function NewsCard({ article, locale }: NewsCardProps) {

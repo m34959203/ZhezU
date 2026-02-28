@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
 import { ArrowLeft, Calendar, User } from 'lucide-react';
 import type { Locale } from '@/types';
+import { formatDateLong } from '@/lib/format-date';
 
 export async function generateMetadata({
   params,
@@ -64,10 +65,7 @@ export default async function NewsDetailPage({
           <div className="text-text-secondary-light dark:text-text-secondary-dark border-border-light dark:border-border-dark mb-8 flex items-center gap-4 border-b pb-8 text-sm">
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
-              {new Date(article.createdAt).toLocaleDateString(
-                l === 'kk' ? 'kk-KZ' : l === 'en' ? 'en-US' : 'ru-RU',
-                { year: 'numeric', month: 'long', day: 'numeric' },
-              )}
+              {formatDateLong(article.createdAt, l)}
             </span>
             <span className="flex items-center gap-1.5">
               <User size={14} />
