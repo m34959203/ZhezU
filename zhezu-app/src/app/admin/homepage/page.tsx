@@ -65,6 +65,7 @@ import type {
   DepartmentsBlockConfig,
   LocalizedString,
 } from '@/lib/admin/types';
+import { BLOCK_SIZE_SUPPORT } from '@/lib/admin/types';
 
 /* ─── Constants ─── */
 
@@ -263,17 +264,19 @@ function BlockItem({
           </span>
         </div>
 
-        <select
-          value={block.size}
-          onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
-          className="hidden rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 sm:block dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
-        >
-          {SIZE_OPTIONS.map((s) => (
-            <option key={s.value} value={s.value}>
-              {s.label}
-            </option>
-          ))}
-        </select>
+        {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
+          <select
+            value={block.size}
+            onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
+            className="hidden rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 sm:block dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+          >
+            {SIZE_OPTIONS.filter((s) => BLOCK_SIZE_SUPPORT[block.type].includes(s.value)).map((s) => (
+              <option key={s.value} value={s.value}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+        )}
 
         <button
           type="button"
@@ -310,22 +313,24 @@ function BlockItem({
       {expanded && (
         <div className="border-t border-slate-100 px-4 py-4 dark:border-slate-800">
           {/* Size selector for mobile */}
-          <div className="mb-3 sm:hidden">
-            <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
-              Размер
-            </label>
-            <select
-              value={block.size}
-              onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
-              className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
-            >
-              {SIZE_OPTIONS.map((s) => (
-                <option key={s.value} value={s.value}>
-                  {s.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
+            <div className="mb-3 sm:hidden">
+              <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                Размер
+              </label>
+              <select
+                value={block.size}
+                onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
+                className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+              >
+                {SIZE_OPTIONS.filter((s) => BLOCK_SIZE_SUPPORT[block.type].includes(s.value)).map((s) => (
+                  <option key={s.value} value={s.value}>
+                    {s.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <BlockConfigEditor block={block} onUpdateConfig={onUpdateConfig} />
         </div>
       )}

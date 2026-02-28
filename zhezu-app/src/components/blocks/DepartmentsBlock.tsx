@@ -5,7 +5,8 @@ import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { BookOpen, Zap, Wrench, Mountain, Landmark } from 'lucide-react';
 import type { Locale } from '@/types';
-import type { UniversityData } from '@/lib/admin/types';
+import type { UniversityData, BlockSize } from '@/lib/admin/types';
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 const DEPT_ICON_MAP: Record<string, typeof BookOpen> = {
   'pedagogy-philology': BookOpen,
@@ -26,9 +27,10 @@ const DEPT_COLORS: Record<string, { bg: string; text: string; darkBg: string; da
 interface DepartmentsBlockProps {
   departments: UniversityData['departments'];
   columns?: number;
+  size?: BlockSize;
 }
 
-export default function DepartmentsBlock({ departments, columns }: DepartmentsBlockProps) {
+export default function DepartmentsBlock({ departments, columns, size = 'full' }: DepartmentsBlockProps) {
   const t = useTranslations('home');
   const locale = useLocale() as Locale;
   const cols = columns || 5;
@@ -41,7 +43,7 @@ export default function DepartmentsBlock({ departments, columns }: DepartmentsBl
 
   return (
     <section className="bg-bg-light dark:bg-bg-dark py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-10 text-3xl font-bold md:text-4xl">
           {t('departments.title')}
         </h2>

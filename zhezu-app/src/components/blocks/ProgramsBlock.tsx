@@ -6,7 +6,8 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 import type { Locale } from '@/types';
-import type { UniversityData } from '@/lib/admin/types';
+import type { UniversityData, BlockSize } from '@/lib/admin/types';
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 const DEGREE_COLORS: Record<string, string> = {
   bachelor: 'bg-[#e6b325]',
@@ -18,9 +19,10 @@ interface ProgramsBlockProps {
   programs: UniversityData['programs'];
   programImages: Record<string, string>;
   maxItems?: number;
+  size?: BlockSize;
 }
 
-export default function ProgramsBlock({ programs, programImages, maxItems = 4 }: ProgramsBlockProps) {
+export default function ProgramsBlock({ programs, programImages, maxItems = 4, size = 'full' }: ProgramsBlockProps) {
   const t = useTranslations('home');
   const tActions = useTranslations('actions');
   const locale = useLocale() as Locale;
@@ -31,7 +33,7 @@ export default function ProgramsBlock({ programs, programImages, maxItems = 4 }:
 
   return (
     <section className="bg-bg-light dark:bg-bg-dark overflow-hidden py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <div className="mb-10 flex items-end justify-between">
           <div>
             <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-2 text-3xl font-bold md:text-4xl">

@@ -215,6 +215,28 @@ export type BlockType =
 
 export type BlockSize = 'full' | 'wide' | 'medium' | 'narrow';
 
+/** Tailwind max-width class per block size */
+export const BLOCK_SIZE_CLS: Record<BlockSize, string> = {
+  full: 'max-w-7xl',
+  wide: 'max-w-5xl',
+  medium: 'max-w-3xl',
+  narrow: 'max-w-xl',
+};
+
+/** Allowed sizes per block type — admin UI hides dropdown when only 1 option */
+export const BLOCK_SIZE_SUPPORT: Record<BlockType, BlockSize[]> = {
+  hero: ['full'],
+  programs: ['full', 'wide'],
+  news: ['full', 'wide'],
+  departments: ['full', 'wide'],
+  cta: ['full', 'wide', 'medium'],
+  banner: ['full', 'wide', 'medium'],
+  text: ['full', 'wide', 'medium', 'narrow'],
+  image: ['full', 'wide', 'medium', 'narrow'],
+  html: ['full', 'wide', 'medium', 'narrow'],
+  divider: ['full', 'wide', 'medium', 'narrow'],
+};
+
 export interface PageBlock {
   id: string;
   type: BlockType;

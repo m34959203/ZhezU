@@ -1,6 +1,7 @@
 'use client';
 
-import type { DividerBlockConfig } from '@/lib/admin/types';
+import type { DividerBlockConfig, BlockSize } from '@/lib/admin/types';
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 const SPACING: Record<string, string> = {
   sm: 'py-4',
@@ -10,15 +11,16 @@ const SPACING: Record<string, string> = {
 
 interface DividerBlockProps {
   config: DividerBlockConfig;
+  size: BlockSize;
 }
 
-export default function DividerBlock({ config }: DividerBlockProps) {
+export default function DividerBlock({ config, size }: DividerBlockProps) {
   const spacing = SPACING[config.spacing || 'md'];
   const style = config.style || 'line';
 
   return (
     <div className={spacing}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         {style === 'line' && (
           <hr className="border-border-light dark:border-border-dark" />
         )}
