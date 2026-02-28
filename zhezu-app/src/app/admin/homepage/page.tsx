@@ -281,7 +281,7 @@ function BlockItem({
           )}
         </div>
 
-        {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
+        {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (!block.span || block.span === 'full') && (
           <select
             value={block.size}
             onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
@@ -343,7 +343,7 @@ function BlockItem({
         <div className="border-t border-slate-100 px-4 py-4 dark:border-slate-800">
           {/* Size selector for mobile */}
           <div className="mb-3 flex gap-3">
-            {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
+            {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (!block.span || block.span === 'full') && (
               <div className="flex-1 sm:hidden">
                 <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
                   Размер
