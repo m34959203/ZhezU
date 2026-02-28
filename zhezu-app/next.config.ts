@@ -6,7 +6,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const nextConfig: NextConfig = {
   output: 'standalone',
   experimental: {
-    cpus: 2,
+    cpus: 1,
   },
   images: {
     remotePatterns: [
