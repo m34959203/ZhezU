@@ -15,7 +15,7 @@
 |---------|----------|
 | Публичных страниц | **82** |
 | Административных страниц | **11** |
-| React-компонентов | **30** |
+| React-компонентов | **41** |
 | API-эндпоинтов | **25** |
 | Языков интерфейса | **3** (қазақша, русский, English) |
 | Namespaces переводов | **22** |
@@ -40,6 +40,7 @@
 - Мега-меню с 6-ю разделами верхнего уровня
 - SEO-оптимизация (hreflang, мета-теги, OG-теги, robots.txt, sitemap.xml)
 - Админ-панель с JSON-based CMS (новости, настройки, переводы, меню, страницы, университет, главная)
+- **Конструктор страниц (Page Builder)** — drag-and-drop управление блоками главной (10 типов: hero, программы, новости, кафедры, CTA, текст, изображение, баннер, HTML, разделитель)
 - Аутентификация администратора (HMAC-SHA256 токены, httpOnly cookies)
 - AI-функции: авто-перевод, анализ контента, валидация переводов (Google Gemini)
 - Авто-публикация в соцсети (Telegram, Instagram)
@@ -60,6 +61,7 @@
 | [Tailwind CSS](https://tailwindcss.com/) | 4.x | Утилитарные CSS-стили |
 | [next-intl](https://next-intl.dev/) | 4.8.2 | Интернационализация (i18n) |
 | [next-themes](https://github.com/pacocoursey/next-themes) | 0.4.6 | Переключение тем |
+| [@dnd-kit](https://dndkit.com/) | 6.3.1 | Drag-and-drop (конструктор страниц) |
 | [Framer Motion](https://motion.dev/) | 12.31.1 | Анимации |
 | [Zustand](https://zustand.docs.pmnd.rs/) | 5.0.11 | Управление состоянием |
 | [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/) | 7.71.1 + 4.3.6 | Формы и валидация |
@@ -100,7 +102,7 @@ ZhezU/
 │   │   │   │   ├── translations/      # Редактор переводов
 │   │   │   │   ├── pages/             # Управление страницами
 │   │   │   │   ├── menu/              # Управление меню навигации
-│   │   │   │   ├── homepage/          # Настройка главной страницы
+│   │   │   │   ├── homepage/          # Конструктор страниц (Page Builder)
 │   │   │   │   ├── university/        # Данные университета (ректор, проректоры)
 │   │   │   │   └── contact/           # Контактная информация
 │   │   │   └── api/                   # API маршруты (25 эндпоинтов)
@@ -132,6 +134,9 @@ ZhezU/
 │   │   │   ├── layout/               # Каркас (5): Header, Footer, MobileMenu,
 │   │   │   │                          #   LanguageSwitcher, ThemeToggle
 │   │   │   ├── cards/                 # Карточки (4): NewsCard, EventCard, ProgramCard, StatCard
+│   │   │   ├── blocks/                # Блоки конструктора (11): BlockRenderer, HeroBlock,
+│   │   │   │                          #   ProgramsBlock, NewsBlock, DepartmentsBlock, CtaBlock,
+│   │   │   │                          #   TextBlock, ImageBlock, BannerBlock, HtmlBlock, DividerBlock
 │   │   │   ├── admin/                 # Админ (2): AdminHeader, AdminSidebar
 │   │   │   ├── search/               # Поиск (1): SearchOverlay
 │   │   │   ├── talent/               # Визуализация (5): SkillMap, StudentCard,
@@ -270,6 +275,26 @@ pnpm test:ci          # Запуск тестов с покрытием
 pnpm typecheck        # TypeScript проверка типов
 ```
 
+### Деплой на Plesk (hoster.kz)
+
+```bash
+cd zhezu-app
+
+# 1. Установить зависимости
+pnpm install
+
+# 2. Собрать билд и подготовить папку deploy/
+bash scripts/deploy.sh
+
+# 3. Закоммитить и запушить
+cd ..
+git add -A
+git commit -m "build: описание изменений"
+git push
+```
+
+> **ВАЖНО:** Папка `deploy/` содержит standalone-билд Next.js и коммитится в git. Plesk забирает изменения из git. Без шага `bash scripts/deploy.sh` изменения кода НЕ появятся на сайте!
+
 ### Docker
 
 ```bash
@@ -312,7 +337,7 @@ docker run -p 3000:3000 -e ADMIN_SECRET=your-secret zhezu-app
 | Переводы | Редактор переводов (kk/ru/en) с AI-авто-переводом |
 | Страницы | Управление страницами |
 | Меню | Управление навигационным меню (add/remove/reorder) |
-| Главная | Настройка секций главной страницы |
+| **Конструктор** | **Page Builder** — drag-and-drop управление блоками главной (10 типов) |
 | Университет | Данные о ректоре, проректорах + загрузка фото |
 | Контакты | Редактирование контактной информации |
 
