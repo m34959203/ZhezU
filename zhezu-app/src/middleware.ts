@@ -1,8 +1,10 @@
 import createIntlMiddleware from 'next-intl/middleware';
+import { NextResponse, type NextRequest } from 'next/server';
 import { routing } from './i18n/routing';
-import { type NextRequest } from 'next/server';
 
 const intlMiddleware = createIntlMiddleware(routing);
+
+const ADMIN_COOKIE = 'admin_token';
 
 const securityHeaders: Record<string, string> = {
   'X-Content-Type-Options': 'nosniff',
@@ -25,15 +27,28 @@ const securityHeaders: Record<string, string> = {
 };
 
 export default function middleware(request: NextRequest) {
-  const response = intlMiddleware(request);
+  const { pathname } = request.nextUrl;
 
-  for (const [key, value] of Object.entries(securityHeaders)) {
-    response.headers.set(key, value);
+  // Admin auth guard: redirect to login if no token cookie
+  if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
+    const token = request.cookies.get(ADMIN_COOKIE)?.value;
+    if (!token) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
   }
 
-  return response;
+  // i18n middleware for public pages
+  if (pathname === '/' || pathname.match(/^\/(kk|ru|en)(\/|$)/)) {
+    const response = intlMiddleware(request);
+    for (const [key, value] of Object.entries(securityHeaders)) {
+      response.headers.set(key, value);
+    }
+    return response;
+  }
+
+  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/', '/(kk|ru|en)/:path*'],
+  matcher: ['/', '/(kk|ru|en)/:path*', '/admin/:path*'],
 };
