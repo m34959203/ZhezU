@@ -1,0 +1,49 @@
+{
+  "departments": [
+    {
+      "icon": "GraduationCap",
+      "title": "Приёмная комиссия",
+      "email": "admissions@zhezu.edu.kz",
+      "phone": "+7 (7102) 74-00-11",
+      "color": "text-blue-600 dark:text-blue-400",
+      "bg": "bg-blue-50 dark:bg-blue-900/20"
+    },
+    {
+      "icon": "Building2",
+      "title": "Учебный отдел",
+      "email": "academic@zhezu.edu.kz",
+      "phone": "+7 (7102) 74-00-12",
+      "color": "text-emerald-600 dark:text-emerald-400",
+      "bg": "bg-emerald-50 dark:bg-emerald-900/20"
+    },
+    {
+      "icon": "Users",
+      "title": "Студенческий сервис",
+      "email": "students@zhezu.edu.kz",
+      "phone": "+7 (7102) 74-00-13",
+      "color": "text-purple-600 dark:text-purple-400",
+      "bg": "bg-purple-50 dark:bg-purple-900/20"
+    },
+    {
+      "icon": "Monitor",
+      "title": "IT-поддержка",
+      "email": "support@zhezu.edu.kz",
+      "phone": "+7 (7102) 74-00-22",
+      "color": "text-orange-600 dark:text-orange-400",
+      "bg": "bg-orange-50 dark:bg-orange-900/20"
+    }
+  ],
+  "subjectLabels": {
+    "admission": "Поступление",
+    "academic": "Учебные программы",
+    "technical": "Техническая поддержка",
+    "other": "Другое"
+  },
+  "openingHours": [
+    { "day": "Пн - Пт", "hours": "09:00 - 18:00", "closed": false },
+    { "day": "Суббота", "hours": "10:00 - 14:00", "closed": false },
+    { "day": "Воскресенье", "hours": "Закрыто", "closed": true }
+  ],
+  "workingHoursShort": "Пн-Пт: 09:00 — 18:00",
+  "googleMapsQuery": "Zhezkazgan+University"
+}

@@ -1,0 +1,17 @@
+{
+  "app/admin/news/[id]/page.tsx -> @/components/admin/ImageUploadModal": {
+    "id": 9185,
+    "files": [
+      "static/chunks/9185.8651be8ff9fae772.js"
+    ]
+  },
+  "app/admin/news/[id]/page.tsx -> @/components/admin/RichTextEditor": {
+    "id": 9606,
+    "files": [
+      "static/chunks/952f8a39.f7b86bde0e0fda4b.js",
+      "static/chunks/b9919261.02d43764354cb914.js",
+      "static/chunks/4302.7f700c27f2b79521.js",
+      "static/chunks/9606.430eac6dd256132f.js"
+    ]
+  }
+}
