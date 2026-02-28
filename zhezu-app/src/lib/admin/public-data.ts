@@ -5,6 +5,7 @@
 import { eq, and, desc } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { news, settings } from '@/lib/db/schema';
+import { ensureSeeded } from '@/lib/db/auto-seed';
 import type {
   NewsArticle,
   SiteSettings,
@@ -16,19 +17,27 @@ import type {
 
 /* ─── Helpers ─── */
 
+/** MariaDB may return JSON columns as strings — parse if needed */
+function parseJson<T>(val: T | string): T {
+  if (typeof val === 'string') {
+    try { return JSON.parse(val) as T; } catch { /* fall through */ }
+  }
+  return val as T;
+}
+
 function rowToArticle(row: typeof news.$inferSelect): NewsArticle {
   return {
     id: row.id,
     slug: row.slug,
-    title: row.title,
-    excerpt: row.excerpt,
-    body: row.body,
+    title: parseJson(row.title),
+    excerpt: parseJson(row.excerpt),
+    body: parseJson(row.body),
     category: row.category as NewsArticle['category'],
     image: row.image || '',
     published: row.published,
     pinned: row.pinned,
     author: row.author,
-    socialPublished: row.socialPublished ?? undefined,
+    socialPublished: parseJson(row.socialPublished) ?? undefined,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
@@ -36,9 +45,15 @@ function rowToArticle(row: typeof news.$inferSelect): NewsArticle {
 
 async function getSetting<T>(key: string, defaults: T): Promise<T> {
   try {
+    await ensureSeeded();
     const [row] = await db.select().from(settings).where(eq(settings.key, key)).limit(1);
     if (!row) return defaults;
-    return row.value as T;
+    // MariaDB may return JSON columns as strings — parse if needed
+    const val = row.value;
+    if (typeof val === 'string') {
+      try { return JSON.parse(val) as T; } catch { return defaults; }
+    }
+    return val as T;
   } catch {
     // DB unavailable (e.g. during build) — return defaults
     return defaults;
@@ -49,6 +64,7 @@ async function getSetting<T>(key: string, defaults: T): Promise<T> {
 
 export async function getPublishedNews(): Promise<NewsArticle[]> {
   try {
+    await ensureSeeded();
     const rows = await db
       .select()
       .from(news)
