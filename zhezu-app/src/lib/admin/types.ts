@@ -189,10 +189,113 @@ export interface HomepageData {
   stats: string[];
   programImages: Record<string, string>;
   categoryLabels: Record<string, string>;
+  /** Page-builder blocks — ordered array. If empty, legacy layout is used. */
+  blocks?: PageBlock[];
 }
 
 /** Resolved stat ready for display on the public homepage */
 export interface ResolvedHomepageStat {
   key: string;
   value: string;
+}
+
+/* ─── Page Builder Block Types ─── */
+
+export type BlockType =
+  | 'hero'
+  | 'programs'
+  | 'news'
+  | 'departments'
+  | 'cta'
+  | 'text'
+  | 'image'
+  | 'banner'
+  | 'html'
+  | 'divider';
+
+export type BlockSize = 'full' | 'wide' | 'medium' | 'narrow';
+
+export interface PageBlock {
+  id: string;
+  type: BlockType;
+  order: number;
+  visible: boolean;
+  size: BlockSize;
+  config: BlockConfig;
+}
+
+/** Union config — each block type has its own config shape */
+export type BlockConfig =
+  | HeroBlockConfig
+  | ProgramsBlockConfig
+  | NewsBlockConfig
+  | DepartmentsBlockConfig
+  | CtaBlockConfig
+  | TextBlockConfig
+  | ImageBlockConfig
+  | BannerBlockConfig
+  | HtmlBlockConfig
+  | DividerBlockConfig;
+
+export interface HeroBlockConfig {
+  _type: 'hero';
+}
+
+export interface ProgramsBlockConfig {
+  _type: 'programs';
+  maxItems?: number;
+}
+
+export interface NewsBlockConfig {
+  _type: 'news';
+  maxItems?: number;
+}
+
+export interface DepartmentsBlockConfig {
+  _type: 'departments';
+  columns?: number;
+}
+
+export interface CtaBlockConfig {
+  _type: 'cta';
+  title?: LocalizedString;
+  description?: LocalizedString;
+  buttonText?: LocalizedString;
+  buttonLink?: string;
+}
+
+export interface TextBlockConfig {
+  _type: 'text';
+  content: LocalizedString;
+  align?: 'left' | 'center' | 'right';
+}
+
+export interface ImageBlockConfig {
+  _type: 'image';
+  src: string;
+  alt?: string;
+  caption?: LocalizedString;
+  rounded?: boolean;
+}
+
+export interface BannerBlockConfig {
+  _type: 'banner';
+  backgroundImage?: string;
+  backgroundColor?: string;
+  title: LocalizedString;
+  description?: LocalizedString;
+  buttonText?: LocalizedString;
+  buttonLink?: string;
+  overlay?: boolean;
+}
+
+export interface HtmlBlockConfig {
+  _type: 'html';
+  code: string;
+}
+
+export interface DividerBlockConfig {
+  _type: 'divider';
+  style?: 'line' | 'space' | 'dots';
+  spacing?: 'sm' | 'md' | 'lg';
 }
