@@ -215,6 +215,29 @@ export type BlockType =
 
 export type BlockSize = 'full' | 'wide' | 'medium' | 'narrow';
 
+/** How much of the row a block occupies — 'full' = entire row (default) */
+export type BlockSpan = 'full' | '1/2' | '1/3' | '2/3' | '1/4' | '3/4';
+
+/** CSS grid col-span class per span value (12-column grid) */
+export const BLOCK_SPAN_CLS: Record<BlockSpan, string> = {
+  full: 'col-span-12',
+  '1/2': 'col-span-12 md:col-span-6',
+  '1/3': 'col-span-12 md:col-span-4',
+  '2/3': 'col-span-12 md:col-span-8',
+  '1/4': 'col-span-12 md:col-span-3',
+  '3/4': 'col-span-12 md:col-span-9',
+};
+
+/** Grid columns occupied per span (out of 12) */
+export const BLOCK_SPAN_COLS: Record<BlockSpan, number> = {
+  full: 12,
+  '1/2': 6,
+  '1/3': 4,
+  '2/3': 8,
+  '1/4': 3,
+  '3/4': 9,
+};
+
 /** Tailwind max-width class per block size */
 export const BLOCK_SIZE_CLS: Record<BlockSize, string> = {
   full: 'max-w-7xl',
@@ -243,6 +266,8 @@ export interface PageBlock {
   order: number;
   visible: boolean;
   size: BlockSize;
+  /** Row span — how wide the block is within a grid row. Default 'full'. */
+  span?: BlockSpan;
   config: BlockConfig;
 }
 

@@ -53,6 +53,7 @@ import type {
   PageBlock,
   BlockType,
   BlockSize,
+  BlockSpan,
   BlockConfig,
   TextBlockConfig,
   ImageBlockConfig,
@@ -65,7 +66,7 @@ import type {
   DepartmentsBlockConfig,
   LocalizedString,
 } from '@/lib/admin/types';
-import { BLOCK_SIZE_SUPPORT } from '@/lib/admin/types';
+import { BLOCK_SIZE_SUPPORT, BLOCK_SPAN_COLS } from '@/lib/admin/types';
 
 /* ─── Constants ─── */
 
@@ -111,6 +112,15 @@ const SIZE_OPTIONS: { value: BlockSize; label: string }[] = [
   { value: 'wide', label: 'Широкий' },
   { value: 'medium', label: 'Средний' },
   { value: 'narrow', label: 'Узкий' },
+];
+
+const SPAN_OPTIONS: { value: BlockSpan; label: string }[] = [
+  { value: 'full', label: '▬ Весь ряд' },
+  { value: '1/2', label: '½ Половина' },
+  { value: '1/3', label: '⅓ Треть' },
+  { value: '2/3', label: '⅔ Две трети' },
+  { value: '1/4', label: '¼ Четверть' },
+  { value: '3/4', label: '¾ Три четверти' },
 ];
 
 const EMPTY_LS: LocalizedString = { kk: '', ru: '', en: '' };
@@ -173,6 +183,7 @@ function BlockItem({
   onMoveDown,
   onUpdateConfig,
   onUpdateSize,
+  onUpdateSpan,
 }: {
   block: PageBlock;
   index: number;
@@ -185,6 +196,7 @@ function BlockItem({
   onMoveDown: () => void;
   onUpdateConfig: (config: BlockConfig) => void;
   onUpdateSize: (size: BlockSize) => void;
+  onUpdateSpan: (span: BlockSpan) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: block.id,
@@ -262,6 +274,11 @@ function BlockItem({
           <span className="ml-2 hidden text-xs text-slate-400 sm:inline">
             {info.description}
           </span>
+          {block.span && block.span !== 'full' && (
+            <span className="ml-1.5 inline-flex items-center rounded bg-indigo-100 px-1.5 py-0.5 text-[10px] font-bold text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400">
+              {block.span}
+            </span>
+          )}
         </div>
 
         {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
@@ -277,6 +294,18 @@ function BlockItem({
             ))}
           </select>
         )}
+
+        <select
+          value={block.span || 'full'}
+          onChange={(e) => onUpdateSpan(e.target.value as BlockSpan)}
+          className="hidden rounded-md border border-slate-200 bg-white px-2 py-1 text-xs text-slate-600 sm:block dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+        >
+          {SPAN_OPTIONS.map((s) => (
+            <option key={s.value} value={s.value}>
+              {s.label}
+            </option>
+          ))}
+        </select>
 
         <button
           type="button"
@@ -313,24 +342,42 @@ function BlockItem({
       {expanded && (
         <div className="border-t border-slate-100 px-4 py-4 dark:border-slate-800">
           {/* Size selector for mobile */}
-          {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
-            <div className="mb-3 sm:hidden">
+          <div className="mb-3 flex gap-3">
+            {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (
+              <div className="flex-1 sm:hidden">
+                <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
+                  Размер
+                </label>
+                <select
+                  value={block.size}
+                  onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
+                  className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                >
+                  {SIZE_OPTIONS.filter((s) => BLOCK_SIZE_SUPPORT[block.type].includes(s.value)).map((s) => (
+                    <option key={s.value} value={s.value}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+            <div className="flex-1 sm:hidden">
               <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                Размер
+                В ряду
               </label>
               <select
-                value={block.size}
-                onChange={(e) => onUpdateSize(e.target.value as BlockSize)}
+                value={block.span || 'full'}
+                onChange={(e) => onUpdateSpan(e.target.value as BlockSpan)}
                 className="w-full rounded-md border border-slate-200 bg-white px-2 py-1.5 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
               >
-                {SIZE_OPTIONS.filter((s) => BLOCK_SIZE_SUPPORT[block.type].includes(s.value)).map((s) => (
+                {SPAN_OPTIONS.map((s) => (
                   <option key={s.value} value={s.value}>
                     {s.label}
                   </option>
                 ))}
               </select>
             </div>
-          )}
+          </div>
           <BlockConfigEditor block={block} onUpdateConfig={onUpdateConfig} />
         </div>
       )}
@@ -973,6 +1020,10 @@ export default function HomepageBuilderPage() {
     setBlocks(blocks.map((b) => (b.id === id ? { ...b, size } : b)));
   }
 
+  function updateBlockSpan(id: string, span: BlockSpan) {
+    setBlocks(blocks.map((b) => (b.id === id ? { ...b, span } : b)));
+  }
+
   function toggleExpand(id: string) {
     setExpandedBlocks((prev) => {
       const next = new Set(prev);
@@ -1123,6 +1174,7 @@ export default function HomepageBuilderPage() {
                         onMoveDown={() => moveBlock(index, 1)}
                         onUpdateConfig={(config) => updateBlockConfig(block.id, config)}
                         onUpdateSize={(size) => updateBlockSize(block.id, size)}
+                        onUpdateSpan={(span) => updateBlockSpan(block.id, span)}
                       />
                     ))}
                 </div>
