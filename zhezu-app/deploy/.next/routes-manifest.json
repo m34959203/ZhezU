@@ -819,6 +819,12 @@
       "namedRegex": "^/api/admin/news(?:/)?$"
     },
     {
+      "page": "/api/admin/news/publish-all",
+      "regex": "^/api/admin/news/publish\\-all(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/news/publish\\-all(?:/)?$"
+    },
+    {
       "page": "/api/admin/session",
       "regex": "^/api/admin/session(?:/)?$",
       "routeKeys": {},

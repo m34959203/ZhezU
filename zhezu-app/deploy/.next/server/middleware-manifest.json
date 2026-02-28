@@ -3,34 +3,35 @@
   "middleware": {
     "/": {
       "files": [
-        "server/edge-runtime-webpack.js",
-        "server/src/middleware.js"
+        "server/edge/chunks/[root-of-the-server]__6584d596._.js",
+        "server/edge/chunks/[root-of-the-server]__dbf8a556._.js",
+        "server/edge/chunks/0cd2c_next_dist_esm_build_templates_edge-wrapper_cd939794.js"
       ],
-      "name": "src/middleware",
+      "name": "middleware",
       "page": "/",
       "matchers": [
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(\\/?index|\\/?index\\.json))?[\\/#\\?]?$",
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(\\/?index|\\/?index\\\\.json))?[\\/#\\?]?$",
           "originalSource": "/"
         },
         {
-          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(kk|ru|en))(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\.json)?[\\/#\\?]?$",
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(kk|ru|en))(?:\\/((?:[^\\/#\\?]+?)(?:\\/(?:[^\\/#\\?]+?))*))?(\\\\.json)?[\\/#\\?]?$",
           "originalSource": "/(kk|ru|en)/:path*"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "UyuXW1DNdJOG1WV0XBvXn",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "lLxEWq+dIUtapA35Bfo00DKNyy+pmh4Zn1GyxvANOSg=",
-        "__NEXT_PREVIEW_MODE_ID": "1f9ffafc914a496dff053f5b031f0bc6",
-        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "9c4e149ff9b1f6591695edaec77121a5789f2a49ba86d6cd1aa25666de276dc7",
-        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "987b46664a5eb05e417748bde0b3e1ffad47bdf840b41a06fead62365f9122bf"
+        "__NEXT_BUILD_ID": "t3mi3-fh6X2VFLaQDNw-c",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "dyrsGwmDJNNFq7WOAP3n8UbZYxt2Kf0YBObInrp8EXw=",
+        "__NEXT_PREVIEW_MODE_ID": "d8c9ea0cfee23015dfa5194a50d34656",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "a36fda2d5e592dea1d57d71d3d058c2d533c1dbecf21425a656307524a8819b3",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "cdab7bf10b3bb34f30b80b0f85235cc9a3662269183999b2ac820dd4dab0b192"
       }
     }
   },
-  "functions": {},
   "sortedMiddleware": [
     "/"
-  ]
+  ],
+  "functions": {}
 }
