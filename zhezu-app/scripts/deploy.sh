@@ -79,11 +79,20 @@ if [ -d "$APP_DIR/src/i18n/messages" ]; then
   echo "  - i18n messages copied"
 fi
 
+# 5. Sync to deploy/ (this directory is committed to git for Plesk)
+echo "[5/5] Syncing to deploy/..."
+
+DEPLOY_DIR="$APP_DIR/deploy"
+rm -rf "$DEPLOY_DIR"
+cp -r "$STANDALONE_DIR" "$DEPLOY_DIR"
+
+# Remove .env from deploy/ — env vars must come from Plesk, not from file
+rm -f "$DEPLOY_DIR/.env" "$DEPLOY_DIR/.env.local" "$DEPLOY_DIR/.env.production"
+
 echo ""
 echo "=== Build complete! ==="
 echo ""
-echo "Standalone output: $STANDALONE_DIR"
-echo "Size: $(du -sh $STANDALONE_DIR | cut -f1)"
+echo "Deploy output: $DEPLOY_DIR"
+echo "Size: $(du -sh $DEPLOY_DIR | cut -f1)"
 echo ""
-echo "To start: node $STANDALONE_DIR/server.js"
-echo "Or in Plesk: set 'Application startup file' to server.js"
+echo "Commit deploy/ and push to deploy on Plesk."
