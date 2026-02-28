@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       published: body.published ?? true,
       pinned: body.pinned ?? false,
       author: body.author || 'Администратор',
+      scheduledAt: body.scheduledAt || null,
       createdAt: now,
       updatedAt: now,
     };

@@ -9,6 +9,7 @@ import {
   Eye,
   EyeOff,
   Pin,
+  CalendarClock,
   Trash2,
   Languages,
   Sparkles,
@@ -85,6 +86,7 @@ export default function NewsEditorPage() {
     published: true,
     pinned: false,
     author: 'Администратор',
+    scheduledAt: null,
   });
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
   const [slugTouched, setSlugTouched] = useState(!isNew);
@@ -836,10 +838,14 @@ export default function NewsEditorPage() {
         </div>
 
         {/* Flags */}
-        <div className="flex items-center gap-6 border-t border-slate-200 pt-4 dark:border-slate-700">
+        <div className="flex flex-wrap items-center gap-4 border-t border-slate-200 pt-4 dark:border-slate-700">
           <button
             type="button"
-            onClick={() => setArticle((prev) => ({ ...prev, published: !prev.published }))}
+            onClick={() => setArticle((prev) => ({
+              ...prev,
+              published: !prev.published,
+              scheduledAt: !prev.published ? null : prev.scheduledAt,
+            }))}
             className={`flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
               article.published
                 ? 'border-green-200 bg-green-50 text-green-600 dark:border-green-500/20 dark:bg-green-500/10 dark:text-green-400'
@@ -849,6 +855,42 @@ export default function NewsEditorPage() {
             {article.published ? <Eye size={14} /> : <EyeOff size={14} />}
             {article.published ? 'Опубликовано' : 'Черновик'}
           </button>
+
+          {/* Scheduled publish */}
+          {!article.published && (
+            <div className="flex items-center gap-2">
+              <CalendarClock size={14} className={article.scheduledAt ? 'text-blue-500' : 'text-slate-400'} />
+              <input
+                type="datetime-local"
+                value={article.scheduledAt ? new Date(article.scheduledAt).toISOString().slice(0, 16) : ''}
+                onChange={(e) => setArticle((prev) => ({
+                  ...prev,
+                  scheduledAt: e.target.value ? new Date(e.target.value).toISOString() : null,
+                }))}
+                min={new Date().toISOString().slice(0, 16)}
+                className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+              />
+              {article.scheduledAt && (
+                <button
+                  type="button"
+                  onClick={() => setArticle((prev) => ({ ...prev, scheduledAt: null }))}
+                  className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-500/10"
+                  title="Отменить отложенную публикацию"
+                >
+                  <X size={14} />
+                </button>
+              )}
+              {!article.scheduledAt && (
+                <span className="text-xs text-slate-400">Отложить публикацию</span>
+              )}
+              {article.scheduledAt && (
+                <span className="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-600 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
+                  Запланировано
+                </span>
+              )}
+            </div>
+          )}
+
           <button
             type="button"
             onClick={() => setArticle((prev) => ({ ...prev, pinned: !prev.pinned }))}

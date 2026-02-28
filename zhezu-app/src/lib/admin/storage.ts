@@ -54,6 +54,7 @@ export async function create<T extends { id: string }>(file: string, item: T): P
       pinned: (a.pinned as boolean) ?? false,
       author: (a.author as string) || '',
       socialPublished: a.socialPublished as { telegram?: boolean; instagram?: boolean } | undefined,
+      scheduledAt: a.scheduledAt ? new Date(a.scheduledAt as string) : null,
     });
     return item;
   }
@@ -81,6 +82,7 @@ export async function update<T extends { id: string }>(
     if (p.pinned !== undefined) values.pinned = p.pinned;
     if (p.author !== undefined) values.author = p.author;
     if (p.socialPublished !== undefined) values.socialPublished = p.socialPublished;
+    if (p.scheduledAt !== undefined) values.scheduledAt = p.scheduledAt ? new Date(p.scheduledAt as string) : null;
 
     await db.update(news).set(values).where(eq(news.id, id));
 
@@ -175,6 +177,7 @@ function rowToArticle(row: typeof news.$inferSelect) {
     pinned: row.pinned,
     author: row.author,
     socialPublished: parseJson(row.socialPublished) ?? undefined,
+    scheduledAt: row.scheduledAt?.toISOString() ?? null,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
