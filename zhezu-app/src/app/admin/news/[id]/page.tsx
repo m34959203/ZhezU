@@ -82,7 +82,7 @@ export default function NewsEditorPage() {
     body: { ...emptyLocalized },
     category: 'news',
     image: '',
-    published: false,
+    published: true,
     pinned: false,
     author: 'Администратор',
   });

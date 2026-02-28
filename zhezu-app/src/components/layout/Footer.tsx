@@ -264,6 +264,13 @@ export function Footer({
             >
               Карта сайта
             </Link>
+            <Link
+              href="/admin"
+              prefetch={false}
+              className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
+            >
+              Вход
+            </Link>
           </div>
         </div>
       </div>
