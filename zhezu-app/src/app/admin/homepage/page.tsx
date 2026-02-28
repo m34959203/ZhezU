@@ -108,10 +108,10 @@ const BLOCK_TYPE_INFO: Record<
 };
 
 const SIZE_OPTIONS: { value: BlockSize; label: string }[] = [
-  { value: 'full', label: 'Полная ширина' },
-  { value: 'wide', label: 'Широкий' },
-  { value: 'medium', label: 'Средний' },
-  { value: 'narrow', label: 'Узкий' },
+  { value: 'full', label: '1280px — Полная' },
+  { value: 'wide', label: '1024px — Широкий' },
+  { value: 'medium', label: '768px — Средний' },
+  { value: 'narrow', label: '576px — Узкий' },
 ];
 
 const SPAN_OPTIONS: { value: BlockSpan; label: string }[] = [
@@ -346,7 +346,7 @@ function BlockItem({
             {BLOCK_SIZE_SUPPORT[block.type].length > 1 && (!block.span || block.span === 'full') && (
               <div className="flex-1 sm:hidden">
                 <label className="mb-1 block text-xs font-medium text-slate-600 dark:text-slate-400">
-                  Размер
+                  Ширина контента
                 </label>
                 <select
                   value={block.size}
