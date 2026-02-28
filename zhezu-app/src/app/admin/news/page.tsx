@@ -190,14 +190,28 @@ export default function AdminNewsPage() {
                     </span>
                   </td>
                   <td className="px-4 py-4">
-                    <span
-                      className={`inline-flex items-center gap-1.5 text-xs font-medium ${article.published ? 'text-green-500' : 'text-slate-400'}`}
-                    >
+                    {article.scheduledAt && !article.published ? (
+                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-blue-500">
+                        <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                        <span>
+                          {new Date(article.scheduledAt).toLocaleDateString('ru-RU', {
+                            day: 'numeric',
+                            month: 'short',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          })}
+                        </span>
+                      </span>
+                    ) : (
                       <span
-                        className={`h-1.5 w-1.5 rounded-full ${article.published ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-600'}`}
-                      />
-                      {article.published ? 'Опубликовано' : 'Черновик'}
-                    </span>
+                        className={`inline-flex items-center gap-1.5 text-xs font-medium ${article.published ? 'text-green-500' : 'text-slate-400'}`}
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${article.published ? 'bg-green-500' : 'bg-slate-300 dark:bg-slate-600'}`}
+                        />
+                        {article.published ? 'Опубликовано' : 'Черновик'}
+                      </span>
+                    )}
                   </td>
                   <td className="px-4 py-4 text-xs text-slate-400">
                     <span className="flex items-center gap-1">

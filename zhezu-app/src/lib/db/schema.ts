@@ -17,6 +17,7 @@ export const news = mysqlTable('news', {
     telegram?: boolean;
     instagram?: boolean;
   }>(),
+  scheduledAt: timestamp('scheduled_at'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow().onUpdateNow(),
 });

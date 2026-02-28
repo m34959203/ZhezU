@@ -28,10 +28,15 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
     const existing = await getById<NewsArticle>(FILE, id);
     const isBecomingPublished = existing && !existing.published && body.published === true;
 
-    const updated = await update<NewsArticle>(FILE, id, {
-      ...body,
-      updatedAt: new Date().toISOString(),
-    });
+    // If scheduling for later, ensure it's not published yet and clear scheduledAt on immediate publish
+    const patch = { ...body, updatedAt: new Date().toISOString() };
+    if (patch.scheduledAt) {
+      patch.published = false;
+    } else if (patch.published === true && existing?.scheduledAt) {
+      patch.scheduledAt = null;
+    }
+
+    const updated = await update<NewsArticle>(FILE, id, patch);
     if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
     // Auto-publish to social media when article transitions to published

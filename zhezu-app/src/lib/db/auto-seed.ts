@@ -49,10 +49,20 @@ async function runSeedIfNeeded() {
       pinned BOOLEAN NOT NULL DEFAULT FALSE,
       author VARCHAR(255) NOT NULL DEFAULT '',
       social_published JSON,
+      scheduled_at TIMESTAMP NULL DEFAULT NULL,
       created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     )
   `);
+
+  // Ensure scheduled_at column exists (migration for existing DBs)
+  try {
+    await db.execute(sql`
+      ALTER TABLE news ADD COLUMN IF NOT EXISTS scheduled_at TIMESTAMP NULL DEFAULT NULL AFTER social_published
+    `);
+  } catch {
+    // Column may already exist or MariaDB version doesn't support IF NOT EXISTS
+  }
 
   // Quick check: if settings table already has rows, skip
   const [row] = await db

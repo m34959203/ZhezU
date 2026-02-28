@@ -25,6 +25,7 @@ export interface NewsArticle {
   published: boolean;
   pinned: boolean;
   author: string;
+  scheduledAt?: string | null;
   createdAt: string;
   updatedAt: string;
   socialPublished?: {

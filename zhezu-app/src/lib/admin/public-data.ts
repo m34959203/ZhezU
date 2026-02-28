@@ -2,7 +2,7 @@
  * Public data access layer — reads from MariaDB.
  * Used by server components and public API routes.
  */
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, lte, isNull, isNotNull, or } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { news, settings } from '@/lib/db/schema';
 import { ensureSeeded } from '@/lib/db/auto-seed';
@@ -38,6 +38,7 @@ function rowToArticle(row: typeof news.$inferSelect): NewsArticle {
     pinned: row.pinned,
     author: row.author,
     socialPublished: parseJson(row.socialPublished) ?? undefined,
+    scheduledAt: row.scheduledAt?.toISOString() ?? null,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
@@ -60,11 +61,36 @@ async function getSetting<T>(key: string, defaults: T): Promise<T> {
   }
 }
 
+/* ─── Lazy scheduled publish ─── */
+
+/**
+ * Auto-publishes articles whose scheduledAt has passed.
+ * Called lazily on every public news fetch — no cron needed.
+ */
+async function publishScheduledArticles(): Promise<void> {
+  try {
+    const now = new Date();
+    await db
+      .update(news)
+      .set({ published: true, scheduledAt: null })
+      .where(
+        and(
+          eq(news.published, false),
+          isNotNull(news.scheduledAt),
+          lte(news.scheduledAt, now),
+        ),
+      );
+  } catch {
+    // Ignore — best-effort
+  }
+}
+
 /* ─── News ─── */
 
 export async function getPublishedNews(): Promise<NewsArticle[]> {
   try {
     await ensureSeeded();
+    await publishScheduledArticles();
     const rows = await db
       .select()
       .from(news)
