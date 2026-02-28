@@ -82,6 +82,7 @@ function RenderBlock({
           programs={uniData?.programs || []}
           programImages={homepageData.programImages || {}}
           maxItems={(config as ProgramsBlockConfig).maxItems}
+          size={size}
         />
       );
 
@@ -91,6 +92,7 @@ function RenderBlock({
           newsItems={newsItems}
           categoryLabels={homepageData.categoryLabels || {}}
           maxItems={(config as NewsBlockConfig).maxItems}
+          size={size}
         />
       );
 
@@ -99,11 +101,12 @@ function RenderBlock({
         <DepartmentsBlock
           departments={uniData?.departments || []}
           columns={(config as DepartmentsBlockConfig).columns}
+          size={size}
         />
       );
 
     case 'cta':
-      return <CtaBlock config={config as CtaBlockConfig} />;
+      return <CtaBlock config={config as CtaBlockConfig} size={size} />;
 
     case 'text':
       return <TextBlock config={config as TextBlockConfig} size={size} />;
@@ -112,13 +115,13 @@ function RenderBlock({
       return <ImageBlock config={config as ImageBlockConfig} size={size} />;
 
     case 'banner':
-      return <BannerBlock config={config as BannerBlockConfig} />;
+      return <BannerBlock config={config as BannerBlockConfig} size={size} />;
 
     case 'html':
       return <HtmlBlock config={config as HtmlBlockConfig} size={size} />;
 
     case 'divider':
-      return <DividerBlock config={config as DividerBlockConfig} />;
+      return <DividerBlock config={config as DividerBlockConfig} size={size} />;
 
     default:
       return null;

@@ -5,13 +5,15 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 import type { Locale } from '@/types';
-import type { BannerBlockConfig } from '@/lib/admin/types';
+import type { BannerBlockConfig, BlockSize } from '@/lib/admin/types';
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 interface BannerBlockProps {
   config: BannerBlockConfig;
+  size: BlockSize;
 }
 
-export default function BannerBlock({ config }: BannerBlockProps) {
+export default function BannerBlock({ config, size }: BannerBlockProps) {
   const locale = useLocale() as Locale;
   const title = config.title[locale] || config.title.ru || '';
   const description = config.description
@@ -33,7 +35,7 @@ export default function BannerBlock({ config }: BannerBlockProps) {
 
   return (
     <section className="py-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <div
           className="relative overflow-hidden rounded-2xl p-8 sm:p-12 lg:p-16"
           style={bgStyle}

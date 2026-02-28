@@ -6,7 +6,8 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Calendar } from 'lucide-react';
 import type { Locale } from '@/types';
-import type { NewsArticle } from '@/lib/admin/types';
+import type { NewsArticle, BlockSize } from '@/lib/admin/types';
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 const FALLBACK_CATEGORY_LABELS: Record<string, string> = {
   news: 'Новости',
@@ -24,9 +25,10 @@ interface NewsBlockProps {
   newsItems: NewsArticle[];
   categoryLabels: Record<string, string>;
   maxItems?: number;
+  size?: BlockSize;
 }
 
-export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4 }: NewsBlockProps) {
+export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, size = 'full' }: NewsBlockProps) {
   const t = useTranslations('home');
   const locale = useLocale() as Locale;
   const labels =
@@ -40,7 +42,7 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4 }: N
 
   return (
     <section className="bg-surface-light dark:bg-surface-dark py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <h2 className="font-display text-text-primary-light dark:text-text-primary-dark mb-10 text-center text-3xl font-bold md:text-4xl">
           {t('news.title')}
         </h2>

@@ -3,13 +3,7 @@
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types';
 import type { TextBlockConfig, BlockSize } from '@/lib/admin/types';
-
-const SIZE_CLS: Record<BlockSize, string> = {
-  full: 'max-w-7xl',
-  wide: 'max-w-5xl',
-  medium: 'max-w-3xl',
-  narrow: 'max-w-xl',
-};
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 const ALIGN_CLS: Record<string, string> = {
   left: 'text-left',
@@ -29,7 +23,7 @@ export default function TextBlock({ config, size }: TextBlockProps) {
 
   return (
     <section className="bg-bg-light dark:bg-bg-dark py-12">
-      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${SIZE_CLS[size]}`}>
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <div
           className={`prose prose-lg dark:prose-invert max-w-none ${ALIGN_CLS[align]}`}
           dangerouslySetInnerHTML={{ __html: content }}

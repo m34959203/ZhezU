@@ -3,13 +3,7 @@
 import { useLocale } from 'next-intl';
 import type { Locale } from '@/types';
 import type { ImageBlockConfig, BlockSize } from '@/lib/admin/types';
-
-const SIZE_CLS: Record<BlockSize, string> = {
-  full: 'max-w-7xl',
-  wide: 'max-w-5xl',
-  medium: 'max-w-3xl',
-  narrow: 'max-w-xl',
-};
+import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
 
 interface ImageBlockProps {
   config: ImageBlockConfig;
@@ -24,7 +18,7 @@ export default function ImageBlock({ config, size }: ImageBlockProps) {
 
   return (
     <section className="bg-bg-light dark:bg-bg-dark py-8">
-      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${SIZE_CLS[size]}`}>
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <figure>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
