@@ -3,6 +3,7 @@ import path from 'path';
 import { eq, desc } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { news, settings } from '@/lib/db/schema';
+import { ensureSeeded } from '@/lib/db/auto-seed';
 
 /* ─────────────────────────────────────────────────────────
  * News CRUD — uses the `news` MySQL table
@@ -17,6 +18,7 @@ const NEWS_FILE = 'news.json';
 /* ─── Generic CRUD (array-based stores) ─── */
 
 export async function getAll<T>(file: string): Promise<T[]> {
+  await ensureSeeded();
   if (file === NEWS_FILE) {
     const rows = await db.select().from(news).orderBy(desc(news.createdAt));
     return rows.map(rowToArticle) as T[];
@@ -112,6 +114,7 @@ function settingsKey(file: string): string {
 }
 
 export async function getSettings<T>(file: string, defaults: T): Promise<T> {
+  await ensureSeeded();
   const key = settingsKey(file);
   const [row] = await db.select().from(settings).where(eq(settings.key, key)).limit(1);
   if (!row) return defaults;
