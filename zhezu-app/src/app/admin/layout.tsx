@@ -17,8 +17,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   if (!session) {
     return (
-      <html lang="ru" className="dark" suppressHydrationWarning>
-        <body className="bg-slate-950 text-white antialiased">
+      <html lang="ru" suppressHydrationWarning>
+        <body className="bg-slate-50 text-slate-900 antialiased">
           <ThemeProvider>{children}</ThemeProvider>
         </body>
       </html>
