@@ -11,7 +11,7 @@ import {
   Menu,
   Building2,
   Phone,
-  Home,
+  Layers,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -19,7 +19,7 @@ const NAV_ITEMS = [
   { href: '/admin/news', label: 'Публикации', icon: Newspaper },
   { href: '/admin/menu', label: 'Управление меню', icon: Menu },
   { href: '/admin/university', label: 'Университет', icon: Building2 },
-  { href: '/admin/homepage', label: 'Главная страница', icon: Home },
+  { href: '/admin/homepage', label: 'Конструктор страниц', icon: Layers },
   { href: '/admin/contact', label: 'Контакты', icon: Phone },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },
 ];
