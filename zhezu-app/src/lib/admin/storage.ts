@@ -115,7 +115,12 @@ export async function getSettings<T>(file: string, defaults: T): Promise<T> {
   const key = settingsKey(file);
   const [row] = await db.select().from(settings).where(eq(settings.key, key)).limit(1);
   if (!row) return defaults;
-  return row.value as T;
+  // MariaDB may return JSON columns as strings — parse if needed
+  const val = row.value;
+  if (typeof val === 'string') {
+    try { return JSON.parse(val) as T; } catch { return defaults; }
+  }
+  return val as T;
 }
 
 export async function saveSettings<T>(file: string, data: T): Promise<void> {
@@ -146,19 +151,27 @@ export async function writeTranslations(
 
 /* ─── Helpers ─── */
 
+/** MariaDB may return JSON columns as strings — parse if needed */
+function parseJson<T>(val: T | string): T {
+  if (typeof val === 'string') {
+    try { return JSON.parse(val) as T; } catch { /* fall through */ }
+  }
+  return val as T;
+}
+
 function rowToArticle(row: typeof news.$inferSelect) {
   return {
     id: row.id,
     slug: row.slug,
-    title: row.title,
-    excerpt: row.excerpt,
-    body: row.body,
+    title: parseJson(row.title),
+    excerpt: parseJson(row.excerpt),
+    body: parseJson(row.body),
     category: row.category,
     image: row.image || '',
     published: row.published,
     pinned: row.pinned,
     author: row.author,
-    socialPublished: row.socialPublished ?? undefined,
+    socialPublished: parseJson(row.socialPublished) ?? undefined,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
   };
