@@ -8,6 +8,7 @@ import { Calendar } from 'lucide-react';
 import type { Locale } from '@/types';
 import type { NewsArticle, BlockSize } from '@/lib/admin/types';
 import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
+import { formatDateShort, formatMonthShort } from '@/lib/format-date';
 
 const FALLBACK_CATEGORY_LABELS: Record<string, string> = {
   news: 'Новости',
@@ -28,12 +29,9 @@ interface NewsBlockProps {
   size?: BlockSize;
 }
 
-const LOCALE_FMT: Record<string, string> = { kk: 'kk-KZ', ru: 'ru-RU', en: 'en-US' };
-
 export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, size = 'full' }: NewsBlockProps) {
   const t = useTranslations('home');
   const locale = useLocale() as Locale;
-  const dateFmt = LOCALE_FMT[locale] || 'ru-RU';
   const labels =
     categoryLabels && Object.keys(categoryLabels).length > 0
       ? categoryLabels
@@ -65,7 +63,7 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, siz
                         {d.getDate()}
                       </span>
                       <span className="text-text-secondary-light dark:text-text-secondary-dark block text-xs font-medium uppercase">
-                        {d.toLocaleDateString(dateFmt, { month: 'short' }).replace('.', '')}
+                        {formatMonthShort(d, locale)}
                       </span>
                     </div>
                   );
@@ -110,7 +108,7 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, siz
                     </h4>
                     <span className="text-text-secondary-light dark:text-text-secondary-dark flex items-center gap-1 text-xs">
                       <Calendar size={10} />
-                      {d.toLocaleDateString(dateFmt, { day: 'numeric', month: 'short', year: 'numeric' })}
+                      {formatDateShort(d, locale)}
                     </span>
                   </div>
                 </div>
