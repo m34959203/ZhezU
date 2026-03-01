@@ -347,3 +347,24 @@ export interface DividerBlockConfig {
   style?: 'line' | 'space' | 'dots';
   spacing?: 'sm' | 'md' | 'lg';
 }
+
+/* ─── Tuition Data ─── */
+
+export interface TuitionProgram {
+  id: string;
+  name: LocalizedString;
+  level: 'bachelor' | 'master';
+  costResident: number;   // KZT per year, 0 = free
+  costInternational: number;
+  isFree: boolean;        // true = grant-based (бесплатное)
+}
+
+export interface TuitionData {
+  programs: TuitionProgram[];
+  dormitoryCost: number;  // KZT per year
+  scholarships: {
+    gpa35: number;        // discount for GPA >= 3.5
+    gpa30: number;        // discount for GPA >= 3.0
+    gpa25: number;        // discount for GPA >= 2.5
+  };
+}

@@ -77,15 +77,50 @@ export default function AdmissionPage() {
       .catch(() => {});
   }, []);
 
+  /* Tuition data from admin */
+  const [tuitionCosts, setTuitionCosts] = useState({
+    costResident: 600000,
+    costInternational: 800000,
+    dormitory: 180000,
+    gpa35: 150000,
+    gpa30: 90000,
+    gpa25: 30000,
+  });
+  useEffect(() => {
+    fetch('/api/public/tuition')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d) return;
+        // Calculate average cost across programs, or use first program's cost
+        const programs = d.programs || [];
+        const paid = programs.filter((p: { isFree: boolean }) => !p.isFree);
+        const avgRes = paid.length > 0
+          ? Math.round(paid.reduce((s: number, p: { costResident: number }) => s + p.costResident, 0) / paid.length)
+          : 600000;
+        const avgInt = paid.length > 0
+          ? Math.round(paid.reduce((s: number, p: { costInternational: number }) => s + p.costInternational, 0) / paid.length)
+          : 800000;
+        setTuitionCosts({
+          costResident: avgRes,
+          costInternational: avgInt,
+          dormitory: d.dormitoryCost ?? 180000,
+          gpa35: d.scholarships?.gpa35 ?? 150000,
+          gpa30: d.scholarships?.gpa30 ?? 90000,
+          gpa25: d.scholarships?.gpa25 ?? 30000,
+        });
+      })
+      .catch(() => {});
+  }, []);
+
   /* Tuition calculator state */
   const [isResident, setIsResident] = useState(true);
   const [gpa, setGpa] = useState(35); // stored as 0-40, displayed as 0.0-4.0
   const [onCampus, setOnCampus] = useState(true);
 
   const gpaDisplay = (gpa / 10).toFixed(1);
-  const baseTuition = isResident ? 600000 : 800000;
-  const housing = onCampus ? 180000 : 0;
-  const scholarship = gpa >= 35 ? 150000 : gpa >= 30 ? 90000 : gpa >= 25 ? 30000 : 0;
+  const baseTuition = isResident ? tuitionCosts.costResident : tuitionCosts.costInternational;
+  const housing = onCampus ? tuitionCosts.dormitory : 0;
+  const scholarship = gpa >= 35 ? tuitionCosts.gpa35 : gpa >= 30 ? tuitionCosts.gpa30 : gpa >= 25 ? tuitionCosts.gpa25 : 0;
   const total = baseTuition + housing - scholarship;
 
   const formatTenge = (v: number) => {
