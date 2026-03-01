@@ -93,11 +93,13 @@ export default function UniversityPage() {
     <div className="flex flex-col">
       {/* Hero */}
       <section className="relative overflow-hidden py-20 lg:py-28">
-        <div className="from-primary/5 to-gold/5 absolute inset-0 bg-gradient-to-br via-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Badge className="mb-4">{t('badge')}</Badge>
-          <h1 className="font-display mb-4 text-4xl font-bold sm:text-5xl">{t('title')}</h1>
-          <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.85)] to-[rgba(10,14,23,0.75)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgba(29,86,201,0.12),transparent_50%)]" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Badge className="mb-4 border border-white/20 bg-white/10 text-white backdrop-blur-sm">{t('badge')}</Badge>
+          <h1 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h1>
+          <p className="max-w-2xl text-lg text-slate-300">
             {t('subtitle')}
           </p>
         </div>

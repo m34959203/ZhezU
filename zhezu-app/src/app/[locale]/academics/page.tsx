@@ -185,21 +185,29 @@ export default function AcademicsPage() {
 
   return (
     <main className="bg-bg-light dark:bg-bg-dark min-h-screen">
+      {/* Hero */}
+      <section className="relative overflow-hidden py-16 lg:py-20">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.8)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(29,86,201,0.1),transparent_50%)]" />
+        <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-10">
+          <Breadcrumb
+            items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]}
+            className="mb-6 [&_a]:text-slate-400 [&_a:hover]:text-white [&_span]:text-slate-400 [&_li:last-child_span]:text-white"
+          />
+          <h1 className="font-display mb-2 text-4xl leading-tight font-black tracking-[-0.033em] text-white md:text-5xl">
+            {t('title')}
+          </h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-slate-300">
+            {t('subtitle')}
+          </p>
+        </div>
+      </section>
+
       <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-10">
-        {/* ── Breadcrumbs & Title ── */}
+        {/* ── Search & Filters ── */}
         <div className="mb-8 flex flex-col gap-6">
-          <Breadcrumb items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]} />
-
-          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-            <div className="flex max-w-2xl flex-col gap-2">
-              <h1 className="font-display text-text-primary-light text-4xl leading-tight font-black tracking-[-0.033em] md:text-5xl dark:text-white">
-                {t('title')}
-              </h1>
-              <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed font-normal">
-                {t('subtitle')}
-              </p>
-            </div>
-
+          <div className="flex items-end justify-end">
             {/* Search bar */}
             <div className="relative w-full min-w-[200px] md:w-auto md:min-w-[280px]">
               <Search

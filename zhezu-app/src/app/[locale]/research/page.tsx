@@ -131,7 +131,8 @@ export default function ResearchPage() {
       {/* Hero Section */}
       <section className="px-4 py-6 sm:px-6 lg:px-12">
         <div className="relative overflow-hidden rounded-2xl bg-slate-900 shadow-xl">
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 to-slate-900/80" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920&q=80')] bg-cover bg-center" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/75 to-slate-900/85" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(29,86,201,0.15),transparent_70%)]" />
           <div className="relative z-10 flex min-h-[420px] flex-col items-center justify-center px-4 py-16 text-center lg:py-24">
             <div className="mb-4 inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm font-medium text-blue-200 backdrop-blur-sm">
