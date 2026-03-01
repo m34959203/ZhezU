@@ -14,6 +14,7 @@ import {
   Layers,
   Banknote,
   ImageIcon,
+  Brain,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { href: '/admin/university', label: 'Университет', icon: Building2 },
   { href: '/admin/homepage', label: 'Конструктор страниц', icon: Layers },
   { href: '/admin/tuition', label: 'Стоимость обучения', icon: Banknote },
+  { href: '/admin/ai-center', label: 'AI-Центр', icon: Brain },
   { href: '/admin/contact', label: 'Контакты', icon: Phone },
   { href: '/admin/backgrounds', label: 'Фоны разделов', icon: ImageIcon },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },

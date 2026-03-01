@@ -709,6 +709,12 @@
       "namedRegex": "^/admin(?:/)?$"
     },
     {
+      "page": "/admin/ai-center",
+      "regex": "^/admin/ai\\-center(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/ai\\-center(?:/)?$"
+    },
+    {
       "page": "/admin/backgrounds",
       "regex": "^/admin/backgrounds(?:/)?$",
       "routeKeys": {},
@@ -791,6 +797,12 @@
       "regex": "^/api/admin/ai/validate(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/admin/ai/validate(?:/)?$"
+    },
+    {
+      "page": "/api/admin/ai-center",
+      "regex": "^/api/admin/ai\\-center(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/ai\\-center(?:/)?$"
     },
     {
       "page": "/api/admin/auth",
@@ -893,6 +905,12 @@
       "regex": "^/api/health(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/health(?:/)?$"
+    },
+    {
+      "page": "/api/public/ai-center",
+      "regex": "^/api/public/ai\\-center(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/ai\\-center(?:/)?$"
     },
     {
       "page": "/api/public/contact",

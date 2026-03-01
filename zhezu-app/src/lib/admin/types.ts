@@ -364,6 +364,27 @@ export interface TuitionData {
   dormitoryCost: number;  // KZT per year
 }
 
+/* ─── AI Center Data ─── */
+
+export interface AICenterProject {
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  icon: string;
+  tags: string[];
+  status: 'active' | 'dev' | 'planned';
+  url?: string;
+  visible: boolean;
+  order: number;
+}
+
+export interface AICenterData {
+  title: LocalizedString;
+  subtitle: LocalizedString;
+  externalUrl: string;
+  projects: AICenterProject[];
+}
+
 /* ─── Section Backgrounds ─── */
 
 export type SectionKey =
