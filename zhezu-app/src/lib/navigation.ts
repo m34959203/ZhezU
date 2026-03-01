@@ -230,7 +230,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
           { labelKey: 'aiCenter.appsTalentPool', href: '/talent-pool' },
           { labelKey: 'aiCenter.appsSkillMap', href: '/skill-map' },
           { labelKey: 'aiCenter.toolsAI', href: '/ai-center/tools' },
-          { labelKey: 'aiCenter.toolsAPI', href: '/ai-center/api' },
         ],
       },
     ],
