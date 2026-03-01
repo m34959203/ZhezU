@@ -78,18 +78,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         ],
       },
       {
-        titleKey: 'university.partners',
+        titleKey: 'university.partnersAndDocs',
         links: [
           { labelKey: 'university.partnersCorporate', href: '/university/partners' },
-          {
-            labelKey: 'university.partnersInternational',
-            href: '/university/partners/international',
-          },
-        ],
-      },
-      {
-        titleKey: 'university.documents',
-        links: [
+          { labelKey: 'university.partnersInternational', href: '/university/partners/international' },
           { labelKey: 'university.documentsCharter', href: '/university/documents/charter' },
           { labelKey: 'university.documentsLicenses', href: '/university/documents/licenses' },
           { labelKey: 'university.documentsReports', href: '/university/documents/reports' },
@@ -127,18 +119,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         ],
       },
       {
-        titleKey: 'admission.scholarships',
+        titleKey: 'admission.support',
         links: [
           { labelKey: 'admission.scholarshipsState', href: '/admission/scholarships' },
-          {
-            labelKey: 'admission.scholarshipsUniversity',
-            href: '/admission/scholarships/university',
-          },
-        ],
-      },
-      {
-        titleKey: 'admission.faq',
-        links: [
+          { labelKey: 'admission.scholarshipsUniversity', href: '/admission/scholarships/university' },
           { labelKey: 'admission.faqGeneral', href: '/admission/faq' },
           { labelKey: 'admission.faqContact', href: '/admission/contact' },
         ],
@@ -225,10 +209,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
     href: '/ai-center',
     columns: [
       {
-        titleKey: 'aiCenter.projects',
+        titleKey: 'aiCenter.projectsAndLab',
         links: [
           { labelKey: 'aiCenter.projectsCurrent', href: '/ai-center/projects' },
           { labelKey: 'aiCenter.projectsShowcase', href: '/ai-center/showcase' },
+          { labelKey: 'aiCenter.labResearch', href: '/ai-center/lab' },
+          { labelKey: 'aiCenter.labJoin', href: '/ai-center/lab/join' },
         ],
       },
       {
@@ -239,24 +225,12 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         ],
       },
       {
-        titleKey: 'aiCenter.apps',
+        titleKey: 'aiCenter.products',
         links: [
           { labelKey: 'aiCenter.appsTalentPool', href: '/talent-pool' },
           { labelKey: 'aiCenter.appsSkillMap', href: '/skill-map' },
-        ],
-      },
-      {
-        titleKey: 'aiCenter.tools',
-        links: [
           { labelKey: 'aiCenter.toolsAI', href: '/ai-center/tools' },
           { labelKey: 'aiCenter.toolsAPI', href: '/ai-center/api' },
-        ],
-      },
-      {
-        titleKey: 'aiCenter.lab',
-        links: [
-          { labelKey: 'aiCenter.labResearch', href: '/ai-center/lab' },
-          { labelKey: 'aiCenter.labJoin', href: '/ai-center/lab/join' },
         ],
       },
     ],
@@ -267,24 +241,21 @@ export const NAVIGATION_ITEMS: NavItem[] = [
     href: '/life',
     columns: [
       {
-        titleKey: 'life.news',
+        titleKey: 'life.newsAndEvents',
         links: [
           { labelKey: 'life.newsLatest', href: '/life/news' },
           { labelKey: 'life.newsAnnouncements', href: '/life/announcements' },
-        ],
-      },
-      {
-        titleKey: 'life.events',
-        links: [
           { labelKey: 'life.eventsUpcoming', href: '/life/events' },
           { labelKey: 'life.eventsCalendar', href: '/life/events/calendar' },
         ],
       },
       {
-        titleKey: 'life.sports',
+        titleKey: 'life.activities',
         links: [
           { labelKey: 'life.sportsTeams', href: '/life/sports' },
           { labelKey: 'life.sportsFacilities', href: '/life/sports/facilities' },
+          { labelKey: 'life.organizationsClubs', href: '/life/clubs' },
+          { labelKey: 'life.organizationsStudentGov', href: '/life/student-government' },
         ],
       },
       {
@@ -292,13 +263,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
         links: [
           { labelKey: 'life.dormitoriesInfo', href: '/life/dormitories' },
           { labelKey: 'life.dormitoriesApply', href: '/life/dormitories/apply' },
-        ],
-      },
-      {
-        titleKey: 'life.organizations',
-        links: [
-          { labelKey: 'life.organizationsClubs', href: '/life/clubs' },
-          { labelKey: 'life.organizationsStudentGov', href: '/life/student-government' },
         ],
       },
     ],
