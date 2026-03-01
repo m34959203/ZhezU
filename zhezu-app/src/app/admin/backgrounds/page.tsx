@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Save, Loader2, ImageIcon, RotateCcw } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Save, Loader2, ImageIcon, RotateCcw, Upload, Trash2, ExternalLink } from 'lucide-react';
 import type { SectionBackgroundsData, SectionKey } from '@/lib/admin/types';
 
 const SECTION_LABELS: Record<SectionKey, string> = {
@@ -23,6 +23,8 @@ export default function BackgroundsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [uploading, setUploading] = useState<SectionKey | null>(null);
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
 
   useEffect(() => {
     const controller = new AbortController();
@@ -68,12 +70,38 @@ export default function BackgroundsPage() {
     });
   }
 
+  function handleClear(key: SectionKey) {
+    if (!data) return;
+    setData({
+      ...data,
+      backgrounds: { ...data.backgrounds, [key]: '' },
+    });
+  }
+
   function handleChange(key: SectionKey, value: string) {
     if (!data) return;
     setData({
       ...data,
       backgrounds: { ...data.backgrounds, [key]: value },
     });
+  }
+
+  async function handleUpload(key: SectionKey, file: File) {
+    setUploading(key);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      if (res.ok) {
+        const { url } = await res.json();
+        handleChange(key, url);
+      }
+    } finally {
+      setUploading(null);
+    }
   }
 
   if (loading || !data) {
@@ -84,6 +112,9 @@ export default function BackgroundsPage() {
     );
   }
 
+  const btnCls =
+    'rounded-lg border border-slate-200 p-2.5 text-slate-400 transition-colors hover:text-slate-600 dark:border-slate-700 dark:hover:text-white';
+
   return (
     <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
@@ -91,7 +122,7 @@ export default function BackgroundsPage() {
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">Фоны разделов</h2>
           <p className="text-sm text-slate-500">
-            Укажите URL фонового изображения для каждого раздела сайта
+            Укажите URL или загрузите файл фонового изображения для каждого раздела
           </p>
         </div>
         <button
@@ -109,6 +140,7 @@ export default function BackgroundsPage() {
       <div className="space-y-4">
         {SECTION_KEYS.map((key) => {
           const url = data.backgrounds[key] ?? '';
+          const isUploading = uploading === key;
           return (
             <section
               key={key}
@@ -139,9 +171,16 @@ export default function BackgroundsPage() {
                     <span className="text-xs">Нет изображения</span>
                   </div>
                 )}
+
+                {/* Upload spinner overlay */}
+                {isUploading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                    <Loader2 size={28} className="animate-spin text-white" />
+                  </div>
+                )}
               </div>
 
-              {/* Input */}
+              {/* Controls */}
               <div className="flex items-center gap-2 p-4">
                 <input
                   type="url"
@@ -150,13 +189,62 @@ export default function BackgroundsPage() {
                   placeholder="https://images.unsplash.com/photo-..."
                   className="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 />
+
+                {/* Upload file */}
+                <input
+                  ref={(el) => {
+                    fileInputRefs.current[key] = el;
+                  }}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleUpload(key, file);
+                    e.target.value = '';
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRefs.current[key]?.click()}
+                  disabled={isUploading}
+                  title="Загрузить файл"
+                  className={`${btnCls} hover:border-blue-300 hover:text-blue-600 dark:hover:text-blue-400`}
+                >
+                  <Upload size={14} />
+                </button>
+
+                {/* Open in new tab */}
+                {url && (
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Открыть в новой вкладке"
+                    className={btnCls}
+                  >
+                    <ExternalLink size={14} />
+                  </a>
+                )}
+
+                {/* Reset to saved */}
                 <button
                   type="button"
                   onClick={() => handleReset(key)}
-                  title="Сбросить"
-                  className="rounded-lg border border-slate-200 p-2.5 text-slate-400 transition-colors hover:text-slate-600 dark:border-slate-700 dark:hover:text-white"
+                  title="Сбросить к сохранённому"
+                  className={btnCls}
                 >
                   <RotateCcw size={14} />
+                </button>
+
+                {/* Clear */}
+                <button
+                  type="button"
+                  onClick={() => handleClear(key)}
+                  title="Удалить фон"
+                  className={`${btnCls} hover:border-red-300 hover:text-red-500 dark:hover:text-red-400`}
+                >
+                  <Trash2 size={14} />
                 </button>
               </div>
             </section>
