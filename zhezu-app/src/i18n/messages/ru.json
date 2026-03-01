@@ -1406,6 +1406,7 @@
     },
     "education": {
       "title": "Образование",
+      "programs": "Программы",
       "bachelor": "Бакалавриат",
       "bachelorPrograms": "Программы бакалавриата",
       "bachelorCurriculum": "Учебные планы",
