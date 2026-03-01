@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
+import { SectionHero } from '@/components/SectionHero';
 import {
   BookOpen,
   Award,
@@ -129,15 +130,17 @@ export default function ResearchPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="px-4 py-6 sm:px-6 lg:px-12">
-        <div className="relative overflow-hidden rounded-2xl bg-slate-900 shadow-xl">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1920&q=80')] bg-cover bg-center" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/75 to-slate-900/85" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(29,86,201,0.15),transparent_70%)]" />
-          <div className="relative z-10 flex min-h-[420px] flex-col items-center justify-center px-4 py-16 text-center lg:py-24">
+      <div className="px-4 py-6 sm:px-6 lg:px-12">
+        <SectionHero
+          section="research"
+          className="rounded-2xl bg-slate-900 shadow-xl"
+          overlay="bg-gradient-to-b from-slate-900/75 to-slate-900/85"
+          accent="bg-[radial-gradient(ellipse_at_center,rgba(29,86,201,0.15),transparent_70%)]"
+        >
+          <div className="flex min-h-[420px] flex-col items-center justify-center px-4 py-16 text-center lg:py-24">
             <div className="mb-4 inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm font-medium text-blue-200 backdrop-blur-sm">
               <span className="mr-2 h-2 w-2 animate-pulse rounded-full bg-blue-400" />
-              Advancing Global Knowledge
+              {t('badge')}
             </div>
             <h1 className="mb-6 max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
               {t('title')}
@@ -149,7 +152,7 @@ export default function ResearchPage() {
                 size="lg"
                 className="shadow-lg transition-transform hover:scale-105"
               >
-                Explore Publications
+                {t('publications.title')}
               </Button>
               <Button
                 variant="ghost"
@@ -160,8 +163,8 @@ export default function ResearchPage() {
               </Button>
             </div>
           </div>
-        </div>
-      </section>
+        </SectionHero>
+      </div>
 
       {/* Stats Dashboard */}
       <section className="px-4 py-4 sm:px-6 lg:px-12">

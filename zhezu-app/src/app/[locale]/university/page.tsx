@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
+import { SectionHero } from '@/components/SectionHero';
 import { UNIVERSITY } from '@/lib/constants';
 import {
   ArrowRight,
@@ -92,18 +93,15 @@ export default function UniversityPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 lg:py-28">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1562774053-701939374585?w=1920&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.85)] to-[rgba(10,14,23,0.75)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgba(29,86,201,0.12),transparent_50%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHero section="university" className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Badge className="mb-4 border border-white/20 bg-white/10 text-white backdrop-blur-sm">{t('badge')}</Badge>
           <h1 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h1>
           <p className="max-w-2xl text-lg text-slate-300">
             {t('subtitle')}
           </p>
         </div>
-      </section>
+      </SectionHero>
 
       {/* Stats bar */}
       <section className="bg-primary dark:bg-primary/90 py-8">

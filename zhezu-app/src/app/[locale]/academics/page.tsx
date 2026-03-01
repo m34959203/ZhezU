@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
+import { SectionHero } from '@/components/SectionHero';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { Card } from '@/components/ui/Card';
 import { Pagination } from '@/components/ui/Pagination';
@@ -186,11 +187,13 @@ export default function AcademicsPage() {
   return (
     <main className="bg-bg-light dark:bg-bg-dark min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden py-16 lg:py-20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.8)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(29,86,201,0.1),transparent_50%)]" />
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-10">
+      <SectionHero
+        section="academics"
+        className="py-16 lg:py-20"
+        overlay="bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.8)]"
+        accent="bg-[radial-gradient(circle_at_80%_30%,rgba(29,86,201,0.1),transparent_50%)]"
+      >
+        <div className="mx-auto max-w-[1440px] px-4 md:px-10">
           <Breadcrumb
             items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]}
             className="mb-6 [&_a]:text-slate-400 [&_a:hover]:text-white [&_span]:text-slate-400 [&_li:last-child_span]:text-white"
@@ -202,7 +205,7 @@ export default function AcademicsPage() {
             {t('subtitle')}
           </p>
         </div>
-      </section>
+      </SectionHero>
 
       <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-10">
         {/* ── Search & Filters ── */}

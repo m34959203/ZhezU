@@ -363,3 +363,19 @@ export interface TuitionData {
   programs: TuitionProgram[];
   dormitoryCost: number;  // KZT per year
 }
+
+/* ─── Section Backgrounds ─── */
+
+export type SectionKey =
+  | 'university'
+  | 'life'
+  | 'academics'
+  | 'contact'
+  | 'research'
+  | 'admission'
+  | 'aiCenter'
+  | 'career';
+
+export interface SectionBackgroundsData {
+  backgrounds: Record<SectionKey, string>;
+}

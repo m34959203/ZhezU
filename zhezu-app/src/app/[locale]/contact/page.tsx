@@ -7,6 +7,7 @@ import type { SiteSettings, ContactPageData } from '@/lib/admin/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
+import { SectionHero } from '@/components/SectionHero';
 import { Input } from '@/components/ui/Input';
 import {
   Send,
@@ -177,11 +178,13 @@ export default function ContactPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden py-16 lg:py-20">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.78)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_70%,rgba(230,179,37,0.1),transparent_50%)]" />
-        <div className="relative z-10 mx-auto max-w-[1280px] px-4 text-center sm:px-10 sm:text-left">
+      <SectionHero
+        section="contact"
+        className="py-16 lg:py-20"
+        overlay="bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.78)]"
+        accent="bg-[radial-gradient(circle_at_20%_70%,rgba(230,179,37,0.1),transparent_50%)]"
+      >
+        <div className="mx-auto max-w-[1280px] px-4 text-center sm:px-10 sm:text-left">
           <h1 className="mb-4 text-4xl font-black tracking-tight text-white md:text-5xl">
             {t('title')}
           </h1>
@@ -189,7 +192,7 @@ export default function ContactPage() {
             {t('subtitle')}
           </p>
         </div>
-      </section>
+      </SectionHero>
 
       <main className="mx-auto w-full max-w-[1280px] flex-1 px-4 py-8 sm:px-10">
 
