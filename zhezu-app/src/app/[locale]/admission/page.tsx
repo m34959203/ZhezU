@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -68,6 +68,15 @@ export default function AdmissionPage() {
   const t = useTranslations('admission');
   const tActions = useTranslations('actions');
 
+  /* Admission open flag from admin settings */
+  const [admissionOpen, setAdmissionOpen] = useState(true);
+  useEffect(() => {
+    fetch('/api/public/settings')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((s) => { if (s && typeof s.admissionOpen === 'boolean') setAdmissionOpen(s.admissionOpen); })
+      .catch(() => {});
+  }, []);
+
   /* Tuition calculator state */
   const [isResident, setIsResident] = useState(true);
   const [gpa, setGpa] = useState(35); // stored as 0-40, displayed as 0.0-4.0
@@ -114,10 +123,14 @@ export default function AdmissionPage() {
         <div className="relative z-10 flex max-w-3xl flex-col items-center gap-6">
           {/* Badge */}
           <Badge
-            variant="warning"
-            className="border-gold/30 bg-gold/20 text-gold-light border px-4 py-1.5 text-xs font-bold tracking-wider uppercase backdrop-blur-sm"
+            variant={admissionOpen ? 'warning' : 'default'}
+            className={`border px-4 py-1.5 text-xs font-bold tracking-wider uppercase backdrop-blur-sm ${
+              admissionOpen
+                ? 'border-gold/30 bg-gold/20 text-gold-light'
+                : 'border-white/20 bg-white/10 text-white/70'
+            }`}
           >
-            {t('heroBadge')}
+            {admissionOpen ? t('heroBadge') : t('heroBadgeClosed')}
           </Badge>
 
           {/* Title */}
@@ -131,18 +144,20 @@ export default function AdmissionPage() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Button
-              variant="secondary"
-              size="lg"
-              className="min-w-[160px] shadow-lg transition-transform hover:scale-105"
-            >
-              {t('startApplication')}
-            </Button>
-            <button className="flex h-12 min-w-[160px] cursor-pointer items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
-              {t('viewRequirements')}
-            </button>
-          </div>
+          {admissionOpen && (
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="min-w-[160px] shadow-lg transition-transform hover:scale-105"
+              >
+                {t('startApplication')}
+              </Button>
+              <button className="flex h-12 min-w-[160px] cursor-pointer items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 text-base font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
+                {t('viewRequirements')}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -463,25 +478,29 @@ export default function AdmissionPage() {
             />
 
             <div className="relative z-10 mx-auto max-w-2xl">
-              <Badge
-                variant="warning"
-                className="border-gold/30 bg-gold/20 text-gold mb-4 inline-block border px-3 py-1 text-xs font-semibold tracking-wider uppercase"
-              >
-                {t('cta.badge')}
-              </Badge>
+              {admissionOpen && (
+                <Badge
+                  variant="warning"
+                  className="border-gold/30 bg-gold/20 text-gold mb-4 inline-block border px-3 py-1 text-xs font-semibold tracking-wider uppercase"
+                >
+                  {t('cta.badge')}
+                </Badge>
+              )}
 
               <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">{t('cta.title')}</h2>
 
               <p className="mb-8 text-lg text-slate-300">{t('cta.subtitle')}</p>
 
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="min-w-[200px] shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
-                >
-                  {tActions('apply')}
-                </Button>
+                {admissionOpen && (
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="min-w-[200px] shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
+                  >
+                    {tActions('apply')}
+                  </Button>
+                )}
                 <button className="flex h-12 min-w-[200px] cursor-pointer items-center justify-center rounded-lg bg-white/10 px-8 text-lg font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
                   {t('cta.contactAdmissions')}
                 </button>

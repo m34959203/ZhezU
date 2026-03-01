@@ -17,9 +17,10 @@ function ls(val: LocalizedString | undefined, locale: Locale, fallback: string):
 interface CtaBlockProps {
   config?: CtaBlockConfig;
   size?: BlockSize;
+  admissionOpen?: boolean;
 }
 
-export default function CtaBlock({ config, size = 'full' }: CtaBlockProps) {
+export default function CtaBlock({ config, size = 'full', admissionOpen = true }: CtaBlockProps) {
   const t = useTranslations('home');
   const locale = useLocale() as Locale;
 
@@ -41,16 +42,18 @@ export default function CtaBlock({ config, size = 'full' }: CtaBlockProps) {
           <div className="relative">
             <h2 className="font-display mb-4 text-3xl font-bold sm:text-4xl">{title}</h2>
             <p className="mx-auto mb-8 max-w-xl leading-relaxed text-white/70">{description}</p>
-            <Link href={buttonLink}>
-              <Button
-                variant="secondary"
-                size="lg"
-                icon={<ArrowRight size={18} />}
-                iconPosition="right"
-              >
-                {buttonText}
-              </Button>
-            </Link>
+            {admissionOpen && (
+              <Link href={buttonLink}>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  icon={<ArrowRight size={18} />}
+                  iconPosition="right"
+                >
+                  {buttonText}
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

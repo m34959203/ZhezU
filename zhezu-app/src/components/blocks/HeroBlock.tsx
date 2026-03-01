@@ -39,9 +39,10 @@ const STAT_STYLES: Record<string, { color: string; bg: string }> = {
 interface HeroBlockProps {
   heroTitle: string;
   heroStats: ResolvedHomepageStat[];
+  admissionOpen?: boolean;
 }
 
-export default function HeroBlock({ heroTitle, heroStats }: HeroBlockProps) {
+export default function HeroBlock({ heroTitle, heroStats, admissionOpen = true }: HeroBlockProps) {
   const t = useTranslations('home');
   const stats = heroStats.length > 0 ? heroStats : FALLBACK_STATS;
 
@@ -83,17 +84,19 @@ export default function HeroBlock({ heroTitle, heroStats }: HeroBlockProps) {
                 {t('hero.description')}
               </p>
 
-              <Link href="/admission">
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  icon={<ArrowRight size={18} />}
-                  iconPosition="right"
-                  className="shadow-gold/20 shadow-xl"
-                >
-                  {t('hero.cta')}
-                </Button>
-              </Link>
+              {admissionOpen && (
+                <Link href="/admission">
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    icon={<ArrowRight size={18} />}
+                    iconPosition="right"
+                    className="shadow-gold/20 shadow-xl"
+                  >
+                    {t('hero.cta')}
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
 

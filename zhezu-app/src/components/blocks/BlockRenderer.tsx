@@ -34,6 +34,7 @@ interface BlockRendererProps {
   homepageData: HomepageData & { resolvedStats?: ResolvedHomepageStat[] };
   uniData: UniversityData | null;
   newsItems: NewsArticle[];
+  admissionOpen?: boolean;
 }
 
 /** Group consecutive non-full blocks into grid rows */
@@ -74,7 +75,7 @@ function groupIntoRows(blocks: PageBlock[]): Array<PageBlock | PageBlock[]> {
   return rows;
 }
 
-export default function BlockRenderer({ blocks, homepageData, uniData, newsItems }: BlockRendererProps) {
+export default function BlockRenderer({ blocks, homepageData, uniData, newsItems, admissionOpen = true }: BlockRendererProps) {
   const visibleBlocks = blocks
     .filter((b) => b.visible)
     .sort((a, b) => a.order - b.order);
@@ -94,6 +95,7 @@ export default function BlockRenderer({ blocks, homepageData, uniData, newsItems
                     homepageData={homepageData}
                     uniData={uniData}
                     newsItems={newsItems}
+                    admissionOpen={admissionOpen}
                   />
                 </div>
               ))}
@@ -107,6 +109,7 @@ export default function BlockRenderer({ blocks, homepageData, uniData, newsItems
             homepageData={homepageData}
             uniData={uniData}
             newsItems={newsItems}
+            admissionOpen={admissionOpen}
           />
         );
       })}
@@ -119,11 +122,13 @@ function RenderBlock({
   homepageData,
   uniData,
   newsItems,
+  admissionOpen,
 }: {
   block: PageBlock;
   homepageData: HomepageData & { resolvedStats?: ResolvedHomepageStat[] };
   uniData: UniversityData | null;
   newsItems: NewsArticle[];
+  admissionOpen?: boolean;
 }) {
   const { type, config, size } = block;
 
@@ -133,6 +138,7 @@ function RenderBlock({
         <HeroBlock
           heroTitle={homepageData.heroTitle || 'Жезказганский университет'}
           heroStats={homepageData.resolvedStats || []}
+          admissionOpen={admissionOpen}
         />
       );
 
@@ -166,7 +172,7 @@ function RenderBlock({
       );
 
     case 'cta':
-      return <CtaBlock config={config as CtaBlockConfig} size={size} />;
+      return <CtaBlock config={config as CtaBlockConfig} size={size} admissionOpen={admissionOpen} />;
 
     case 'text':
       return <TextBlock config={config as TextBlockConfig} size={size} />;

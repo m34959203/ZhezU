@@ -75,7 +75,7 @@ export default async function LocaleLayout({
             >
               Skip to main content
             </a>
-            <Header navItems={menuData.navigation} />
+            <Header navItems={menuData.navigation} admissionOpen={siteSettings.admissionOpen} />
             <main id="main-content" className="flex-1">
               {children}
             </main>
