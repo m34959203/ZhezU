@@ -3,9 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
-import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
-import { ArrowRight, Bot, BarChart3, FileText, Sparkles } from 'lucide-react';
+import { Bot, BarChart3, FileText, Sparkles } from 'lucide-react';
 
 export async function generateMetadata({
   params,
@@ -61,15 +60,6 @@ export default function ToolsPage() {
         </div>
       </section>
 
-      <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <Link href="/ai-center/api">
-            <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
-              {t('ctaApi')}
-            </Button>
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }

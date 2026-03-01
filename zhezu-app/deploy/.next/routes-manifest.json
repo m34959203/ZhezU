@@ -287,14 +287,6 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/ai\\-center/agents/talapker(?:/)?$"
     },
     {
-      "page": "/[locale]/ai-center/api",
-      "regex": "^/([^/]+?)/ai\\-center/api(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/ai\\-center/api(?:/)?$"
-    },
-    {
       "page": "/[locale]/ai-center/lab",
       "regex": "^/([^/]+?)/ai\\-center/lab(?:/)?$",
       "routeKeys": {
