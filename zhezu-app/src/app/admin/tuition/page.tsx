@@ -8,14 +8,12 @@ import {
   Trash2,
   GraduationCap,
   Home,
-  Award,
 } from 'lucide-react';
 import type { TuitionData, TuitionProgram, ContentLocale } from '@/lib/admin/types';
 
 const DEFAULTS: TuitionData = {
   programs: [],
   dormitoryCost: 180000,
-  scholarships: { gpa35: 150000, gpa30: 90000, gpa25: 30000 },
 };
 
 const LOCALES: { code: ContentLocale; label: string }[] = [
@@ -135,83 +133,22 @@ export default function TuitionAdminPage() {
         </button>
       </div>
 
-      {/* General settings: dormitory + scholarships */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Dormitory */}
-        <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-          <div className="mb-4 flex items-center gap-2">
-            <Home size={18} className="text-blue-500" />
-            <h2 className="font-semibold text-slate-900 dark:text-white">Общежитие</h2>
-          </div>
-          <label className="mb-1 block text-sm text-slate-500 dark:text-slate-400">
-            Стоимость проживания в год (₸)
-          </label>
-          <input
-            type="number"
-            value={data.dormitoryCost}
-            onChange={(e) => setData({ ...data, dormitoryCost: Number(e.target.value) })}
-            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-          />
-          <p className="mt-1 text-xs text-slate-400">{formatTenge(data.dormitoryCost)}</p>
+      {/* Dormitory */}
+      <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+        <div className="mb-4 flex items-center gap-2">
+          <Home size={18} className="text-blue-500" />
+          <h2 className="font-semibold text-slate-900 dark:text-white">Общежитие</h2>
         </div>
-
-        {/* Scholarships */}
-        <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
-          <div className="mb-4 flex items-center gap-2">
-            <Award size={18} className="text-green-500" />
-            <h2 className="font-semibold text-slate-900 dark:text-white">Скидки за успеваемость</h2>
-          </div>
-          <div className="space-y-3">
-            <div>
-              <label className="mb-1 block text-sm text-slate-500 dark:text-slate-400">
-                GPA 3.5+ (₸/год)
-              </label>
-              <input
-                type="number"
-                value={data.scholarships.gpa35}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    scholarships: { ...data.scholarships, gpa35: Number(e.target.value) },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-slate-500 dark:text-slate-400">
-                GPA 3.0 – 3.4 (₸/год)
-              </label>
-              <input
-                type="number"
-                value={data.scholarships.gpa30}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    scholarships: { ...data.scholarships, gpa30: Number(e.target.value) },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-slate-500 dark:text-slate-400">
-                GPA 2.5 – 2.9 (₸/год)
-              </label>
-              <input
-                type="number"
-                value={data.scholarships.gpa25}
-                onChange={(e) =>
-                  setData({
-                    ...data,
-                    scholarships: { ...data.scholarships, gpa25: Number(e.target.value) },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-white"
-              />
-            </div>
-          </div>
-        </div>
+        <label className="mb-1 block text-sm text-slate-500 dark:text-slate-400">
+          Стоимость проживания в год (₸)
+        </label>
+        <input
+          type="number"
+          value={data.dormitoryCost}
+          onChange={(e) => setData({ ...data, dormitoryCost: Number(e.target.value) })}
+          className="w-full max-w-xs rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+        />
+        <p className="mt-1 text-xs text-slate-400">{formatTenge(data.dormitoryCost)}</p>
       </div>
 
       {/* Programs table */}
