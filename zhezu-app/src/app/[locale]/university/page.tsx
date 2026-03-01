@@ -16,6 +16,7 @@ import {
   GraduationCap,
   Building2,
 } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 
 export async function generateMetadata({
   params,
@@ -171,11 +172,13 @@ export default function UniversityPage() {
             {t('ctaText')}
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
             <Link href="/admission/consultation">
               <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
                 {t('ctaConsult')}

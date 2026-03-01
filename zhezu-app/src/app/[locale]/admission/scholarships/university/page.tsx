@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Award, ArrowRight, Star, TrendingUp, Globe } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 
 export async function generateMetadata({
   params,
@@ -100,11 +101,13 @@ export default async function UniversityScholarshipsPage({
                 {t('ctaGrants')}
               </Button>
             </Link>
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
           </div>
         </div>
       </section>
