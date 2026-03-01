@@ -2337,6 +2337,72 @@
     "title": "AI Center",
     "subtitle": "Zhezkazgan University Artificial Intelligence Center — innovations, research and development",
     "badge": "AI Center",
+    "hub": {
+      "badgeLabel": "New Models Available v2.4",
+      "explore": "Explore Innovation",
+      "watchDemo": "Watch Demo",
+      "projectsSubtitle": "Discover breakthrough initiatives from our research labs.",
+      "viewAll": "View All",
+      "agentsTitle": "Meet Our Intelligent Agents",
+      "agentsSubtitle": "Specialized autonomous agents designed to handle complex workflows. Select an agent to augment your productivity.",
+      "tryNow": "Try Now",
+      "tabs": {
+        "projects": "Projects",
+        "agents": "Agents",
+        "apps": "Apps",
+        "tools": "Tools",
+        "lab": "Lab"
+      },
+      "featuredProjects": {
+        "neural": {
+          "title": "Neural Net Optimizer",
+          "description": "A next-generation framework for optimizing deep learning models, reducing inference time by 40% while maintaining accuracy.",
+          "category": "Deep Learning"
+        },
+        "vision": {
+          "title": "VisionSentinel",
+          "description": "Real-time anomaly detection system for industrial surveillance feeds, capable of identifying safety hazards with 99.8% precision.",
+          "category": "Computer Vision"
+        },
+        "algo": {
+          "title": "AlgoTrade X",
+          "description": "Predictive modeling engine for cryptocurrency markets utilizing sentiment analysis and historical ledger data.",
+          "category": "FinTech AI"
+        }
+      },
+      "agentsList": {
+        "athena": {
+          "role": "Research Assistant",
+          "description": "Summarizes papers, extracts data points, and generates literature reviews in seconds."
+        },
+        "codex": {
+          "role": "Code Tutor",
+          "description": "Automates CI/CD pipelines, audits code quality, and helps students learn programming interactively."
+        },
+        "muse": {
+          "role": "Career Advisor",
+          "description": "Generates career path recommendations, resume reviews, and interview preparation tailored to your profile."
+        },
+        "sentinel": {
+          "role": "Analytics Engine",
+          "description": "Monitors university data patterns, generates insights, and flags potential issues in real-time."
+        }
+      },
+      "devTools": {
+        "api": {
+          "title": "API Gateway",
+          "description": "Manage and secure your API endpoints with our unified dashboard."
+        },
+        "dataset": {
+          "title": "Dataset Hub",
+          "description": "Access curated, clean datasets for training your custom models."
+        },
+        "experiment": {
+          "title": "Experiment Lab",
+          "description": "A sandbox environment to test prompts and model parameters safely."
+        }
+      }
+    },
     "stats": {
       "projects": "Projects",
       "students": "Students",
