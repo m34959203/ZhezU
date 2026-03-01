@@ -83,10 +83,15 @@ export default function AdmissionPage() {
   const [onCampus, setOnCampus] = useState(true);
 
   const gpaDisplay = (gpa / 10).toFixed(1);
-  const baseTuition = isResident ? 12000 : 22000;
-  const housing = onCampus ? 8500 : 0;
-  const scholarship = gpa >= 35 ? 5000 : gpa >= 30 ? 3000 : gpa >= 25 ? 1000 : 0;
+  const baseTuition = isResident ? 600000 : 800000;
+  const housing = onCampus ? 180000 : 0;
+  const scholarship = gpa >= 35 ? 150000 : gpa >= 30 ? 90000 : gpa >= 25 ? 30000 : 0;
   const total = baseTuition + housing - scholarship;
+
+  const formatTenge = (v: number) => {
+    const abs = Math.abs(v);
+    return `${v < 0 ? '-' : ''}${abs.toLocaleString('ru-KZ')} ₸`;
+  };
 
   /* Steps data */
   const steps = [
@@ -419,12 +424,12 @@ export default function AdmissionPage() {
                   <div className="space-y-4">
                     <div className="flex justify-between border-b border-white/20 pb-4">
                       <span className="text-blue-100">{t('tuition.baseTuition')}</span>
-                      <span className="font-bold">${baseTuition.toLocaleString()}</span>
+                      <span className="font-bold">{formatTenge(baseTuition)}</span>
                     </div>
                     {onCampus && (
                       <div className="flex justify-between border-b border-white/20 pb-4">
                         <span className="text-blue-100">{t('tuition.housingMeals')}</span>
-                        <span className="font-bold">${housing.toLocaleString()}</span>
+                        <span className="font-bold">{formatTenge(housing)}</span>
                       </div>
                     )}
                     {scholarship > 0 && (
@@ -432,13 +437,13 @@ export default function AdmissionPage() {
                         <span className="flex items-center gap-1">
                           <BadgeCheck className="h-4 w-4" /> {t('tuition.meritScholarship')}
                         </span>
-                        <span className="font-bold">-${scholarship.toLocaleString()}</span>
+                        <span className="font-bold">-{formatTenge(scholarship)}</span>
                       </div>
                     )}
                     <div className="mt-6 flex items-end justify-between pt-2">
                       <span className="text-lg font-medium">{t('tuition.estimatedTotal')}</span>
                       <span className="text-4xl font-bold text-white">
-                        ${total.toLocaleString()}
+                        {formatTenge(total)}
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-blue-200">{t('tuition.disclaimer')}</p>

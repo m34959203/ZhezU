@@ -167,19 +167,19 @@
     },
     "tuition": {
       "title": "Tuition Estimator",
-      "subtitle": "Calculate your estimated annual costs and potential scholarships.",
-      "residency": "Residency Status",
-      "resident": "Resident",
+      "subtitle": "Calculate your estimated annual tuition and merit-based discounts.",
+      "residency": "Citizenship",
+      "resident": "Kazakhstan Resident",
       "international": "International",
       "gpa": "GPA Score (0.0 - 4.0)",
-      "livingOnCampus": "Living On Campus?",
+      "livingOnCampus": "Living in Dormitory?",
       "yes": "Yes",
       "no": "No",
-      "baseTuition": "Base Tuition",
-      "housingMeals": "Housing & Meals",
-      "meritScholarship": "Merit Scholarship",
-      "estimatedTotal": "Estimated Total",
-      "disclaimer": "* This is an estimate. Official costs may vary."
+      "baseTuition": "Tuition Fee",
+      "housingMeals": "Dormitory",
+      "meritScholarship": "Merit Discount",
+      "estimatedTotal": "Total per Year",
+      "disclaimer": "* This is an estimate. For exact costs, contact the admissions office: +7 (7102) 41-04-61."
     },
     "scholarships": {
       "title": "Scholarships & Grants",
