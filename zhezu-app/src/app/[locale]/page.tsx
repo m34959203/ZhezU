@@ -48,6 +48,7 @@ export default function HomePage() {
     (HomepageData & { resolvedStats?: ResolvedHomepageStat[] }) | null
   >(null);
   const [uniData, setUniData] = useState<UniversityData | null>(null);
+  const [admissionOpen, setAdmissionOpen] = useState(true);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -62,11 +63,17 @@ export default function HomePage() {
       fetch('/api/public/university', { signal: controller.signal }).then((r) =>
         r.ok ? r.json() : null,
       ),
+      fetch('/api/public/settings', { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : null,
+      ),
     ])
-      .then(([news, hp, uni]) => {
+      .then(([news, hp, uni, settings]) => {
         setNewsItems(news);
         if (hp) setHomepageData(hp);
         if (uni) setUniData(uni);
+        if (settings && typeof settings.admissionOpen === 'boolean') {
+          setAdmissionOpen(settings.admissionOpen);
+        }
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -119,6 +126,7 @@ export default function HomePage() {
           }}
           uniData={uniData ? { ...uniData, programs, departments } : null}
           newsItems={newsItems}
+          admissionOpen={admissionOpen}
         />
       </div>
     );
@@ -127,11 +135,11 @@ export default function HomePage() {
   /* ---- Legacy layout (no blocks configured) ---- */
   return (
     <div className="flex flex-col">
-      <HeroBlock heroTitle={heroTitle} heroStats={heroStats} />
+      <HeroBlock heroTitle={heroTitle} heroStats={heroStats} admissionOpen={admissionOpen} />
       <ProgramsBlock programs={programs} programImages={PROGRAM_IMAGES} />
       <NewsBlock newsItems={newsItems} categoryLabels={categoryLabels} />
       <DepartmentsBlock departments={departments} />
-      <CtaBlock />
+      <CtaBlock admissionOpen={admissionOpen} />
     </div>
   );
 }

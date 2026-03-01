@@ -96,6 +96,7 @@
     "title": "Admission to ZhezU",
     "subtitle": "Begin your journey at ZhezU. Discover world-class programs, generous scholarships, and a community dedicated to your future success.",
     "heroBadge": "2026-2027 APPLICATIONS OPEN",
+    "heroBadgeClosed": "APPLICATIONS CLOSED",
     "startApplication": "Start Application",
     "viewRequirements": "View Requirements",
     "requirements": {
@@ -1208,9 +1209,28 @@
       "placeholder": "Your email",
       "subscribe": "Subscribe"
     },
+    "navigation": "Navigation",
+    "students": "For Students",
+    "allRightsReserved": "All rights reserved.",
+    "login": "Login",
+    "sitemap": "Sitemap",
     "copyright": "© 2026 Zhezkazgan University. All rights reserved.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Use"
+    "terms": "Terms of Use",
+    "validation": {
+      "nameRequired": "Enter your name",
+      "nameMin": "Name must be at least 2 characters",
+      "emailRequired": "Enter your email",
+      "emailInvalid": "Enter a valid email",
+      "subjectRequired": "Select a subject",
+      "messageRequired": "Enter a message",
+      "messageMin": "Message must be at least 10 characters"
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again.",
+      "network": "Network error. Check your connection and try again."
+    },
+    "newsletterSuccess": "Thank you for subscribing!"
   },
   "talent": {
     "title": "Talent Pool",

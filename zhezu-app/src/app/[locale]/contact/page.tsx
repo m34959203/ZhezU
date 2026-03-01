@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import type { SiteSettings, ContactPageData } from '@/lib/admin/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,17 +28,12 @@ import {
 
 const SUBJECTS = ['admission', 'academic', 'technical', 'other'] as const;
 
-const contactSchema = z.object({
-  name: z.string().min(1, 'Введите ваше имя').min(2, 'Имя должно содержать не менее 2 символов'),
-  email: z.string().min(1, 'Введите email').email('Введите корректный email'),
-  subject: z.enum(SUBJECTS, { message: 'Выберите тему обращения' }),
-  message: z
-    .string()
-    .min(1, 'Введите сообщение')
-    .min(10, 'Сообщение должно содержать не менее 10 символов'),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+type ContactFormData = {
+  name: string;
+  email: string;
+  subject: (typeof SUBJECTS)[number];
+  message: string;
+};
 
 /* ------------------------------------------------------------------ */
 /*  Fallback Data                                                       */
@@ -78,12 +74,7 @@ const FALLBACK_DEPARTMENTS = [
   },
 ];
 
-const FALLBACK_SUBJECT_LABELS: Record<string, string> = {
-  admission: 'Поступление',
-  academic: 'Учебные программы',
-  technical: 'Техническая поддержка',
-  other: 'Другое',
-};
+/* FALLBACK_SUBJECT_LABELS are now loaded via i18n in component body */
 
 const FALLBACK_OPENING_HOURS = [
   { day: 'Пн - Пт', hours: '09:00 - 18:00', closed: false },
@@ -103,6 +94,7 @@ const ICON_MAP: Record<string, typeof GraduationCap> = {
 /* ------------------------------------------------------------------ */
 
 export default function ContactPage() {
+  const t = useTranslations('contact');
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
@@ -126,14 +118,21 @@ export default function ContactPage() {
     return () => controller.abort();
   }, []);
 
+  const contactSchema = z.object({
+    name: z.string().min(1, t('form.name')).min(2, t('form.name')),
+    email: z.string().min(1, t('form.email')).email(t('form.email')),
+    subject: z.enum(SUBJECTS, { message: t('form.subject') }),
+    message: z.string().min(1, t('form.message')).min(10, t('form.message')),
+  });
+
   const DEPARTMENTS =
     contactData?.departments && contactData.departments.length > 0
       ? contactData.departments
       : FALLBACK_DEPARTMENTS;
-  const SUBJECT_LABELS =
+  const SUBJECT_LABELS: Record<string, string> =
     contactData?.subjectLabels && Object.keys(contactData.subjectLabels).length > 0
       ? contactData.subjectLabels
-      : FALLBACK_SUBJECT_LABELS;
+      : { admission: t('form.subjects.admission'), academic: t('form.subjects.academic'), technical: t('form.subjects.technical'), other: t('form.subjects.other') };
   const OPENING_HOURS =
     contactData?.openingHours && contactData.openingHours.length > 0
       ? contactData.openingHours
@@ -163,16 +162,15 @@ export default function ContactPage() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        setSubmitError(result.errors?._form?.[0] ?? 'Произошла ошибка. Попробуйте снова.');
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        setSubmitError(result?.errors?._form?.[0] ?? result?.error ?? response.statusText);
         return;
       }
 
       setSubmitted(true);
     } catch {
-      setSubmitError('Ошибка сети. Проверьте подключение и попробуйте снова.');
+      setSubmitError('Network error');
     }
   }
 
@@ -182,31 +180,30 @@ export default function ContactPage() {
         {/* -------- Page Header -------- */}
         <div className="mb-10 text-center sm:text-left">
           <h1 className="text-text-primary-light dark:text-text-primary-dark mb-4 text-4xl font-black tracking-tight md:text-5xl">
-            Контакты
+            {t('title')}
           </h1>
           <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
-            Свяжитесь с Жезказганским университетом. Будь вы абитуриент, исследователь или гость --
-            мы всегда готовы помочь.
+            {t('subtitle')}
           </p>
         </div>
 
         {/* -------- Map Placeholder -------- */}
         <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark relative mb-12 w-full overflow-hidden rounded-xl border shadow-sm">
-          <div className="aspect-video w-full" />
-          {/* Pin icon */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <div className="bg-primary animate-bounce rounded-full p-3 text-white shadow-lg">
-              <MapPin size={28} />
-            </div>
-          </div>
-          {/* Google Maps link */}
+          <iframe
+            title={t('map.openInGoogleMaps')}
+            src={`https://maps.google.com/maps?q=${googleMapsQuery}&output=embed&z=15`}
+            className="aspect-video w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
           <a
             href={`https://maps.google.com/?q=${googleMapsQuery}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-surface-light text-text-primary-light hover:bg-bg-light dark:bg-surface-dark dark:text-text-primary-dark dark:hover:bg-bg-dark absolute right-4 bottom-4 flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium shadow-md transition-colors"
           >
-            Открыть в Google Maps
+            {t('map.openInGoogleMaps')}
             <ExternalLink size={14} />
           </a>
         </div>
@@ -219,7 +216,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4">
               <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Building2 size={20} className="text-primary" />
-                Главный офис
+                {t('mainOffice')}
               </h2>
               <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex flex-col gap-6 rounded-xl border p-6 shadow-sm">
                 {/* Address */}
@@ -229,10 +226,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
-                      Адрес
+                      {t('info.addressLabel')}
                     </h3>
                     <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
-                      {settings?.address?.ru ?? 'пр. Алашахана, 1Б, г. Жезказган, Казахстан'}
+                      {settings?.address?.ru ?? t('info.address')}
                     </p>
                   </div>
                 </div>
@@ -244,14 +241,14 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
-                      Телефон
+                      {t('info.phoneLabel')}
                     </h3>
                     <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex flex-col gap-1 text-sm">
                       <a
-                        href={`tel:${(settings?.contactPhone ?? '+7 (7102) 73-60-15').replace(/[\s()-]/g, '')}`}
+                        href={`tel:${(settings?.contactPhone ?? t('info.phone')).replace(/[\s()-]/g, '')}`}
                         className="hover:text-primary transition-colors"
                       >
-                        {settings?.contactPhone ?? '+7 (7102) 73-60-15'}
+                        {settings?.contactPhone ?? t('info.phone')}
                       </a>
                       {settings?.contactPhoneAdmissions && (
                         <a
@@ -272,13 +269,13 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-text-primary-light dark:text-text-primary-dark font-bold">
-                      Email
+                      {t('info.emailLabel')}
                     </h3>
                     <a
-                      href={`mailto:${settings?.contactEmail ?? 'univer@zhezu.edu.kz'}`}
+                      href={`mailto:${settings?.contactEmail ?? t('info.email')}`}
                       className="hover:text-primary text-text-secondary-light dark:text-text-secondary-dark mt-1 block text-sm transition-colors"
                     >
-                      {settings?.contactEmail ?? 'univer@zhezu.edu.kz'}
+                      {settings?.contactEmail ?? t('info.email')}
                     </a>
                   </div>
                 </div>
@@ -289,7 +286,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4">
               <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Clock size={20} className="text-primary" />
-                Часы работы
+                {t('openingHours.title')}
               </h2>
               <div className="border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark rounded-xl border p-6 shadow-sm">
                 <ul className="flex flex-col gap-3 text-sm">
@@ -324,7 +321,7 @@ export default function ContactPage() {
             <div className="flex flex-col gap-4">
               <h2 className="text-text-primary-light dark:text-text-primary-dark flex items-center gap-2 text-xl font-bold">
                 <Users size={20} className="text-primary" />
-                Отделы
+                {t('departments.title')}
               </h2>
               <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark rounded-xl border p-1">
                 {DEPARTMENTS.map((dept, idx) => {
@@ -366,11 +363,10 @@ export default function ContactPage() {
               {/* Form Header */}
               <div className="border-border-light dark:border-border-dark border-b p-8">
                 <h2 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-2xl font-bold">
-                  Напишите нам
+                  {t('form.formTitle')}
                 </h2>
                 <p className="text-text-secondary-light dark:text-text-secondary-dark">
-                  Есть вопрос или нужна помощь? Заполните форму ниже, и наша команда ответит вам в
-                  течение 24 часов.
+                  {t('form.description')}
                 </p>
               </div>
 
@@ -382,11 +378,8 @@ export default function ContactPage() {
                       <CheckCircle2 size={32} className="text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <h3 className="text-text-primary-light dark:text-text-primary-dark mb-2 text-xl font-bold">
-                      Сообщение отправлено!
+                      {t('form.success')}
                     </h3>
-                    <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                      Мы свяжемся с вами в ближайшее время.
-                    </p>
                   </div>
                 </div>
               ) : (
@@ -394,16 +387,16 @@ export default function ContactPage() {
                   {/* Name + Email row */}
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <Input
-                      label="Полное имя"
-                      placeholder="Иван Иванов"
+                      label={t('form.name')}
+                      placeholder={t('form.namePlaceholder')}
                       icon={<Users size={16} />}
                       error={errors.name?.message}
                       {...register('name')}
                     />
                     <Input
-                      label="Email"
+                      label={t('form.email')}
                       type="email"
-                      placeholder="ivan@example.com"
+                      placeholder={t('form.emailPlaceholder')}
                       icon={<Mail size={16} />}
                       error={errors.email?.message}
                       {...register('email')}
@@ -416,7 +409,7 @@ export default function ContactPage() {
                       htmlFor="subject"
                       className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
                     >
-                      Тема
+                      {t('form.subject')}
                     </label>
                     <div className="relative">
                       <span className="text-text-secondary-light dark:text-text-secondary-dark pointer-events-none absolute top-1/2 left-3 -translate-y-1/2">
@@ -429,7 +422,7 @@ export default function ContactPage() {
                         defaultValue=""
                       >
                         <option value="" disabled>
-                          Выберите тему
+                          {t('form.selectTopic')}
                         </option>
                         {SUBJECTS.map((key) => (
                           <option key={key} value={key}>
@@ -449,12 +442,12 @@ export default function ContactPage() {
                       htmlFor="message"
                       className="text-text-primary-light dark:text-text-primary-dark text-sm font-medium"
                     >
-                      Сообщение
+                      {t('form.message')}
                     </label>
                     <textarea
                       id="message"
                       rows={6}
-                      placeholder="Чем мы можем помочь?"
+                      placeholder={t('form.messagePlaceholder')}
                       {...register('message')}
                       className="focus:border-primary focus:ring-primary border-border-light bg-bg-light text-text-primary-light dark:border-border-dark dark:bg-bg-dark dark:text-text-primary-dark w-full flex-1 resize-none rounded-lg border p-4 text-sm"
                     />
@@ -473,8 +466,7 @@ export default function ContactPage() {
                   {/* Footer row */}
                   <div className="mt-auto flex items-center justify-between pt-4">
                     <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-xs text-xs">
-                      Отправляя форму, вы соглашаетесь с нашей политикой конфиденциальности и
-                      условиями использования.
+                      {t('form.privacyNote')}
                     </p>
                     <Button
                       type="submit"
@@ -483,7 +475,7 @@ export default function ContactPage() {
                       icon={<Send size={16} />}
                       iconPosition="right"
                     >
-                      {isSubmitting ? 'Отправка...' : 'Отправить'}
+                      {isSubmitting ? t('form.submitting') : t('form.submit')}
                     </Button>
                   </div>
                 </form>

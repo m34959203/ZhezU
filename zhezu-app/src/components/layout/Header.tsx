@@ -110,7 +110,7 @@ function MegaMenuPanel({ item, isOpen }: { item: NavItem; isOpen: boolean }) {
 /* ================================================================== */
 /*  MAIN HEADER — Single clean nav bar                                 */
 /* ================================================================== */
-export function Header({ navItems }: { navItems?: NavItem[] }) {
+export function Header({ navItems, admissionOpen = true }: { navItems?: NavItem[]; admissionOpen?: boolean }) {
   const t = useTranslations('megaNav');
   const pathname = usePathname();
 
@@ -234,16 +234,18 @@ export function Header({ navItems }: { navItems?: NavItem[] }) {
                   <LanguageSwitcher />
                 </div>
                 <ThemeToggle />
-                <Link href="/admission/apply">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="font-display hidden sm:inline-flex"
-                  >
-                    {t('apply')}
-                  </Button>
-                </Link>
-                <MobileMenu navItems={items} />
+                {admissionOpen && (
+                  <Link href="/admission/apply">
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="font-display hidden sm:inline-flex"
+                    >
+                      {t('apply')}
+                    </Button>
+                  </Link>
+                )}
+                <MobileMenu navItems={items} admissionOpen={admissionOpen} />
               </div>
             </div>
           </div>

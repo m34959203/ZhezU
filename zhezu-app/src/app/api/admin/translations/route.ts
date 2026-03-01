@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getSession } from '@/lib/admin/auth';
 import { readTranslations, writeTranslations } from '@/lib/admin/storage';
 
+const ALLOWED_LOCALES = ['ru', 'kk', 'en'];
+
 export async function GET(req: Request) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -10,9 +12,16 @@ export async function GET(req: Request) {
   const locale = searchParams.get('locale') || 'ru';
   const namespace = searchParams.get('namespace') || '';
 
+  if (!ALLOWED_LOCALES.includes(locale)) {
+    return NextResponse.json({ error: 'Invalid locale' }, { status: 400 });
+  }
+
   const data = await readTranslations(locale);
 
   if (namespace) {
+    if (!/^[a-zA-Z0-9.]+$/.test(namespace)) {
+      return NextResponse.json({ error: 'Invalid namespace' }, { status: 400 });
+    }
     const keys = namespace.split('.');
     let current: unknown = data;
     for (const key of keys) {
@@ -36,6 +45,14 @@ export async function PUT(req: Request) {
     const { locale, namespace, data: newData } = await req.json();
     if (!locale || !namespace || !newData) {
       return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
+    }
+
+    if (!ALLOWED_LOCALES.includes(locale)) {
+      return NextResponse.json({ error: 'Invalid locale' }, { status: 400 });
+    }
+
+    if (!/^[a-zA-Z0-9.]+$/.test(namespace)) {
+      return NextResponse.json({ error: 'Invalid namespace' }, { status: 400 });
     }
 
     const full = await readTranslations(locale);

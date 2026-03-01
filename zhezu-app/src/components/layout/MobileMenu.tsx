@@ -102,7 +102,7 @@ function AccordionNavItem({
 /* ================================================================== */
 /*  MOBILE MENU                                                        */
 /* ================================================================== */
-export function MobileMenu({ navItems }: { navItems?: NavItem[] }) {
+export function MobileMenu({ navItems, admissionOpen = true }: { navItems?: NavItem[]; admissionOpen?: boolean }) {
   const [open, setOpen] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const t = useTranslations('megaNav');
@@ -203,16 +203,18 @@ export function MobileMenu({ navItems }: { navItems?: NavItem[] }) {
               {/* Scrollable content */}
               <div className="flex-1 overflow-y-auto overscroll-contain">
                 <div className="px-5 py-4">
-                  {/* CTA Button — prominent at top */}
-                  <Link href="/admission/apply" onClick={() => setOpen(false)}>
-                    <Button
-                      size="lg"
-                      variant="secondary"
-                      className="font-display mb-6 w-full text-base"
-                    >
-                      {t('apply')}
-                    </Button>
-                  </Link>
+                  {/* CTA Button — prominent at top (hidden when admission closed) */}
+                  {admissionOpen && (
+                    <Link href="/admission/apply" onClick={() => setOpen(false)}>
+                      <Button
+                        size="lg"
+                        variant="secondary"
+                        className="font-display mb-6 w-full text-base"
+                      >
+                        {t('apply')}
+                      </Button>
+                    </Link>
+                  )}
 
                   {/* Navigation accordion */}
                   <nav aria-label="Mobile navigation">
