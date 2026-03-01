@@ -77,16 +77,56 @@ export default function AdmissionPage() {
       .catch(() => {});
   }, []);
 
+  /* Tuition data from admin */
+  const [tuitionCosts, setTuitionCosts] = useState({
+    costResident: 600000,
+    costInternational: 800000,
+    dormitory: 180000,
+    gpa35: 150000,
+    gpa30: 90000,
+    gpa25: 30000,
+  });
+  useEffect(() => {
+    fetch('/api/public/tuition')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!d) return;
+        // Calculate average cost across programs, or use first program's cost
+        const programs = d.programs || [];
+        const paid = programs.filter((p: { isFree: boolean }) => !p.isFree);
+        const avgRes = paid.length > 0
+          ? Math.round(paid.reduce((s: number, p: { costResident: number }) => s + p.costResident, 0) / paid.length)
+          : 600000;
+        const avgInt = paid.length > 0
+          ? Math.round(paid.reduce((s: number, p: { costInternational: number }) => s + p.costInternational, 0) / paid.length)
+          : 800000;
+        setTuitionCosts({
+          costResident: avgRes,
+          costInternational: avgInt,
+          dormitory: d.dormitoryCost ?? 180000,
+          gpa35: d.scholarships?.gpa35 ?? 150000,
+          gpa30: d.scholarships?.gpa30 ?? 90000,
+          gpa25: d.scholarships?.gpa25 ?? 30000,
+        });
+      })
+      .catch(() => {});
+  }, []);
+
   /* Tuition calculator state */
   const [isResident, setIsResident] = useState(true);
   const [gpa, setGpa] = useState(35); // stored as 0-40, displayed as 0.0-4.0
   const [onCampus, setOnCampus] = useState(true);
 
   const gpaDisplay = (gpa / 10).toFixed(1);
-  const baseTuition = isResident ? 12000 : 22000;
-  const housing = onCampus ? 8500 : 0;
-  const scholarship = gpa >= 35 ? 5000 : gpa >= 30 ? 3000 : gpa >= 25 ? 1000 : 0;
+  const baseTuition = isResident ? tuitionCosts.costResident : tuitionCosts.costInternational;
+  const housing = onCampus ? tuitionCosts.dormitory : 0;
+  const scholarship = gpa >= 35 ? tuitionCosts.gpa35 : gpa >= 30 ? tuitionCosts.gpa30 : gpa >= 25 ? tuitionCosts.gpa25 : 0;
   const total = baseTuition + housing - scholarship;
+
+  const formatTenge = (v: number) => {
+    const abs = Math.abs(v);
+    return `${v < 0 ? '-' : ''}${abs.toLocaleString('ru-KZ')} ₸`;
+  };
 
   /* Steps data */
   const steps = [
@@ -419,12 +459,12 @@ export default function AdmissionPage() {
                   <div className="space-y-4">
                     <div className="flex justify-between border-b border-white/20 pb-4">
                       <span className="text-blue-100">{t('tuition.baseTuition')}</span>
-                      <span className="font-bold">${baseTuition.toLocaleString()}</span>
+                      <span className="font-bold">{formatTenge(baseTuition)}</span>
                     </div>
                     {onCampus && (
                       <div className="flex justify-between border-b border-white/20 pb-4">
                         <span className="text-blue-100">{t('tuition.housingMeals')}</span>
-                        <span className="font-bold">${housing.toLocaleString()}</span>
+                        <span className="font-bold">{formatTenge(housing)}</span>
                       </div>
                     )}
                     {scholarship > 0 && (
@@ -432,13 +472,13 @@ export default function AdmissionPage() {
                         <span className="flex items-center gap-1">
                           <BadgeCheck className="h-4 w-4" /> {t('tuition.meritScholarship')}
                         </span>
-                        <span className="font-bold">-${scholarship.toLocaleString()}</span>
+                        <span className="font-bold">-{formatTenge(scholarship)}</span>
                       </div>
                     )}
                     <div className="mt-6 flex items-end justify-between pt-2">
                       <span className="text-lg font-medium">{t('tuition.estimatedTotal')}</span>
                       <span className="text-4xl font-bold text-white">
-                        ${total.toLocaleString()}
+                        {formatTenge(total)}
                       </span>
                     </div>
                     <p className="mt-2 text-xs text-blue-200">{t('tuition.disclaimer')}</p>

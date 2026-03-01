@@ -13,6 +13,7 @@ import type {
   ContactPageData,
   HomepageData,
   ResolvedHomepageStat,
+  TuitionData,
 } from './types';
 
 /* ─── Helpers ─── */
@@ -218,6 +219,18 @@ const DEFAULT_HOMEPAGE: HomepageData = {
 
 export async function getHomepageData(): Promise<HomepageData> {
   return getSetting<HomepageData>('homepage', DEFAULT_HOMEPAGE);
+}
+
+/* ─── Tuition Data ─── */
+
+const DEFAULT_TUITION: TuitionData = {
+  programs: [],
+  dormitoryCost: 180000,
+  scholarships: { gpa35: 150000, gpa30: 90000, gpa25: 30000 },
+};
+
+export async function getTuitionData(): Promise<TuitionData> {
+  return getSetting<TuitionData>('tuition', DEFAULT_TUITION);
 }
 
 /**

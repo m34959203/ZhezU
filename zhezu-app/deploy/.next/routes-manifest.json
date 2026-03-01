@@ -759,6 +759,12 @@
       "namedRegex": "^/admin/translations(?:/)?$"
     },
     {
+      "page": "/admin/tuition",
+      "regex": "^/admin/tuition(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/tuition(?:/)?$"
+    },
+    {
       "page": "/admin/university",
       "regex": "^/admin/university(?:/)?$",
       "routeKeys": {},
@@ -855,6 +861,12 @@
       "namedRegex": "^/api/admin/translations(?:/)?$"
     },
     {
+      "page": "/api/admin/tuition",
+      "regex": "^/api/admin/tuition(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/tuition(?:/)?$"
+    },
+    {
       "page": "/api/admin/university",
       "regex": "^/api/admin/university(?:/)?$",
       "routeKeys": {},
@@ -907,6 +919,12 @@
       "regex": "^/api/public/settings(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/public/settings(?:/)?$"
+    },
+    {
+      "page": "/api/public/tuition",
+      "regex": "^/api/public/tuition(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/public/tuition(?:/)?$"
     },
     {
       "page": "/api/public/university",

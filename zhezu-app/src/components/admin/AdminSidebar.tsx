@@ -12,6 +12,7 @@ import {
   Building2,
   Phone,
   Layers,
+  Banknote,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
   { href: '/admin/menu', label: 'Управление меню', icon: Menu },
   { href: '/admin/university', label: 'Университет', icon: Building2 },
   { href: '/admin/homepage', label: 'Конструктор страниц', icon: Layers },
+  { href: '/admin/tuition', label: 'Стоимость обучения', icon: Banknote },
   { href: '/admin/contact', label: 'Контакты', icon: Phone },
   { href: '/admin/settings', label: 'Настройки', icon: Settings },
 ];

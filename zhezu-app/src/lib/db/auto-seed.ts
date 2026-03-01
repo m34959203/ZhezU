@@ -79,7 +79,7 @@ async function runSeedIfNeeded() {
   }
 
   // 1. Import settings JSON files
-  const settingsFiles = ['settings', 'contact', 'homepage', 'university', 'menu'];
+  const settingsFiles = ['settings', 'contact', 'homepage', 'university', 'menu', 'tuition'];
   for (const key of settingsFiles) {
     const data = readJson(dataDir, `${key}.json`);
     if (data) {

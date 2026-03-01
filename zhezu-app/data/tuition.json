@@ -1,0 +1,50 @@
+{
+  "programs": [
+    {
+      "id": "primary-education",
+      "name": { "kk": "Бастауыш оқытудың педагогикасы мен әдістемесі", "ru": "Педагогика и методика начального образования", "en": "Pedagogy and Methods of Primary Education" },
+      "level": "bachelor",
+      "costResident": 600000,
+      "costInternational": 800000,
+      "isFree": false
+    },
+    {
+      "id": "physical-culture",
+      "name": { "kk": "Дене шынықтыру және спорт", "ru": "Физическая культура и спорт", "en": "Physical Culture and Sports" },
+      "level": "bachelor",
+      "costResident": 600000,
+      "costInternational": 800000,
+      "isFree": false
+    },
+    {
+      "id": "mining",
+      "name": { "kk": "Тау-кен ісі", "ru": "Горное дело", "en": "Mining Engineering" },
+      "level": "bachelor",
+      "costResident": 650000,
+      "costInternational": 850000,
+      "isFree": false
+    },
+    {
+      "id": "geology",
+      "name": { "kk": "Геология және пайдалы қазба кен орындарын барлау", "ru": "Геология и разведка месторождений", "en": "Geology and Mineral Exploration" },
+      "level": "bachelor",
+      "costResident": 650000,
+      "costInternational": 850000,
+      "isFree": false
+    },
+    {
+      "id": "law",
+      "name": { "kk": "Құқықтану", "ru": "Юриспруденция", "en": "Law" },
+      "level": "bachelor",
+      "costResident": 600000,
+      "costInternational": 800000,
+      "isFree": false
+    }
+  ],
+  "dormitoryCost": 180000,
+  "scholarships": {
+    "gpa35": 150000,
+    "gpa30": 90000,
+    "gpa25": 30000
+  }
+}
