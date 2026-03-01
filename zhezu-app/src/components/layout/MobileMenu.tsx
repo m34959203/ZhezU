@@ -28,30 +28,34 @@ function AccordionNavItem({
 
   return (
     <div className="border-border-light/30 dark:border-border-dark/30 border-b">
-      {/* Trigger */}
-      <button
-        onClick={onToggle}
-        className="group flex w-full cursor-pointer items-center justify-between px-1 py-4 text-left"
-        aria-expanded={isExpanded}
-      >
-        <span
+      {/* Trigger: link (title) + toggle button (chevron) */}
+      <div className="flex items-center justify-between px-1 py-4">
+        <Link
+          href={item.href}
           className={cn(
             'font-display text-base font-semibold transition-colors',
             isExpanded
               ? 'text-primary dark:text-primary-light'
-              : 'text-text-primary-light dark:text-text-primary-dark group-hover:text-primary dark:group-hover:text-primary-light',
+              : 'text-text-primary-light dark:text-text-primary-dark hover:text-primary dark:hover:text-primary-light',
           )}
         >
           {t(item.labelKey + '.title')}
-        </span>
-        <ChevronDown
-          size={18}
-          className={cn(
-            'text-text-secondary-light dark:text-text-secondary-dark transition-transform duration-300',
-            isExpanded && 'text-primary dark:text-primary-light rotate-180',
-          )}
-        />
-      </button>
+        </Link>
+        <button
+          onClick={onToggle}
+          className="hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark flex h-8 w-8 cursor-pointer items-center justify-center rounded-lg transition-colors"
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? 'Collapse' : 'Expand'}
+        >
+          <ChevronDown
+            size={18}
+            className={cn(
+              'text-text-secondary-light dark:text-text-secondary-dark transition-transform duration-300',
+              isExpanded && 'text-primary dark:text-primary-light rotate-180',
+            )}
+          />
+        </button>
+      </div>
 
       {/* Expandable content */}
       <AnimatePresence initial={false}>

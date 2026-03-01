@@ -195,17 +195,18 @@ export function Header({ navItems, admissionOpen = true }: { navItems?: NavItem[
                       onMouseEnter={() => handleMenuEnter(item.id)}
                       onMouseLeave={handleMenuLeave}
                     >
-                      <button
-                        type="button"
-                        onClick={() => setActiveMenu((prev) => (prev === item.id ? null : item.id))}
+                      <Link
+                        href={item.href}
+                        prefetch={false}
+                        onClick={() => setActiveMenu(null)}
                         className={cn(
-                          'flex cursor-pointer items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                          'flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                           isActive
                             ? 'text-primary dark:text-primary-light bg-primary/8 dark:bg-primary-light/8'
                             : 'text-text-secondary-light dark:text-text-secondary-dark hover:text-text-primary-light dark:hover:text-text-primary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark',
                         )}
-                        aria-expanded={isActive}
                         aria-haspopup="true"
+                        aria-expanded={isActive}
                       >
                         {t(item.labelKey + '.title')}
                         <ChevronDown
@@ -215,7 +216,7 @@ export function Header({ navItems, admissionOpen = true }: { navItems?: NavItem[
                             isActive && 'rotate-180',
                           )}
                         />
-                      </button>
+                      </Link>
                     </div>
                   );
                 })}
