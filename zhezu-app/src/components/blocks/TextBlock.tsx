@@ -4,6 +4,7 @@ import { useLocale } from 'next-intl';
 import type { Locale } from '@/types';
 import type { TextBlockConfig, BlockSize } from '@/lib/admin/types';
 import { BLOCK_SIZE_CLS } from '@/lib/admin/types';
+import { sanitizeHtml } from '@/lib/sanitize-html';
 
 const ALIGN_CLS: Record<string, string> = {
   left: 'text-left',
@@ -26,7 +27,7 @@ export default function TextBlock({ config, size }: TextBlockProps) {
       <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         <div
           className={`prose prose-lg dark:prose-invert max-w-none ${ALIGN_CLS[align]}`}
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
         />
       </div>
     </section>

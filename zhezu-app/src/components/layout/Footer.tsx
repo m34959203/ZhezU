@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
@@ -85,6 +86,8 @@ export function Footer({
 }) {
   const t = useTranslations('footer');
   const locale = useLocale() as Locale;
+  const [nlEmail, setNlEmail] = useState('');
+  const [nlStatus, setNlStatus] = useState<'idle' | 'ok' | 'error'>('idle');
 
   const navLinks = footerNav && footerNav.length > 0 ? footerNav : NAV_LINKS;
   const studentLinks = footerStudents && footerStudents.length > 0 ? footerStudents : STUDENT_LINKS;
@@ -93,6 +96,15 @@ export function Footer({
   const socialLinks = Object.entries(settings.socialLinks)
     .filter(([, url]) => url)
     .map(([id, url]) => ({ id, href: url!, label: id.charAt(0).toUpperCase() + id.slice(1) }));
+
+  function handleNewsletter(e: React.FormEvent) {
+    e.preventDefault();
+    if (!nlEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nlEmail)) return;
+    // For now, show success (no backend yet)
+    setNlStatus('ok');
+    setNlEmail('');
+    setTimeout(() => setNlStatus('idle'), 4000);
+  }
 
   return (
     <footer className="bg-bg-dark text-white">
@@ -108,16 +120,21 @@ export function Footer({
                 </h3>
                 <p className="text-sm text-white/60">{t('newsletter.desc')}</p>
               </div>
-              <div className="flex w-full gap-2 sm:w-auto">
+              <form onSubmit={handleNewsletter} className="flex w-full gap-2 sm:w-auto">
+                <label htmlFor="newsletter-email" className="sr-only">{t('newsletter.placeholder')}</label>
                 <input
+                  id="newsletter-email"
                   type="email"
+                  value={nlEmail}
+                  onChange={(e) => setNlEmail(e.target.value)}
                   placeholder="email@example.com"
+                  required
                   className="focus:ring-gold/50 h-10 flex-1 rounded-lg border border-white/20 bg-white/10 px-4 text-sm text-white placeholder-white/40 focus:ring-2 focus:outline-none sm:w-64"
                 />
-                <Button variant="secondary" size="md" icon={<Send size={16} />}>
-                  {t('newsletter.subscribe')}
+                <Button type="submit" variant="secondary" size="md" icon={<Send size={16} />}>
+                  {nlStatus === 'ok' ? t('newsletterSuccess') : t('newsletter.subscribe')}
                 </Button>
-              </div>
+              </form>
             </div>
           </div>
         </div>
@@ -164,10 +181,10 @@ export function Footer({
             </div>
           </div>
 
-          {/* Column 2: Навигация */}
-          <div>
+          {/* Column 2: Navigation */}
+          <nav aria-label={t('navigation')}>
             <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
-              Навигация
+              {t('navigation')}
             </h3>
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -182,12 +199,12 @@ export function Footer({
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Column 3: Студентам */}
-          <div>
+          {/* Column 3: Students */}
+          <nav aria-label={t('students')}>
             <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
-              Студентам
+              {t('students')}
             </h3>
             <ul className="space-y-3">
               {studentLinks.map((link) => (
@@ -202,22 +219,22 @@ export function Footer({
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Column 4: Контакты (from admin settings) */}
+          {/* Column 4: Contacts (from admin settings) */}
           <div>
             <h3 className="font-display mb-5 text-sm font-semibold tracking-wide text-white uppercase">
               {t('contacts')}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin size={16} className="mt-0.5 shrink-0 text-white/40" />
+                <MapPin size={16} className="mt-0.5 shrink-0 text-white/40" aria-hidden="true" />
                 <span className="text-sm leading-relaxed text-white/60">
                   {settings.address[locale]}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={16} className="shrink-0 text-white/40" />
+                <Phone size={16} className="shrink-0 text-white/40" aria-hidden="true" />
                 <a
                   href={`tel:${settings.contactPhone.replace(/[\s()-]/g, '')}`}
                   className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
@@ -226,7 +243,7 @@ export function Footer({
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={16} className="shrink-0 text-white/40" />
+                <Mail size={16} className="shrink-0 text-white/40" aria-hidden="true" />
                 <a
                   href={`mailto:${settings.contactEmail}`}
                   className="text-sm text-white/60 transition-colors duration-200 hover:text-white"
@@ -235,7 +252,7 @@ export function Footer({
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Clock size={16} className="shrink-0 text-white/40" />
+                <Clock size={16} className="shrink-0 text-white/40" aria-hidden="true" />
                 <span className="text-sm text-white/60">
                   {workingHoursShort || 'Пн-Пт: 09:00 — 18:00'}
                 </span>
@@ -247,7 +264,7 @@ export function Footer({
         {/* ── Section 3: Bottom Bar ──────────────────────────────── */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
           <p className="text-xs text-white/40">
-            &copy; {new Date().getFullYear()} {settings.siteName}. Все права защищены.
+            &copy; {new Date().getFullYear()} {settings.siteName}. {t('allRightsReserved')}
           </p>
           <div className="flex items-center gap-6">
             <Link
@@ -255,20 +272,20 @@ export function Footer({
               prefetch={false}
               className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
-              Политика конфиденциальности
+              {t('privacy')}
             </Link>
             <Link
               href="/sitemap"
               prefetch={false}
               className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
-              Карта сайта
+              {t('sitemap')}
             </Link>
             <a
               href="/admin"
               className="text-xs text-white/40 transition-colors duration-200 hover:text-white"
             >
-              Вход
+              {t('login')}
             </a>
           </div>
         </div>
