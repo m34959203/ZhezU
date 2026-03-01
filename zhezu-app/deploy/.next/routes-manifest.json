@@ -717,6 +717,12 @@
       "namedRegex": "^/admin(?:/)?$"
     },
     {
+      "page": "/admin/backgrounds",
+      "regex": "^/admin/backgrounds(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/backgrounds(?:/)?$"
+    },
+    {
       "page": "/admin/contact",
       "regex": "^/admin/contact(?:/)?$",
       "routeKeys": {},
@@ -831,6 +837,12 @@
       "namedRegex": "^/api/admin/news/publish\\-all(?:/)?$"
     },
     {
+      "page": "/api/admin/section-backgrounds",
+      "regex": "^/api/admin/section\\-backgrounds(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/section\\-backgrounds(?:/)?$"
+    },
+    {
       "page": "/api/admin/session",
       "regex": "^/api/admin/session(?:/)?$",
       "routeKeys": {},
@@ -931,6 +943,12 @@
       "regex": "^/api/public/university(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/public/university(?:/)?$"
+    },
+    {
+      "page": "/api/section-backgrounds",
+      "regex": "^/api/section\\-backgrounds(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/section\\-backgrounds(?:/)?$"
     },
     {
       "page": "/favicon.ico",

@@ -7,6 +7,7 @@ import type { SiteSettings, ContactPageData } from '@/lib/admin/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/Button';
+import { SectionHero } from '@/components/SectionHero';
 import { Input } from '@/components/ui/Input';
 import {
   Send,
@@ -176,16 +177,24 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col">
-      <main className="mx-auto w-full max-w-[1280px] flex-1 px-4 py-8 sm:px-10">
-        {/* -------- Page Header -------- */}
-        <div className="mb-10 text-center sm:text-left">
-          <h1 className="text-text-primary-light dark:text-text-primary-dark mb-4 text-4xl font-black tracking-tight md:text-5xl">
+      {/* Hero */}
+      <SectionHero
+        section="contact"
+        className="py-16 lg:py-20"
+        overlay="bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.78)]"
+        accent="bg-[radial-gradient(circle_at_20%_70%,rgba(230,179,37,0.1),transparent_50%)]"
+      >
+        <div className="mx-auto max-w-[1280px] px-4 text-center sm:px-10 sm:text-left">
+          <h1 className="mb-4 text-4xl font-black tracking-tight text-white md:text-5xl">
             {t('title')}
           </h1>
-          <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
+          <p className="max-w-2xl text-lg text-slate-300">
             {t('subtitle')}
           </p>
         </div>
+      </SectionHero>
+
+      <main className="mx-auto w-full max-w-[1280px] flex-1 px-4 py-8 sm:px-10">
 
         {/* -------- Map Placeholder -------- */}
         <div className="border-border-light bg-bg-light dark:border-border-dark dark:bg-bg-dark relative mb-12 w-full overflow-hidden rounded-xl border shadow-sm">

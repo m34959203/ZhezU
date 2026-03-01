@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { SectionHero } from '@/components/SectionHero';
 import {
   Briefcase,
   Users,
@@ -105,11 +106,13 @@ export default function CareerPage() {
   return (
     <div className="flex flex-col">
       {/* Hero — dark */}
-      <section className="bg-bg-dark relative overflow-hidden py-16 lg:py-24">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&q=80')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,14,23,0.9)] to-[rgba(10,14,23,0.8)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgba(230,179,37,0.1),transparent_50%)]" />
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHero
+        section="career"
+        className="bg-bg-dark py-16 lg:py-24"
+        overlay="bg-gradient-to-b from-[rgba(10,14,23,0.9)] to-[rgba(10,14,23,0.8)]"
+        accent="bg-[radial-gradient(circle_at_70%_40%,rgba(230,179,37,0.1),transparent_50%)]"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="font-display mb-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             {t('title')}
           </h1>
@@ -160,7 +163,7 @@ export default function CareerPage() {
             ))}
           </div>
         </div>
-      </section>
+      </SectionHero>
 
       {/* Jobs */}
       <section className="py-16 lg:py-24">

@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
+import { SectionHero } from '@/components/SectionHero';
 import { Breadcrumb } from '@/components/ui/Breadcrumb';
 import { Card } from '@/components/ui/Card';
 import { Pagination } from '@/components/ui/Pagination';
@@ -185,21 +186,31 @@ export default function AcademicsPage() {
 
   return (
     <main className="bg-bg-light dark:bg-bg-dark min-h-screen">
+      {/* Hero */}
+      <SectionHero
+        section="academics"
+        className="py-16 lg:py-20"
+        overlay="bg-gradient-to-b from-[rgba(10,14,23,0.88)] to-[rgba(10,14,23,0.8)]"
+        accent="bg-[radial-gradient(circle_at_80%_30%,rgba(29,86,201,0.1),transparent_50%)]"
+      >
+        <div className="mx-auto max-w-[1440px] px-4 md:px-10">
+          <Breadcrumb
+            items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]}
+            className="mb-6 [&_a]:text-slate-400 [&_a:hover]:text-white [&_span]:text-slate-400 [&_li:last-child_span]:text-white"
+          />
+          <h1 className="font-display mb-2 text-4xl leading-tight font-black tracking-[-0.033em] text-white md:text-5xl">
+            {t('title')}
+          </h1>
+          <p className="max-w-2xl text-lg leading-relaxed text-slate-300">
+            {t('subtitle')}
+          </p>
+        </div>
+      </SectionHero>
+
       <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-10">
-        {/* ── Breadcrumbs & Title ── */}
+        {/* ── Search & Filters ── */}
         <div className="mb-8 flex flex-col gap-6">
-          <Breadcrumb items={[{ label: tNav('home'), href: '/' }, { label: tNav('academics') }]} />
-
-          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-            <div className="flex max-w-2xl flex-col gap-2">
-              <h1 className="font-display text-text-primary-light text-4xl leading-tight font-black tracking-[-0.033em] md:text-5xl dark:text-white">
-                {t('title')}
-              </h1>
-              <p className="text-text-secondary-light dark:text-text-secondary-dark text-lg leading-relaxed font-normal">
-                {t('subtitle')}
-              </p>
-            </div>
-
+          <div className="flex items-end justify-end">
             {/* Search bar */}
             <div className="relative w-full min-w-[200px] md:w-auto md:min-w-[280px]">
               <Search

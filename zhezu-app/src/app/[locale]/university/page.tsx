@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
+import { SectionHero } from '@/components/SectionHero';
 import { UNIVERSITY } from '@/lib/constants';
 import {
   ArrowRight,
@@ -92,16 +93,15 @@ export default function UniversityPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 lg:py-28">
-        <div className="from-primary/5 to-gold/5 absolute inset-0 bg-gradient-to-br via-transparent" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Badge className="mb-4">{t('badge')}</Badge>
-          <h1 className="font-display mb-4 text-4xl font-bold sm:text-5xl">{t('title')}</h1>
-          <p className="text-text-secondary-light dark:text-text-secondary-dark max-w-2xl text-lg">
+      <SectionHero section="university" className="py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Badge className="mb-4 border border-white/20 bg-white/10 text-white backdrop-blur-sm">{t('badge')}</Badge>
+          <h1 className="font-display mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h1>
+          <p className="max-w-2xl text-lg text-slate-300">
             {t('subtitle')}
           </p>
         </div>
-      </section>
+      </SectionHero>
 
       {/* Stats bar */}
       <section className="bg-primary dark:bg-primary/90 py-8">
