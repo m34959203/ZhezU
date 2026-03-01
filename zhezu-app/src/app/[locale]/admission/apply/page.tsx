@@ -15,6 +15,8 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
+import { AdmissionClosedBanner } from '@/components/admission/AdmissionClosedBanner';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 export async function generateMetadata({
   params,
 }: {
@@ -50,6 +52,9 @@ export default async function ApplyPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
+      {/* Closed banner — shown when admission is off */}
+      <AdmissionClosedBanner />
+
       {/* Steps */}
       <section className="bg-surface-light dark:bg-surface-dark/50 py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -73,7 +78,8 @@ export default async function ApplyPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
-      {/* Application methods */}
+      {/* Application methods — hidden when admission is closed */}
+      <AdmissionOnly>
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h2 className="font-display mb-8 text-center text-3xl font-bold">{t('methodsTitle')}</h2>
@@ -147,6 +153,7 @@ export default async function ApplyPage({ params }: { params: Promise<{ locale: 
           </div>
         </div>
       </section>
+      </AdmissionOnly>
     </div>
   );
 }

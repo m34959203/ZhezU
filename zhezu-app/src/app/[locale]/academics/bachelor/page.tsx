@@ -6,6 +6,7 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { PROGRAMS, DEPARTMENTS } from '@/lib/constants';
 import { ArrowRight, Clock, Globe } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({
@@ -84,11 +85,13 @@ export default async function BachelorProgramsPage({
       <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
             <Link href="/academics/master">
               <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
                 {t('ctaMaster')}

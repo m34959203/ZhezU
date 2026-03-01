@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight, Newspaper, Calendar, Trophy, Home, Users } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 
 export async function generateMetadata({
   params,
@@ -66,11 +67,13 @@ export default function LifePage() {
 
       <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <Link href="/admission/apply">
-            <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-              {t('ctaApply')}
-            </Button>
-          </Link>
+          <AdmissionOnly>
+            <Link href="/admission/apply">
+              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                {t('ctaApply')}
+              </Button>
+            </Link>
+          </AdmissionOnly>
         </div>
       </section>
     </div>

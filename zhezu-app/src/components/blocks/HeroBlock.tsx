@@ -66,10 +66,12 @@ export default function HeroBlock({ heroTitle, heroStats, admissionOpen = true }
               className="pointer-events-none absolute top-1/2 left-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.12] dark:opacity-[0.08]"
             />
             <div className="relative">
-              <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
-                <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
-                {t('heroBadge')}
-              </div>
+              {admissionOpen && (
+                <div className="border-primary/20 bg-primary/5 text-primary dark:border-primary-light/20 dark:bg-primary-light/5 dark:text-primary-light mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold">
+                  <span className="bg-gold h-2 w-2 animate-pulse rounded-full" />
+                  {t('heroBadge')}
+                </div>
+              )}
 
               <h1 className="font-display mb-6 leading-[1.1] font-bold tracking-tight">
                 <span className="text-primary dark:text-primary-light text-3xl sm:text-4xl lg:text-5xl xl:text-6xl">

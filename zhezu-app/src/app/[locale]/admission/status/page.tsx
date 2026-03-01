@@ -15,6 +15,7 @@ import {
   Phone,
   Mail,
 } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 
 export async function generateMetadata({
   params,
@@ -111,11 +112,13 @@ export default async function StatusPage({ params }: { params: Promise<{ locale:
       <section className="bg-surface-light dark:bg-surface-dark/50 py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/admission/apply">
-              <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
             <Link href="/admission/contact">
               <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
                 {t('ctaContact')}

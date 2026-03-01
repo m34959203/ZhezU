@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { Clock, BookOpen, ArrowRight, CheckCircle, Award, FileText } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({
@@ -200,11 +201,13 @@ export default async function MasterPage({ params }: { params: Promise<{ locale:
                 {t('ctaExams')}
               </Button>
             </Link>
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
           </div>
         </div>
       </section>

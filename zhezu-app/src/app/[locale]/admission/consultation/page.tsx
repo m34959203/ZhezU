@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
 import { MessageCircle, ArrowRight, Phone, Mail, MapPin, Clock, Globe } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({
@@ -119,11 +120,13 @@ export default async function ConsultationPage({
       <section className="py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
             <Link href="/admission/faq">
               <Button variant="outline" icon={<ArrowRight size={16} />} iconPosition="right">
                 {t('ctaFaq')}

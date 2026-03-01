@@ -14,6 +14,7 @@ import {
   CheckCircle,
   Award,
 } from 'lucide-react';
+import { AdmissionOnly } from '@/components/admission/AdmissionOnly';
 import type { Locale } from '@/types';
 
 export async function generateMetadata({
@@ -198,11 +199,13 @@ export default async function BachelorPage({ params }: { params: Promise<{ local
                 {t('ctaDocs')}
               </Button>
             </Link>
-            <Link href="/admission/apply">
-              <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
-                {t('ctaApply')}
-              </Button>
-            </Link>
+            <AdmissionOnly>
+              <Link href="/admission/apply">
+                <Button variant="primary" icon={<ArrowRight size={16} />} iconPosition="right">
+                  {t('ctaApply')}
+                </Button>
+              </Link>
+            </AdmissionOnly>
           </div>
         </div>
       </section>
