@@ -2416,7 +2416,14 @@
           "title": "Experiment Lab",
           "description": "A sandbox environment to test prompts and model parameters safely."
         }
-      }
+      },
+      "statuses": {
+        "active": "Active",
+        "dev": "In Development",
+        "planned": "Planned"
+      },
+      "viewProject": "Learn More",
+      "goToSite": "Go to AI Center Website"
     },
     "stats": {
       "projects": "Projects",
@@ -2486,7 +2493,9 @@
           "tag2": "Industry"
         }
       },
-      "ctaShowcase": "Project Showcase"
+      "ctaShowcase": "Project Showcase",
+      "noProjects": "Projects will be added soon",
+      "backToHub": "Back to AI Center"
     },
     "showcase": {
       "pageTitle": "Project Showcase — AI Center ZhezU",

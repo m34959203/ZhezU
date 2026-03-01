@@ -14,6 +14,7 @@ import type {
   HomepageData,
   ResolvedHomepageStat,
   TuitionData,
+  AICenterData,
 } from './types';
 
 /* ─── Helpers ─── */
@@ -230,6 +231,19 @@ const DEFAULT_TUITION: TuitionData = {
 
 export async function getTuitionData(): Promise<TuitionData> {
   return getSetting<TuitionData>('tuition', DEFAULT_TUITION);
+}
+
+/* ─── AI Center Data ─── */
+
+const DEFAULT_AI_CENTER: AICenterData = {
+  title: { kk: 'AI-Center ZhezU', ru: 'AI-Center ZhezU', en: 'AI-Center ZhezU' },
+  subtitle: { kk: '', ru: '', en: '' },
+  externalUrl: '',
+  projects: [],
+};
+
+export async function getAICenterData(): Promise<AICenterData> {
+  return getSetting<AICenterData>('ai-center', DEFAULT_AI_CENTER);
 }
 
 /**
