@@ -41,10 +41,5 @@
       "isFree": false
     }
   ],
-  "dormitoryCost": 180000,
-  "scholarships": {
-    "gpa35": 150000,
-    "gpa30": 90000,
-    "gpa25": 30000
-  }
+  "dormitoryCost": 180000
 }

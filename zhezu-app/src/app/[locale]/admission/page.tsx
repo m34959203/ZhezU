@@ -13,7 +13,6 @@ import {
   ClipboardCheck,
   ArrowRight,
   Globe,
-  BadgeCheck,
 } from 'lucide-react';
 
 /* ------------------------------------------------------------------ */
@@ -82,16 +81,12 @@ export default function AdmissionPage() {
     costResident: 600000,
     costInternational: 800000,
     dormitory: 180000,
-    gpa35: 150000,
-    gpa30: 90000,
-    gpa25: 30000,
   });
   useEffect(() => {
     fetch('/api/public/tuition')
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!d) return;
-        // Calculate average cost across programs, or use first program's cost
         const programs = d.programs || [];
         const paid = programs.filter((p: { isFree: boolean }) => !p.isFree);
         const avgRes = paid.length > 0
@@ -104,9 +99,6 @@ export default function AdmissionPage() {
           costResident: avgRes,
           costInternational: avgInt,
           dormitory: d.dormitoryCost ?? 180000,
-          gpa35: d.scholarships?.gpa35 ?? 150000,
-          gpa30: d.scholarships?.gpa30 ?? 90000,
-          gpa25: d.scholarships?.gpa25 ?? 30000,
         });
       })
       .catch(() => {});
@@ -114,14 +106,11 @@ export default function AdmissionPage() {
 
   /* Tuition calculator state */
   const [isResident, setIsResident] = useState(true);
-  const [gpa, setGpa] = useState(35); // stored as 0-40, displayed as 0.0-4.0
   const [onCampus, setOnCampus] = useState(true);
 
-  const gpaDisplay = (gpa / 10).toFixed(1);
   const baseTuition = isResident ? tuitionCosts.costResident : tuitionCosts.costInternational;
   const housing = onCampus ? tuitionCosts.dormitory : 0;
-  const scholarship = gpa >= 35 ? tuitionCosts.gpa35 : gpa >= 30 ? tuitionCosts.gpa30 : gpa >= 25 ? tuitionCosts.gpa25 : 0;
-  const total = baseTuition + housing - scholarship;
+  const total = baseTuition + housing;
 
   const formatTenge = (v: number) => {
     const abs = Math.abs(v);
@@ -405,24 +394,6 @@ export default function AdmissionPage() {
                       </div>
                     </div>
 
-                    {/* GPA slider */}
-                    <div>
-                      <label className="mb-2 block text-sm font-semibold">{t('tuition.gpa')}</label>
-                      <input
-                        type="range"
-                        min="0"
-                        max="40"
-                        value={gpa}
-                        onChange={(e) => setGpa(Number(e.target.value))}
-                        className="accent-primary h-2 w-full cursor-pointer appearance-none rounded-lg bg-slate-200 dark:bg-slate-600"
-                      />
-                      <div className="text-text-secondary-light dark:text-text-secondary-dark mt-1 flex justify-between text-xs">
-                        <span>2.0</span>
-                        <span className="text-primary font-bold">{gpaDisplay}</span>
-                        <span>4.0</span>
-                      </div>
-                    </div>
-
                     {/* Living on campus radio */}
                     <div>
                       <label className="mb-2 block text-sm font-semibold">
@@ -465,14 +436,6 @@ export default function AdmissionPage() {
                       <div className="flex justify-between border-b border-white/20 pb-4">
                         <span className="text-blue-100">{t('tuition.housingMeals')}</span>
                         <span className="font-bold">{formatTenge(housing)}</span>
-                      </div>
-                    )}
-                    {scholarship > 0 && (
-                      <div className="flex justify-between border-b border-white/20 pb-4 text-green-300">
-                        <span className="flex items-center gap-1">
-                          <BadgeCheck className="h-4 w-4" /> {t('tuition.meritScholarship')}
-                        </span>
-                        <span className="font-bold">-{formatTenge(scholarship)}</span>
                       </div>
                     )}
                     <div className="mt-6 flex items-end justify-between pt-2">

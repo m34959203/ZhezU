@@ -362,9 +362,4 @@ export interface TuitionProgram {
 export interface TuitionData {
   programs: TuitionProgram[];
   dormitoryCost: number;  // KZT per year
-  scholarships: {
-    gpa35: number;        // discount for GPA >= 3.5
-    gpa30: number;        // discount for GPA >= 3.0
-    gpa25: number;        // discount for GPA >= 2.5
-  };
 }

@@ -226,7 +226,6 @@ export async function getHomepageData(): Promise<HomepageData> {
 const DEFAULT_TUITION: TuitionData = {
   programs: [],
   dormitoryCost: 180000,
-  scholarships: { gpa35: 150000, gpa30: 90000, gpa25: 30000 },
 };
 
 export async function getTuitionData(): Promise<TuitionData> {
