@@ -1406,6 +1406,7 @@
     },
     "education": {
       "title": "Білім",
+      "programs": "Бағдарламалар",
       "bachelor": "Бакалавриат",
       "bachelorPrograms": "Бакалавриат бағдарламалары",
       "bachelorCurriculum": "Оқу жоспарлары",

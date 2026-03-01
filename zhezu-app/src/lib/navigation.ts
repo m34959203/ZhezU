@@ -151,15 +151,10 @@ export const NAVIGATION_ITEMS: NavItem[] = [
     href: '/academics',
     columns: [
       {
-        titleKey: 'education.bachelor',
+        titleKey: 'education.programs',
         links: [
           { labelKey: 'education.bachelorPrograms', href: '/academics/bachelor' },
           { labelKey: 'education.bachelorCurriculum', href: '/academics/bachelor/curriculum' },
-        ],
-      },
-      {
-        titleKey: 'education.master',
-        links: [
           { labelKey: 'education.masterPrograms', href: '/academics/master' },
           { labelKey: 'education.masterResearch', href: '/academics/master/research' },
         ],

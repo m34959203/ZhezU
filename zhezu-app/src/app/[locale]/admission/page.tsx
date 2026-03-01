@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
@@ -496,17 +497,22 @@ export default function AdmissionPage() {
 
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                 {admissionOpen && (
-                  <Button
-                    variant="secondary"
-                    size="lg"
-                    className="min-w-[200px] shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
-                  >
-                    {tActions('apply')}
-                  </Button>
+                  <Link href="/admission/apply">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="min-w-[200px] shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-transform hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]"
+                    >
+                      {tActions('apply')}
+                    </Button>
+                  </Link>
                 )}
-                <button className="flex h-12 min-w-[200px] cursor-pointer items-center justify-center rounded-lg bg-white/10 px-8 text-lg font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20">
+                <Link
+                  href="/admission/contact"
+                  className="flex h-12 min-w-[200px] items-center justify-center rounded-lg bg-white/10 px-8 text-lg font-bold text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+                >
                   {t('cta.contactAdmissions')}
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1403,6 +1403,7 @@
     },
     "education": {
       "title": "Education",
+      "programs": "Programs",
       "bachelor": "Bachelor's",
       "bachelorPrograms": "Bachelor's Programs",
       "bachelorCurriculum": "Curricula",
