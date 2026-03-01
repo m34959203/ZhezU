@@ -22,105 +22,30 @@ import {
 
 const TABS = ['projects', 'agents', 'apps', 'tools', 'lab'] as const;
 
+const PROJECT_KEYS = ['neural', 'vision', 'algo'] as const;
+
+const PROJECT_META = {
+  neural: { tags: ['Python', 'PyTorch'], icon: Brain, iconColor: 'text-blue-400/30' },
+  vision: { tags: ['OpenCV', 'C++'], icon: Eye, iconColor: 'text-emerald-400/30' },
+  algo: { tags: ['Rust', 'React'], icon: BarChart3, iconColor: 'text-purple-400/30' },
+} as const;
+
+const AGENT_KEYS = ['athena', 'codex', 'muse', 'sentinel'] as const;
+
+const AGENT_META = {
+  athena: { gradient: 'from-blue-400 to-blue-600', roleColor: 'text-blue-300', statusColor: 'bg-green-500', icon: MessageSquare, primary: true },
+  codex: { gradient: 'from-emerald-400 to-teal-600', roleColor: 'text-emerald-300', statusColor: 'bg-green-500', icon: Terminal, primary: false },
+  muse: { gradient: 'from-purple-400 to-indigo-600', roleColor: 'text-purple-300', statusColor: 'bg-amber-500', icon: Palette, primary: false },
+  sentinel: { gradient: 'from-orange-400 to-red-600', roleColor: 'text-orange-300', statusColor: 'bg-gray-500', icon: Shield, primary: false },
+} as const;
+
+const DEV_TOOL_KEYS = ['api', 'dataset', 'experiment'] as const;
+
+const DEV_TOOL_ICONS = { api: Code2, dataset: Database, experiment: FlaskConical } as const;
+
 export default function AICenterPage() {
   const t = useTranslations('aiCenter');
   const [activeTab, setActiveTab] = useState<string>('projects');
-
-  const featuredProjects = [
-    {
-      title: 'Neural Net Optimizer',
-      description:
-        'A next-generation framework for optimizing deep learning models, reducing inference time by 40% while maintaining accuracy across diverse datasets.',
-      category: 'Deep Learning',
-      tags: ['Python', 'PyTorch'],
-      image: '/images/placeholder-neural.jpg',
-    },
-    {
-      title: 'VisionSentinel',
-      description:
-        'Real-time anomaly detection system for industrial surveillance feeds, capable of identifying safety hazards with 99.8% precision.',
-      category: 'Computer Vision',
-      tags: ['OpenCV', 'C++'],
-      image: '/images/placeholder-vision.jpg',
-    },
-    {
-      title: 'AlgoTrade X',
-      description:
-        'Predictive modeling engine for cryptocurrency markets utilizing sentiment analysis from social media and historical ledger data.',
-      category: 'FinTech AI',
-      tags: ['Rust', 'React'],
-      image: '/images/placeholder-finance.jpg',
-    },
-  ];
-
-  const agents = [
-    {
-      name: 'Athena',
-      role: 'Research Assistant',
-      roleRu: 'Ассистент',
-      description:
-        'Summarizes papers, extracts data points, and generates literature reviews in seconds.',
-      gradient: 'from-blue-400 to-blue-600',
-      roleColor: 'text-blue-300',
-      statusColor: 'bg-green-500',
-      icon: MessageSquare,
-      buttonVariant: 'primary' as const,
-    },
-    {
-      name: 'Codex',
-      role: 'Code Tutor',
-      roleRu: 'Тьютор',
-      description:
-        'Automates CI/CD pipelines, audits code quality, and helps students learn programming interactively.',
-      gradient: 'from-emerald-400 to-teal-600',
-      roleColor: 'text-emerald-300',
-      statusColor: 'bg-green-500',
-      icon: Terminal,
-      buttonVariant: 'outline' as const,
-    },
-    {
-      name: 'Muse',
-      role: 'Career Advisor',
-      roleRu: 'Карьера',
-      description:
-        'Generates career path recommendations, resume reviews, and interview preparation tailored to your profile.',
-      gradient: 'from-purple-400 to-indigo-600',
-      roleColor: 'text-purple-300',
-      statusColor: 'bg-amber-500',
-      icon: Palette,
-      buttonVariant: 'outline' as const,
-    },
-    {
-      name: 'Sentinel',
-      role: 'Analytics Engine',
-      roleRu: 'Аналитика',
-      description:
-        'Monitors university data patterns, generates insights, and flags potential issues in real-time.',
-      gradient: 'from-orange-400 to-red-600',
-      roleColor: 'text-orange-300',
-      statusColor: 'bg-gray-500',
-      icon: Shield,
-      buttonVariant: 'outline' as const,
-    },
-  ];
-
-  const devTools = [
-    {
-      icon: Code2,
-      title: 'API Gateway',
-      description: 'Manage and secure your API endpoints with our unified dashboard.',
-    },
-    {
-      icon: Database,
-      title: 'Dataset Hub',
-      description: 'Access curated, clean datasets for training your custom models.',
-    },
-    {
-      icon: FlaskConical,
-      title: 'Experiment Lab',
-      description: 'A sandbox environment to test prompts and model parameters safely.',
-    },
-  ];
 
   return (
     <div className="flex flex-col">
@@ -137,7 +62,7 @@ export default function AICenterPage() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-400" />
             </span>
             <span className="text-xs font-semibold tracking-wide text-blue-200 uppercase">
-              New Models Available v2.4
+              {t('hub.badgeLabel')}
             </span>
           </div>
           <h1 className="mb-6 bg-gradient-to-r from-white via-blue-100 to-blue-300 bg-clip-text text-4xl font-black tracking-tight text-transparent md:text-6xl lg:text-7xl">
@@ -154,7 +79,7 @@ export default function AICenterPage() {
               iconPosition="right"
               className="w-full shadow-[0_0_20px_rgba(29,86,201,0.5)] hover:shadow-[0_0_30px_rgba(29,86,201,0.6)] sm:w-auto"
             >
-              Explore Innovation
+              {t('hub.explore')}
             </Button>
             <Button
               variant="ghost"
@@ -162,7 +87,7 @@ export default function AICenterPage() {
               icon={<Play size={16} />}
               className="w-full border border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 sm:w-auto"
             >
-              Watch Demo
+              {t('hub.watchDemo')}
             </Button>
           </div>
         </div>
@@ -183,7 +108,7 @@ export default function AICenterPage() {
                     : 'text-text-secondary-light hover:border-border-light hover:text-text-primary-light dark:text-text-secondary-dark dark:hover:border-border-dark dark:hover:text-text-primary-dark border-transparent'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {t(`hub.tabs.${tab}`)}
               </button>
             ))}
           </nav>
@@ -200,66 +125,62 @@ export default function AICenterPage() {
                 {t('projects.title')}
               </h2>
               <p className="text-text-secondary-light dark:text-text-secondary-dark mt-2">
-                Discover breakthrough initiatives from our research labs.
+                {t('hub.projectsSubtitle')}
               </p>
             </div>
             <Link
-              href="/ai-center"
+              href="/ai-center/projects"
               className="text-primary hover:text-primary-dark hidden items-center text-sm font-semibold transition-colors sm:flex"
             >
-              View All <ArrowRight size={14} className="ml-1" />
+              {t('hub.viewAll')} <ArrowRight size={14} className="ml-1" />
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((project) => (
-              <div
-                key={project.title}
-                className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg"
-              >
-                <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    {project.category === 'Deep Learning' && (
-                      <Brain size={64} className="text-blue-400/30" />
-                    )}
-                    {project.category === 'Computer Vision' && (
-                      <Eye size={64} className="text-emerald-400/30" />
-                    )}
-                    {project.category === 'FinTech AI' && (
-                      <BarChart3 size={64} className="text-purple-400/30" />
-                    )}
-                  </div>
-                  <div className="absolute top-3 right-3 rounded bg-black/50 px-2 py-1 text-xs font-bold text-white backdrop-blur-md">
-                    {project.category}
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark mb-2 text-xl font-bold transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 line-clamp-3 text-sm">
-                    {project.description}
-                  </p>
-                  <div className="border-border-light dark:border-border-dark mt-auto flex items-center justify-between border-t pt-4">
-                    <div className="flex gap-2">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="bg-bg-light text-text-secondary-light dark:bg-bg-dark dark:text-text-secondary-dark rounded px-2 py-1 text-[10px] font-bold uppercase"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+            {PROJECT_KEYS.map((key) => {
+              const meta = PROJECT_META[key];
+              const IconComp = meta.icon;
+              return (
+                <div
+                  key={key}
+                  className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex h-full flex-col overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg"
+                >
+                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-700 to-slate-900">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <IconComp size={64} className={meta.iconColor} />
                     </div>
-                    <button
-                      type="button"
-                      className="text-primary hover:text-primary-dark hover:bg-primary/10 rounded-full p-1 transition-colors"
-                    >
-                      <ExternalLink size={20} />
-                    </button>
+                    <div className="absolute top-3 right-3 rounded bg-black/50 px-2 py-1 text-xs font-bold text-white backdrop-blur-md">
+                      {t(`hub.featuredProjects.${key}.category`)}
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="group-hover:text-primary text-text-primary-light dark:text-text-primary-dark mb-2 text-xl font-bold transition-colors">
+                      {t(`hub.featuredProjects.${key}.title`)}
+                    </h3>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mb-4 line-clamp-3 text-sm">
+                      {t(`hub.featuredProjects.${key}.description`)}
+                    </p>
+                    <div className="border-border-light dark:border-border-dark mt-auto flex items-center justify-between border-t pt-4">
+                      <div className="flex gap-2">
+                        {meta.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="bg-bg-light text-text-secondary-light dark:bg-bg-dark dark:text-text-secondary-dark rounded px-2 py-1 text-[10px] font-bold uppercase"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        className="text-primary hover:text-primary-dark hover:bg-primary/10 rounded-full p-1 transition-colors"
+                      >
+                        <ExternalLink size={20} />
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -271,51 +192,54 @@ export default function AICenterPage() {
 
           <div className="relative z-10">
             <div className="mx-auto mb-12 max-w-2xl text-center">
-              <h2 className="mb-4 text-3xl font-bold text-white">Meet Our Intelligent Agents</h2>
-              <p className="text-slate-300">
-                Specialized autonomous agents designed to handle complex workflows. Select an agent
-                to augment your productivity.
-              </p>
+              <h2 className="mb-4 text-3xl font-bold text-white">{t('hub.agentsTitle')}</h2>
+              <p className="text-slate-300">{t('hub.agentsSubtitle')}</p>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {agents.map((agent) => (
-                <div
-                  key={agent.name}
-                  className="group flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all hover:bg-white/10"
-                >
-                  <div className="relative mb-4">
-                    <div
-                      className={`flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br p-1 ${agent.gradient}`}
-                    >
-                      <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-slate-900 bg-slate-800">
-                        <agent.icon size={28} className="text-white/80" />
+              {AGENT_KEYS.map((key) => {
+                const meta = AGENT_META[key];
+                const IconComp = meta.icon;
+                return (
+                  <div
+                    key={key}
+                    className="group flex flex-col items-center rounded-xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all hover:bg-white/10"
+                  >
+                    <div className="relative mb-4">
+                      <div
+                        className={`flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br p-1 ${meta.gradient}`}
+                      >
+                        <div className="flex h-full w-full items-center justify-center rounded-full border-2 border-slate-900 bg-slate-800">
+                          <IconComp size={28} className="text-white/80" />
+                        </div>
                       </div>
+                      <div
+                        className={`absolute right-0 bottom-0 h-5 w-5 rounded-full border-2 border-slate-900 ${meta.statusColor}`}
+                      />
                     </div>
-                    <div
-                      className={`absolute right-0 bottom-0 h-5 w-5 rounded-full border-2 border-slate-900 ${agent.statusColor}`}
-                    />
+                    <h3 className="mb-1 text-lg font-bold text-white capitalize">{key}</h3>
+                    <p
+                      className={`mb-3 text-xs font-semibold tracking-wider uppercase ${meta.roleColor}`}
+                    >
+                      {t(`hub.agentsList.${key}.role`)}
+                    </p>
+                    <p className="mb-5 text-sm leading-snug text-slate-300">
+                      {t(`hub.agentsList.${key}.description`)}
+                    </p>
+                    <Button
+                      variant={meta.primary ? 'primary' : 'ghost'}
+                      size="sm"
+                      icon={<IconComp size={14} />}
+                      className={
+                        !meta.primary
+                          ? 'w-full border border-slate-600 bg-slate-700 text-white hover:bg-slate-600'
+                          : 'w-full'
+                      }
+                    >
+                      {t('hub.tryNow')}
+                    </Button>
                   </div>
-                  <h3 className="mb-1 text-lg font-bold text-white">{agent.name}</h3>
-                  <p
-                    className={`mb-3 text-xs font-semibold tracking-wider uppercase ${agent.roleColor}`}
-                  >
-                    {agent.role}
-                  </p>
-                  <p className="mb-5 text-sm leading-snug text-slate-300">{agent.description}</p>
-                  <Button
-                    variant={agent.buttonVariant === 'primary' ? 'primary' : 'ghost'}
-                    size="sm"
-                    icon={<agent.icon size={14} />}
-                    className={
-                      agent.buttonVariant !== 'primary'
-                        ? 'w-full border border-slate-600 bg-slate-700 text-white hover:bg-slate-600'
-                        : 'w-full'
-                    }
-                  >
-                    Try Now
-                  </Button>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -326,25 +250,28 @@ export default function AICenterPage() {
             {t('tools.title')}
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {devTools.map((tool) => (
-              <a
-                key={tool.title}
-                href="#"
-                className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex items-start rounded-lg border p-4 transition-colors hover:border-blue-300"
-              >
-                <div className="bg-primary/10 text-primary group-hover:bg-primary rounded-lg p-2 transition-colors group-hover:text-white">
-                  <tool.icon size={24} />
-                </div>
-                <div className="ml-4">
-                  <h4 className="text-text-primary-light dark:text-text-primary-dark font-bold">
-                    {tool.title}
-                  </h4>
-                  <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
-                    {tool.description}
-                  </p>
-                </div>
-              </a>
-            ))}
+            {DEV_TOOL_KEYS.map((key) => {
+              const IconComp = DEV_TOOL_ICONS[key];
+              return (
+                <a
+                  key={key}
+                  href="#"
+                  className="group border-border-light bg-surface-light dark:border-border-dark dark:bg-surface-dark flex items-start rounded-lg border p-4 transition-colors hover:border-blue-300"
+                >
+                  <div className="bg-primary/10 text-primary group-hover:bg-primary rounded-lg p-2 transition-colors group-hover:text-white">
+                    <IconComp size={24} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-text-primary-light dark:text-text-primary-dark font-bold">
+                      {t(`hub.devTools.${key}.title`)}
+                    </h4>
+                    <p className="text-text-secondary-light dark:text-text-secondary-dark mt-1 text-sm">
+                      {t(`hub.devTools.${key}.description`)}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </section>
       </div>
