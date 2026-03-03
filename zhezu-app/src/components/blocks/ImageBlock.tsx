@@ -24,6 +24,7 @@ export default function ImageBlock({ config, size }: ImageBlockProps) {
           <img
             src={config.src}
             alt={config.alt || ''}
+            loading="lazy"
             className={`w-full object-cover ${config.rounded ? 'rounded-2xl' : ''}`}
           />
           {caption && (

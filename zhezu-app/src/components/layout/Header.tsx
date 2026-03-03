@@ -226,7 +226,7 @@ export function Header({ navItems, admissionOpen = true }: { navItems?: NavItem[
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => setSearchOpen(true)}
-                  className="text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark hidden h-9 w-9 cursor-pointer items-center justify-center rounded-lg transition-colors md:flex"
+                  className="text-text-secondary-light dark:text-text-secondary-dark hover:bg-surface-hover-light dark:hover:bg-surface-hover-dark flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg transition-colors"
                   aria-label={t('searchPlaceholder')}
                 >
                   <Search size={18} />

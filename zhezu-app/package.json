@@ -37,6 +37,7 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.1",
     "framer-motion": "^12.31.1",
+    "isomorphic-dompurify": "^3.0.0",
     "lucide-react": "^0.563.0",
     "mysql2": "^3.18.2",
     "next": "16.1.6",

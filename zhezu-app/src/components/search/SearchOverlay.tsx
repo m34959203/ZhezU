@@ -29,31 +29,19 @@ interface SearchOverlayProps {
 /* ------------------------------------------------------------------ */
 /*  Category labels & icons                                            */
 /* ------------------------------------------------------------------ */
-const CATEGORY_META: Record<
-  SearchResult['category'],
-  { label: string; icon: typeof GraduationCap }
-> = {
-  programs: {
-    label: '\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b',
-    icon: GraduationCap,
-  },
-  pages: { label: '\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u044b', icon: FileText },
-  news: { label: '\u041d\u043e\u0432\u043e\u0441\u0442\u0438', icon: Newspaper },
+const CATEGORY_ICONS: Record<SearchResult['category'], typeof GraduationCap> = {
+  programs: GraduationCap,
+  pages: FileText,
+  news: Newspaper,
 };
 
 const MAX_PER_CATEGORY = 5;
 
-/* ------------------------------------------------------------------ */
-/*  Quick links shown when the input is empty                          */
-/* ------------------------------------------------------------------ */
-const QUICK_LINKS: { label: string; href: string }[] = [
-  {
-    label: '\u041f\u043e\u0441\u0442\u0443\u043f\u043b\u0435\u043d\u0438\u0435',
-    href: '/admission',
-  },
-  { label: '\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u044b', href: '/academics' },
-  { label: 'AI-\u0426\u0435\u043d\u0442\u0440', href: '/ai-center' },
-  { label: '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b', href: '/admission/contact' },
+const QUICK_LINK_KEYS: { labelKey: string; href: string }[] = [
+  { labelKey: 'searchQuickLinks.admission', href: '/admission' },
+  { labelKey: 'searchQuickLinks.programs', href: '/academics' },
+  { labelKey: 'searchQuickLinks.aiCenter', href: '/ai-center' },
+  { labelKey: 'searchQuickLinks.contacts', href: '/admission/contact' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -216,7 +204,8 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     const items = (filteredResults as Record<SearchResult['category'], SearchResult[]>)[category];
     if (!items || items.length === 0) return null;
 
-    const { label, icon: Icon } = CATEGORY_META[category];
+    const Icon = CATEGORY_ICONS[category];
+    const label = t(`searchCategories.${category}`);
 
     return (
       <div key={category} className="mb-2">
@@ -305,14 +294,10 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                 className="text-text-secondary-light/30 dark:text-text-secondary-dark/30 mx-auto mb-3"
               />
               <p className="text-text-secondary-light dark:text-text-secondary-dark text-sm">
-                {
-                  '\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e'
-                }
+                {t('searchNoResults')}
               </p>
               <p className="text-text-secondary-light/60 dark:text-text-secondary-dark/60 mt-1 text-xs">
-                {
-                  '\u041f\u043e\u043f\u0440\u043e\u0431\u0443\u0439\u0442\u0435 \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0437\u0430\u043f\u0440\u043e\u0441'
-                }
+                {t('searchNoResultsHint')}
               </p>
             </div>
           )}
@@ -333,19 +318,17 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
           {!hasQuery && (
             <div className="px-5 py-4">
               <p className="text-text-secondary-light dark:text-text-secondary-dark mb-3 text-xs font-semibold tracking-wide uppercase">
-                {
-                  '\u041f\u043e\u043f\u0443\u043b\u044f\u0440\u043d\u044b\u0435 \u0437\u0430\u043f\u0440\u043e\u0441\u044b'
-                }
+                {t('searchPopular')}
               </p>
               <div className="flex flex-wrap gap-2">
-                {QUICK_LINKS.map((link) => (
+                {QUICK_LINK_KEYS.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={onClose}
                     className="bg-primary/10 dark:bg-primary-light/10 text-primary dark:text-primary-light hover:bg-primary/20 dark:hover:bg-primary-light/20 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors"
                   >
-                    {link.label}
+                    {t(link.labelKey)}
                     <ArrowRight size={12} />
                   </Link>
                 ))}
@@ -361,19 +344,19 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               <kbd className="bg-surface-hover-light dark:bg-surface-hover-dark text-text-secondary-light dark:text-text-secondary-dark rounded px-1.5 py-0.5 font-mono text-[10px]">
                 &uarr;&darr;
               </kbd>{' '}
-              {'\u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044f'}
+              {t('searchNavigation')}
             </span>
             <span>
               <kbd className="bg-surface-hover-light dark:bg-surface-hover-dark text-text-secondary-light dark:text-text-secondary-dark rounded px-1.5 py-0.5 font-mono text-[10px]">
                 Enter
               </kbd>{' '}
-              {'\u043e\u0442\u043a\u0440\u044b\u0442\u044c'}
+              {t('searchOpen')}
             </span>
             <span>
               <kbd className="bg-surface-hover-light dark:bg-surface-hover-dark text-text-secondary-light dark:text-text-secondary-dark rounded px-1.5 py-0.5 font-mono text-[10px]">
                 Esc
               </kbd>{' '}
-              {'\u0437\u0430\u043a\u0440\u044b\u0442\u044c'}
+              {t('searchClose')}
             </span>
           </div>
         </div>

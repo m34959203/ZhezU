@@ -3,6 +3,7 @@
 import { useEffect, useState, useReducer } from 'react';
 import Link from 'next/link';
 import { Plus, Search, Trash2, Edit3, Eye, EyeOff, Pin, Clock, Loader2 } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import type { NewsArticle } from '@/lib/admin/types';
 
 const CATEGORIES = [
@@ -44,6 +45,8 @@ export default function AdminNewsPage() {
   const [deleting, setDeleting] = useState<string | null>(null);
   const [publishingAll, setPublishingAll] = useState(false);
   const [refreshKey, refresh] = useReducer((x: number) => x + 1, 0);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [confirmPublishAll, setConfirmPublishAll] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -73,19 +76,19 @@ export default function AdminNewsPage() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm('Удалить публикацию?')) return;
     setDeleting(id);
     await fetch(`/api/admin/news/${id}`, { method: 'DELETE' });
     refresh();
     setDeleting(null);
+    setConfirmDeleteId(null);
   }
 
   async function publishAll() {
-    if (!confirm('Опубликовать все черновики?')) return;
     setPublishingAll(true);
     await fetch('/api/admin/news/publish-all', { method: 'POST' });
     refresh();
     setPublishingAll(false);
+    setConfirmPublishAll(false);
   }
 
   const hasDrafts = news.some((n) => !n.published);
@@ -110,13 +113,13 @@ export default function AdminNewsPage() {
             className="w-full rounded-lg border border-slate-200 bg-white py-2.5 pr-4 pl-10 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-white"
           />
         </div>
-        <div className="flex gap-1 rounded-lg border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-800">
+        <div className="scrollbar-none flex gap-1 overflow-x-auto rounded-lg border border-slate-200 bg-white p-1 dark:border-slate-700 dark:bg-slate-800">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.value}
               type="button"
               onClick={() => setFilterCategory(cat.value)}
-              className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`shrink-0 rounded-md px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
                 filterCategory === cat.value
                   ? 'bg-blue-600 text-white'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white'
@@ -129,7 +132,7 @@ export default function AdminNewsPage() {
         {hasDrafts && (
           <button
             type="button"
-            onClick={publishAll}
+            onClick={() => setConfirmPublishAll(true)}
             disabled={publishingAll}
             className="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 disabled:opacity-50 dark:border-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
           >
@@ -246,7 +249,7 @@ export default function AdminNewsPage() {
                       </button>
                       <button
                         type="button"
-                        onClick={() => handleDelete(article.id)}
+                        onClick={() => setConfirmDeleteId(article.id)}
                         disabled={deleting === article.id}
                         className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-red-50 hover:text-red-500 dark:hover:bg-red-500/10"
                         title="Удалить"
@@ -265,6 +268,28 @@ export default function AdminNewsPage() {
           </table>
         )}
       </div>
+
+      <ConfirmDialog
+        open={!!confirmDeleteId}
+        onConfirm={() => confirmDeleteId && handleDelete(confirmDeleteId)}
+        onCancel={() => setConfirmDeleteId(null)}
+        title="Удалить публикацию?"
+        description="Это действие нельзя отменить. Публикация будет удалена навсегда."
+        confirmLabel="Удалить"
+        cancelLabel="Отмена"
+        variant="danger"
+      />
+
+      <ConfirmDialog
+        open={confirmPublishAll}
+        onConfirm={publishAll}
+        onCancel={() => setConfirmPublishAll(false)}
+        title="Опубликовать все черновики?"
+        description="Все неопубликованные статьи станут видимыми на сайте."
+        confirmLabel="Опубликовать"
+        cancelLabel="Отмена"
+        variant="warning"
+      />
     </div>
   );
 }
