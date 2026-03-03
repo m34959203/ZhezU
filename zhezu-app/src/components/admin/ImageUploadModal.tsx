@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef, useCallback } from 'react';
-import { X, Upload, ImageIcon, Loader2 } from 'lucide-react';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { X, Upload, ImageIcon, Loader2, ClipboardPaste } from 'lucide-react';
 
 interface ImageUploadModalProps {
   open: boolean;
@@ -83,6 +83,25 @@ export default function ImageUploadModal({ open, onClose, onInsert }: ImageUploa
     if (file) uploadFile(file);
   };
 
+  // Clipboard paste support
+  useEffect(() => {
+    if (!open) return;
+    const handlePaste = (e: ClipboardEvent) => {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (const item of items) {
+        if (item.type.startsWith('image/')) {
+          e.preventDefault();
+          const file = item.getAsFile();
+          if (file) uploadFile(file);
+          return;
+        }
+      }
+    };
+    document.addEventListener('paste', handlePaste);
+    return () => document.removeEventListener('paste', handlePaste);
+  }, [open, uploadFile]);
+
   const handleInsert = () => {
     const src = url.trim();
     if (!src) return;
@@ -145,6 +164,10 @@ export default function ImageUploadModal({ open, onClose, onInsert }: ImageUploa
                 Перетащите файл сюда
               </p>
               <p className="mt-1 text-xs text-slate-400">или нажмите для выбора</p>
+              <p className="mt-1.5 flex items-center gap-1 text-xs text-slate-400">
+                <ClipboardPaste size={12} />
+                Ctrl+V — вставить из буфера
+              </p>
               <p className="mt-2 text-xs text-slate-400">JPEG, PNG, WebP — до 5 МБ</p>
             </>
           )}
