@@ -49,7 +49,7 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, siz
         </h2>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {featured && (
-            <div className="group cursor-pointer lg:col-span-2">
+            <Link href={`/life/news/${featured.slug || featured.id}`} className="group lg:col-span-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none rounded-2xl">
               <div className="relative mb-4 h-[300px] overflow-hidden rounded-2xl md:h-[400px]">
                 <div
                   className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
@@ -82,20 +82,21 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, siz
                   {featured.excerpt[locale]}
                 </p>
               </div>
-            </div>
+            </Link>
           )}
 
           <div className="flex flex-col gap-6">
             {sideNews.map((item, i) => {
               const d = new Date(item.createdAt);
               return (
-                <div
+                <Link
                   key={item.id}
-                  className={`group flex cursor-pointer gap-4 ${i < sideNews.length - 1 ? 'border-border-light dark:border-border-dark border-b pb-6' : ''}`}
+                  href={`/life/news/${item.slug || item.id}`}
+                  className={`group flex gap-4 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none ${i < sideNews.length - 1 ? 'border-border-light dark:border-border-dark border-b pb-6' : ''}`}
                 >
                   <div className="h-24 w-24 shrink-0 overflow-hidden rounded-lg">
                     <div
-                      className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-110"
+                      className="h-full w-full bg-cover bg-center transition-transform group-hover:scale-105"
                       style={{ backgroundImage: `url(${item.image})` }}
                     />
                   </div>
@@ -111,7 +112,7 @@ export default function NewsBlock({ newsItems, categoryLabels, maxItems = 4, siz
                       {formatDateShort(d, locale)}
                     </span>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

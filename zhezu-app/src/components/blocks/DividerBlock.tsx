@@ -19,7 +19,7 @@ export default function DividerBlock({ config, size }: DividerBlockProps) {
   const style = config.style || 'line';
 
   return (
-    <div className={spacing}>
+    <div className={spacing} role="separator" aria-hidden="true">
       <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${BLOCK_SIZE_CLS[size]}`}>
         {style === 'line' && (
           <hr className="border-border-light dark:border-border-dark" />

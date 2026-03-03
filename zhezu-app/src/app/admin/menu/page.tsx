@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import {
   Save,
   Loader2,
@@ -16,6 +16,7 @@ import {
   ArrowUp,
   ArrowDown,
 } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 
 /* ─── Types ─── */
 interface MenuLink {
@@ -237,6 +238,7 @@ export default function MenuManagerPage() {
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const [expandedColumn, setExpandedColumn] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'main' | 'footerNav' | 'footerStudents'>('main');
+  const [confirmRemoveId, setConfirmRemoveId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/admin/menu')
@@ -290,12 +292,12 @@ export default function MenuManagerPage() {
   }
 
   function removeNavItem(id: string) {
-    if (!confirm('Удалить раздел меню и все его подменю?')) return;
     setMenu((prev) => ({
       ...prev,
       navigation: prev.navigation.filter((n) => n.id !== id).map((n, i) => ({ ...n, order: i })),
     }));
     if (expandedItem === id) setExpandedItem(null);
+    setConfirmRemoveId(null);
   }
 
   function updateNavItem(id: string, patch: Partial<MenuItem>) {
@@ -527,7 +529,7 @@ export default function MenuManagerPage() {
 
                 <button
                   type="button"
-                  onClick={() => removeNavItem(item.id)}
+                  onClick={() => setConfirmRemoveId(item.id)}
                   className="rounded-lg p-2 text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10"
                 >
                   <Trash2 size={16} />
@@ -760,6 +762,17 @@ export default function MenuManagerPage() {
           </div>
         </div>
       )}
+
+      <ConfirmDialog
+        open={!!confirmRemoveId}
+        onConfirm={() => confirmRemoveId && removeNavItem(confirmRemoveId)}
+        onCancel={() => setConfirmRemoveId(null)}
+        title="Удалить раздел меню?"
+        description="Раздел и все его подменю будут удалены."
+        confirmLabel="Удалить"
+        cancelLabel="Отмена"
+        variant="danger"
+      />
     </div>
   );
 }

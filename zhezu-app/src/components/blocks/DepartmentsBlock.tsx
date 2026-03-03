@@ -57,11 +57,11 @@ export default function DepartmentsBlock({ departments, columns, size = 'full' }
             return (
               <Link
                 key={dept.id}
-                href="/academics"
+                href={`/academics/departments/${dept.id}`}
                 className="group border-border-light bg-surface-light hover:border-primary/30 dark:border-border-dark dark:bg-surface-dark dark:hover:border-primary-light/30 flex flex-col items-center rounded-xl border p-6 text-center shadow-sm transition-all hover:shadow-md"
               >
                 <div
-                  className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${colors.bg} ${colors.text} ${colors.darkBg} ${colors.darkText} group-hover:text-primary dark:group-hover:text-primary-light transition-all group-hover:scale-110`}
+                  className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${colors.bg} ${colors.text} ${colors.darkBg} ${colors.darkText} group-hover:text-primary dark:group-hover:text-primary-light transition-all group-hover:scale-105`}
                 >
                   <IconComp size={28} />
                 </div>

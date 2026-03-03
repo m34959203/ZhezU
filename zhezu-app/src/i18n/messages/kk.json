@@ -1376,6 +1376,23 @@
     "virtualTour": "Виртуалды тур",
     "virtualTourDesc": "Кампусты зерттеңіз",
     "seeAll": "Барлығын көру",
+    "searchCategories": {
+      "programs": "Бағдарламалар",
+      "pages": "Беттер",
+      "news": "Жаңалықтар"
+    },
+    "searchNoResults": "Ештеңе табылмады",
+    "searchNoResultsHint": "Сұранысты өзгертіп көріңіз",
+    "searchPopular": "Танымал сұраныстар",
+    "searchNavigation": "навигация",
+    "searchOpen": "ашу",
+    "searchClose": "жабу",
+    "searchQuickLinks": {
+      "admission": "Түсу",
+      "programs": "Бағдарламалар",
+      "aiCenter": "AI-Орталық",
+      "contacts": "Байланыс"
+    },
     "university": {
       "title": "Университет",
       "about": "ЖОО туралы",

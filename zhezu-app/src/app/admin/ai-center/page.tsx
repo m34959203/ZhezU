@@ -15,6 +15,7 @@ import {
   ChevronDown,
   Link as LinkIcon,
 } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 import type { AICenterData, AICenterProject, ContentLocale } from '@/lib/admin/types';
 
 const EMPTY_LOCALIZED = { kk: '', ru: '', en: '' };
@@ -51,6 +52,7 @@ export default function AICenterAdminPage() {
   const [saved, setSaved] = useState(false);
   const [activeLang, setActiveLang] = useState<ContentLocale>('ru');
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const [confirmRemoveProjectId, setConfirmRemoveProjectId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/admin/ai-center')
@@ -99,8 +101,8 @@ export default function AICenterAdminPage() {
   };
 
   const removeProject = (id: string) => {
-    if (!confirm('Удалить этот проект?')) return;
     setData({ ...data, projects: data.projects.filter((p) => p.id !== id) });
+    setConfirmRemoveProjectId(null);
   };
 
   const moveProject = (id: string, dir: -1 | 1) => {
@@ -297,7 +299,7 @@ export default function AICenterAdminPage() {
                   </button>
                   <button
                     type="button"
-                    onClick={(e) => { e.stopPropagation(); removeProject(project.id); }}
+                    onClick={(e) => { e.stopPropagation(); setConfirmRemoveProjectId(project.id); }}
                     className="rounded p-1 text-slate-400 hover:text-red-500"
                   >
                     <Trash2 size={14} />
@@ -443,6 +445,17 @@ export default function AICenterAdminPage() {
           </div>
         </div>
       )}
+
+      <ConfirmDialog
+        open={!!confirmRemoveProjectId}
+        onConfirm={() => confirmRemoveProjectId && removeProject(confirmRemoveProjectId)}
+        onCancel={() => setConfirmRemoveProjectId(null)}
+        title="Удалить проект?"
+        description="Проект будет удалён из списка."
+        confirmLabel="Удалить"
+        cancelLabel="Отмена"
+        variant="danger"
+      />
     </div>
   );
 }

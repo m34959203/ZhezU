@@ -1373,6 +1373,23 @@
     "virtualTour": "Virtual Tour",
     "virtualTourDesc": "Explore the campus",
     "seeAll": "See all",
+    "searchCategories": {
+      "programs": "Programs",
+      "pages": "Pages",
+      "news": "News"
+    },
+    "searchNoResults": "Nothing found",
+    "searchNoResultsHint": "Try a different query",
+    "searchPopular": "Popular searches",
+    "searchNavigation": "navigate",
+    "searchOpen": "open",
+    "searchClose": "close",
+    "searchQuickLinks": {
+      "admission": "Admission",
+      "programs": "Programs",
+      "aiCenter": "AI Center",
+      "contacts": "Contacts"
+    },
     "university": {
       "title": "University",
       "about": "About",

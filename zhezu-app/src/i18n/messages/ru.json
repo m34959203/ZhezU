@@ -1376,6 +1376,23 @@
     "virtualTour": "Виртуальный тур",
     "virtualTourDesc": "Исследуйте кампус",
     "seeAll": "Все разделы",
+    "searchCategories": {
+      "programs": "Программы",
+      "pages": "Страницы",
+      "news": "Новости"
+    },
+    "searchNoResults": "Ничего не найдено",
+    "searchNoResultsHint": "Попробуйте изменить запрос",
+    "searchPopular": "Популярные запросы",
+    "searchNavigation": "навигация",
+    "searchOpen": "открыть",
+    "searchClose": "закрыть",
+    "searchQuickLinks": {
+      "admission": "Поступление",
+      "programs": "Программы",
+      "aiCenter": "AI-Центр",
+      "contacts": "Контакты"
+    },
     "university": {
       "title": "Университет",
       "about": "О вузе",

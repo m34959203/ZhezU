@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import type { NewsArticle, ContentLocale } from '@/lib/admin/types';
 import { slugify } from '@/lib/utils';
+import { ConfirmDialog } from '@/components/ui/ConfirmDialog';
 
 const RichTextEditor = lazy(() => import('@/components/admin/RichTextEditor'));
 const ImageUploadModal = lazy(() => import('@/components/admin/ImageUploadModal'));
@@ -106,6 +107,9 @@ export default function NewsEditorPage() {
   const [publishing, setPublishing] = useState(false);
   const [publishingIg, setPublishingIg] = useState(false);
   const [publishResult, setPublishResult] = useState<string | null>(null);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showTelegramConfirm, setShowTelegramConfirm] = useState(false);
+  const [showInstagramConfirm, setShowInstagramConfirm] = useState(false);
   const [telegramConfigured, setTelegramConfigured] = useState<boolean | null>(null);
   const [instagramConfigured, setInstagramConfigured] = useState<boolean | null>(null);
   const [socialPublished, setSocialPublished] = useState<{
@@ -199,7 +203,6 @@ export default function NewsEditorPage() {
   }
 
   async function handleDelete() {
-    if (!confirm('Удалить публикацию?')) return;
     await fetch(`/api/admin/news/${id}`, { method: 'DELETE' });
     router.push('/admin/news');
   }
@@ -278,7 +281,7 @@ export default function NewsEditorPage() {
 
   /* ─── Social: Telegram ─── */
   const handlePublishTelegram = useCallback(async () => {
-    if (!confirm('Опубликовать в Telegram-канал?')) return;
+    setShowTelegramConfirm(false);
     setPublishing(true);
     setPublishResult(null);
     try {
@@ -303,7 +306,7 @@ export default function NewsEditorPage() {
 
   /* ─── Social: Instagram ─── */
   const handlePublishInstagram = useCallback(async () => {
-    if (!confirm('Опубликовать в Instagram?')) return;
+    setShowInstagramConfirm(false);
     setPublishingIg(true);
     setPublishResult(null);
     try {
@@ -362,7 +365,7 @@ export default function NewsEditorPage() {
           {!isNew && (
             <button
               type="button"
-              onClick={handleDelete}
+              onClick={() => setShowDeleteConfirm(true)}
               className="flex items-center gap-1.5 rounded-lg border border-red-200 px-3 py-2 text-sm text-red-500 transition-colors hover:bg-red-50 dark:border-red-500/20 dark:hover:bg-red-500/10"
             >
               <Trash2 size={14} />
@@ -450,7 +453,7 @@ export default function NewsEditorPage() {
         {!isNew && telegramConfigured && (
           <button
             type="button"
-            onClick={handlePublishTelegram}
+            onClick={() => setShowTelegramConfirm(true)}
             disabled={publishing}
             className="flex items-center gap-1.5 rounded-lg border border-blue-200 bg-white px-3 py-1.5 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-50 disabled:opacity-50 dark:border-blue-500/30 dark:bg-slate-800 dark:text-blue-300 dark:hover:bg-slate-700"
           >
@@ -462,7 +465,7 @@ export default function NewsEditorPage() {
         {!isNew && instagramConfigured && (
           <button
             type="button"
-            onClick={handlePublishInstagram}
+            onClick={() => setShowInstagramConfirm(true)}
             disabled={publishingIg}
             className="flex items-center gap-1.5 rounded-lg border border-pink-200 bg-white px-3 py-1.5 text-xs font-medium text-pink-700 transition-colors hover:bg-pink-50 disabled:opacity-50 dark:border-pink-500/30 dark:bg-slate-800 dark:text-pink-300 dark:hover:bg-slate-700"
           >
@@ -905,6 +908,37 @@ export default function NewsEditorPage() {
           </button>
         </div>
       </div>
+
+      <ConfirmDialog
+        open={showDeleteConfirm}
+        onConfirm={handleDelete}
+        onCancel={() => setShowDeleteConfirm(false)}
+        title="Удалить публикацию?"
+        description="Это действие нельзя отменить."
+        confirmLabel="Удалить"
+        cancelLabel="Отмена"
+        variant="danger"
+      />
+      <ConfirmDialog
+        open={showTelegramConfirm}
+        onConfirm={handlePublishTelegram}
+        onCancel={() => setShowTelegramConfirm(false)}
+        title="Опубликовать в Telegram-канал?"
+        description="Статья будет отправлена подписчикам канала."
+        confirmLabel="Опубликовать"
+        cancelLabel="Отмена"
+        variant="info"
+      />
+      <ConfirmDialog
+        open={showInstagramConfirm}
+        onConfirm={handlePublishInstagram}
+        onCancel={() => setShowInstagramConfirm(false)}
+        title="Опубликовать в Instagram?"
+        description="Пост будет опубликован в Instagram-аккаунте."
+        confirmLabel="Опубликовать"
+        cancelLabel="Отмена"
+        variant="info"
+      />
     </div>
   );
 }
